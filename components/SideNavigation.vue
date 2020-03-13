@@ -68,12 +68,10 @@
     "The latest updates": "兵庫県内の最新感染動向",
     "If you have any symptoms": "新型コロナウイルス感染症が心配なときに",
     "for Families with children": "お子様をお持ちの皆様へ",
-    "for Citizens": "都民の皆様へ",
+    "for Citizens": "県民の皆様へ",
     "for Enterprises and Employees": "企業の皆様・はたらく皆様へ",
-    "Official statements from Task Force": "兵庫県新型コロナウイルス感染症対策本部報",
-    "Cancelled public events": "兵庫県主催等 中止又は延期するイベント等",
     "Government official website": "兵庫県公式ホームページ",
-    "Message from Governor Koike": "知事からのメッセージ",
+    "Message from Governor Ido": "知事からのメッセージ",
     "About us": "当サイトについて"
   }
 }
@@ -114,7 +112,7 @@ export default {
         {
           icon: 'mdi-account-multiple',
           title: this.$t('for Citizens'),
-          link: 'https://www.metro.tokyo.lg.jp/tosei/tosei/news/2019-ncov.html'
+          link: 'https://web.pref.hyogo.lg.jp/kk03/200129.html'
         },
         {
           icon: 'mdi-domain',
@@ -123,19 +121,9 @@ export default {
           divider: true
         },
         {
-          title: this.$t('Official statements from Task Force'),
+          title: this.$t('Message from Governor Ido'),
           link:
-            'https://www.bousai.metro.tokyo.lg.jp/taisaku/saigai/1007261/index.html'
-        },
-        {
-          title: this.$t('Cancelled public events'),
-          link:
-            'https://www.seisakukikaku.metro.tokyo.lg.jp/information/event02.html'
-        },
-        {
-          title: this.$t('Message from Governor Koike'),
-          link:
-            'https://www.metro.tokyo.lg.jp/tosei/governor/governor/katsudo/2020/03/03_00.html'
+            'https://web.pref.hyogo.lg.jp/governor/g_comment20200301.html'
         },
         {
           title: this.$t('About us'),
@@ -143,7 +131,7 @@ export default {
         },
         {
           title: this.$t('Government official website'),
-          link: 'https://www.metro.tokyo.lg.jp/',
+          link: 'https://web.pref.hyogo.lg.jp/',
           divider: true
         }
       ]
