@@ -1,4 +1,4 @@
-name: staging deploy
+name: production deploy
 
 on:
   release:
