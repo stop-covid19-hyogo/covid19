@@ -40,25 +40,11 @@
       <div class="SideNavigation-Footer">
         <div class="SideNavigation-SocialLinkContainer">
           <a
-            href="https://line.me/R/ti/p/%40822sysfc"
-            target="_blank"
-            rel="noopener"
-          >
-            <img src="/line.png" alt="LINE" />
-          </a>
-          <a
-            href="https://twitter.com/tokyo_bousai"
+            href="https://twitter.com/hyogokoho"
             target="_blank"
             rel="noopener"
           >
             <img src="/twitter.png" alt="Twitter" />
-          </a>
-          <a
-            href="https://www.facebook.com/tochokoho"
-            target="_blank"
-            rel="noopener"
-          >
-            <img src="/facebook.png" alt="Facebook" />
           </a>
         </div>
         <small class="SideNavigation-Copyright" lang="en">
