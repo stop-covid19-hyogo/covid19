@@ -48,8 +48,7 @@
           </a>
         </div>
         <small class="SideNavigation-Copyright" lang="en">
-          Copyright &copy; 2020 Tokyo Metropolitan Government. All Rights
-          Reserved.
+          Copyright &copy; 2020 Stop Covid19 Hyogo. All Rights Reserved.
         </small>
       </div>
     </div>
