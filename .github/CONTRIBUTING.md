@@ -1,41 +1,78 @@
-# 貢献の仕方
+# プロジェクトへの参加方法
 
-コントリビューターの皆様、本プロジェクトにご参加いただきありがとうございます！！
+本プロジェクトにご協力いただきありがとうございます。
 
-開発責任者をしています、大山です。何か質問があれば、Slack 等でお気軽に質問してください！
+プロジェクトの責任者をしています、大山と申します。何か質問があれば、Slack 等でお気軽に質問してください。プロジェクトへの参加方法をお伝えいたします。
 
-本サイトの開発に参加してくださる方に対して、参加方法をお伝えします。
+なお、わかりやすい簡単な修正をスポット的に行うだけであれば、自分のリポジトリに Fork をして、修正版を Pull Request いただいても問題ございません。
 
-## Issue へのコメントや Pull Request について
-* Issue へのコメントはご自由にどうぞ！新しい質問や提案なども受け付けます。
-* Issue を追加する場合、必ず既に同様の Issue が無いか検索をしてから作成してください。
-* improve(改善提案)がついたIssueについては必ず反映できると限りませんのでご了承ください（特にUI系について）
-* good first issue / help wanted / bug を優先して対応いただけると助かります
-* わかりやすい簡単な修正をスポット的に行うだけであれば、自分のリポジトリに Fork をして、修正版を Pull Request いただいてもかまいません。
+開発に参加する前に、[プロジェクトの行動規範](CODE_OF_CONDUCT.md) をご一読ください。
 
-## コミュニケーションへの参加方法
-* Code for Japan の Slack アカウントを持っていない場合、[こちらから登録](https://cfjslackin.herokuapp.com/)してください
-* `#covid19` チャンネルにご参加ください。
+## コミュニケーションについて
 
-## 参加にあたって
-* 開発に参加する前に、[Principle/行動規範](CODE_OF_CONDUCT.md) をご一読ください。
-* コミュニケーションにあたっては、Code for Japan の [行動規範](https://github.com/codeforjapan/codeofconduct) もご確認ください。
-* 自分ができそうな Issue に誰もアサインされていない場合、Issueに「やります！」等とコメントしてから開発をはじめてください。
-* [good first issue ラベルのついたもの](https://github.com/tokyo-metropolitan-gov/covid19/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)は初心者におすすめです
-* 半日以上作業から離れそうな場合は、他の人が作業を引き継げるようにしておいてください。（Issue を抱えたまま長時間オフになると、そのIssueがブロックされてしまいます。）
-* 1日以上更新されない Issue については、当方で assign を外させていただくことがあります。作業途中でも、[Draft Pull Request](https://qiita.com/tatane616/items/13da1b6797a7b871ad58) を送ってもらえると、動きが把握しやすくなります。
-* Issue に関連した質問等は、Slack より Issue 内のコメントを活用しましょう
-* 提案なども受け付けます！積極的に新しく Issue を作ってください。
+本プロジェクト用のチャットを Slack にて準備しております。サイト制作にご協力頂ける方であれば誰でも参加可能です。[こちら](https://join.slack.com/t/stop-covid19-hyogo/shared_invite/zt-cq8r7q3a-Pr4UyYDeKjyr8z4N6HbwLg)からご参加下さい。
 
-## CONTRIBUTORS.md への追加について
-ご協力いただいた皆様のお名前（ハンドルネーム）や役割を記す、[CONTRIBUTORS.md](https://github.com/tokyo-metropolitan-gov/covid19/blob/development/CONTRIBUTORS.md) というファイルがあります。
-何かしらの貢献を行った方は、ぜひこちらにもお名前をお載せください。
-[#654](https://github.com/tokyo-metropolitan-gov/covid19/issues/654) の Issue に、掲載名、リンク先（あれば）、役割をコメントください。
+また、コミュニケーションにあたっては、Code for Japan の [行動規範](https://github.com/codeforjapan/codeofconduct) もご確認ください。
 
-## 開発に関する情報
-* 開発サイト https://dev-covid19-tokyo.netlify.com/
-* ステージングサイト https://stg-covid19-tokyo.netlify.com/
-* 本番サイト https://stopcovid19.metro.tokyo.lg.jp/
-* [デザイン](https://www.figma.com/file/V7vt80p2gauhdgTZeVNbgj/UI%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3?node-id=121%3A156)
+## プロジェクトの進め方について
 
-本 ドキュメント の更新も大歓迎です！
+GitHub の [Project](https://github.com/stop-covid19-hyogo/covid19/projects/1) をつかって、対応すべき Issue とその進捗を管理しています。
+
+自分ができそうな Issue に誰もアサインされていない場合、Issue に「やります！」等とコメントしてから開発をはじめてください。
+
+### Issue へのコメントや Pull Request について
+
+- Issue へのコメントはご自由にどうぞ！新しい質問や提案なども受け付けます
+- Issue を追加する場合、必ず既に同様の Issue が無いか検索をしてから作成してください
+- improve(改善提案)がついたIssueについては必ず反映できると限りませんのでご了承ください（特にUI系について）
+- good first issue / help wanted / bug を優先して対応いただけると助かります
+- わかりやすい簡単な修正をスポット的に行うだけであれば、自分のリポジトリに Fork をして、修正版を Pull Request いただいてもかまいません。
+
+### 注意事項
+
+- 半日以上作業から離れそうな場合は、他の人が作業を引き継げるようにしておいてください。（Issue を抱えたまま長時間オフになると、そのIssueがブロックされてしまいます。）
+- 1日以上更新されない Issue については、当方で assign を外させていただくことがあります。作業途中でも、[Draft Pull Request](https://qiita.com/tatane616/items/13da1b6797a7b871ad58) を送ってもらえると、動きが把握しやすくなります。
+- Issue に関連した質問等は、Slack より Issue 内のコメントを活用しましょう
+- 提案なども受け付けます！積極的に新しく Issue を作ってください。
+
+
+## 各種環境とデプロイについて
+
+本プロジェクトでは以下の環境が存在します。
+
+### development / 開発環境
+
+https://dev-covid19-hyogo.netlify.com/
+
+最新の開発状況が反映される環境です。 `development` ブランチを更新すると CI/CD が実行されサーバーのコンテンツを更新します。
+
+サーバーには[Netlify](https://www.netlify.com/) を使用しています。
+
+### staging / 検証環境
+
+https://stg-covid19-hyogo.netlify.com/
+
+
+本番リリース前の確認を行うための環境です。 `v[0-9]+.[0-9]+.[0-9]+-staging.[0-9]+` という形式でタグを付けると CI/CD が実行されサーバーのコンテンツを更新します。
+
+- タグの例
+    - `v0.1.0-staging.1`
+    - `v1.0.0-staging.3`
+
+なお、GitHub のリリース機能ではタグを付けることができません。間違わないよう注意して下さい。
+
+サーバーには[Netlify](https://www.netlify.com/) を使用しています。
+
+### production / 本番環境
+
+本番環境です。 GitHub で[リリース](https://github.com/stop-covid19-hyogo/covid19/releases)すると CI/CD が実行されサーバーのコンテンツを更新します。
+
+サーバーには AWS を使用しています。
+
+## 各種リソースについて
+
+### デザインデータ
+
+サイトで使用するデザインデータは Figma を使用して制作しています。[こちら](https://www.figma.com/files/recent)をご覧下さい。
+
+本ドキュメントの更新も大歓迎です！
