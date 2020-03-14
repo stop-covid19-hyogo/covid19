@@ -1,42 +1,30 @@
-# 兵庫県 新型コロナウイルス感染症対策サイト（開発中）
+# 兵庫県 新型コロナウイルス感染症対策サイト
 
-[![兵庫県 新型コロナウイルス感染症対策サイト（開発中）](https://user-images.githubusercontent.com/2575204/76350498-391d2900-634f-11ea-979c-539372d6ec03.png)](https://dev-covid19-hyogo.netlify.com/)
+[![兵庫県 新型コロナウイルス感染症対策サイト](https://user-images.githubusercontent.com/2575204/76670387-9a552e80-65d3-11ea-938a-1738492058e4.png)](https://dev-covid19-hyogo.netlify.com/)
 
 ## 貢献の仕方
-Issues にあるいろいろな修正にご協力いただけると嬉しいです。
 
-詳しくは[貢献の仕方](./.github/CONTRIBUTING.md)を御覧ください。
+### コミュニケーションについて
+
+Slack でディスカッションを行っております。
+
+サイト制作にご協力頂ける方であれば誰でも参加可能です。[ここ](https://join.slack.com/t/stop-covid19-hyogo/shared_invite/zt-cq8r7q3a-Pr4UyYDeKjyr8z4N6HbwLg)からご参加下さい。
+
+コミュニケーションにあたっては、Code for Japan の [行動規範](https://github.com/codeforjapan/codeofconduct) もご確認ください。
+
+### 行動原則
+
+[サイト構築にあたっての行動原則](./.github/CODE_OF_CONDUCT.md)を御覧ください。
+
+### 開発者の方へ
+
+サイト制作・開発に関する詳細は[プロジェクトへの参加方法](./.github/CONTRIBUTING.md)をご確認下さい。
 
 
-## 行動原則
-詳しくは[サイト構築にあたっての行動原則](./.github/CODE_OF_CONDUCT.md)を御覧ください。
+## CONTRIBUTORS.md への追加について
+
+ご協力いただいた皆様のお名前（ハンドルネーム）や役割を記す、[CONTRIBUTORS.md](./CONTRIBUTORS.md) というファイルがあります。何かしらの貢献を行った方は、ぜひこちらにもお名前をお載せください。
 
 ## ライセンス
+
 本ソフトウェアは、[MITライセンス](./LICENSE.txt)の元提供されています。
-
-## 開発者向け情報
-
-### 環境構築の手順
-
-- 必要となるNode.jsのバージョン: 10.19.0以上
-
-**yarn を使う場合**
-``` bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-```
-
-**docker compose を使う場合**
-```bash
-# serve with hot reload at localhost:3000
-$ docker-compose up --build
-```
-
-### ステージング・本番環境への反映
-
-`development` ブランチがアップデートされると、自動的に `dev-pages` ブランチにHTML類がbuildされます。そして、開発用サイト https://dev-covid19-hyogo.netlify.com/ が更新されます。
-
-`master`・`staging` の扱いについては検討中です。
