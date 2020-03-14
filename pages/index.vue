@@ -60,38 +60,6 @@
           :unit="'件'"
         />
       </v-col>
-      <v-col cols="12" md="6" class="DataCard">
-        <time-bar-chart
-          title="新型コロナコールセンター相談件数"
-          :title-id="'number-of-reports-to-covid19-telephone-advisory-center'"
-          :chart-id="'time-bar-chart-contacts'"
-          :chart-data="contactsGraph"
-          :date="Data.contacts.date"
-          :unit="'件'"
-          :url="''"
-        />
-      </v-col>
-      <v-col cols="12" md="6" class="DataCard">
-        <time-bar-chart
-          title="新型コロナ受診相談窓口相談件数"
-          :title-id="'number-of-reports-to-covid19-consultation-desk'"
-          :chart-id="'time-bar-chart-querents'"
-          :chart-data="querentsGraph"
-          :date="Data.querents.date"
-          :unit="'件'"
-          :url="''"
-        />
-      </v-col>
-      <v-col cols="12" md="6" class="DataCard">
-        <metro-bar-chart
-          title="都営地下鉄の利用者数の推移"
-          :title-id="'predicted-number-of-toei-subway-passengers'"
-          :chart-id="'metro-bar-chart'"
-          :chart-data="metroGraph"
-          :chart-option="metroGraphOption"
-          :date="metroGraph.date"
-        />
-      </v-col>
     </v-row>
   </div>
 </template>
@@ -104,7 +72,6 @@ import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
 import Data from '@/data/data.json'
-import MetroData from '@/data/metro.json'
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
@@ -133,12 +100,6 @@ export default {
     // 退院者グラフ
     const dischargesGraph = formatGraph(Data.discharges_summary.data)
 
-    // 相談件数
-    const contactsGraph = formatGraph(Data.contacts.data)
-    // 帰国者・接触者電話相談センター相談件数
-    const querentsGraph = formatGraph(Data.querents.data)
-    // 都営地下鉄の利用者数の推移
-    const metroGraph = MetroData
     // 検査実施日別状況
     const inspectionsGraph = [
       Data.inspections_summary.data['兵庫県内'],
@@ -170,9 +131,6 @@ export default {
       patientsTable,
       patientsGraph,
       dischargesGraph,
-      contactsGraph,
-      querentsGraph,
-      metroGraph,
       inspectionsGraph,
       inspectionsItems,
       inspectionsLabels,
