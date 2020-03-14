@@ -35,6 +35,16 @@ GitHub の [Project](https://github.com/stop-covid19-hyogo/covid19/projects/1) �
 - Issue に関連した質問等は、Slack より Issue 内のコメントを活用しましょう
 - 提案なども受け付けます！積極的に新しく Issue を作ってください。
 
+## ブランチ運用について
+
+東京都版とは異なり `development` ブランチのみを使用して開発を行っています。
+
+`master` `staging` などのブランチは使用しておりません。
+
+- development: 開発用のブランチです
+- dev-page: 開発環境 (development) のコンテンツを格納するブランチです
+- stg-page: 検証環境 (staging) のコンテンツを格納するブランチです
+- prod-page: 本番環境のコンテンツを格納するブランチです（検討中）
 
 ## 各種環境とデプロイについて
 
