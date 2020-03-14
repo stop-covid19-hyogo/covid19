@@ -50,19 +50,19 @@ GitHub の [Project](https://github.com/stop-covid19-hyogo/covid19/projects/1) �
 
 本プロジェクトでは以下の環境が存在します。
 
+サーバーには[Netlify](https://www.netlify.com/) を使用しています。
+
 ### development / 開発環境
 
-https://dev-covid19-hyogo.netlify.com/
+https://dev.stop-covid19-hyogo.org/
 
 Password: `stop.covid19.hyogo`
 
 最新の開発状況が反映される環境です。 `development` ブランチを更新すると CI/CD が実行されサーバーのコンテンツを更新します。
 
-サーバーには[Netlify](https://www.netlify.com/) を使用しています。
-
 ### staging / 検証環境
 
-https://stg-covid19-hyogo.netlify.com/
+https://stg.stop-covid19-hyogo.org/
 
 Password: `stop.covid19.hyogo`
 
@@ -74,13 +74,12 @@ Password: `stop.covid19.hyogo`
 
 なお、GitHub のリリース機能ではタグを付けることができません。間違わないよう注意して下さい。
 
-サーバーには[Netlify](https://www.netlify.com/) を使用しています。
 
 ### production / 本番環境
 
-本番環境です。 GitHub で[リリース](https://github.com/stop-covid19-hyogo/covid19/releases)すると CI/CD が実行されサーバーのコンテンツを更新します。
+https://stop-covid19-hyogo.org/
 
-サーバーには AWS を使用しています。
+本番環境です。 GitHub で[リリース](https://github.com/stop-covid19-hyogo/covid19/releases)すると CI/CD が実行されサーバーのコンテンツを更新します。
 
 ## 各種リソースについて
 
