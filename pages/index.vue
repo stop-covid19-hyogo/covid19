@@ -17,7 +17,7 @@
         <svg-card
           title="検査陽性者の状況"
           :title-id="'details-of-confirmed-cases'"
-          :date="Data.inspections_summary.date"
+          :date="inspectionsSummary.last_update"
         >
           <confirmed-cases-table v-bind="confirmedCases" />
         </svg-card>
@@ -28,11 +28,9 @@
           :title-id="'number-of-confirmed-cases'"
           :chart-id="'time-bar-chart-patients'"
           :chart-data="patientsGraph"
-          :date="Data.patients.date"
+          :date="patients.last_update"
           :unit="'人'"
-          :url="
-            'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'
-          "
+          :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
@@ -41,11 +39,9 @@
           :title-id="'attributes-of-confirmed-cases'"
           :chart-data="patientsTable"
           :chart-option="{}"
-          :date="Data.patients.date"
+          :date="patients.last_update"
           :info="sumInfoOfPatients"
-          :url="
-            'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'
-          "
+          :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
@@ -54,13 +50,11 @@
           :title-id="'number-of-tested'"
           :chart-id="'time-stacked-bar-chart-inspections'"
           :chart-data="inspectionsGraph"
-          :date="Data.inspections_summary.date"
+          :date="inspectionsSummary.last_update"
           :items="inspectionsItems"
           :labels="inspectionsLabels"
           :unit="'件'"
-          :url="
-            'https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html'
-          "
+          :url="'https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html'"
         />
       </v-col>
     </v-row>
@@ -70,11 +64,15 @@
 <script>
 import PageHeader from '@/components/PageHeader.vue'
 import TimeBarChart from '@/components/TimeBarChart.vue'
-import MetroBarChart from '@/components/MetroBarChart.vue'
 import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
-import Data from '@/data/data.json'
+import lastUpdate from '@/data/last_update.json'
+import patients from '@/data/patients.json'
+import patientsSummary from '@/data/patients_summary.json'
+import mainSummary from '@/data/main_summary.json'
+import dischargesSummary from '@/data/discharges_summary.json'
+import inspectionsSummary from '@/data/inspections_summary.json'
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
@@ -87,7 +85,6 @@ export default {
   components: {
     PageHeader,
     TimeBarChart,
-    MetroBarChart,
     TimeStackedBarChart,
     WhatsNew,
     StaticInfo,
@@ -97,29 +94,29 @@ export default {
   },
   data() {
     // 感染者数グラフ
-    const patientsGraph = formatGraph(Data.patients_summary.data)
+    const patientsGraph = formatGraph(patientsSummary.data)
     // 感染者数
-    const patientsTable = formatTable(Data.patients.data)
+    const patientsTable = formatTable(patients.data)
     // 退院者グラフ
-    const dischargesGraph = formatGraph(Data.discharges_summary.data)
+    const dischargesGraph = formatGraph(dischargesSummary.data)
 
     // 検査実施日別状況
     const inspectionsGraph = [
-      Data.inspections_summary.data['兵庫県内'],
-      Data.inspections_summary.data['その他']
+      inspectionsSummary.data['兵庫県内'],
+      inspectionsSummary.data['その他']
     ]
     const inspectionsItems = [
       '兵庫県内発生（疑い例・接触者調査）',
       'その他（チャーター便・クルーズ船）'
     ]
-    const inspectionsLabels = Data.inspections_summary.labels
+    const inspectionsLabels = inspectionsSummary.labels
     // 死亡者数
     // #MEMO: 今後使う可能性あるので一時コメントアウト
     // const fatalitiesTable = formatTable(
-    //   Data.patients.data.filter(patient => patient['備考'] === '死亡')
+    //   patients.data.filter(patient => patient['備考'] === '死亡')
     // )
     // 検査陽性者の状況
-    const confirmedCases = formatConfirmedCases(Data.main_summary)
+    const confirmedCases = formatConfirmedCases(mainSummary)
 
     const sumInfoOfPatients = {
       lText: patientsGraph[
@@ -130,7 +127,8 @@ export default {
     }
 
     const data = {
-      Data,
+      patients,
+      inspectionsSummary,
       patientsTable,
       patientsGraph,
       dischargesGraph,
@@ -142,62 +140,9 @@ export default {
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
         title: '兵庫県内の最新感染動向',
-        date: Data.lastUpdate
+        date: lastUpdate.last_update
       },
-      newsItems: News.newsItems,
-      metroGraphOption: {
-        responsive: true,
-        legend: {
-          display: true
-        },
-        scales: {
-          xAxes: [
-            {
-              position: 'bottom',
-              stacked: false,
-              gridLines: {
-                display: true
-              },
-              ticks: {
-                fontSize: 10,
-                maxTicksLimit: 20,
-                fontColor: '#808080'
-              }
-            }
-          ],
-          yAxes: [
-            {
-              stacked: false,
-              gridLines: {
-                display: true
-              },
-              ticks: {
-                fontSize: 12,
-                maxTicksLimit: 10,
-                fontColor: '#808080',
-                callback(value) {
-                  return value.toFixed(2) + '%'
-                }
-              }
-            }
-          ]
-        },
-        tooltips: {
-          displayColors: false,
-          callbacks: {
-            title(tooltipItems, _) {
-              const label = tooltipItems[0].label
-              return `期間: ${label}`
-            },
-            label(tooltipItem, data) {
-              const currentData = data.datasets[tooltipItem.datasetIndex]
-              const percentage = `${currentData.data[tooltipItem.index]}%`
-
-              return `${metroGraph.base_period}の利用者数との相対値: ${percentage}`
-            }
-          }
-        }
-      }
+      newsItems: News.newsItems
     }
     return data
   },
