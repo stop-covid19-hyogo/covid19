@@ -11,7 +11,7 @@ const config: Configuration = {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#'
     },
-    titleTemplate: '%s | 兵庫県非公式 新型コロナウイルス感染症対策サイト',
+    titleTemplate: '%s | 兵庫県非公式 新型コロナウイルス感染症まとめサイト',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -24,7 +24,7 @@ const config: Configuration = {
       {
         hid: 'og:site_name',
         property: 'og:site_name',
-        content: '兵庫県非公式 新型コロナウイルス感染症対策サイト'
+        content: '兵庫県非公式 新型コロナウイルス感染症まとめサイト'
       },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
@@ -35,7 +35,7 @@ const config: Configuration = {
       {
         hid: 'og:title',
         property: 'og:title',
-        content: '兵庫県 新型コロナウイルス感染症対策サイト'
+        content: '兵庫県 新型コロナウイルス感染症まとめサイト'
       },
       {
         hid: 'og:description',
@@ -173,7 +173,7 @@ const config: Configuration = {
     hardSource: process.env.NODE_ENV === 'development'
   },
   manifest: {
-    name: '兵庫県 新型コロナウイルス感染症対策サイト',
+    name: '兵庫県 新型コロナウイルス感染症まとめサイト',
     theme_color: '#01a0c7',
     background_color: '#ffffff',
     display: 'standalone',
