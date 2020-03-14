@@ -67,10 +67,8 @@
     "Tokyo COVID-19 Task Force": "新型コロナウイルス感染症対策本部",
     "The latest updates": "兵庫県内の最新感染動向",
     "If you have any symptoms": "新型コロナウイルス感染症が心配なときに",
-    "for Families with children": "お子様をお持ちの皆様へ",
-    "for Citizens": "県民の皆様へ",
-    "for Enterprises and Employees": "企業の皆様・はたらく皆様へ",
     "Government official website": "兵庫県公式ホームページ",
+    "Government official twitter": "兵庫県公式Twitter",
     "Message from Governor Ido": "知事からのメッセージ",
     "About us": "当サイトについて"
   }
@@ -96,42 +94,42 @@ export default {
         {
           icon: 'mdi-chart-timeline-variant',
           title: this.$t('The latest updates'),
-          link: '/'
-        },
-        {
-          icon: 'covid',
-          title: this.$t('If you have any symptoms'),
-          link: '/flow',
+          link: '/',
           divider: true
         },
         {
-          icon: 'parent',
-          title: this.$t('for Families with children'),
-          link: '/parent'
+          title: '新型コロナウイルスの対応について',
+          link: 'https://web.pref.hyogo.lg.jp/kf16/singatakorona.html'
         },
         {
-          icon: 'mdi-account-multiple',
-          title: this.$t('for Citizens'),
-          link: 'https://web.pref.hyogo.lg.jp/kk03/200129.html'
+          title: '記者発表資料',
+          link: 'https://web.pref.hyogo.lg.jp/kk03/singatakoronataiou.html'
         },
         {
-          icon: 'mdi-domain',
-          title: this.$t('for Enterprises and Employees'),
-          link: '/worker',
-          divider: true
+          title: '新型コロナウイルスに感染した患者の発生状況',
+          link: 'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'
+        },
+        {
+          title: '新型コロナウイルス感染症の県内検査状況について',
+          link: 'https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html'
         },
         {
           title: this.$t('Message from Governor Ido'),
-          link:
-            'https://web.pref.hyogo.lg.jp/governor/g_comment20200301.html'
-        },
-        {
-          title: this.$t('About us'),
-          link: '/about'
+          link: 'https://web.pref.hyogo.lg.jp/governor/g_comment20200301.html',
+          divider: true
         },
         {
           title: this.$t('Government official website'),
-          link: 'https://web.pref.hyogo.lg.jp/',
+          link: 'https://web.pref.hyogo.lg.jp/'
+        },
+        {
+          title: this.$t('Government official twitter'),
+          link: 'https://twitter.com/hyogokoho',
+          divider: true
+        },
+        {
+          title: this.$t('About us'),
+          link: '/about',
           divider: true
         }
       ]
