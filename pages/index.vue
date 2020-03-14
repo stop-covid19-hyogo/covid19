@@ -31,7 +31,7 @@
           :date="Data.patients.date"
           :unit="'人'"
           :url="
-            'https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068'
+            'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'
           "
         />
       </v-col>
@@ -44,7 +44,7 @@
           :date="Data.patients.date"
           :info="sumInfoOfPatients"
           :url="
-            'https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068'
+            'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'
           "
         />
       </v-col>
@@ -58,6 +58,9 @@
           :items="inspectionsItems"
           :labels="inspectionsLabels"
           :unit="'件'"
+          :url="
+            'https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html'
+          "
         />
       </v-col>
     </v-row>
