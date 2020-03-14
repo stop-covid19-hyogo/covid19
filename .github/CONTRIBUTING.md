@@ -44,6 +44,8 @@ GitHub の [Project](https://github.com/stop-covid19-hyogo/covid19/projects/1) �
 
 https://dev-covid19-hyogo.netlify.com/
 
+Password: `stop.covid19.hyogo`
+
 最新の開発状況が反映される環境です。 `development` ブランチを更新すると CI/CD が実行されサーバーのコンテンツを更新します。
 
 サーバーには[Netlify](https://www.netlify.com/) を使用しています。
@@ -52,6 +54,7 @@ https://dev-covid19-hyogo.netlify.com/
 
 https://stg-covid19-hyogo.netlify.com/
 
+Password: `stop.covid19.hyogo`
 
 本番リリース前の確認を行うための環境です。 `v[0-9]+.[0-9]+.[0-9]+-staging.[0-9]+` という形式でタグを付けると CI/CD が実行されサーバーのコンテンツを更新します。
 
