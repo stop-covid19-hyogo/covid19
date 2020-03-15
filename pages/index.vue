@@ -99,13 +99,20 @@ export default {
     const dischargesGraph = formatGraph(dischargesSummary.data)
 
     // 検査実施日別状況
+    const allInspectionsArray = []
+    for (let i = 0; i < inspectionsSummary.data['検査検体数'].length; i++) {
+      allInspectionsArray.push(
+        inspectionsSummary.data['検査検体数'][i] -
+          inspectionsSummary.data['陽性確認'][i]
+      )
+    }
     const inspectionsGraph = [
-      inspectionsSummary.data['兵庫県内'],
-      inspectionsSummary.data['その他']
+      allInspectionsArray,
+      inspectionsSummary.data['陽性確認']
     ]
     const inspectionsItems = [
-      '兵庫県内発生（疑い例・接触者調査）',
-      'その他（チャーター便・クルーズ船）'
+      '検査検体数',
+      '陽性確認者数'
     ]
     const inspectionsLabels = inspectionsSummary.labels
     // 死亡者数
