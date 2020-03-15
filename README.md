@@ -21,9 +21,13 @@ Slack でディスカッションを行っております。
 サイト制作・開発に関する詳細は[プロジェクトへの参加方法](./.github/CONTRIBUTING.md)をご確認下さい。
 
 
-## CONTRIBUTORS.md への追加について
+### CONTRIBUTORS.md への追加について
 
-ご協力いただいた皆様のお名前（ハンドルネーム）や役割を記す、[CONTRIBUTORS.md](./CONTRIBUTORS.md) というファイルがあります。何かしらの貢献を行った方は、ぜひこちらにもお名前をお載せください。
+[CONTRIBUTORS.md](./CONTRIBUTORS.md) はご協力いただいた皆様を紹介するためのファイルです。
+
+サイト制作に関わったエンジニアやデザイナーはもちろん、制作には関わらないけど貢献していただいた方々もご紹介できればと思ってます。何かしらの貢献を行った方はぜひ追記をお願いします。
+
+追加をご希望の場合は Pull Request を送っていただくか、この [Issue](https://github.com/stop-covid19-hyogo/covid19/issues/60) にコメントをお願いします。
 
 ## ライセンス
 
