@@ -13,6 +13,7 @@
 | [y-chan](https://twitter.com/Xperia_Build_Y) ([@y-chan](https://github.com/y-chan))| Data analysis / Coding |
 | [Tomohiro Nozaki](https://github.com/nztm)| Coding |
 | [Mitsugu Oyama](https://github.com/mitsugu/)| Data Maintenance |
+| [Ishimaru Sohei](https://github.com/roborovskii-info)| Coding |
 | -add your name here!- | -what did you do?- |
 
 ご協力に感謝です！！！
