@@ -59,11 +59,6 @@ const config: Configuration = {
         content: '@hyogokoho'
       },
       {
-        hid: 'twitter:creator',
-        name: 'twitter:creator',
-        content: '@tokyo_bousai'
-      },
-      {
         hid: 'twitter:image',
         name: 'twitter:image',
         content: 'https://dev-covid19-hyogo.netlify.com/ogp.png'
