@@ -10,7 +10,7 @@
 | --- | --- |
 | [Yuk Ohyama (RALLY inc.)](https://github.com/ohyama) |  Management / Programing / Coding |
 | [Yuk Saiga (RALLY inc.)](https://github.com/saigaso) | Design / Coding |
-| [y-chan](https://twitter.com/Xperia_Build_Y) ([@y-chan](https://github.com/y-chan))| Data analysis / Coding|
+| [y-chan](https://twitter.com/Xperia_Build_Y) ([@y-chan](https://github.com/y-chan))| Data analysis / Coding |
 | [Tomohiro Nozaki](https://github.com/nztm)| Coding |
 | -add your name here!- | -what did you do?- |
 
