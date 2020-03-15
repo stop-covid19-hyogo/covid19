@@ -107,12 +107,12 @@ export default {
       )
     }
     const inspectionsGraph = [
-      allInspectionsArray,
-      inspectionsSummary.data['陽性確認']
+      inspectionsSummary.data['陽性確認'],
+      allInspectionsArray
     ]
     const inspectionsItems = [
-      '検査検体数',
-      '陽性確認者数'
+      '陽性確認者数',
+      '検査検体数'
     ]
     const inspectionsLabels = inspectionsSummary.labels
     // 死亡者数

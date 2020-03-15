@@ -140,10 +140,10 @@ export default {
                 this.dataKind === 'transition'
                   ? `${sumArray[tooltipItem.index]}${unit}（検査検体数: ${
                       data[0][tooltipItem.index] + data[1][tooltipItem.index]
-                    }/陽性確認者数: ${data[1][tooltipItem.index]}）`
+                    }/陽性確認者数: ${data[0][tooltipItem.index]}）`
                   : `${cumulativeSumArray[tooltipItem.index]}${unit}（検査検体数: ${
                       cumulativeData[0][tooltipItem.index] + cumulativeData[1][tooltipItem.index]
-                    }/陽性確認者数: ${cumulativeData[1][tooltipItem.index]}）`
+                    }/陽性確認者数: ${cumulativeData[0][tooltipItem.index]}）`
               return labelText
             },
             title(tooltipItem, data) {
