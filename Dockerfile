@@ -1,12 +1,15 @@
 FROM node:10.19-alpine
 
-WORKDIR /app
+ARG project_dir=/app
+
+WORKDIR ${project_dir}
 
 COPY package.json yarn.lock ./
 
-RUN yarn install
+RUN set -x && \
+    yarn install
 
-COPY . ./app
+COPY . ${project_dir}
 
 EXPOSE 3000
 ENV HOST 0.0.0.0
