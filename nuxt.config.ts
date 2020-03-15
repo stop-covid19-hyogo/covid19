@@ -56,12 +56,7 @@ const config: Configuration = {
       {
         hid: 'twitter:site',
         name: 'twitter:site',
-        content: '@tokyo_bousai'
-      },
-      {
-        hid: 'twitter:creator',
-        name: 'twitter:creator',
-        content: '@tokyo_bousai'
+        content: '@hyogokoho'
       },
       {
         hid: 'twitter:image',
@@ -151,9 +146,6 @@ const config: Configuration = {
     defaultAssets: {
       icons: false
     }
-  },
-  googleAnalytics: {
-    id: 'UA-159417676-1'
   },
   build: {
     postcss: {
