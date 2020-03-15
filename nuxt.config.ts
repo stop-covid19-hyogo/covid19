@@ -30,7 +30,7 @@ const config: Configuration = {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://dev-covid19-hyogo.netlify.com'
+        content: 'https://stop-covid19-hyogo.org/'
       },
       {
         hid: 'og:title',
@@ -46,7 +46,7 @@ const config: Configuration = {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://dev-covid19-hyogo.netlify.com/ogp.png'
+        content: 'https://stop-covid19-hyogo.org/ogp.png'
       },
       {
         hid: 'twitter:card',
@@ -61,7 +61,7 @@ const config: Configuration = {
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: 'https://dev-covid19-hyogo.netlify.com/ogp.png'
+        content: 'https://stop-covid19-hyogo.org/ogp.png'
       }
     ],
     link: [
