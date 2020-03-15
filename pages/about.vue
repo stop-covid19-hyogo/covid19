@@ -6,6 +6,14 @@
     <TextCard>
       当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、兵庫県に関係する有志の仲間が開設したサイトです。公式情報ではないことをご了承下さい。<br />
       <br />
+      複製・改変が許されたオープンソースライセンスで公開されている、
+      <a
+        href="https://stopcovid19.metro.tokyo.lg.jp/"
+        target="_blank"
+        rel="noopener"
+        >東京都公式新型コロナウイルス対策サイト</a
+      >の仕組みを利用しています。<br />
+      <br />
       兵庫県による公式情報と客観的な数値をわかりやすく伝えることで、兵庫県にお住まいの方や、兵庫県内に拠点を持つ企業の方、兵庫県を訪れる方が、現状を把握して適切な対策を取れるようにすることを目的としています。
     </TextCard>
     <TextCard title="ブラウザ環境について">
@@ -85,7 +93,16 @@
       当サイトに掲載されている情報は、予告なしに変更又は削除することがあります。
     </TextCard>
     <TextCard title="データについて">
-      兵庫県のホームページに掲載されている情報を使用しております。（データは順次追加予定です）
+      本サイトで公表しているデータは、兵庫県公式サイトの<a
+        href="https://web.pref.hyogo.lg.jp/kk03/corona_kanjyajyokyo.html"
+        target="_blank"
+        rel="noopener"
+      >新型コロナウイルスに感染した患者の状況</a>と<a
+        href="https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html"
+        target="_blank"
+        rel="noopener"
+      >新型コロナウイルス感染症の県内検査状況について</a
+      >よりpdfとエクセルデータを取得し、最適化したものを使用しています。
     </TextCard>
     <TextCard title="ソースコードについて">
       本サイトのソースコードはMITライセンスで公開されており、誰でも自由に利用することができます。詳しくは、<a
