@@ -41,7 +41,7 @@ const config: Configuration = {
         hid: 'og:description',
         property: 'og:description',
         content:
-          '当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、兵庫県に住むクリエイターの有志が開設したサイトです。公式情報ではないことをご了承下さい。'
+          '当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、兵庫県に関係する有志の仲間が開設したサイトです。公式情報ではないことをご了承下さい。'
       },
       {
         hid: 'og:image',
@@ -56,12 +56,7 @@ const config: Configuration = {
       {
         hid: 'twitter:site',
         name: 'twitter:site',
-        content: '@tokyo_bousai'
-      },
-      {
-        hid: 'twitter:creator',
-        name: 'twitter:creator',
-        content: '@tokyo_bousai'
+        content: '@hyogokoho'
       },
       {
         hid: 'twitter:image',
