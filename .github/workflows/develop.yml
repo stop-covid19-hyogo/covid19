@@ -26,15 +26,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: yarn install, test and generate
-        run: yarn install --frozen-lockfile
-        run: yarn run test
-        run: yarn run generate:deploy --fail-on-page-error
+      - run: yarn install --frozen-lockfile
+      - run: yarn run test
+      - run: yarn run generate:deploy --fail-on-page-error
         env:
           GOOGLE_ANALYTICS_TRACKING_ID: UA-160592267-3
 
-      - name:  robots.txt
-        run: "echo \"User-agent: *\nDisallow: /\" > ./dist/robots.txt"
+      - run: "echo \"User-agent: *\nDisallow: /\" > ./dist/robots.txt"
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
