@@ -1,6 +1,6 @@
-# 兵庫県 新型コロナウイルス感染症まとめサイト
+# 兵庫県非公式 新型コロナウイルスまとめサイト
 
-[![兵庫県 新型コロナウイルス感染症まとめサイト](https://user-images.githubusercontent.com/43156990/76674468-40fcf780-65f3-11ea-8d1e-2682eb980926.png)](https://dev-covid19-hyogo.netlify.com/)
+[![兵庫県非公式 新型コロナウイルスまとめサイト](https://user-images.githubusercontent.com/43156990/76674468-40fcf780-65f3-11ea-8d1e-2682eb980926.png)](https://dev-covid19-hyogo.netlify.com/)
 
 ## 貢献の仕方
 

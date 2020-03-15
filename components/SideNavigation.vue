@@ -61,7 +61,7 @@
     "Navi Open": "サイドメニュー項目を開く",
     "Navi Close": "サイドメニュー項目を閉じる",
     "Tokyo": "兵庫県",
-    "COVID-19": "新型コロナウイルス感染症",
+    "COVID-19": "新型コロナウイルス",
     "Measures site": "まとめサイト",
     "Tokyo Metropolitan Government": "兵庫県",
     "Tokyo COVID-19 Task Force": "新型コロナウイルス感染症対策本部",
