@@ -98,7 +98,8 @@
 
     <TextCard title="お問い合わせ先">
       以下のメールアドレスまでご連絡ください。<br />
-      stop.covid19.hyogo＠gmail.com
+      stop.covid19.hyogo＠gmail.com <br />
+      ※ アットマークを半角に変換してください。
     </TextCard>
   </div>
 </template>
