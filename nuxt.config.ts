@@ -101,7 +101,10 @@ const config: Configuration = {
   buildModules: [
     '@nuxtjs/vuetify',
     '@nuxt/typescript-build',
-    '@nuxtjs/google-analytics'
+    [
+      '@nuxtjs/google-analytics',
+      { id: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'dummy' }
+    ]
   ],
   /*
    ** Nuxt.js modules
