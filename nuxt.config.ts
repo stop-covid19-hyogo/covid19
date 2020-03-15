@@ -56,7 +56,7 @@ const config: Configuration = {
       {
         hid: 'twitter:site',
         name: 'twitter:site',
-        content: '@tokyo_bousai'
+        content: '@hyogokoho'
       },
       {
         hid: 'twitter:creator',
