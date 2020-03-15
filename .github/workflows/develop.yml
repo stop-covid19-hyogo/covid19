@@ -7,7 +7,9 @@ on:
 
 jobs:
   deploy:
+
     runs-on: ubuntu-18.04
+
     steps:
       - uses: actions/checkout@v2
 
@@ -24,13 +26,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - run: |
-          yarn install --frozen-lockfile
-          yarn run test
-          yarn run generate:deploy --fail-on-page-error
-          echo \"User-agent: *\nDisallow: /\" > ./dist/robots.txt"
+      - name: yarn install, test and generate
+        run: yarn install --frozen-lockfile
+        run: yarn run test
+        run: yarn run generate:deploy --fail-on-page-error
         env:
           GOOGLE_ANALYTICS_TRACKING_ID: UA-160592267-3
+
+      - name: create robots.txt
+        run: echo \"User-agent: *\nDisallow: /\" > ./dist/robots.txt"
+
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
