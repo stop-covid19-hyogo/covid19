@@ -8,15 +8,15 @@
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 65,
+                    "value": 64,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 59
+                            "value": 57
                         },
                         {
                             "attr": "重症",
-                            "value": 6
+                            "value": 7
                         }
                     ]
                 },
@@ -26,10 +26,10 @@
                 },
                 {
                     "attr": "死亡",
-                    "value": 1
+                    "value": 2
                 }
             ]
         }
     ],
-    "last_update": "2020/03/14T24:00:00+900"
+    "last_update": "2020-03-14T24:00:00+09:00"
 }
