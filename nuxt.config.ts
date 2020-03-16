@@ -62,6 +62,11 @@ const config: Configuration = {
         hid: 'twitter:image',
         name: 'twitter:image',
         content: 'https://stop-covid19-hyogo.org/ogp.png'
+      },
+      {
+        hid: 'note:card',
+        property: 'note:card',
+        content: 'summary_large_image'
       }
     ],
     link: [
