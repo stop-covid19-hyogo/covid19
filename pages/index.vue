@@ -59,6 +59,30 @@
           :url="'https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html'"
         />
       </v-col>
+      <v-col cols="12" md="6" class="DataCard">
+        <time-bar-chart
+          title="年代別陽性患者数"
+          :title-id="'number-of-confirmed-cases'"
+          :chart-id="'time-bar-chart-patients'"
+          :chart-data="ageGraph"
+          :date="age.last_update"
+          :unit="'人'"
+          :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
+          :show-button="false"
+        />
+      </v-col>
+      <v-col cols="12" md="6" class="DataCard">
+        <data-table
+          :title="'クラスター別陽性患者数'"
+          :title-id="'attributes-of-confirmed-cases'"
+          :chart-data="clustersTable"
+          :chart-option="{}"
+          :date="clustersSummary.last_update"
+          :info="sumInfoOfPatients"
+          :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
+          :desc="'（注）同一の対象者が複数含まれる場合あり'"
+        />
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -73,10 +97,14 @@ import patientsSummary from '@/data/patients_summary.json'
 import mainSummary from '@/data/main_summary.json'
 import dischargesSummary from '@/data/discharges_summary.json'
 import inspectionsSummary from '@/data/inspections_summary.json'
+import age from '@/data/age.json'
+import clustersSummary from '@/data/clusters_summary.json'
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
 import formatConfirmedCases from '@/utils/formatConfirmedCases'
+import formatVariableGraph from '@/utils/formatVariableGraph'
+import formatClustersTable from '@/utils/formatClustersTable'
 import News from '@/data/news.json'
 import SvgCard from '@/components/SvgCard.vue'
 import ConfirmedCasesTable from '@/components/ConfirmedCasesTable.vue'
@@ -115,6 +143,13 @@ export default {
       '検査検体数'
     ]
     const inspectionsLabels = inspectionsSummary.labels
+
+    // 年齢別陽性患者数
+    const ageGraph = formatVariableGraph(age.data)
+
+    // クラスター別陽性患者数
+    const clustersTable = formatClustersTable(clustersSummary.data)
+
     // 死亡者数
     // #MEMO: 今後使う可能性あるので一時コメントアウト
     // const fatalitiesTable = formatTable(
@@ -134,12 +169,16 @@ export default {
     const data = {
       patients,
       inspectionsSummary,
+      age,
+      clustersSummary,
       patientsTable,
       patientsGraph,
       dischargesGraph,
       inspectionsGraph,
       inspectionsItems,
       inspectionsLabels,
+      ageGraph,
+      clustersTable,
       confirmedCases,
       sumInfoOfPatients,
       headerItem: {

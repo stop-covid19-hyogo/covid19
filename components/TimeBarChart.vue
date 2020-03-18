@@ -1,6 +1,6 @@
 <template>
   <data-view :title="title" :title-id="titleId" :date="date" :url="url">
-    <template v-slot:button>
+    <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
     </template>
     <bar
@@ -63,6 +63,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    showButton: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   data() {
@@ -84,8 +89,12 @@ export default {
     displayInfo() {
       if (this.dataKind === 'transition') {
         return {
-          lText: `${this.chartData.slice(-1)[0].transition.toLocaleString()}`,
-          sText: `実績値（前日比：${this.displayTransitionRatio} ${this.unit}）`,
+          lText: this.showButton
+            ? `${this.chartData.slice(-1)[0].transition.toLocaleString()}`
+            : this.chartData[this.chartData.length - 1].cumulative.toLocaleString(),
+          sText: this.showButton
+            ? `実績値（前日比：${this.displayTransitionRatio} ${this.unit}）`
+            : ``,
           unit: this.unit
         }
       }
@@ -135,6 +144,7 @@ export default {
     },
     displayOption() {
       const unit = this.unit
+      const showButton = this.showButton
       return {
         tooltips: {
           displayColors: false,
@@ -145,10 +155,14 @@ export default {
               return labelText
             },
             title(tooltipItem, data) {
-              return data.labels[tooltipItem[0].index].replace(
-                /(\w+)\/(\w+)/,
-                '$1月$2日'
-              )
+              if (showButton) {
+                return data.labels[tooltipItem[0].index].replace(
+                  /(\w+)\/(\w+)/,
+                  '$1月$2日'
+                )
+              } else {
+                return data.labels[tooltipItem[0].index]
+              }
             }
           }
         },
@@ -172,7 +186,7 @@ export default {
                 maxRotation: 0,
                 minRotation: 0,
                 callback: label => {
-                  return label.split('/')[1]
+                  return this.showButton ? label.split('/')[1] : label
                 }
               }
             },
@@ -252,3 +266,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.Graph-Desc {
+  margin: 10px 0;
+  font-size: 12px;
+  color: $gray-3;
+}
+</style>
