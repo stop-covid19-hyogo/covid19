@@ -1,7 +1,9 @@
 <template>
   <data-view :title="title" :title-id="titleId" :date="date" :url="url">
     <template v-slot:button>
-      <span />
+      <p class="Table-Desc">
+        {{ desc }}
+      </p>
     </template>
     <v-data-table
       :headers="chartData.headers"
@@ -102,7 +104,20 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    desc: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.Table-Desc {
+  margin: 10px 0;
+  font-size: 12px;
+  color: $gray-3;
+}
+</style>
