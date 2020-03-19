@@ -1,4 +1,4 @@
-name: covid19 updater
+name: update json data
 on:
   # push:
   #   paths:
@@ -22,7 +22,7 @@ jobs:
     - name: Checkout covid19-scraping
       uses: actions/checkout@v2
       with:
-        repository:  stop-covid19-hyogo/covid19-scraping
+        repository: stop-covid19-hyogo/covid19-scraping
         ref: 'gh-pages'
         path: 'covid19-scraping'
 
@@ -37,7 +37,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add data
-        git commit -m "Add changes `date '+%Y-%m-%dT%H:%M:%SZ'`"
+        git commit -m "update json data `date '+%Y-%m-%dT%H:%M:%SZ'`"
 
     - name: Push changes
       continue-on-error: true
