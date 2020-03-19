@@ -1,0 +1,47 @@
+name: covid19 updater
+on:
+  # push:
+  #   paths:
+  #     - '.github/workflows/update_data.yml'
+  # pull_request:
+  #   paths:
+  #     - '.github/workflows/update_data.yml'
+  schedule:
+    - cron:  '15 21 * * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout covid19
+      uses: actions/checkout@v2
+      with:
+        ref: 'development'
+
+    - name: Checkout covid19-scraping
+      uses: actions/checkout@v2
+      with:
+        repository:  stop-covid19-hyogo/covid19-scraping
+        ref: 'gh-pages'
+        path: 'covid19-scraping'
+
+    - name: copy files
+      run: cp -p covid19-scraping/*.json data
+
+    - run: git diff
+
+    - name: Commit files
+      continue-on-error: true
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data
+        git commit -m "Add changes `date '+%Y-%m-%dT%H:%M:%SZ'`"
+
+    - name: Push changes
+      continue-on-error: true
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: 'development'
