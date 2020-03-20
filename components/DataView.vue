@@ -18,7 +18,7 @@
       <slot />
     </v-card-text>
     <v-footer class="DataView-Footer">
-      <time :datetime="formattedDate">{{ date }} 更新</time>
+      <time :datetime="formattedDate">{{ date }} 時点</time>
       <a
         v-if="url"
         class="OpenDataLink"
