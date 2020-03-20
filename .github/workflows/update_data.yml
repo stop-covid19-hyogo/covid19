@@ -27,7 +27,9 @@ jobs:
         path: 'covid19-scraping'
 
     - name: copy files
-      run: cp -p covid19-scraping/*.json data
+      run: |
+        cp -p covid19-scraping/*.json data
+        rm -rf covid19-scraping
 
     - run: git diff
 
@@ -39,9 +41,9 @@ jobs:
         git add data
         git commit -m "update json data `date '+%Y-%m-%dT%H:%M:%SZ'`"
 
-    - name: Push changes
-      continue-on-error: true
-      uses: ad-m/github-push-action@master
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: 'development'
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: ${{ format('Update json data {0}', github.event.head_commit.timestamp) }}
+        branch-suffix: 'short-commit-hash'
