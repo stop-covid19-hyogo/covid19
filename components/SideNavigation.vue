@@ -40,7 +40,7 @@
       <div class="SideNavigation-Footer">
         <div class="SideNavigation-SocialLinkContainer">
           <a
-            href="https://twitter.com/hyogokoho"
+            href="https://twitter.com/covid19hyogo"
             target="_blank"
             rel="noopener"
           >
