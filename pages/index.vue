@@ -62,8 +62,8 @@
       <v-col cols="12" md="6" class="DataCard">
         <time-bar-chart
           title="年代別陽性患者数"
-          :title-id="'number-of-confirmed-cases'"
-          :chart-id="'time-bar-chart-patients'"
+          :title-id="'patients-by-age'"
+          :chart-id="'time-bar-chart-patients-by-age'"
           :chart-data="ageGraph"
           :date="age.last_update"
           :unit="'人'"
@@ -72,15 +72,39 @@
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
-        <data-table
+        <!--<data-table
           :title="'クラスター別陽性患者数'"
-          :title-id="'attributes-of-confirmed-cases'"
+          :title-id="'patients-by-clusters'"
           :chart-data="clustersTable"
           :chart-option="{}"
           :date="clustersSummary.last_update"
           :info="sumInfoOfPatients"
           :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
           :desc="'（注）同一の対象者が複数含まれる場合あり'"
+        />-->
+        <time-bar-chart
+          title="クラスター別陽性患者数"
+          :title-id="'patients-by-clusters'"
+          :chart-id="'time-bar-chart-patients-by-clusters'"
+          :chart-data="clustersGraph"
+          :date="clustersSummary.last_update"
+          :unit="'人'"
+          :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
+          :desc="'（注）同一の対象者が複数含まれる場合あり'"
+          :show-button="false"
+          :horizontal="true"
+          :overlap="patientsTable.datasets.length"
+        />
+      </v-col>
+      <v-col cols="12" md="6" class="DataCard">
+        <circle-chart
+          title="入院患者数と残り病床数"
+          :title-id="'patients-and-sickbeds'"
+          :chart-data="sickbedsGraph"
+          :date="sickbedsSummary.last_update"
+          :unit="'床'"
+          :info="'総病床数'"
+          :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
         />
       </v-col>
     </v-row>
@@ -91,6 +115,7 @@
 import PageHeader from '@/components/PageHeader.vue'
 import TimeBarChart from '@/components/TimeBarChart.vue'
 import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
+import CircleChart from '@/components/CircleChart'
 import lastUpdate from '@/data/last_update.json'
 import patients from '@/data/patients.json'
 import patientsSummary from '@/data/patients_summary.json'
@@ -99,12 +124,13 @@ import dischargesSummary from '@/data/discharges_summary.json'
 import inspectionsSummary from '@/data/inspections_summary.json'
 import age from '@/data/age.json'
 import clustersSummary from '@/data/clusters_summary.json'
+import sickbedsSummary from '@/data/sickbeds_summary.json'
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
 import formatConfirmedCases from '@/utils/formatConfirmedCases'
 import formatVariableGraph from '@/utils/formatVariableGraph'
-import formatClustersTable from '@/utils/formatClustersTable'
+// import formatClustersTable from '@/utils/formatClustersTable'
 import News from '@/data/news.json'
 import SvgCard from '@/components/SvgCard.vue'
 import ConfirmedCasesTable from '@/components/ConfirmedCasesTable.vue'
@@ -114,6 +140,7 @@ export default {
     PageHeader,
     TimeBarChart,
     TimeStackedBarChart,
+    CircleChart,
     DataTable,
     SvgCard,
     ConfirmedCasesTable
@@ -148,7 +175,11 @@ export default {
     const ageGraph = formatVariableGraph(age.data)
 
     // クラスター別陽性患者数
-    const clustersTable = formatClustersTable(clustersSummary.data)
+    //const clustersTable = formatClustersTable(clustersSummary.data)
+    const clustersGraph = formatVariableGraph(clustersSummary.data)
+
+    // 入院患者数と残り病床数
+    const sickbedsGraph = formatVariableGraph(sickbedsSummary.data)
 
     // 死亡者数
     // #MEMO: 今後使う可能性あるので一時コメントアウト
@@ -171,6 +202,7 @@ export default {
       inspectionsSummary,
       age,
       clustersSummary,
+      sickbedsSummary,
       patientsTable,
       patientsGraph,
       dischargesGraph,
@@ -178,7 +210,9 @@ export default {
       inspectionsItems,
       inspectionsLabels,
       ageGraph,
-      clustersTable,
+      // clustersTable,
+      clustersGraph,
+      sickbedsGraph,
       confirmedCases,
       sumInfoOfPatients,
       headerItem: {
