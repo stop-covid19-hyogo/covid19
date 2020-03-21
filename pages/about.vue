@@ -9,17 +9,36 @@
         href="https://github.com/stop-covid19-hyogo/covid19/blob/development/CONTRIBUTORS.md"
         target="_blank"
         rel="noopener"
-      >有志の仲間</a>が開設したサイトです。公式情報ではないことをご了承下さい。<br />
+        >有志の仲間</a
+      >が開設したサイトです。公式情報ではないことをご了承下さい。<br />
       <br />
       複製・改変が許されたオープンソースライセンスで公開されている、
       <a
         href="https://stopcovid19.metro.tokyo.lg.jp/"
         target="_blank"
         rel="noopener"
-        >東京都公式新型コロナウイルス対策サイト</a
-      >の仕組みを利用しています。<br />
+      >東京都公式新型コロナウイルス対策サイト</a>の仕組みを利用しています。<br />
       <br />
       兵庫県による公式情報と客観的な数値をわかりやすく伝えることで、兵庫県にお住まいの方や、兵庫県内に拠点を持つ企業の方、兵庫県を訪れる方が、現状を把握して適切な対策を取れるようにすることを目的としています。
+    </TextCard>
+    <TextCard title="データについて">
+      本サイトで公表しているデータは、兵庫県公式サイトの<a
+        href="https://web.pref.hyogo.lg.jp/kk03/corona_kanjyajyokyo.html"
+        target="_blank"
+        rel="noopener"
+        >新型コロナウイルスに感染した患者の状況</a
+      >と<a
+        href="https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html"
+        target="_blank"
+        rel="noopener"
+        >新型コロナウイルス感染症の県内検査状況について</a>よりPDFとエクセルデータを取得し、最適化したものを使用しています。
+    </TextCard>
+    <TextCard title="免責事項">
+      当サイトに掲載されている情報の正確性については万全を期していますが、私たちは利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。<br />
+      <br />
+      また、利用者が当サイトを利用したことにより発生した利用者の損害及び利用者が第三者に与えた損害に対して、責任を負うものではありません。<br />
+      <br />
+      当サイトに掲載されている情報は、予告なしに変更又は削除することがあります。
     </TextCard>
     <TextCard title="ブラウザ環境について">
       当サイトは以下の環境でご覧いただくことを推奨いたします。<br />
@@ -32,9 +51,6 @@
       </ul>
       ※
       推奨環境以外で利用された場合や、推奨環境下でもご利用のブラウザの設定等によっては、正しく表示されない場合がありますのでご了承ください。
-    </TextCard>
-    <TextCard title="当サイトへのリンクについて">
-      当サイトへのリンクは自由です。
     </TextCard>
     <TextCard title="JavaScriptについて">
       当サイトではJavaScriptを使用しております。<br />
@@ -90,32 +106,15 @@
         </li>
       </ul>
     </TextCard>
-    <TextCard title="免責事項">
-      当サイトに掲載されている情報の正確性については万全を期していますが、私たちは利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。<br />
-      <br />
-      また、利用者が当サイトを利用したことにより発生した利用者の損害及び利用者が第三者に与えた損害に対して、責任を負うものではありません。<br />
-      <br />
-      当サイトに掲載されている情報は、予告なしに変更又は削除することがあります。
-    </TextCard>
-    <TextCard title="データについて">
-      本サイトで公表しているデータは、兵庫県公式サイトの<a
-        href="https://web.pref.hyogo.lg.jp/kk03/corona_kanjyajyokyo.html"
-        target="_blank"
-        rel="noopener"
-      >新型コロナウイルスに感染した患者の状況</a>と<a
-        href="https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html"
-        target="_blank"
-        rel="noopener"
-      >新型コロナウイルス感染症の県内検査状況について</a
-      >よりPDFとエクセルデータを取得し、最適化したものを使用しています。
+    <TextCard title="当サイトへのリンクについて">
+      当サイトへのリンクは自由です。
     </TextCard>
     <TextCard title="ソースコードについて">
       本サイトのソースコードはMITライセンスで公開されており、誰でも自由に利用することができます。詳しくは、<a
         href="https://github.com/stop-covid19-hyogo/covid19"
         target="_blank"
         rel="noopener"
-        >GitHub リポジトリ</a
-      >をご確認ください。
+      >GitHub リポジトリ</a>をご確認ください。
     </TextCard>
 
     <TextCard title="お問い合わせ先">
