@@ -46,6 +46,20 @@
           >
             <img src="/twitter.png" alt="Twitter" />
           </a>
+          <a
+            href="https://www.facebook.com/covid19hyogo"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="/facebook.png" alt="Facebook" />
+          </a>
+          <a
+            href="https://github.com/stop-covid19-hyogo"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="/github.png" alt="GitHub" />
+          </a>
         </div>
         <small class="SideNavigation-Copyright" lang="en">
           Copyright &copy; 2020 Stop Covid19 Hyogo. All Rights Reserved.
