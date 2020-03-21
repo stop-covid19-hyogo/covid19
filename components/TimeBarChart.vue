@@ -1,9 +1,25 @@
 <template>
   <data-view :title="title" :title-id="titleId" :date="date" :url="url">
     <template v-if="showButton === true" v-slot:button>
+      <p class="Graph-Desc">
+        {{ desc }}
+      </p>
       <data-selector v-model="dataKind" />
     </template>
+    <template v-else v-slot:button>
+      <p class="Graph-Desc">
+        {{ desc }}
+      </p>
+    </template>
+    <horizontal-bar
+      v-if="horizontal === true"
+      :chart-id="chartId"
+      :chart-data="displayData"
+      :options="displayOption"
+      :height="240"
+    />
     <bar
+      v-else
       :chart-id="chartId"
       :chart-data="displayData"
       :options="displayOption"
@@ -18,8 +34,6 @@
     </template>
   </data-view>
 </template>
-
-<style></style>
 
 <script>
 import DataView from '@/components/DataView.vue'
@@ -64,10 +78,25 @@ export default {
       required: false,
       default: ''
     },
+    desc: {
+      type: String,
+      required: false,
+      default: ''
+    },
     showButton: {
       type: Boolean,
       required: false,
       default: true
+    },
+    horizontal: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    overlap: {
+      type: Number,
+      required: false,
+      default: 0
     }
   },
   data() {
@@ -94,6 +123,9 @@ export default {
             : this.chartData[this.chartData.length - 1].cumulative.toLocaleString(),
           sText: this.showButton
             ? `実績値（前日比：${this.displayTransitionRatio} ${this.unit}）`
+            : this.overlap
+            ? `重複者: ${this.chartData[this.chartData.length - 1].cumulative -
+                this.overlap}${this.unit}`
             : ``,
           unit: this.unit
         }
