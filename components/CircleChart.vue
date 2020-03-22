@@ -5,9 +5,10 @@
         （注）病床数は兵庫県が公開する
         <a
           class="link"
-          href="https://web.pref.hyogo.lg.jp/kk03/documents/corona-200319.pdf"
+          href="https://web.pref.hyogo.lg.jp/kk03/200129.html"
           target="_blank"
-          rel="noopener">PDF</a>を参照
+          rel="noopener"
+        >ページ</a>を参照
       </p>
     </template>
     <pie-chart
