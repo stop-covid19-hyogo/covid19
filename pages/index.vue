@@ -72,17 +72,17 @@
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
-        <!--<data-table
+        <data-table
           :title="'クラスター別陽性患者数'"
           :title-id="'patients-by-clusters'"
           :chart-data="clustersTable"
           :chart-option="{}"
           :date="clustersSummary.last_update"
-          :info="sumInfoOfPatients"
+          :info="sumInfoOfClusters"
           :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
           :desc="'（注）同一の対象者が複数含まれる場合あり'"
-        />-->
-        <time-bar-chart
+        />
+        <!--<time-bar-chart
           title="クラスター別陽性患者数"
           :title-id="'patients-by-clusters'"
           :chart-id="'time-bar-chart-patients-by-clusters'"
@@ -94,7 +94,7 @@
           :show-button="false"
           :horizontal="true"
           :overlap="patientsTable.datasets.length"
-        />
+        />-->
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
         <circle-chart
@@ -130,7 +130,7 @@ import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
 import formatConfirmedCases from '@/utils/formatConfirmedCases'
 import formatVariableGraph from '@/utils/formatVariableGraph'
-// import formatClustersTable from '@/utils/formatClustersTable'
+import formatClustersTable from '@/utils/formatClustersTable'
 import News from '@/data/news.json'
 import SvgCard from '@/components/SvgCard.vue'
 import ConfirmedCasesTable from '@/components/ConfirmedCasesTable.vue'
@@ -175,8 +175,21 @@ export default {
     const ageGraph = formatVariableGraph(age.data)
 
     // クラスター別陽性患者数
-    //const clustersTable = formatClustersTable(clustersSummary.data)
+    const clustersTable = formatClustersTable(clustersSummary.data)
     const clustersGraph = formatVariableGraph(clustersSummary.data)
+
+    const sumInfoOfClusters = {
+      lText: clustersGraph[
+        clustersGraph.length - 1
+      ].cumulative.toLocaleString(),
+      sText: '重複者: ' + (clustersGraph[
+        clustersGraph.length - 1
+       ].cumulative -
+        patientsGraph[
+          patientsGraph.length - 1
+          ].cumulative) + '人',
+      unit: '人'
+    }
 
     // 入院患者数と残り病床数
     const sickbedsGraph = formatVariableGraph(sickbedsSummary.data)
@@ -210,8 +223,9 @@ export default {
       inspectionsItems,
       inspectionsLabels,
       ageGraph,
-      // clustersTable,
-      clustersGraph,
+      clustersTable,
+      sumInfoOfClusters,
+      // clustersGraph,
       sickbedsGraph,
       confirmedCases,
       sumInfoOfPatients,
