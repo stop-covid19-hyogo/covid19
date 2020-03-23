@@ -136,7 +136,9 @@
       <!--<telephone-advisory-reports-number-card />
       <consultation-desk-reports-number-card />
       <metro-card />
-      <agency-card />-->
+      <agency-card />
+      <shinjuku-visitors-card />
+      <chiyoda-visitors-card />-->
       <patients-by-age />
       <patients-by-clusters />
       <patients-and-sickbeds />
@@ -166,6 +168,8 @@ import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
 // import MetroCard from '@/components/cards/MetroCard.vue'
 // import AgencyCard from '@/components/cards/AgencyCard.vue'
 import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
+// import ShinjukuVisitorsCard from '@/components/cards/ShinjukuVisitorsCard.vue'
+// import ChiyodaVisitorsCard from '@/components/cards/ChiyodaVisitorsCard.vue'
 
 export default Vue.extend({
   components: {
@@ -180,6 +184,10 @@ export default Vue.extend({
     // InspectionPersonsNumberCard,
     // TelephoneAdvisoryReportsNumberCard,
     // ConsultationDeskReportsNumberCard,
+    // MetroCard,
+    // AgencyCard,
+    // ShinjukuVisitorsCard,
+    // ChiyodaVisitorsCard
     PatientsByAge,
     PatientsByClusters,
     PatientsAndSickbeds
