@@ -5,12 +5,12 @@
         <i18n tag="li" path="（注）病床数は兵庫県が公開する{data}を参照">
           <a
             :class="$style.GraphLink"
-            href="https://web.pref.hyogo.lg.jp/kk03/documents/corona-200319.pdf"
+            href="https://web.pref.hyogo.lg.jp/kk03/200129.html"
             target="_blank"
             rel="noopener"
             place="data"
           >
-            {{ $t('PDF') }}
+            {{ $t('ページ') }}
           </a>
         </i18n>
       </ul>
