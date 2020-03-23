@@ -113,7 +113,7 @@ export default {
         },
         {
           title: '新型コロナウイルスの対応について',
-          link: 'https://web.pref.hyogo.lg.jp/kf16/singatakorona.html'
+          link: 'https://web.pref.hyogo.lg.jp/kk03/200129.html'
         },
         {
           title: '記者発表資料',
