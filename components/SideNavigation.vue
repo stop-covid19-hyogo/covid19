@@ -13,6 +13,7 @@
           <img
             class="SideNavigation-HeaderLogo"
             src="/logo.svg"
+            width="110"
             :alt="$t('兵庫県非公式')"
           />
           <div class="SideNavigation-HeaderText">
@@ -83,7 +84,7 @@
           </a>
         </div>
         <small class="SideNavigation-Copyright">
-          <!--{{ $t('このサイトの内容物は') }}
+          {{ $t('このサイトの内容物は') }}
           <a
             :href="$t('https://creativecommons.org/licenses/by/4.0/deed.ja')"
             target="_blank"
@@ -93,7 +94,7 @@
             {{ $t('クリエイティブ・コモンズ 表示 4.0 ライセンス') }}
           </a>
           {{ $t('の下に提供されています。') }}
-          <br />-->
+          <br />
           2020 Stop Covid19 Hyogo.
         </small>
       </footer>
