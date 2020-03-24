@@ -151,12 +151,15 @@ export default {
       case 'patients-by-age':
         title = this.$t('年代別陽性患者数')
         updatedAt = age.last_update
+        break
       case 'patients-by-clusters':
         title = this.$t('クラスター別陽性患者数')
         updatedAt = clustersSummary.last_update
+        break
       case 'patients-and-sickbeds':
         title = this.$t('入院患者数と残り病床数')
         updatedAt = sickbedsSummary.last_update
+        break
     }
 
     const data = {
