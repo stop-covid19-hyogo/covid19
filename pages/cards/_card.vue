@@ -42,9 +42,7 @@
     <chiyoda-visitors-card
       v-else-if="this.$route.params.card == 'chiyoda-visitors'"
     />-->
-    <patients-by-age
-      v-else-if="this.$route.params.card == 'patients-by-age'"
-    />
+    <patients-by-age v-else-if="this.$route.params.card == 'patients-by-age'" />
     <patients-by-clusters
       v-else-if="this.$route.params.card == 'patients-by-clusters'"
     />
@@ -61,10 +59,7 @@
 // import ShinjukuData from '@/data/13104_daily_visitors.json'
 // import ChiyodaData from '@/data/13101_daily_visitors.json'
 import patients from '@/data/patients.json'
-import patientsSummary from '@/data/patients_summary.json'
-import inspections from '@/data/inspections.json'
 import inspectionsSummary from '@/data/inspections_summary.json'
-import mainSummary from '@/data/main_summary.json'
 import age from '@/data/age.json'
 import clustersSummary from '@/data/clusters_summary.json'
 import sickbedsSummary from '@/data/sickbeds_summary.json'

@@ -243,8 +243,8 @@ $default-boxdiff: 35px;
     }
 
     > .group {
-      // [6列] 5/6
-      width: calc((100% + #{$default-bdw} * 2) / 6 * 5 + #{$default-bdw + 1}); // +1は微調整
+      // [6列] 5/6 最後の+1は微調整
+      width: calc((100% + #{$default-bdw} * 2) / 6 * 5 + #{$default-bdw + 1});
     }
   }
 

@@ -22,7 +22,7 @@ type DataType = {
 }
 
 type TableDataType = {
-  No: DataType["No"]
+  No: DataType['No']
   公表日: string
   居住地: DataType['居住地']
   年代: DataType['年代']

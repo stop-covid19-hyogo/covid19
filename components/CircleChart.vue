@@ -245,7 +245,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       return this.chartData.map((_, i) => {
         return Object.assign(
           { text: this.chartData[i].label },
-          {[i]: this.chartData[i].transition }
+          { [i]: this.chartData[i].transition }
         )
       })
     }

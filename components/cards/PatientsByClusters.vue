@@ -56,7 +56,8 @@ export default {
         (
           clustersGraph[clustersGraph.length - 1].cumulative -
           patientsGraph[patientsGraph.length - 1].cumulative
-      ).toLocaleString() + this.$t('人'),
+        ).toLocaleString() +
+        this.$t('人'),
       unit: this.$t('人')
     }
 

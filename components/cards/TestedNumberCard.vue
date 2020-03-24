@@ -43,10 +43,7 @@ export default {
       allInspectionsArray
     ]
 
-    const inspectionsItems = [
-      this.$t('陽性患者数'),
-      this.$t('陰性確認者')
-    ]
+    const inspectionsItems = [this.$t('陽性患者数'), this.$t('陰性確認者')]
     const inspectionsLabels = inspectionsSummary.labels
     const inspectionsDataLabels = [this.$t('陽性患者数'), this.$t('陰性確認者')]
 
