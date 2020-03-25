@@ -31,7 +31,18 @@
         href="https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html"
         target="_blank"
         rel="noopener"
-        >新型コロナウイルス感染症の県内検査状況について</a>よりPDFとエクセルデータを取得し、最適化したものを使用しています。
+      >新型コロナウイルス感染症の県内検査状況について</a
+      >よりPDFとエクセルデータを取得し、最適化したものを使用しています。<br />
+      <br />
+      このサイトの内容物は
+      <a
+        :href="$t('https://creativecommons.org/licenses/by/4.0/deed.ja')"
+        target="_blank"
+        rel="license"
+      >
+        クリエイティブ・コモンズ 表示 4.0 ライセンス
+      </a>
+      の下に提供されています。
     </TextCard>
     <TextCard title="免責事項">
       当サイトに掲載されている情報の正確性については万全を期していますが、私たちは利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。<br />
