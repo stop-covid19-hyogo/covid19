@@ -61,6 +61,19 @@
             <img src="/github.png" alt="GitHub" />
           </a>
         </div>
+        <small class="SideNavigation-Copyright">
+          このサイトの内容物は
+          <a
+            :href="$t('https://creativecommons.org/licenses/by/4.0/deed.ja')"
+            target="_blank"
+            rel="license"
+            class="SideNavigation-LicenseLink"
+          >
+            クリエイティブ・コモンズ 表示 4.0 ライセンス
+          </a>
+          の下に提供されています。
+          <br />
+        </small>
         <small class="SideNavigation-Copyright" lang="en">
           Copyright &copy; 2020 Stop Covid19 Hyogo. All Rights Reserved.
         </small>
