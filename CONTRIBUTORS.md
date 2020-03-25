@@ -15,6 +15,7 @@
 | [Mitsugu Oyama](https://github.com/mitsugu/)| Data Maintenance |
 | [Ishimaru Sohei](https://github.com/roborovskii-info)| Coding |
 | [Kentaro Ohkouchi (Rotary E-Club of Hyogo)](https://github.com/nanasess)| Programing |
+| [Shingo Kosaka](https://github.com/SKosaka)| Coding |
 | -add your name here!- | -what did you do?- |
 
 ご協力に感謝です！！！
