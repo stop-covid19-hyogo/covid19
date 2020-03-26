@@ -142,7 +142,7 @@ export default {
         },
         {
           title: this.$t('Message from Governor Ido'),
-          link: 'https://web.pref.hyogo.lg.jp/governor/g_comment20200301.html',
+          link: 'https://web.pref.hyogo.lg.jp/governor/g_comment20200321.html',
           divider: true
         },
         {
