@@ -1,14 +1,12 @@
 <template>
   <ul :class="$style.container">
     <li :class="[$style.box, $style.tall, $style.tested]">
-      <div :class="[$style.pillar]">
+      <div :class="[$style.pillar_tested]">
         <div :class="$style.content">
-          <!-- eslint-disable vue/no-v-html-->
           <span>
             {{ $t('検査実施人数') }}
             <br />({{ $t('累計') }})
           </span>
-          <!-- eslint-enable vue/no-v-html-->
           <span>
             <strong>{{ 検査実施人数 }}</strong>
             <span :class="$style.unit">{{ $t('人') }}</span>
@@ -191,6 +189,16 @@ $default-boxdiff: 35px;
   border: $default-bdw solid $blue-1;
 }
 
+.pillar_tested {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  text-align: center;
+  width: 100%;
+  border: $default-bdw solid $gray-1;
+}
+
 .group {
   display: flex;
   flex: 0 0 auto;
@@ -232,6 +240,7 @@ $default-boxdiff: 35px;
     flex: 0 0 auto;
     // [7列] 1/7セル
     width: calc((100% - #{$default-bdw} * 3) / 7);
+    color: $gray-1;
   }
 
   &.confirmed {
@@ -319,7 +328,8 @@ $default-boxdiff: 35px;
 }
 
 @mixin override($vw, $bdw, $fz, $boxh, $boxdiff) {
-  .pillar {
+  .pillar,
+  .pillar_tested {
     border-width: px2vw($bdw, $vw);
   }
 
@@ -358,7 +368,12 @@ $default-boxdiff: 35px;
       }
     }
 
+    &.tested {
+      width: calc((100% - #{px2vw($bdw, $vw)} * 3) / 7);
+    }
+
     &.confirmed {
+      margin-left: px2vw($bdw, $vw);
       > .pillar {
         width: calc(
           (100% + #{px2vw($bdw, $vw)} * 2) / 6 - #{px2vw($bdw, $vw)} * 3
