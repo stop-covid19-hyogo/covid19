@@ -7,9 +7,7 @@
       :chart-option="{}"
       :date="patients.last_update"
       :info="sumInfoOfPatients"
-      :url="
-        'https://web.pref.hyogo.lg.jp/kk03/corona_kanjyajyokyo.html'
-      "
+      :url="'https://web.pref.hyogo.lg.jp/kk03/corona_kanjyajyokyo.html'"
     />
   </v-col>
 </template>
