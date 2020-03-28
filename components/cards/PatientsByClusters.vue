@@ -7,7 +7,9 @@
       :chart-option="{}"
       :date="clustersSummary.last_update"
       :info="sumInfoOfClusters"
-      :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
+      :url="
+        'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'
+      "
       :desc="$t('（注）同一の対象者が複数含まれる場合あり')"
     />
     <!--<time-bar-chart
@@ -17,7 +19,9 @@
       :chart-data="clustersGraph"
       :date="clustersSummary.last_update"
       :unit="'人'"
-      :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
+      :url="
+        'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'
+      "
       :desc="'（注）同一の対象者が複数含まれる場合あり'"
       :show-button="false"
       :horizontal="true"

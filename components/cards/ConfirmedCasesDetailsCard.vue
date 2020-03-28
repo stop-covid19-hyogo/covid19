@@ -4,6 +4,9 @@
       :title="$t('検査陽性者の状況')"
       :title-id="'details-of-confirmed-cases'"
       :date="mainSummary.last_update"
+      :url="
+        'http://open-data.pref.hyogo.lg.jp/index.php?key=muq1trrqj-175#_175'
+      "
     >
       <confirmed-cases-table
         :aria-label="$t('検査陽性者の状況')"

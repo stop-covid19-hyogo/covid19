@@ -7,7 +7,9 @@
       :chart-data="ageGraph"
       :date="age.last_update"
       :unit="'人'"
-      :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
+      :url="
+        'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'
+      "
       :show-button="false"
     />
   </v-col>

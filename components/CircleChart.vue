@@ -41,6 +41,9 @@
         :unit="displayInfo.unit"
       />
     </template>
+    <template v-slot:footer>
+      <open-data-link v-show="url" :url="url" />
+    </template>
   </data-view>
 </template>
 
@@ -51,6 +54,7 @@ import { GraphDataType } from '@/utils/formatVariableGraph'
 import DataView from '@/components/DataView.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
 import { doubleGray as colors } from '@/utils/colors'
+import OpenDataLink from '@/components/OpenDataLink.vue'
 
 interface HTMLElementEvent<T extends HTMLElement> extends Event {
   currentTarget: T
@@ -120,7 +124,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
   created() {
     this.canvas = process.browser
   },
-  components: { DataView, DataViewBasicInfoPanel },
+  components: { DataView, DataViewBasicInfoPanel, OpenDataLink },
   props: {
     title: {
       type: String,

@@ -1,7 +1,11 @@
 <template>
   <div v-if="isDevelopmentMode" class="DevelopmentModeMark">
     開発中（development mode）
-    <a href="https://stop-covid19-hyogo.org/" target="_blank" rel="noopener">
+    <a
+      href="https://stop-covid19-hyogo.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       公開サイトへ
     </a>
   </div>

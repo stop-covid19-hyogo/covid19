@@ -49,6 +49,15 @@
     <patients-and-sickbeds
       v-else-if="this.$route.params.card == 'patients-and-sickbeds'"
     />
+    <!--<shinjuku-st-map-card
+      v-else-if="this.$route.params.card == 'shinjuku-st-heatmap'"
+    />
+    <tokyo-st-map-card
+      v-else-if="this.$route.params.card == 'tokyo-st-heatmap'"
+    />
+    <tokyo-city-map-card
+      v-else-if="this.$route.params.card == 'tokyo-city-heatmap'"
+    />-->
   </div>
 </template>
 
@@ -68,13 +77,16 @@ import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsC
 import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
 import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
 import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
-// import InspectionPersonsNumberCard from '@/components/cards/InspectionPersonsNumberCard.vue'
-// import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
-// import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
-// import MetroCard from '@/components/cards/MetroCard.vue'
-// import AgencyCard from '@/components/cards/AgencyCard.vue'
-// import ShinjukuVisitorsCard from '@/components/cards/ShinjukuVisitorsCard.vue'
-// import ChiyodaVisitorsCard from '@/components/cards/ChiyodaVisitorsCard.vue'
+/* import InspectionPersonsNumberCard from '@/components/cards/InspectionPersonsNumberCard.vue'
+import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
+import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
+import MetroCard from '@/components/cards/MetroCard.vue'
+import AgencyCard from '@/components/cards/AgencyCard.vue'
+import ShinjukuVisitorsCard from '@/components/cards/ShinjukuVisitorsCard.vue'
+import ChiyodaVisitorsCard from '@/components/cards/ChiyodaVisitorsCard.vue'
+import ShinjukuStMapCard from '@/components/cards/ShinjukuStMapCard.vue'
+import TokyoStMapCard from '@/components/cards/TokyoStMapCard.vue'
+import TokyoCityMapCard from '@/components/cards/TokyoCityMapCard.vue' */
 import PatientsByAge from '@/components/cards/PatientsByAge.vue'
 import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
 import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
@@ -86,13 +98,16 @@ export default {
     ConfirmedCasesNumberCard,
     ConfirmedCasesAttributesCard,
     TestedNumberCard,
-    // InspectionPersonsNumberCard,
-    // TelephoneAdvisoryReportsNumberCard,
-    // ConsultationDeskReportsNumberCard,
-    // MetroCard,
-    // AgencyCard,
-    // ShinjukuVisitorsCard,
-    // ChiyodaVisitorsCard,
+    /* InspectionPersonsNumberCard,
+    TelephoneAdvisoryReportsNumberCard,
+    ConsultationDeskReportsNumberCard,
+    MetroCard,
+    AgencyCard,
+    ShinjukuVisitorsCard,
+    ChiyodaVisitorsCard,
+    ShinjukuStMapCard,
+    TokyoStMapCard,
+    TokyoCityMapCard */
     PatientsByAge,
     PatientsByClusters,
     PatientsAndSickbeds

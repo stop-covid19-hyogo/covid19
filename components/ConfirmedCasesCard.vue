@@ -6,6 +6,9 @@
       </p>
     </template>
     <slot />
+    <template v-slot:footer>
+      <open-data-link v-show="url" :url="url" />
+    </template>
   </data-view>
 </template>
 
@@ -21,9 +24,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import DataView from '@/components/DataView.vue'
+import OpenDataLink from '@/components/OpenDataLink.vue'
 
 export default Vue.extend({
-  components: { DataView },
+  components: { DataView, OpenDataLink },
   props: {
     title: {
       type: String,
@@ -35,6 +39,11 @@ export default Vue.extend({
     },
     date: {
       type: String,
+      default: ''
+    },
+    url: {
+      type: String,
+      required: false,
       default: ''
     }
   }

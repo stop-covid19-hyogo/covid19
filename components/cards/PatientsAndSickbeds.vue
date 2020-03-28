@@ -7,7 +7,9 @@
       :date="sickbedsSummary.last_update"
       :unit="$t('床')"
       :info="$t('総病床数')"
-      :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
+      :url="
+        'http://open-data.pref.hyogo.lg.jp/index.php?key=muq1trrqj-175#_175'
+      "
     />
   </v-col>
 </template>

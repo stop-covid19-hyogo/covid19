@@ -115,7 +115,10 @@
         <span>{{ $t('最終更新') }} </span>
         <time :datetime="updatedAt">{{ lastUpdate.last_update }}</time>
       </div>
-      <div v-if="!['ja', 'ja-basic'].includes($i18n.locale)" class="Annotation">
+      <div
+        v-show="!['ja', 'ja-basic'].includes($i18n.locale)"
+        class="Annotation"
+      >
         <span>{{ $t('注釈') }} </span>
       </div>
     </div>
@@ -143,6 +146,11 @@
       <patients-by-clusters />
       <patients-and-sickbeds />
     </v-row>
+    <!--<v-divider />
+    <v-row class="DataBlock">
+      <shinjuku-st-map-card />
+      <tokyo-st-map-card />
+    </v-row>-->
   </div>
 </template>
 
@@ -159,17 +167,19 @@ import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsC
 import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
 import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
 import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
-// import InspectionPersonsNumberCard from '@/components/cards/InspectionPersonsNumberCard.vue'
-// import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
-// import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
+/* import InspectionPersonsNumberCard from '@/components/cards/InspectionPersonsNumberCard.vue'
+import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
+import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue' */
 import PatientsByAge from '@/components/cards/PatientsByAge.vue'
 import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
 import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
 // import MetroCard from '@/components/cards/MetroCard.vue'
 // import AgencyCard from '@/components/cards/AgencyCard.vue'
 import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
-// import ShinjukuVisitorsCard from '@/components/cards/ShinjukuVisitorsCard.vue'
-// import ChiyodaVisitorsCard from '@/components/cards/ChiyodaVisitorsCard.vue'
+/* import ShinjukuVisitorsCard from '@/components/cards/ShinjukuVisitorsCard.vue'
+import ChiyodaVisitorsCard from '@/components/cards/ChiyodaVisitorsCard.vue'
+import ShinjukuStMapCard from '@/components/cards/ShinjukuStMapCard.vue'
+import TokyoStMapCard from '@/components/cards/TokyoStMapCard.vue' */
 
 export default Vue.extend({
   components: {
@@ -181,13 +191,15 @@ export default Vue.extend({
     ConfirmedCasesNumberCard,
     ConfirmedCasesAttributesCard,
     TestedNumberCard,
-    // InspectionPersonsNumberCard,
-    // TelephoneAdvisoryReportsNumberCard,
-    // ConsultationDeskReportsNumberCard,
-    // MetroCard,
-    // AgencyCard,
-    // ShinjukuVisitorsCard,
-    // ChiyodaVisitorsCard
+    /* InspectionPersonsNumberCard,
+    TelephoneAdvisoryReportsNumberCard,
+    ConsultationDeskReportsNumberCard,
+    MetroCard,
+    AgencyCard,
+    ShinjukuVisitorsCard,
+    ChiyodaVisitorsCard,
+    ShinjukuStMapCard,
+    TokyoStMapCard */
     PatientsByAge,
     PatientsByClusters,
     PatientsAndSickbeds

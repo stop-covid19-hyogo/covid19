@@ -7,7 +7,9 @@
       :chart-data="patientsGraph"
       :date="patientsSummary.last_update"
       :unit="$t('人')"
-      :url="'https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068'"
+      :url="
+        'http://open-data.pref.hyogo.lg.jp/index.php?key=muve6rx2r-175#_175'
+      "
     />
   </v-col>
 </template>

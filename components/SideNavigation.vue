@@ -52,7 +52,7 @@
           <a
             href="https://twitter.com/covid19hyogo"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="SideNavigation-SocialLink"
           >
             <picture>
@@ -63,7 +63,7 @@
           <a
             href="https://www.facebook.com/covid19hyogo"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="SideNavigation-SocialLink"
           >
             <picture>
@@ -74,7 +74,7 @@
           <a
             href="https://github.com/stop-covid19-hyogo"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="SideNavigation-SocialLink"
           >
             <picture>

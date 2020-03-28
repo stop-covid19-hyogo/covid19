@@ -11,7 +11,7 @@
         <a
           href="https://github.com/stop-covid19-hyogo/covid19/blob/development/CONTRIBUTORS.md"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           place="volunteer"
         >
           {{ $t('有志の仲間') }}
@@ -24,7 +24,7 @@
         <a
           href="https://stopcovid19.metro.tokyo.lg.jp/"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer "
           place="tokyo"
         >
           {{ $t('東京都公式コロナウイルス対策サイト') }}
@@ -41,23 +41,15 @@
       <h3>{{ $t('データについて') }}</h3>
       <i18n
         tag="p"
-        path="本サイトで公表しているデータは、兵庫県公式サイトの{hyogoWeb1}と{hyogoWeb2}よりPDFとエクセルデータを取得し、最適化したものを使用しています。"
+        path="本サイトで公表しているデータは、{catalogWebsite}より誰でも自由にダウンロードが可能です。（データは順次追加予定です）"
       >
         <a
-          href="https://web.pref.hyogo.lg.jp/kk03/corona_kanjyajyokyo.html"
+          href="http://open-data.pref.hyogo.lg.jp/"
           target="_blank"
-          rel="noopener"
-          place="hyogoWeb1"
+          rel="noopener noreferrer"
+          place="catalogWebsite"
         >
-          {{ $t('新型コロナウイルスに感染した患者の状況') }}
-        </a>
-        <a
-          href="https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html"
-          target="_blank"
-          rel="noopener"
-          place="hyogoWeb2"
-        >
-          {{ $t('新型コロナウイルス感染症の県内検査状況について') }}
+          {{ $t('兵庫県オープンデータカタログサイト') }}
         </a>
       </i18n>
       <p>
@@ -65,8 +57,7 @@
         <a
           :href="$t('https://creativecommons.org/licenses/by/4.0/deed.ja')"
           target="_blank"
-          rel="license"
-          class="SideNavigation-LicenseLink"
+          rel="noopener noreferrer"
         >
           {{ $t('クリエイティブ・コモンズ 表示 4.0 ライセンス') }}
         </a>
@@ -200,7 +191,7 @@
               )
             "
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             {{ $t('Google Analytics利用規約') }}
           </a>
@@ -209,7 +200,7 @@
           <a
             :href="$t('https://policies.google.com/privacy?hl=ja')"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             {{ $t('Googleのプライバシーポリシー') }}
           </a>
@@ -220,7 +211,7 @@
               $t('https://support.google.com/analytics/answer/6004245?hl=ja')
             "
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             {{ $t('Google Analyticsに関する詳細情報') }}
           </a>
@@ -239,7 +230,7 @@
           <a
             href="https://github.com/stop-covid19-hyogo/covid19"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             place="githubRepo"
           >
             {{ $t('GitHub リポジトリ') }}

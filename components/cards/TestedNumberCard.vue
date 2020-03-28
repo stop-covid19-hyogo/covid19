@@ -10,7 +10,9 @@
       :labels="inspectionsLabels"
       :unit="$t('件.tested')"
       :data-labels="inspectionsDataLabels"
-      :url="'https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html'"
+      :url="
+        'http://open-data.pref.hyogo.lg.jp/index.php?key=muve6rx2r-175#_175'
+      "
     >
       <!-- 件.tested = 検査数 -->
       <!--<template v-if="$i18n.locale !== 'ja-basic'" v-slot:additionalNotes>
