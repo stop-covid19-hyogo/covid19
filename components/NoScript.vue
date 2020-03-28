@@ -11,8 +11,8 @@
         }
       </style>
       <div class="noscript-heading">
-        <img src="/logo.svg" :alt="$t('東京都')" />
-        {{ $t('新型コロナウイルス感染症') }}<br />{{ $t('対策サイト') }}
+        <img src="/logo.svg" :alt="$t('兵庫県')" />
+        {{ $t('新型コロナウイルス') }}<br />{{ $t('まとめサイト') }}
       </div>
       <div class="noscript-body">
         {{ $t('当サイトではJavaScriptを使用しております。') }}<br />
