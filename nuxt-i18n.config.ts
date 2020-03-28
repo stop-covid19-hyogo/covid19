@@ -19,7 +19,7 @@ export default {
       iso: 'ja-JP',
       file: 'ja.json',
       description: 'Japanese'
-    },
+    } /*,
     {
       code: 'en',
       name: 'English',
@@ -63,6 +63,6 @@ export default {
       iso: 'ja-JP',
       file: 'ja-Hira.json',
       description: 'Easy Japanese'
-    }
+    } */
   ]
 }
