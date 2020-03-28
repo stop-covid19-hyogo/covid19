@@ -1,18 +1,18 @@
 <template>
   <div class="MainPage">
-    <page-header
+    <!--<page-header
       :icon="headerItem.icon"
       :title="headerItem.title"
       :date="headerItem.date"
     />
 
-    <!-- <whats-new class="mb-4" :items="newsItems" />
+    <whats-new class="mb-4" :items="newsItems" />
     <static-info
       class="mb-4"
       :url="'/flow'"
       :text="'自分や家族の症状に不安や心配があればまずは電話相談をどうぞ'"
       :btn-text="'相談の手順を見る'"
-    /> -->
+    />
 
     <v-row class="DataBlock">
       <v-col cols="12" md="6" class="DataCard">
@@ -82,7 +82,7 @@
           :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
           :desc="'（注）同一の対象者が複数含まれる場合あり'"
         />
-        <!--<time-bar-chart
+        <time-bar-chart
           title="クラスター別陽性患者数"
           :title-id="'patients-by-clusters'"
           :chart-id="'time-bar-chart-patients-by-clusters'"
@@ -94,7 +94,7 @@
           :show-button="false"
           :horizontal="true"
           :overlap="patientsTable.datasets.length"
-        />-->
+        />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
         <circle-chart
@@ -106,154 +106,164 @@
           :info="'総病床数'"
           :url="'https://web.pref.hyogo.lg.jp/kk03/corona_hasseijyokyo.html'"
         />
-      </v-col>
+      </v-col>-->
+    <div class="Header mb-3">
+      <page-header :icon="headerItem.icon">
+        {{ headerItem.title }}
+      </page-header>
+      <div class="UpdatedAt">
+        <span>{{ $t('最終更新') }} </span>
+        <time :datetime="updatedAt">{{ lastUpdate.last_update }}</time>
+      </div>
+      <div
+        v-show="!['ja', 'ja-basic'].includes($i18n.locale)"
+        class="Annotation"
+      >
+        <span>{{ $t('注釈') }} </span>
+      </div>
+    </div>
+    <!--<whats-new class="mb-4" :items="newsItems" />
+    <static-info
+      class="mb-4"
+      :url="localePath('/flow')"
+      :text="$t('自分や家族の症状に不安や心配があればまずは電話相談をどうぞ')"
+      :btn-text="$t('相談の手順を見る')"
+    />-->
+    <v-row class="DataBlock">
+      <confirmed-cases-details-card />
+      <!--<tested-cases-details-card />-->
+      <confirmed-cases-number-card />
+      <confirmed-cases-attributes-card />
+      <!--<inspection-persons-number-card />-->
+      <tested-number-card />
+      <!--<telephone-advisory-reports-number-card />
+      <consultation-desk-reports-number-card />
+      <metro-card />
+      <agency-card />
+      <shinjuku-visitors-card />
+      <chiyoda-visitors-card />-->
+      <patients-by-age />
+      <patients-by-clusters />
+      <patients-and-sickbeds />
     </v-row>
+    <!--<v-divider />
+    <v-row class="DataBlock">
+      <shinjuku-st-map-card />
+      <tokyo-st-map-card />
+    </v-row>-->
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
+import { MetaInfo } from 'vue-meta'
 import PageHeader from '@/components/PageHeader.vue'
-import TimeBarChart from '@/components/TimeBarChart.vue'
-import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
-import CircleChart from '@/components/CircleChart'
+// import WhatsNew from '@/components/WhatsNew.vue'
+// import StaticInfo from '@/components/StaticInfo.vue'
 import lastUpdate from '@/data/last_update.json'
-import patients from '@/data/patients.json'
-import patientsSummary from '@/data/patients_summary.json'
-import mainSummary from '@/data/main_summary.json'
-import dischargesSummary from '@/data/discharges_summary.json'
-import inspectionsSummary from '@/data/inspections_summary.json'
-import age from '@/data/age.json'
-import clustersSummary from '@/data/clusters_summary.json'
-import sickbedsSummary from '@/data/sickbeds_summary.json'
-import DataTable from '@/components/DataTable.vue'
-import formatGraph from '@/utils/formatGraph'
-import formatTable from '@/utils/formatTable'
-import formatConfirmedCases from '@/utils/formatConfirmedCases'
-import formatVariableGraph from '@/utils/formatVariableGraph'
-import formatClustersTable from '@/utils/formatClustersTable'
 import News from '@/data/news.json'
-import SvgCard from '@/components/SvgCard.vue'
-import ConfirmedCasesTable from '@/components/ConfirmedCasesTable.vue'
+import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
+// import TestedCasesDetailsCard from '@/components/cards/TestedCasesDetailsCard.vue'
+import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
+import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
+import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
+/* import InspectionPersonsNumberCard from '@/components/cards/InspectionPersonsNumberCard.vue'
+import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
+import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue' */
+import PatientsByAge from '@/components/cards/PatientsByAge.vue'
+import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
+import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
+// import MetroCard from '@/components/cards/MetroCard.vue'
+// import AgencyCard from '@/components/cards/AgencyCard.vue'
+import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
+/* import ShinjukuVisitorsCard from '@/components/cards/ShinjukuVisitorsCard.vue'
+import ChiyodaVisitorsCard from '@/components/cards/ChiyodaVisitorsCard.vue'
+import ShinjukuStMapCard from '@/components/cards/ShinjukuStMapCard.vue'
+import TokyoStMapCard from '@/components/cards/TokyoStMapCard.vue' */
 
-export default {
+export default Vue.extend({
   components: {
     PageHeader,
-    TimeBarChart,
-    TimeStackedBarChart,
-    CircleChart,
-    DataTable,
-    SvgCard,
-    ConfirmedCasesTable
+    // WhatsNew,
+    // StaticInfo,
+    ConfirmedCasesDetailsCard,
+    // TestedCasesDetailsCard,
+    ConfirmedCasesNumberCard,
+    ConfirmedCasesAttributesCard,
+    TestedNumberCard,
+    /* InspectionPersonsNumberCard,
+    TelephoneAdvisoryReportsNumberCard,
+    ConsultationDeskReportsNumberCard,
+    MetroCard,
+    AgencyCard,
+    ShinjukuVisitorsCard,
+    ChiyodaVisitorsCard,
+    ShinjukuStMapCard,
+    TokyoStMapCard */
+    PatientsByAge,
+    PatientsByClusters,
+    PatientsAndSickbeds
   },
   data() {
-    // 感染者数グラフ
-    const patientsGraph = formatGraph(patientsSummary.data)
-    // 感染者数
-    const patientsTable = formatTable(patients.data)
-    // 退院者グラフ
-    const dischargesGraph = formatGraph(dischargesSummary.data)
-
-    // 検査実施日別状況
-    const allInspectionsArray = []
-    for (let i = 0; i < inspectionsSummary.data['検査検体数'].length; i++) {
-      allInspectionsArray.push(
-        inspectionsSummary.data['検査検体数'][i] -
-          inspectionsSummary.data['陽性確認'][i]
-      )
-    }
-    const inspectionsGraph = [
-      inspectionsSummary.data['陽性確認'],
-      allInspectionsArray
-    ]
-    const inspectionsItems = [
-      '陽性確認者数',
-      '検査検体数'
-    ]
-    const inspectionsLabels = inspectionsSummary.labels
-
-    // 年齢別陽性患者数
-    const ageGraph = formatVariableGraph(age.data)
-
-    // クラスター別陽性患者数
-    const clustersTable = formatClustersTable(clustersSummary.data)
-    const clustersGraph = formatVariableGraph(clustersSummary.data)
-
-    const sumInfoOfClusters = {
-      lText: clustersGraph[
-        clustersGraph.length - 1
-      ].cumulative.toLocaleString(),
-      sText: '重複者: ' + (clustersGraph[
-        clustersGraph.length - 1
-       ].cumulative -
-        patientsGraph[
-          patientsGraph.length - 1
-          ].cumulative) + '人',
-      unit: '人'
-    }
-
-    // 入院患者数と残り病床数
-    const sickbedsGraph = formatVariableGraph(sickbedsSummary.data)
-
-    // 死亡者数
-    // #MEMO: 今後使う可能性あるので一時コメントアウト
-    // const fatalitiesTable = formatTable(
-    //   patients.data.filter(patient => patient['備考'] === '死亡')
-    // )
-    // 検査陽性者の状況
-    const confirmedCases = formatConfirmedCases(mainSummary)
-
-    const sumInfoOfPatients = {
-      lText: patientsGraph[
-        patientsGraph.length - 1
-      ].cumulative.toLocaleString(),
-      sText: patientsGraph[patientsGraph.length - 1].label + 'の累計',
-      unit: '人'
-    }
-
     const data = {
-      patients,
-      inspectionsSummary,
-      age,
-      clustersSummary,
-      sickbedsSummary,
-      patientsTable,
-      patientsGraph,
-      dischargesGraph,
-      inspectionsGraph,
-      inspectionsItems,
-      inspectionsLabels,
-      ageGraph,
-      clustersTable,
-      sumInfoOfClusters,
-      // clustersGraph,
-      sickbedsGraph,
-      confirmedCases,
-      sumInfoOfPatients,
+      lastUpdate,
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
-        title: '兵庫県内の最新感染動向',
-        date: lastUpdate.last_update
+        title: this.$t('兵庫県内の最新感染動向')
       },
       newsItems: News.newsItems
     }
     return data
   },
-  head() {
+  computed: {
+    updatedAt() {
+      return convertDatetimeToISO8601Format(this.$data.lastUpdate.last_update)
+    }
+  },
+  head(): MetaInfo {
     return {
-      title: '兵庫県内の最新感染動向'
+      title: this.$t('兵庫県内の最新感染動向') as string
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
 .MainPage {
+  .Header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+
+    @include lessThan($small) {
+      flex-direction: column;
+      align-items: baseline;
+    }
+  }
+
+  .UpdatedAt {
+    @include font-size(14);
+
+    color: $gray-3;
+    margin-bottom: 0.2rem;
+  }
+
+  .Annotation {
+    @include font-size(12);
+
+    color: $gray-3;
+    @include largerThan($small) {
+      margin: 0 0 0 auto;
+    }
+  }
   .DataBlock {
     margin: 20px -8px;
+
     .DataCard {
       @include largerThan($medium) {
         padding: 10px;
       }
+
       @include lessThan($small) {
         padding: 4px 8px;
       }

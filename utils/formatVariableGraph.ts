@@ -2,7 +2,7 @@ interface DataObject {
   [key: string]: number
 }
 
-type GraphDataType = {
+export type GraphDataType = {
   label: string
   transition: number
   cumulative: number

@@ -1,6 +1,10 @@
 import { Configuration } from '@nuxt/types'
+import { Configuration as WebpackConfiguration } from 'webpack'
+import i18n from './nuxt-i18n.config'
+const webpack = require('webpack')
 const purgecss = require('@fullhuman/postcss-purgecss')
 const autoprefixer = require('autoprefixer')
+const environment = process.env.NODE_ENV || 'development'
 
 const config: Configuration = {
   mode: 'universal',
@@ -15,38 +19,11 @@ const config: Configuration = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content:
-          '当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、兵庫県に住むクリエイターの有志が開設したサイトです。公式情報ではないことをご了承下さい。'
-      },
-      {
-        hid: 'og:site_name',
-        property: 'og:site_name',
-        content: '兵庫県非公式 新型コロナウイルスまとめサイト'
-      },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
         hid: 'og:url',
         property: 'og:url',
         content: 'https://stop-covid19-hyogo.org/'
-      },
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: '兵庫県非公式 新型コロナウイルスまとめサイト'
-      },
-      {
-        hid: 'og:description',
-        property: 'og:description',
-        content:
-          '当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、有志の仲間が開設したサイトです。公式情報ではないことをご了承下さい。'
-      },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: 'https://stop-covid19-hyogo.org/ogp.png'
       },
       {
         hid: 'twitter:card',
@@ -59,9 +36,9 @@ const config: Configuration = {
         content: '@hyogokoho'
       },
       {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: 'https://stop-covid19-hyogo.org/ogp.png'
+        hid: 'fb:app_id',
+        property: 'fb:app_id',
+        content: '2879625188795443'
       },
       {
         hid: 'note:card',
@@ -71,7 +48,11 @@ const config: Configuration = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' }
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' },
+      {
+        rel: 'stylesheet',
+        href: 'https://use.fontawesome.com/releases/v5.6.1/css/all.css'
+      }
     ]
   },
   /*
@@ -91,6 +72,10 @@ const config: Configuration = {
       ssr: true
     },
     {
+      src: '@/plugins/axe',
+      ssr: true
+    },
+    {
       src: '@/plugins/vuetify.ts',
       ssr: true
     }
@@ -99,6 +84,7 @@ const config: Configuration = {
    ** Nuxt.js dev-modules
    */
   buildModules: [
+    '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
     '@nuxt/typescript-build',
     [
@@ -110,38 +96,14 @@ const config: Configuration = {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
-    [
-      'nuxt-i18n',
-      {
-        strategy: 'no_prefix',
-        locales: [
-          {
-            code: 'ja',
-            iso: 'ja-JP'
-          }
-        ],
-        defaultLocale: 'ja',
-        vueI18n: {
-          fallbackLocale: 'ja',
-          formatFallbackMessages: true
-        },
-        vueI18nLoader: true
-      }
-    ],
+    ['@nuxtjs/dotenv', { filename: `.env.${environment}` }],
+    ['nuxt-i18n', i18n],
     'nuxt-svg-loader',
     'nuxt-purgecss',
     ['vue-scrollto/nuxt', { duration: 1000, offset: -72 }]
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -153,6 +115,11 @@ const config: Configuration = {
     }
   },
   build: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        mapboxgl: 'mapbox-gl'
+      })
+    ],
     postcss: {
       plugins: [
         autoprefixer({ grid: 'autoplace' }),
@@ -169,8 +136,12 @@ const config: Configuration = {
         })
       ]
     },
+    extend(config: WebpackConfiguration, _) {
+      // default externals option is undefined
+      config.externals = [{ moment: 'moment' }]
+    }
     // https://ja.nuxtjs.org/api/configuration-build/#hardsource
-    hardSource: process.env.NODE_ENV === 'development'
+    // hardSource: process.env.NODE_ENV === 'development'
   },
   manifest: {
     name: '兵庫県非公式 新型コロナウイルスまとめサイト',
@@ -182,7 +153,43 @@ const config: Configuration = {
     splash_pages: null
   },
   generate: {
-    fallback: true
+    fallback: true,
+    routes() {
+      const locales = ['ja' /* , 'en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic' */]
+      const pages = [
+        '/cards/details-of-confirmed-cases',
+        // '/cards/details-of-tested-cases',
+        '/cards/number-of-confirmed-cases',
+        '/cards/attributes-of-confirmed-cases',
+        '/cards/number-of-tested',
+        /* '/cards/number-of-inspection-persons',
+        '/cards/number-of-reports-to-covid19-telephone-advisory-center',
+        '/cards/number-of-reports-to-covid19-consultation-desk',
+        '/cards/predicted-number-of-toei-subway-passengers',
+        '/cards/agency',
+        '/cards/shinjuku-visitors',
+        '/cards/chiyoda-visitors',
+        '/cards/shinjuku-st-heatmap',
+        '/cards/tokyo-st-heatmap',
+        '/cards/tokyo-city-heatmap' */
+        '/cards/patients-by-age',
+        '/cards/patients-by-clusters',
+        '/cards/patients-and-sickbeds'
+      ]
+
+      const routes: string[] = []
+      locales.forEach(locale => {
+        pages.forEach(page => {
+          if (locale === 'ja') {
+            routes.push(page)
+            return
+          }
+          const route = `/${locale}${page}`
+          routes.push(route)
+        })
+      })
+      return routes
+    }
   },
   // /*
   // ** hot read configuration for docker
