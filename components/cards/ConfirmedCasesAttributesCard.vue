@@ -7,7 +7,7 @@
       :chart-option="{}"
       :date="patients.last_update"
       :info="sumInfoOfPatients"
-      :url="'https://web.pref.hyogo.lg.jp/kk03/corona_kanjyajyokyo.html'"
+      :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
     />
   </v-col>
 </template>
