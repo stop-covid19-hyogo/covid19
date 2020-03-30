@@ -8,7 +8,7 @@
       :date="clustersSummary.last_update"
       :info="sumInfoOfClusters"
       :url="
-        'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'
+       'http://open-data.pref.hyogo.lg.jp/?page_id=141'
       "
       :desc="$t('（注）同一の対象者が複数含まれる場合あり')"
     />

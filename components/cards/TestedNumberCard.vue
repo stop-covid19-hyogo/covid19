@@ -11,7 +11,7 @@
       :unit="$t('件.tested')"
       :data-labels="inspectionsDataLabels"
       :url="
-        'http://open-data.pref.hyogo.lg.jp/index.php?key=muve6rx2r-175#_175'
+       'http://open-data.pref.hyogo.lg.jp/?page_id=141'
       "
     >
       <!-- 件.tested = 検査数 -->

@@ -8,7 +8,7 @@
       :date="age.last_update"
       :unit="'人'"
       :url="
-        'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'
+       'http://open-data.pref.hyogo.lg.jp/?page_id=141'
       "
       :show-button="false"
     />
