@@ -5,7 +5,7 @@
       :title-id="'details-of-confirmed-cases'"
       :date="mainSummary.last_update"
       :url="
-        'http://open-data.pref.hyogo.lg.jp/index.php?key=muq1trrqj-175#_175'
+        'http://open-data.pref.hyogo.lg.jp/?page_id=141'
       "
     >
       <confirmed-cases-table

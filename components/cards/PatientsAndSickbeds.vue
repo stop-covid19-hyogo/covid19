@@ -8,7 +8,7 @@
       :unit="$t('床')"
       :info="$t('総病床数')"
       :url="
-        'http://open-data.pref.hyogo.lg.jp/index.php?key=muq1trrqj-175#_175'
+        'http://open-data.pref.hyogo.lg.jp/?page_id=141'
       "
     />
   </v-col>
