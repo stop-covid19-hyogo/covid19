@@ -12,7 +12,7 @@
 | [Yuk Saiga (RALLY inc.)](https://github.com/saigaso) | Design / Coding |
 | [y-chan](https://twitter.com/Xperia_Build_Y) ([@y-chan](https://github.com/y-chan))| Data analysis / Coding |
 | [Tomohiro Nozaki](https://github.com/nztm)| Coding |
-| [Mitsugu Oyama](https://github.com/mitsugu/)| Data Maintenance |
+| [Mitsugu Oyama](https://github.com/mitsugu/)| Data Maintenance / Coding |
 | [Ishimaru Sohei](https://github.com/roborovskii-info)| Coding |
 | [Kentaro Ohkouchi (Rotary E-Club of Hyogo)](https://github.com/nanasess)| Programing |
 | [Shingo Kosaka (Kobe City Hall)](https://github.com/SKosaka)| Coding |
