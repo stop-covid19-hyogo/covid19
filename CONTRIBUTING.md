@@ -54,15 +54,11 @@
 
 https://dev.stop-covid19-hyogo.org/
 
-Password: `stop.covid19.hyogo`
-
 最新の開発状況が反映される環境です。 `development` ブランチを更新すると CI/CD が実行されサーバーのコンテンツを更新します。
 
 ### staging / 検証環境
 
 https://stg.stop-covid19-hyogo.org/
-
-Password: `stop.covid19.hyogo`
 
 本番リリース前の確認を行うための環境です。 `v[0-9]+.[0-9]+.[0-9]+-staging.[0-9]+` という形式でタグを付けると CI/CD が実行されサーバーのコンテンツを更新します。
 
