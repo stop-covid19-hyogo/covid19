@@ -16,8 +16,6 @@
 
 ## プロジェクトの進め方について
 
-GitHub の [Project](https://github.com/stop-covid19-hyogo/covid19/projects/1) をつかって、対応すべき Issue とその進捗を管理しています。
-
 自分ができそうな Issue に誰もアサインされていない場合、Issue に「やります！」等とコメントしてから開発をはじめてください。
 
 ### Issue へのコメントや Pull Request について
@@ -44,7 +42,7 @@ GitHub の [Project](https://github.com/stop-covid19-hyogo/covid19/projects/1) �
 - development: 開発用のブランチです
 - dev-page: 開発環境 (development) のコンテンツを格納するブランチです
 - stg-page: 検証環境 (staging) のコンテンツを格納するブランチです
-- prod-page: 本番環境のコンテンツを格納するブランチです（検討中）
+- prod-page: 本番環境のコンテンツを格納するブランチです
 
 ## 各種環境とデプロイについて
 
@@ -85,6 +83,6 @@ https://stop-covid19-hyogo.org/
 
 ### デザインデータ
 
-サイトで使用するデザインデータは Figma を使用して制作しています。[こちら](https://www.figma.com/files/recent)をご覧下さい。
+サイトで使用するデザインデータは Figma を使用して制作しています。[こちら](https://www.figma.com/file/blAcE2YjfqyrmA9C3toDNc/covid19-hyogo)をご覧下さい。
 
 本ドキュメントの更新も大歓迎です！
