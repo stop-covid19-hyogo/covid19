@@ -20,15 +20,15 @@ Slack でディスカッションを行っております。
 
 ### 行動原則
 
-[サイト構築にあたっての行動原則](./.github/CODE_OF_CONDUCT.md)を御覧ください。
+[サイト構築にあたっての行動原則](./CODE_OF_CONDUCT.md)を御覧ください。
 
 ## 東京都オリジナルから派生した他のサイト
 
-[Link先](./FORKED_SITES.md)を御覧ください。
+[Link先](https://github.com/tokyo-metropolitan-gov/covid19/blob/development/FORKED_SITES.md)を御覧ください。
 
 ## 開発者向け情報
 
-サイト制作・開発に関する詳細は[プロジェクトへの参加方法](./.github/CONTRIBUTING.md)をご確認下さい。
+サイト制作・開発に関する詳細は[プロジェクトへの参加方法](./CONTRIBUTING.md)をご確認下さい。
 
 ### 環境構築手順
 
