@@ -125,10 +125,6 @@ export default {
           divider: true
         },
         {
-          title: '新型コロナウイルスの対応について',
-          link: 'https://web.pref.hyogo.lg.jp/kk03/200129.html'
-        },
-        {
           title: '記者発表資料',
           link: 'https://web.pref.hyogo.lg.jp/kk03/singatakoronataiou.html'
         },
@@ -138,7 +134,7 @@ export default {
         },
         {
           title: '新型コロナウイルス感染症の県内検査状況について',
-          link: 'https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html'
+          link: 'https://web.pref.hyogo.lg.jp/kk03/200129.html'
         },
         {
           title: this.$t('Message from Governor Ido'),

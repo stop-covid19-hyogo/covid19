@@ -56,7 +56,7 @@
           :items="inspectionsItems"
           :labels="inspectionsLabels"
           :unit="'件'"
-          :url="'https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html'"
+          :url="'https://web.pref.hyogo.lg.jp/kk03/200129.html'"
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">

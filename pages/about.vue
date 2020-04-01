@@ -28,7 +28,7 @@
         rel="noopener"
         >新型コロナウイルスに感染した患者の状況</a
       >と<a
-        href="https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html"
+        href="https://web.pref.hyogo.lg.jp/kk03/200129.html"
         target="_blank"
         rel="noopener"
       >新型コロナウイルス感染症の県内検査状況について</a
