@@ -1,15 +1,15 @@
 FROM node:10.19-alpine
 
-ARG project_dir=/app
+ENV PROJECT_ROOTDIR /app/
 
-WORKDIR ${project_dir}
+WORKDIR $PROJECT_ROOTDIR
 
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock $PROJECT_ROOTDIR
 
 RUN set -x && \
     yarn install
 
-COPY . ${project_dir}
+COPY . $PROJECT_ROOTDIR
 
 EXPOSE 3000
 ENV HOST 0.0.0.0

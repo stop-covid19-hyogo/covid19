@@ -1,18 +1,19 @@
 <template>
-  <data-view :title="title" :title-id="titleId" :date="date" :url="url">
-    <template v-if="showButton === true" v-slot:button>
-      <p class="Graph-Desc">
-        {{ desc }}
-      </p>
-      <data-selector v-model="dataKind" />
+  <data-view :title="title" :title-id="titleId" :date="date">
+    <template v-slot:description>
+      <!--<slot name="description" />-->
+      {{ desc }}
     </template>
-    <template v-else v-slot:button>
-      <p class="Graph-Desc">
-        {{ desc }}
-      </p>
+    <template v-if="showButton === true" v-slot:button>
+      <data-selector
+        v-model="dataKind"
+        :target-id="chartId"
+        :style="{ display: canvas ? 'inline-block' : 'none' }"
+      />
     </template>
     <horizontal-bar
       v-if="horizontal === true"
+      :style="{ display: canvas ? 'block' : 'none' }"
       :chart-id="chartId"
       :chart-data="displayData"
       :options="displayOption"
@@ -20,10 +21,24 @@
     />
     <bar
       v-else
+      :style="{ display: canvas ? 'block' : 'none' }"
       :chart-id="chartId"
       :chart-data="displayData"
       :options="displayOption"
       :height="240"
+    />
+    <v-data-table
+      :style="{ top: '-9999px', position: canvas ? 'fixed' : 'static' }"
+      :headers="tableHeaders"
+      :items="tableData"
+      :items-per-page="-1"
+      :hide-default-footer="true"
+      :height="240"
+      :fixed-header="true"
+      :disable-sort="true"
+      :mobile-breakpoint="0"
+      class="cardTable"
+      item-key="name"
     />
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
@@ -32,50 +47,124 @@
         :unit="displayInfo.unit"
       />
     </template>
+    <template v-slot:footer>
+      <open-data-link v-show="url" :url="url" />
+    </template>
   </data-view>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
+import { TranslateResult } from 'vue-i18n'
+import { ThisTypedComponentOptionsWithRecordProps } from 'vue/types/options'
+import { GraphDataType } from '@/utils/formatGraph'
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+import OpenDataLink from '@/components/OpenDataLink.vue'
 
-export default {
-  components: { DataView, DataSelector, DataViewBasicInfoPanel },
+import { single as color } from '@/utils/colors'
+
+type Data = {
+  dataKind: 'transition' | 'cumulative'
+  canvas: boolean
+}
+type Methods = {
+  formatDayBeforeRatio: (dayBeforeRatio: number) => string
+}
+type Computed = {
+  displayCumulativeRatio: string
+  displayTransitionRatio: string
+  displayInfo: {
+    lText: string
+    sText: string
+    unit: string
+  }
+  displayData: {
+    labels: string[]
+    datasets: {
+      label: 'transition' | 'cumulative'
+      data: number[]
+      backgroundColor: string
+      borderWidth: number
+    }[]
+  }
+  displayOption: {
+    tooltips: {
+      displayColors: boolean
+      callbacks: {
+        label(tooltipItem: any): string
+        title(tooltipItem: any[], data: any): string | undefined
+      }
+    }
+    responsive: boolean
+    maintainAspectRatio: boolean
+    legend: {
+      display: boolean
+    }
+    scales: object
+  }
+  scaledTicksYAxisMax: number
+  tableHeaders: {
+    text: TranslateResult
+    value: string
+  }[]
+  tableData: {
+    [key: number]: number
+  }[]
+}
+type Props = {
+  title: string
+  titleId: string
+  chartId: string
+  chartData: GraphDataType[]
+  date: string
+  unit: string
+  url: string
+  desc: string
+  showButton: boolean
+  horizontal: boolean
+  overlap: number
+}
+
+const options: ThisTypedComponentOptionsWithRecordProps<
+  Vue,
+  Data,
+  Methods,
+  Computed,
+  Props
+> = {
+  created() {
+    this.canvas = process.browser
+  },
+  components: { DataView, DataSelector, DataViewBasicInfoPanel, OpenDataLink },
   props: {
     title: {
       type: String,
-      required: false,
       default: ''
     },
     titleId: {
       type: String,
-      required: false,
       default: ''
     },
     chartId: {
       type: String,
-      required: false,
       default: 'time-bar-chart'
     },
     chartData: {
       type: Array,
-      required: false,
       default: () => []
     },
     date: {
       type: String,
-      required: true,
-      default: ''
+      required: true
     },
     unit: {
       type: String,
-      required: false,
       default: ''
     },
     url: {
       type: String,
-      required: false,
       default: ''
     },
     desc: {
@@ -99,11 +188,10 @@ export default {
       default: 0
     }
   },
-  data() {
-    return {
-      dataKind: 'transition'
-    }
-  },
+  data: () => ({
+    dataKind: 'transition',
+    canvas: true
+  }),
   computed: {
     displayCumulativeRatio() {
       const lastDay = this.chartData.slice(-1)[0].cumulative
@@ -120,9 +208,13 @@ export default {
         return {
           lText: this.showButton
             ? `${this.chartData.slice(-1)[0].transition.toLocaleString()}`
-            : this.chartData[this.chartData.length - 1].cumulative.toLocaleString(),
+            : this.chartData[
+                this.chartData.length - 1
+              ].cumulative.toLocaleString(),
           sText: this.showButton
-            ? `実績値（前日比：${this.displayTransitionRatio} ${this.unit}）`
+            ? `${this.$t('実績値')}（${this.$t('前日比')}: ${
+                this.displayTransitionRatio
+              } ${this.unit}）`
             : this.overlap
             ? `重複者: ${this.chartData[this.chartData.length - 1].cumulative -
                 this.overlap}${this.unit}`
@@ -134,9 +226,11 @@ export default {
         lText: this.chartData[
           this.chartData.length - 1
         ].cumulative.toLocaleString(),
-        sText: `${this.chartData.slice(-1)[0].label} 累計値（前日比：${
-          this.displayCumulativeRatio
-        } ${this.unit}）`,
+        sText: `${this.chartData.slice(-1)[0].label} ${this.$t(
+          '累計値'
+        )}（${this.$t('前日比')}: ${this.displayCumulativeRatio} ${
+          this.unit
+        }）`,
         unit: this.unit
       }
     },
@@ -152,23 +246,21 @@ export default {
               data: this.chartData.map(d => {
                 return d.transition
               }),
-              backgroundColor: '#46B5D0',
+              backgroundColor: color,
               borderWidth: 0
             }
           ]
         }
       }
       return {
-        labels: this.chartData.map(d => {
-          return d.label
-        }),
+        labels: this.chartData.map(d => d.label),
         datasets: [
           {
             label: this.dataKind,
             data: this.chartData.map(d => {
               return d.cumulative
             }),
-            backgroundColor: '#46B5D0',
+            backgroundColor: color,
             borderWidth: 0
           }
         ]
@@ -176,25 +268,16 @@ export default {
     },
     displayOption() {
       const unit = this.unit
-      const showButton = this.showButton
-      return {
+      const scaledTicksYAxisMax = this.scaledTicksYAxisMax
+      const options = {
         tooltips: {
           displayColors: false,
           callbacks: {
-            label(tooltipItem) {
-              const labelText =
-                parseInt(tooltipItem.value).toLocaleString() + unit
-              return labelText
+            label(tooltipItem: any) {
+              return `${parseInt(tooltipItem.value).toLocaleString()} ${unit}`
             },
-            title(tooltipItem, data) {
-              if (showButton) {
-                return data.labels[tooltipItem[0].index].replace(
-                  /(\w+)\/(\w+)/,
-                  '$1月$2日'
-                )
-              } else {
-                return data.labels[tooltipItem[0].index]
-              }
+            title(tooltipItem: any, data: any) {
+              return data.labels[tooltipItem[0].index]
             }
           }
         },
@@ -216,11 +299,12 @@ export default {
                 maxTicksLimit: 20,
                 fontColor: '#808080',
                 maxRotation: 0,
-                minRotation: 0,
-                callback: label => {
+                callback: (label: string) => {
                   return this.showButton ? label.split('/')[1] : label
                 }
               }
+              // #2384: If you set "type" to "time", make sure that the bars at both ends are not hidden.
+              // #2384: typeをtimeに設定する時はグラフの両端が見切れないか確認してください
             },
             {
               id: 'month',
@@ -238,29 +322,15 @@ export default {
                 fontStyle: 'bold',
                 gridLines: {
                   display: true
-                },
-                callback: label => {
-                  const monthStringArry = [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                  ]
-                  const month = monthStringArry.indexOf(label.split(' ')[0]) + 1
-                  return month + '月'
                 }
               },
               type: 'time',
               time: {
-                unit: 'month'
+                unit: 'month',
+                parser: 'M/D',
+                displayFormats: {
+                  month: 'MMM'
+                }
               }
             }
           ],
@@ -275,16 +345,42 @@ export default {
               ticks: {
                 suggestedMin: 0,
                 maxTicksLimit: 8,
-                fontColor: '#808080'
+                fontColor: '#808080',
+                suggestedMax: scaledTicksYAxisMax
               }
             }
           ]
         }
       }
+      if (this.$route.query.ogp === 'true') {
+        Object.assign(options, { animation: { duration: 0 } })
+      }
+      return options
+    },
+    scaledTicksYAxisMax() {
+      const yAxisMax = 1.2
+      const dataKind =
+        this.dataKind === 'transition' ? 'transition' : 'cumulative'
+      const values = this.chartData.map(d => d[dataKind])
+      return Math.max(...values) * yAxisMax
+    },
+    tableHeaders() {
+      return [
+        { text: this.$t('日付'), value: 'text' },
+        { text: this.title, value: '0' }
+      ]
+    },
+    tableData() {
+      return this.displayData.datasets[0].data.map((_, i) => {
+        return Object.assign(
+          { text: this.displayData.labels[i] },
+          { '0': this.displayData.datasets[0].data[i] }
+        )
+      })
     }
   },
   methods: {
-    formatDayBeforeRatio(dayBeforeRatio) {
+    formatDayBeforeRatio(dayBeforeRatio: number): string {
       const dayBeforeRatioLocaleString = dayBeforeRatio.toLocaleString()
       switch (Math.sign(dayBeforeRatio)) {
         case 1:
@@ -297,6 +393,8 @@ export default {
     }
   }
 }
+
+export default Vue.extend(options)
 </script>
 
 <style lang="scss" scoped>
