@@ -249,7 +249,7 @@ export default Vue.extend({
         '&url=' +
         this.permalink(true) +
         '&' +
-        'hashtags=StopCovid19JP'
+        'hashtags=StopCovid19JP,StopCovid19Hyogo,兵庫コロナ情報'
       window.open(url)
     },
     facebook() {
