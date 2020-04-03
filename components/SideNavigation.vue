@@ -171,7 +171,7 @@ export default Vue.extend({
         },
         {
           title: this.$t('新型コロナウイルス感染症の県内検査状況について'),
-          link: 'https://web.pref.hyogo.lg.jp/kf16/singatakoronakensa.html'
+          link: 'https://web.pref.hyogo.lg.jp/kk03/200129.html'
         },
         {
           title: this.$t('知事からのメッセージ'),
