@@ -107,6 +107,7 @@ const config: Configuration = {
     ['nuxt-i18n', i18n],
     'nuxt-svg-loader',
     'nuxt-purgecss',
+    '@nuxtjs/sitemap',
     ['vue-scrollto/nuxt', { duration: 1000, offset: -72 }]
   ],
   /*
@@ -118,6 +119,15 @@ const config: Configuration = {
     defaultAssets: {
       icons: false
     }
+  },
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://stop-covid19-hyogo.org/',
+    cacheTime: 1000 * 60 * 15,
+    gzip: true,
+    generate: true,
+    exclude: [''], // Sitemapから除外する項目
+    routes: ['/about'] // Sitemapに追加する項目
   },
   build: {
     plugins: [
