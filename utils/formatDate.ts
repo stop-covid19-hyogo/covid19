@@ -1,12 +1,12 @@
 import dayjs from 'dayjs'
 
 /**
- * Get datetime string formatted ISO8601(YYYY-MM-DDTHH:mm:ss)
+ * Get datetime string formatted ISO8601(YYYY-MM-DD HH:mm)
  *
  * @param dateString - Parsable string by dayjs
  */
 export const convertDatetimeToISO8601Format = (dateString: string): string => {
-  return dayjs(dateString).format('YYYY-MM-DDTHH:mm:ss')
+  return dayjs(dateString).format('YYYY-MM-DD HH:mm')
 }
 
 /**
