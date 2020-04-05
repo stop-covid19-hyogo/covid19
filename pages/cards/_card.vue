@@ -187,11 +187,11 @@ export default {
   },
   head() {
     const url = 'https://stop-covid19-hyogo.org'
-    // const timestamp = new Date().getTime()
-    const ogpImage = `${url}/ogp.png`
-    /*   this.$i18n.locale === 'ja'
+    const timestamp = new Date().getTime()
+    const ogpImage =
+      this.$i18n.locale === 'ja'
         ? `${url}/ogp/${this.$route.params.card}.png?t=${timestamp}`
-        : `${url}/ogp/${this.$i18n.locale}/${this.$route.params.card}.png?t=${timestamp}` */
+        : `${url}/ogp/${this.$i18n.locale}/${this.$route.params.card}.png?t=${timestamp}`
     const description = `${this.updatedTimeStr} | ${this.$t(
       '当サイトは新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志のクリエイターが開設したものです。公式情報ではないことをご了承ください。'
     )}`

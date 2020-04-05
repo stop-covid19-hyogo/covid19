@@ -189,7 +189,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
             data: this.chartData.map(d => {
               return d.transition
             }),
-            backgroundColor: this.chartData.map((d, index) => {
+            backgroundColor: this.chartData.map((_, index) => {
               return colors[index]
             }),
             borderWidth: 0
@@ -239,19 +239,18 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     tableHeaders() {
       return [
-        { text: '', value: 'text' },
         ...this.chartData.map((d, index) => {
           return { text: d.label, value: String(index) }
         })
       ]
     },
     tableData() {
-      return this.chartData.map((_, i) => {
-        return Object.assign(
-          { text: this.chartData[i].label },
-          { [i]: this.chartData[i].transition }
+      return [
+        Object.assign(
+          { '0': this.chartData[0].transition },
+          { '1': this.chartData[1].transition }
         )
-      })
+      ]
     }
   }
 }
