@@ -28,7 +28,7 @@
           <div>
             <a class="Permalink" :href="permalink()">
               <time :datetime="formattedDate">
-                {{ $t('{date} 時点', { date }) }}
+                {{ $t('{fixedTime} 時点', { fixedTime }) }}
               </time>
             </a>
           </div>
@@ -139,7 +139,9 @@
         {{ $t('埋め込みコードをコピーしました') }}
       </div>
       <v-footer class="DataView-Footer">
-        <time :datetime="date">{{ $t('{date} 更新', { date }) }}</time>
+        <time :datetime="fixedTime">{{
+          $t('{fixedTime} 更新', { fixedTime })
+        }}</time>
         <slot name="footer" />
       </v-footer>
     </div>
@@ -148,7 +150,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
+import { convertISO8601FormatToDatetime } from '@/utils/formatDate'
 
 export default Vue.extend({
   props: {
@@ -172,6 +174,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      fixedTime: convertISO8601FormatToDatetime(this.date),
       openGraphEmbed: false,
       displayShare: false,
       showOverlay: false
@@ -179,7 +182,7 @@ export default Vue.extend({
   },
   computed: {
     formattedDate(): string {
-      return convertDatetimeToISO8601Format(this.date)
+      return convertISO8601FormatToDatetime(this.date)
     },
     graphEmbedValue(): string {
       const graphEmbedValue =
