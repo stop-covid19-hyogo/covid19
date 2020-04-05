@@ -1,0 +1,57 @@
+name: OGP Builder
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: development
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - run: yarn install --frozen-lockfile
+      - run: yarn run test
+      - run: yarn run generate:deploy
+      - run: pip3 install selenium
+      - run: (python3 -m http.server --directory ./dist 8000 &)  ; python3 ./ui-test/ogp_screenshot.py
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v1
+        with:
+          name: ogp
+          path: ogp
+  upload:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: prod-pages
+    - name: Download ogp images
+      uses: actions/download-artifact@v1
+      with:
+        name: ogp
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add ogp
+        git commit -m "Update OGP images"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: prod-pages
