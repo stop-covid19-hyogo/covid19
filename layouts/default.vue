@@ -113,7 +113,7 @@ export default Vue.extend({
           content:
             this.$t('兵庫県非公式') +
             ' ' +
-            this.$t('新型コロナウイルス感染症') +
+            this.$t('新型コロナウイルス') +
             ' ' +
             this.$t('まとめサイト')
         },
@@ -133,7 +133,7 @@ export default Vue.extend({
           content:
             this.$t('兵庫県非公式') +
             ' ' +
-            this.$t('新型コロナウイルス感染症') +
+            this.$t('新型コロナウイルス') +
             ' ' +
             this.$t('まとめサイト')
         },
