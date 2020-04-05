@@ -90,7 +90,7 @@ import TokyoCityMapCard from '@/components/cards/TokyoCityMapCard.vue' */
 import PatientsByAge from '@/components/cards/PatientsByAge.vue'
 import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
 import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
-import { convertDatetimeToString } from '@/utils/formatDate'
+import { convertISO8601FormatToDatetime } from '@/utils/formatDate'
 
 export default {
   components: {
@@ -178,7 +178,7 @@ export default {
         break
     }
 
-    const updatedTimeStr = convertDatetimeToString(updatedAt)
+    const updatedTimeStr = convertISO8601FormatToDatetime(updatedAt)
     const data = {
       title,
       updatedTimeStr
