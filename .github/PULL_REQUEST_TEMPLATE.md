@@ -1,6 +1,3 @@
-<!-- Issue 番号がない PR は受け付けません。 -->
-<!-- We don't accept PRs which has no Issue ID. -->
-
 ## 👏 解決する issue / Resolved Issues
 - close #0
 - close #0
