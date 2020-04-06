@@ -1,49 +1,34 @@
 name: OGP Builder
 
 on:
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - prod-pages
 
 jobs:
   build:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: development
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-      - name: Cache dependencies
-        uses: actions/cache@v1
-        with:
-          path: ~/.cache/yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - run: yarn install --frozen-lockfile
-      - run: yarn run test
-      - run: yarn run generate:deploy --fail-on-page-error
-      - run: pip3 install selenium
-      - run: (python3 -m http.server --directory ./dist 8000 &)  ; python3 ./ui-test/ogp_screenshot.py
-      - name: Upload screenshot
-        uses: actions/upload-artifact@v1
-        with:
-          name: ogp
-          path: ogp
-  upload:
-    needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout development
+      uses: actions/checkout@v2
+      with:
+        ref: development
+    - run: pip3 install selenium
+    - run: python3 ./ui-test/ogp_screenshot.py
+    - name: Upload screenshot
+      uses: actions/upload-artifact@v1
+      with:
+        name: ogp
+        path: ogp
+    - name: Checkout prod-pages
+      uses: actions/checkout@v2
       with:
         ref: prod-pages
-    - name: Download ogp images
+    - name: Download screenshot
       uses: actions/download-artifact@v1
       with:
         name: ogp
+        path: ogp
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"

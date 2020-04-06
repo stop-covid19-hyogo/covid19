@@ -41,7 +41,7 @@ if not os.path.exists("ogp/{}".format(lang)):
 for path, size in PATHS.items():
     driver.set_window_size(*size)
     driver.get(
-        "http://localhost:8000{}?ogp=true".format(
+        "https://stop-covid19-hyogo.org:443{}?ogp=true".format(
             path if lang == "ja" else "/{}{}".format(lang, path)
         )
     )
