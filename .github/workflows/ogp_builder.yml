@@ -1,9 +1,7 @@
 name: OGP Builder
 
 on:
-  push:
-    branches:
-      - prod-pages
+  deployment
 
 jobs:
   build:
