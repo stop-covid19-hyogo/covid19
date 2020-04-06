@@ -1,4 +1,4 @@
-const headers = [
+export const headers = [
   { text: 'クラスター/感染源', value: 'クラスター' },
   { text: '人数', value: '人数' }
 ]
@@ -7,7 +7,7 @@ interface DataObject {
   [key: string]: number
 }
 
-type TableDataType = {
+export type TableDataType = {
   クラスター: string
   人数: number
 }
