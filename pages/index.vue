@@ -118,7 +118,8 @@ export default Vue.extend({
   },
   head(): MetaInfo {
     return {
-      title: this.$t('兵庫県内の最新感染動向') as string
+      title: this.$t('兵庫県非公式 新型コロナウイルスまとめサイト') as string,
+      titleTemplate: ''
     }
   }
 })
