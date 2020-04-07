@@ -1,7 +1,9 @@
 name: OGP Builder
 
 on:
-  deployment
+  release:
+    types:
+      - published
 
 jobs:
   build:
@@ -12,6 +14,10 @@ jobs:
       with:
         ref: development
     - run: pip3 install selenium
+    - name : Wait for deploy
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '10m'
     - run: python3 ./ui-test/ogp_screenshot.py
     - name: Upload screenshot
       uses: actions/upload-artifact@v1
