@@ -19,6 +19,8 @@ jobs:
       with:
         time: '10m'
     - run: python3 ./ui-test/ogp_screenshot.py
+      env:
+        TZ: Asia/Tokyo
     - name: Upload screenshot
       uses: actions/upload-artifact@v1
       with:
