@@ -46,11 +46,11 @@
 <script>
 import clusters from '@/data/clusters.json'
 // import clustersSummary from '@/data/clusters_summary.json'
-import patientsSummary from '@/data/patients_summary.json'
+import patients from '@/data/patients.json'
 // import DataTable from '@/components/DataTable.vue'
 import Scatter from '@/components/Scatter'
 // import formatClustersTable from '@/utils/formatClustersTable'
-import formatGraph from '@/utils/formatGraph'
+import formatTable from '@/utils/formatTable'
 // import formatVariableGraph from '@/utils/formatVariableGraph'
 import formatClustersScatter from '@/utils/formatClustersScatter'
 
@@ -64,8 +64,8 @@ export default {
     // const clustersTable = formatClustersTable(clustersSummary.data)
     // const clustersGraph = formatVariableGraph(clustersSummary.data)
 
-    // 感染者数グラフ 感染者数取得のため
-    const patientsGraph = formatGraph(patientsSummary.data)
+    // 感染者数
+    const patientsTable = formatTable(patients.data)
 
     // 日別クラスター陽性患者数
     const clustersScatter = formatClustersScatter(clusters.data)
@@ -79,9 +79,7 @@ export default {
       sText:
         this.$t('重複者') +
         ': ' +
-        (
-          clusterTotal - patientsGraph[patientsGraph.length - 1].cumulative
-        ).toLocaleString() +
+        (clusterTotal - patientsTable.datasets.length).toLocaleString() +
         this.$t('人'),
       unit: this.$t('人')
     }
