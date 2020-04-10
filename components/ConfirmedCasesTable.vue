@@ -1,19 +1,5 @@
 <template>
   <ul :class="$style.container">
-    <li :class="[$style.box, $style.tall, $style.tested]">
-      <div :class="[$style.pillar_tested]">
-        <div :class="$style.content">
-          <span>
-            {{ $t('検査実施人数') }}
-            <br />({{ $t('累計') }})
-          </span>
-          <span>
-            <strong>{{ 検査実施人数 }}</strong>
-            <span :class="$style.unit">{{ $t('人') }}</span>
-          </span>
-        </div>
-      </div>
-    </li>
     <li :class="[$style.box, $style.tall, $style.parent, $style.confirmed]">
       <div :class="$style.pillar">
         <div :class="$style.content">
@@ -189,16 +175,6 @@ $default-boxdiff: 35px;
   border: $default-bdw solid $blue-1;
 }
 
-.pillar_tested {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  flex: 0 0 auto;
-  text-align: center;
-  width: 100%;
-  border: $default-bdw solid $gray-1;
-}
-
 .group {
   display: flex;
   flex: 0 0 auto;
@@ -235,14 +211,6 @@ $default-boxdiff: 35px;
     }
   }
 
-  &.tested {
-    display: flex;
-    flex: 0 0 auto;
-    // [7列] 1/7セル
-    width: calc((100% - #{$default-bdw} * 3) / 7);
-    color: $gray-1;
-  }
-
   &.confirmed {
     width: 100%;
     margin-left: $default-bdw;
@@ -252,8 +220,8 @@ $default-boxdiff: 35px;
     }
 
     > .group {
-      // [6列] 5/6 最後の+1は微調整
-      width: calc((100% + #{$default-bdw} * 2) / 6 * 5 + #{$default-bdw + 1});
+      // [6列] 5/6
+      width: calc((100% + #{$default-bdw} * 2) / 6 * 5 + #{$default-bdw});
     }
   }
 
@@ -330,10 +298,6 @@ $default-boxdiff: 35px;
 
 @mixin override($vw, $bdw, $fz, $boxh, $boxdiff) {
   .pillar,
-  .pillar_tested {
-    border-width: px2vw($bdw, $vw);
-  }
-
   .group {
     padding-top: px2vw($bdw, $vw);
     border-top-width: px2vw($bdw, $vw);
@@ -367,10 +331,6 @@ $default-boxdiff: 35px;
       > .pillar {
         margin-top: px2vw((-($boxdiff - $bdw * 2)), $vw);
       }
-    }
-
-    &.tested {
-      width: calc((100% - #{px2vw($bdw, $vw)} * 3) / 7);
     }
 
     &.confirmed {
