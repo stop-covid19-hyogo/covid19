@@ -297,7 +297,10 @@ $default-boxdiff: 35px;
 }
 
 @mixin override($vw, $bdw, $fz, $boxh, $boxdiff) {
-  .pillar,
+  .pillar {
+    border-width: px2vw($bdw, $vw);
+  }
+
   .group {
     padding-top: px2vw($bdw, $vw);
     border-top-width: px2vw($bdw, $vw);
