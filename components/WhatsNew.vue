@@ -8,29 +8,32 @@
     </h3>
     <ul class="WhatsNew-list">
       <li v-for="(item, i) in items" :key="i" class="WhatsNew-list-item">
-        <a
+        <div class="WhatsNew-list-item-anchor">
+          <!-- <a
           class="WhatsNew-list-item-anchor"
           :href="item.url"
           target="_blank"
           rel="noopener noreferrer"
-        >
+        > -->
           <time
-            class="WhatsNew-list-item-anchor-time px-2"
+            class="WhatsNew-list-item-anchor WhatsNew-list-item-anchor-time px-2"
             :datetime="formattedDate(item.date)"
           >
             {{ item.date }}
           </time>
-          <span class="WhatsNew-list-item-anchor-link">
+          <span>
+            <!-- <span class="WhatsNew-list-item-anchor-link"> -->
             {{ item.text }}
-            <v-icon
+            <!-- <v-icon
               v-if="!isInternalLink(item.url)"
               class="WhatsNew-item-ExternalLinkIcon"
               size="12"
             >
               mdi-open-in-new
-            </v-icon>
+            </v-icon> -->
           </span>
-        </a>
+          <!-- </a> -->
+        </div>
       </li>
     </ul>
   </div>
@@ -48,9 +51,9 @@ export default Vue.extend({
     }
   },
   methods: {
-    isInternalLink(path: string): boolean {
-      return !/^https?:\/\//.test(path)
-    },
+    // isInternalLink(path: string): boolean {
+    //  return !/^https?:\/\//.test(path)
+    // },
     formattedDate(dateString: string) {
       return convertDateToISO8601Format(dateString)
     }

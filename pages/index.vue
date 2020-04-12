@@ -15,13 +15,13 @@
         <span>{{ $t('注釈') }} </span>
       </div>
     </div>
-    <!--<whats-new class="mb-4" :items="newsItems" />
-    <static-info
+    <whats-new class="mb-4" :items="newsItems" />
+    <!-- <static-info
       class="mb-4"
       :url="localePath('/flow')"
       :text="$t('自分や家族の症状に不安や心配があればまずは電話相談をどうぞ')"
       :btn-text="$t('相談の手順を見る')"
-    />-->
+    /> -->
     <v-row class="DataBlock">
       <confirmed-cases-details-card />
       <!--<tested-cases-details-card />-->
@@ -37,7 +37,7 @@
       <chiyoda-visitors-card />-->
       <patients-by-age />
       <patients-by-clusters />
-      <patients-and-sickbeds />
+      <!-- <patients-and-sickbeds /> -->
     </v-row>
     <!--<v-divider />
     <v-row class="DataBlock">
@@ -51,7 +51,7 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import PageHeader from '@/components/PageHeader.vue'
-// import WhatsNew from '@/components/WhatsNew.vue'
+import WhatsNew from '@/components/WhatsNew.vue'
 // import StaticInfo from '@/components/StaticInfo.vue'
 import lastUpdate from '@/data/last_update.json'
 import News from '@/data/news.json'
@@ -65,7 +65,7 @@ import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvi
 import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue' */
 import PatientsByAge from '@/components/cards/PatientsByAge.vue'
 import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
-import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
+// import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
 // import MetroCard from '@/components/cards/MetroCard.vue'
 // import AgencyCard from '@/components/cards/AgencyCard.vue'
 import { convertISO8601FormatToDatetime } from '@/utils/formatDate'
@@ -77,7 +77,7 @@ import TokyoStMapCard from '@/components/cards/TokyoStMapCard.vue' */
 export default Vue.extend({
   components: {
     PageHeader,
-    // WhatsNew,
+    WhatsNew,
     // StaticInfo,
     ConfirmedCasesDetailsCard,
     // TestedCasesDetailsCard,
@@ -94,8 +94,8 @@ export default Vue.extend({
     ShinjukuStMapCard,
     TokyoStMapCard */
     PatientsByAge,
-    PatientsByClusters,
-    PatientsAndSickbeds
+    PatientsByClusters
+    // PatientsAndSickbeds
   },
   data() {
     const updatedTimeStr = convertISO8601FormatToDatetime(
