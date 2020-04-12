@@ -170,14 +170,14 @@ const config: Configuration = {
   generate: {
     fallback: true,
     routes() {
-      const locales = ['ja' /* , 'en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic' */]
+      const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic']
       const pages = [
         '/cards/details-of-confirmed-cases',
-        // '/cards/details-of-tested-cases',
+        '/cards/details-of-tested-cases',
         '/cards/number-of-confirmed-cases',
         '/cards/attributes-of-confirmed-cases',
         '/cards/number-of-tested',
-        /* '/cards/number-of-inspection-persons',
+        '/cards/number-of-inspection-persons',
         '/cards/number-of-reports-to-covid19-telephone-advisory-center',
         '/cards/number-of-reports-to-covid19-consultation-desk',
         '/cards/predicted-number-of-toei-subway-passengers',
@@ -186,10 +186,7 @@ const config: Configuration = {
         '/cards/chiyoda-visitors',
         '/cards/shinjuku-st-heatmap',
         '/cards/tokyo-st-heatmap',
-        '/cards/tokyo-city-heatmap' */
-        '/cards/patients-by-age',
-        '/cards/patients-by-clusters',
-        '/cards/patients-and-sickbeds'
+        '/cards/tokyo-city-heatmap'
       ]
 
       const routes: string[] = []

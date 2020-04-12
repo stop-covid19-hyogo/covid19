@@ -41,15 +41,6 @@
     />
     <chiyoda-visitors-card
       v-else-if="this.$route.params.card == 'chiyoda-visitors'"
-    />
-    <shinjuku-st-map-card
-      v-else-if="this.$route.params.card == 'shinjuku-st-heatmap'"
-    />
-    <tokyo-st-map-card
-      v-else-if="this.$route.params.card == 'tokyo-st-heatmap'"
-    />
-    <tokyo-city-map-card
-      v-else-if="this.$route.params.card == 'tokyo-city-heatmap'"
     />-->
     <patients-by-age v-else-if="this.$route.params.card == 'patients-by-age'" />
     <patients-by-clusters
@@ -58,6 +49,15 @@
     <patients-and-sickbeds
       v-else-if="this.$route.params.card == 'patients-and-sickbeds'"
     />
+    <!--<shinjuku-st-map-card
+      v-else-if="this.$route.params.card == 'shinjuku-st-heatmap'"
+    />
+    <tokyo-st-map-card
+      v-else-if="this.$route.params.card == 'tokyo-st-heatmap'"
+    />
+    <tokyo-city-map-card
+      v-else-if="this.$route.params.card == 'tokyo-city-heatmap'"
+    />-->
   </div>
 </template>
 
