@@ -3,13 +3,34 @@
     <template v-slot:description>
       {{ desc }}
     </template>
-    <scatter
-      :style="{ display: canvas ? 'block' : 'none' }"
-      :chart-id="chartId"
-      :chart-data="displayData"
-      :options="displayOption"
-      :height="240"
-    />
+    <h4 :id="`${titleId}-graph`" class="visually-hidden">
+      {{ $t(`{title}のグラフ`, { title }) }}
+    </h4>
+    <div class="LegendStickyChart">
+      <div class="scrollable" :style="{ display: canvas ? 'block' : 'none' }">
+        <div :style="{ width: `${chartWidth}px` }">
+          <scatter
+            :ref="'scatterChart'"
+            :chart-id="chartId"
+            :chart-data="displayData"
+            :options="displayOption"
+            :plugins="scrollPlugin"
+            :height="240"
+            :width="chartWidth"
+          />
+        </div>
+      </div>
+      <scatter
+        class="sticky-legend"
+        :style="{ display: canvas ? 'block' : 'none' }"
+        :chart-id="`${chartId}-header`"
+        :chart-data="displayDataHeader"
+        :options="displayOptionHeader"
+        :plugins="yAxesBgPlugin"
+        :height="240"
+        :width="chartWidth"
+      />
+    </div>
     <v-data-table
       :style="{ top: '-9999px', position: canvas ? 'fixed' : 'static' }"
       :headers="tableHeaders"
@@ -22,7 +43,16 @@
       :mobile-breakpoint="0"
       class="cardTable"
       item-key="name"
-    />
+    >
+      <template v-slot:body="{ items }">
+        <tbody>
+          <tr v-for="item in items" :key="item.text">
+            <th class="text-start">{{ item['クラスター'] }}</th>
+            <td class="text-start">{{ item['人数'] }}</td>
+          </tr>
+        </tbody>
+      </template>
+    </v-data-table>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
         :l-text="info.lText"
@@ -39,6 +69,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { ThisTypedComponentOptionsWithRecordProps } from 'vue/types/options'
+import { Chart } from 'chart.js'
 import {
   GraphDataType,
   ChildGraphDataType
@@ -50,12 +81,14 @@ import {
 import DataView from '@/components/DataView.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
 import OpenDataLink from '@/components/OpenDataLink.vue'
+import { DisplayData, yAxesBgPlugin, scrollPlugin } from '@/plugins/vue-chart'
 
 import { getGraphSeriesStyle } from '@/utils/colors'
 
 type Data = {
   dataKind: 'transition'
   canvas: boolean
+  chartWidth: number | null
 }
 type Methods = {}
 type Computed = {
@@ -68,21 +101,9 @@ type Computed = {
       backgroundColor: string
     }[]
   }
-  displayOption: {
-    tooltips: {
-      displayColors: boolean
-      callbacks: {
-        label: (tooltipItem: any) => string
-        title: (tooltipItem: any, data: any) => string
-      }
-    }
-    responsive: boolean
-    maintainAspectRatio: boolean
-    legend: {
-      display: boolean
-    }
-    scales: object
-  }
+  displayOption: Chart.ChartOptions
+  displayDataHeader: DisplayData
+  displayOptionHeader: Chart.ChartOptions
   tableHeaders: {
     text: string
     value: string
@@ -101,6 +122,8 @@ type Props = {
   info: object
   desc: string
   url: string
+  scrollPlugin: Chart.PluginServiceRegistrationOptions[]
+  yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[]
 }
 
 const options: ThisTypedComponentOptionsWithRecordProps<
@@ -158,10 +181,19 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       type: String,
       required: false,
       default: ''
+    },
+    scrollPlugin: {
+      type: Array,
+      default: () => scrollPlugin
+    },
+    yAxesBgPlugin: {
+      type: Array,
+      default: () => yAxesBgPlugin
     }
   },
   data: () => ({
     dataKind: 'transition',
+    chartWidth: null,
     canvas: true
   }),
   computed: {
@@ -184,7 +216,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     displayOption() {
       const unit = this.unit
       const data = this.chartData
-      const options = {
+      const options: Chart.ChartOptions = {
         tooltips: {
           displayColors: false,
           callbacks: {
@@ -198,7 +230,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
             }
           }
         },
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: false,
         legend: {
           display: false
@@ -239,10 +271,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontSize: 11,
                 fontColor: '#808080',
                 padding: 3,
-                fontStyle: 'bold',
-                gridLines: {
-                  display: true
-                }
+                fontStyle: 'bold'
               },
               type: 'time',
               time: {
@@ -256,7 +285,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
           ],
           yAxes: [
             {
-              location: 'bottom',
               stacked: true,
               gridLines: {
                 display: true,
@@ -280,6 +308,99 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       }
       return options
     },
+    displayDataHeader() {
+      return {
+        labels: ['2020/1/1'],
+        datasets: [
+          {
+            data: [this.chartData.clusters.length],
+            backgroundColor: 'transparent',
+            borderWidth: 0
+          }
+        ]
+      }
+    },
+    displayOptionHeader() {
+      const data = this.chartData
+      const options: Chart.ChartOptions = {
+        responsive: false,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        tooltips: { enabled: false },
+        scales: {
+          xAxes: [
+            {
+              id: 'day',
+              stacked: true,
+              gridLines: {
+                display: false
+              },
+              ticks: {
+                fontSize: 9,
+                maxTicksLimit: 15,
+                fontColor: 'transparent', // #808080
+                maxRotation: 0
+              },
+              type: 'time',
+              time: {
+                displayFormats: {
+                  day: 'D'
+                },
+                parser: 'M/D',
+                unit: 'day'
+              }
+            },
+            {
+              id: 'month',
+              stacked: true,
+              gridLines: {
+                drawOnChartArea: false,
+                drawTicks: false, // true -> false
+                drawBorder: false,
+                tickMarkLength: 10
+              },
+              ticks: {
+                fontSize: 11,
+                fontColor: 'transparent', // #808080
+                padding: 13, // 3 + 10(tickMarkLength)
+                fontStyle: 'bold'
+              },
+              type: 'time',
+              time: {
+                unit: 'month',
+                parser: 'M/D',
+                displayFormats: {
+                  month: 'MMM'
+                }
+              }
+            }
+          ],
+          yAxes: [
+            {
+              stacked: true,
+              gridLines: {
+                display: true,
+                drawOnChartArea: false,
+                color: '#E5E5E5' // #E5E5E5
+              },
+              ticks: {
+                suggestedMin: 0,
+                maxTicksLimit: 12,
+                fontColor: '#808080', // #808080
+                max: data.clusters.length,
+                callback: (i: number) => {
+                  return data.clusters[i]
+                }
+              }
+            }
+          ]
+        },
+        animation: { duration: 0 }
+      }
+      return options
+    },
     tableHeaders() {
       return TableHeader
     },
@@ -297,25 +418,37 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       })
       return data.reverse()
     }
+  },
+  mounted() {
+    if (this.$el) {
+      this.chartWidth =
+        ((this.$el!.clientWidth - 22 * 2 - 38) / 30) *
+          this.displayData.labels!.length +
+        38
+      this.chartWidth = Math.max(
+        this.$el!.clientWidth - 22 * 2,
+        this.chartWidth
+      )
+    }
+    const scatterChart = this.$refs.scatterChart as Vue
+    const barElement = scatterChart.$el
+    const canvas = barElement.querySelector('canvas')
+    const labelledbyId = `${this.titleId}-graph`
+
+    if (canvas) {
+      canvas.setAttribute('role', 'img')
+      canvas.setAttribute('aria-labelledby', labelledbyId)
+    }
   }
 }
 
 export default Vue.extend(options)
 </script>
 
-<style module lang="scss">
-.Graph {
-  &Desc {
-    width: 100%;
-    margin: 0;
-    margin-bottom: 0 !important;
-    padding-left: 0 !important;
-    font-size: 12px;
-    color: $gray-3;
-    list-style: none;
-  }
-  &Link {
-    text-decoration: none;
-  }
+<style lang="scss" scoped>
+.Graph-Desc {
+  margin: 10px 0;
+  font-size: 12px;
+  color: $gray-3;
 }
 </style>
