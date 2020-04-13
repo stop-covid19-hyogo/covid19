@@ -51,10 +51,10 @@ import DataView from '@/components/DataView.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
 import OpenDataLink from '@/components/OpenDataLink.vue'
 
-import { single as color } from '@/utils/colors'
+import { getGraphSeriesStyle } from '@/utils/colors'
 
 type Data = {
-  dataKind: 'transition' | 'cumulative'
+  dataKind: 'transition'
   canvas: boolean
 }
 type Methods = {}
@@ -91,7 +91,6 @@ type Computed = {
     [key: number]: number
   }[]
 }
-
 type Props = {
   title: string
   titleId: string
@@ -130,7 +129,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     chartData: {
       type: Object,
-      required: false,
       default: () => {
         return {
           datasets: [],
@@ -141,8 +139,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     date: {
       type: String,
-      required: true,
-      default: ''
+      required: true
     },
     unit: {
       type: String,
@@ -169,6 +166,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
   }),
   computed: {
     displayData() {
+      const style = getGraphSeriesStyle(1)[0]
       return {
         labels: this.chartData.labels,
         datasets: [
@@ -176,7 +174,8 @@ const options: ThisTypedComponentOptionsWithRecordProps<
             fill: false,
             showLine: false,
             data: this.chartData.datasets,
-            backgroundColor: color,
+            backgroundColor: style.fillColor,
+            borderColor: style.strokeColor,
             borderWidth: 0
           }
         ]

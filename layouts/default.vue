@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <v-app class="app">
     <v-overlay v-if="loading" color="#F8F9FA" opacity="1" z-index="9999">
       <div class="loader">
@@ -8,7 +8,7 @@
     </v-overlay>
     <div v-if="hasNavigation" class="appContainer">
       <div class="naviContainer">
-        <SideNavigation
+        <side-navigation
           :is-navi-open="isOpenNavigation"
           :class="{ open: isOpenNavigation }"
           @openNavi="openNavigation"
@@ -26,7 +26,7 @@
         <nuxt />
       </v-container>
     </div>
-    <NoScript />
+    <no-script />
     <development-mode-mark />
   </v-app>
 </template>
@@ -35,9 +35,11 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
+import lastUpdate from '@/data/last_update.json'
 import SideNavigation from '@/components/SideNavigation.vue'
 import NoScript from '@/components/NoScript.vue'
 import DevelopmentModeMark from '@/components/DevelopmentModeMark.vue'
+import { convertDateToSimpleFormat } from '@/utils/formatDate'
 
 type LocalData = {
   hasNavigation: boolean
@@ -71,6 +73,10 @@ export default Vue.extend({
   },
   mounted() {
     this.loading = false
+    this.getMatchMedia().addListener(this.hideNavigation)
+  },
+  beforeDestroy() {
+    this.getMatchMedia().removeListener(this.hideNavigation)
   },
   methods: {
     openNavigation(): void {
@@ -78,10 +84,21 @@ export default Vue.extend({
     },
     hideNavigation(): void {
       this.isOpenNavigation = false
+    },
+    getMatchMedia(): MediaQueryList {
+      return window.matchMedia('(min-width: 601px)')
     }
   },
   head(): MetaInfo {
-    const { htmlAttrs } = this.$nuxtI18nSeo()
+    const { htmlAttrs, meta } = this.$nuxtI18nSeo()
+    const ogLocale =
+      meta && meta.length > 0
+        ? meta[0]
+        : {
+            hid: 'og:locale',
+            name: 'og:locale',
+            content: this.$i18n.locale
+          }
     return {
       htmlAttrs,
       link: [
@@ -104,6 +121,8 @@ export default Vue.extend({
           hid: 'description',
           name: 'description',
           content:
+            convertDateToSimpleFormat(lastUpdate.last_update) +
+            ' 更新：　' +
             this.$tc(
               '兵庫県の新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。'
             ) +
@@ -126,11 +145,7 @@ export default Vue.extend({
           property: 'og:url',
           content: `https://stop-covid19-hyogo.org${this.$route.path}`
         },
-        {
-          hid: 'og:locale',
-          property: 'og:locale',
-          content: this.$i18n.locale
-        },
+        ogLocale,
         {
           hid: 'og:title',
           property: 'og:title',
@@ -145,6 +160,8 @@ export default Vue.extend({
           hid: 'og:description',
           property: 'og:description',
           content:
+            convertDateToSimpleFormat(lastUpdate.last_update) +
+            ' 更新：　' +
             this.$tc(
               '兵庫県の新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。'
             ) +

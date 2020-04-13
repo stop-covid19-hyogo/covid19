@@ -14,8 +14,23 @@
       :height="240"
       :fixed-header="true"
       :mobile-breakpoint="0"
+      :custom-sort="customSort"
       class="cardTable"
-    />
+    >
+      <template v-slot:body="{ items }">
+        <tbody>
+          <tr v-for="item in items" :key="item.text">
+            <th class="text-start">{{ item['No'] }}</th>
+            <th class="text-start">{{ item['公表日'] }}</th>
+            <td class="text-start">{{ item['居住地'] }}</td>
+            <td class="text-start">{{ item['年代'] }}</td>
+            <td class="text-start">{{ item['性別'] }}</td>
+            <!--<td class="text-center">{{ item['退院'] }}</td>
+            <td class="text-start">{{ item['備考'] }}</td>-->
+          </tr>
+        </tbody>
+      </template>
+    </v-data-table>
     <!--<div class="note">
       {{ $t('※退院には、死亡退院を含む') }}
     </div>-->
@@ -35,6 +50,7 @@
 <style lang="scss">
 .cardTable {
   &.v-data-table {
+    box-shadow: 0 -20px 12px -12px #0003 inset;
     th {
       padding: 8px 10px;
       height: auto;
@@ -52,6 +68,10 @@
       tr {
         color: $gray-1;
 
+        th {
+          font-weight: normal;
+        }
+
         td {
           padding: 8px 10px;
           height: auto;
@@ -63,6 +83,7 @@
         }
 
         &:nth-child(odd) {
+          th,
           td {
             background: rgba($gray-4, 0.3);
           }
@@ -125,6 +146,27 @@ export default Vue.extend({
       type: String,
       required: false,
       default: ''
+    },
+    customSort: {
+      type: Function,
+      default(items: Object[], index: string[], isDesc: boolean[]) {
+        items.sort((a: any, b: any) => {
+          let comparison = 0
+          if (String(a[index[0]]) < String(b[index[0]])) {
+            comparison = -1
+          } else if (String(b[index[0]]) < String(a[index[0]])) {
+            comparison = 1
+          }
+          // a と b が等しい場合は上記のif文を両方とも通過するので 0 のままとなる
+
+          // 降順指定の場合は符号を反転
+          if (comparison !== 0) {
+            comparison = isDesc[0] ? comparison * -1 : comparison
+          }
+          return comparison
+        })
+        return items
+      }
     }
   },
   mounted() {

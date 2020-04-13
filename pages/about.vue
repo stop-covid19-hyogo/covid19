@@ -3,54 +3,58 @@
     <page-header class="mb-3">
       {{ $t('当サイトについて') }}
     </page-header>
-    <StaticCard>
+    <static-card>
       <i18n
         tag="p"
-        path="当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、{volunteer}が開設したサイトです。公式情報ではないことをご了承下さい。"
+        path="当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、{volunteer}が開設したまとめサイトです。"
       >
-        <a
-          href="https://github.com/stop-covid19-hyogo/covid19/blob/development/CONTRIBUTORS.md"
-          target="_blank"
-          rel="noopener noreferrer"
-          place="volunteer"
-        >
-          {{ $t('有志の仲間') }}
-        </a>
+        <template v-slot:volunteer>
+          <a
+            href="https://github.com/stop-covid19-hyogo/covid19/blob/development/CONTRIBUTORS.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ $t('有志の仲間') }}
+          </a>
+        </template>
       </i18n>
       <i18n
         tag="p"
         path="複製・改変が許されたオープンソースライセンスで公開されている、{tokyo}の仕組みを利用しています。"
       >
-        <a
-          href="https://stopcovid19.metro.tokyo.lg.jp/"
-          target="_blank"
-          rel="noopener noreferrer "
-          place="tokyo"
-        >
-          {{ $t('東京都公式コロナウイルス対策サイト') }}
-        </a>
+        <template v-slot:tokyo>
+          <a
+            href="https://stopcovid19.metro.tokyo.lg.jp/"
+            target="_blank"
+            rel="noopener noreferrer "
+          >
+            {{ $t('東京都公式コロナウイルス対策サイト') }}
+          </a>
+        </template>
       </i18n>
-      <br />
-      {{
-        $t(
-          '兵庫県による公式情報と客観的な数値をわかりやすく伝えることで、兵庫県にお住まいの方や、兵庫県内に拠点を持つ企業の方、兵庫県を訪れる方が、現状を把握して適切な対策を取れるようにすることを目的としています。'
-        )
-      }}
-    </StaticCard>
-    <StaticCard>
+      <p>
+        {{
+          $t(
+            '兵庫県による公式情報と客観的な数値をわかりやすく伝えることで、兵庫県にお住まいの方や、兵庫県内に拠点を持つ企業の方、兵庫県を訪れる方が、現状を把握して適切な対策を取れるようにすることを目的としています。'
+          )
+        }}
+      </p>
+    </static-card>
+    <static-card>
       <h3>{{ $t('データについて') }}</h3>
       <i18n
         tag="p"
         path="本サイトで公表しているデータは、{catalogWebsite}より誰でも自由にダウンロードが可能です。（データは順次追加予定です）"
       >
-        <a
-          href="http://open-data.pref.hyogo.lg.jp/"
-          target="_blank"
-          rel="noopener noreferrer"
-          place="catalogWebsite"
-        >
-          {{ $t('兵庫県オープンデータカタログサイト') }}
-        </a>
+        <template v-slot:catalogWebsite>
+          <a
+            href="http://open-data.pref.hyogo.lg.jp/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ $t('兵庫県オープンデータカタログサイト') }}
+          </a>
+        </template>
       </i18n>
       <p>
         {{ $t('このサイトの内容物は') }}
@@ -63,8 +67,8 @@
         </a>
         {{ $t('の下に提供されています。') }}
       </p>
-    </StaticCard>
-    <StaticCard>
+    </static-card>
+    <static-card>
       <h3>{{ $t('免責事項') }}</h3>
       <p>
         {{
@@ -87,8 +91,8 @@
           )
         }}
       </p>
-    </StaticCard>
-    <StaticCard>
+    </static-card>
+    <static-card>
       <h3>{{ $t('ブラウザ環境について') }}</h3>
       <p>
         {{ $t('当サイトは以下の環境でご覧いただくことを推奨いたします。') }}
@@ -112,12 +116,12 @@
           }}
         </span>
       </p>
-    </StaticCard>
-    <StaticCard>
+    </static-card>
+    <static-card>
       <h3>{{ $t('当サイトへのリンクについて') }}</h3>
       <p>{{ $t('当サイトへのリンクは自由です。') }}</p>
-    </StaticCard>
-    <StaticCard>
+    </static-card>
+    <static-card>
       <h3>{{ $t('JavaScriptについて') }}</h3>
       <p>
         {{ $t('当サイトではJavaScriptを使用しております。') }}<br />
@@ -132,8 +136,8 @@
           )
         }}
       </p>
-    </StaticCard>
-    <StaticCard>
+    </static-card>
+    <static-card>
       <h3>{{ $t('クッキー (Cookie) について') }}</h3>
       <p>
         {{ $t('当サイトの一部ではクッキーを使用しています。') }}<br />
@@ -157,25 +161,31 @@
           )
         }}
       </p>
-    </StaticCard>
-    <StaticCard>
+    </static-card>
+    <static-card>
       <h3>{{ $t('Google Analyticsの利用について') }}</h3>
       <p>
         {{
           $t(
             '当サイトでは、サービス向上やサイトの改善のためにGoogle LLCの提供するアクセス分析のツールであるGoogle Analyticsを利用した計測を行っております。'
           )
-        }}<br />
+        }}
+      </p>
+      <p>
         {{
           $t(
-            'Google Analyticsは、当サイトが発行するクッキー (Cookie) を利用して、個人を特定する情報を含まずにWebサイトの利用データ（アクセス状況、トラフィック、閲覧環境など）を収集しております。クッキー (Cookie) の利用に関してはGoogleのプライバシーポリシーと規約に基づいております。'
+            'Google Analyticsでは、当サイトが発行するクッキー (Cookie) 等を利用して、Webサイトの利用データ（アクセス状況、トラフィック、閲覧環境、IPアドレスなど）を収集しております。クッキーの利用に関してはGoogleのプライバシーポリシーと規約に基づいております。'
           )
-        }}<br />
+        }}
+      </p>
+      <p>
         {{
           $t(
-            '取得したデータは Webサイト利用状況の分析、サイト運営者へのレポートの作成、その他のサービスの提供に関わる目的に限り、これを使用します。'
+            '取得したデータはWebサイト利用状況を分析しサービスの改善につなげるため、またはサイト運営者へのレポートを作成するため、その他のサービスの提供に関わる目的に限り、これを使用します。（サイト運営者へのレポートでは、クッキーはブラウザ単位で本サイトのユーザー数をカウントするため、IPアドレスはGoogle Analyticsの分析機能を通じてアクセス元の地域分布（国、州・都道府県、都市）を把握するために利用されています。）'
           )
-        }}<br />
+        }}
+      </p>
+      <p>
         {{
           $t(
             'Google Analyticsの利用規約及びプライバシーポリシーに関する説明については、Google Analyticsのサイトをご覧ください。'
@@ -217,8 +227,22 @@
           </a>
         </li>
       </ul>
-    </StaticCard>
-    <StaticCard>
+      <i18n
+        tag="p"
+        path="Google Analyticsによる情報送信を回避する場合は、Google がサポートする{addon}をご利用ください。"
+      >
+        <template v-slot:addon>
+          <a
+            :href="$t('https://tools.google.com/dlpage/gaoptout?hl=ja')"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ $t('測定を無効にするブラウザ アドオン') }}
+          </a>
+        </template>
+      </i18n>
+    </static-card>
+    <static-card>
       <h3>{{ $t('ソースコードについて') }}</h3>
       <p>
         {{
@@ -227,23 +251,24 @@
           )
         }}
         <i18n path="詳しくは、{githubRepo}をご確認ください。">
-          <a
-            href="https://github.com/stop-covid19-hyogo/covid19"
-            target="_blank"
-            rel="noopener noreferrer"
-            place="githubRepo"
-          >
-            {{ $t('GitHub リポジトリ') }}
-          </a>
+          <template v-slot:githubRepo>
+            <a
+              href="https://github.com/stop-covid19-hyogo/covid19"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ $t('GitHub リポジトリ') }}
+            </a>
+          </template>
         </i18n>
       </p>
-    </StaticCard>
-    <StaticCard>
+    </static-card>
+    <static-card>
       <h3>{{ $t('お問い合わせ先') }}</h3>
       <p>{{ $t('以下のメールアドレスまでご連絡ください。') }}</p>
       <p>stop.covid19.hyogo＠gmail.com</p>
       <p>{{ $t('※ アットマークを半角に変換してください。') }}</p>
-    </StaticCard>
+    </static-card>
   </div>
 </template>
 

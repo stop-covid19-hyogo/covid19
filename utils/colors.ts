@@ -1,5 +1,30 @@
-export const single: string = '#46B5D0'
-export const double: string[] = ['#01A0C7', '#72C2D5']
-export const doubleGray: string[] = ['#01A0C7', '#979797']
-export const triple: string[] = ['#00441B', '#006400', '#1B75BC']
-export const quadruple: string[] = ['#00441B', '#006400', '#1B75BC', '#505B00']
+export type SurfaceStyle = {
+  strokeColor: string
+  fillColor: string
+}
+
+const surfaceStyleA: SurfaceStyle = {
+  strokeColor: '#016984',
+  fillColor: '#006687'
+}
+
+const surfaceStyleB: SurfaceStyle = {
+  strokeColor: '#016984',
+  fillColor: '#01a0c7'
+}
+
+const surfaceStyleC: SurfaceStyle = {
+  strokeColor: '#016984',
+  fillColor: '#4bcaec'
+}
+
+export function getGraphSeriesStyle(seriesLength: number) {
+  switch (seriesLength) {
+    case 1:
+      return [surfaceStyleB]
+    case 2:
+      return [surfaceStyleA, surfaceStyleC]
+    default:
+      return [surfaceStyleA, surfaceStyleB, surfaceStyleC]
+  }
+}

@@ -28,50 +28,8 @@ Slack でディスカッションを行っております。
 
 ## 開発者向け情報
 
-サイト制作・開発に関する詳細は[プロジェクトへの参加方法](./CONTRIBUTING.md)をご確認下さい。
-
-### 環境構築手順
-
-- 必要となるNode.jsのバージョン: 10.19.0以上
-
-**yarn を使う場合**
-```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-```
-
-**docker compose を使う場合**
-```bash
-# serve with hot reload at localhost:3000
-$ docker-compose up --build
-```
-
-**Vagrant を使う場合**
-```bash
-# serve with hot reload at localhost:3000
-$ vagrant up
-```
-
-### `Cannot find module ****` と怒られた時
-
-**yarn を使う場合**
-```bash
-$ yarn install
-```
-
-**docker compose を使う場合**
-```bash
-$ docker-compose run --rm app yarn install
-```
-
-### 本番環境/その他の判定
-
-`process.env.GENERATE_ENV` の値が、本番の場合は`'production'`に、それ以外の場合は `'development'` になっています。  
-テスト環境のみで実行したい処理がある場合はこちらの値をご利用ください。
-
+サイト制作・開発に関する詳細は[プロジェクトへの参加方法](./CONTRIBUTING.md)をご確認下さい。  
+環境構築の手順は、[こちらのドキュメント](./FOR_DEVELOPERS.md)を御覧ください。
 
 ### CONTRIBUTORS.md への追加について
 
