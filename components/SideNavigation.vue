@@ -176,7 +176,7 @@ export default Vue.extend({
           link: 'https://web.pref.hyogo.lg.jp/kk03/200129.html'
         },
         {
-          title: this.$t('知事からのメッセージ'),
+          title: this.$t('兵庫県知事からのメッセージ'),
           link:
             'https://web.pref.hyogo.lg.jp/government/g_comment20200408.html',
           divider: true
