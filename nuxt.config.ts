@@ -188,8 +188,8 @@ const config: Configuration = {
         '/cards/tokyo-st-heatmap',
         '/cards/tokyo-city-heatmap' */
         '/cards/patients-by-age',
-        '/cards/patients-by-clusters',
-        '/cards/patients-and-sickbeds'
+        '/cards/patients-by-clusters'
+        // '/cards/patients-and-sickbeds'
       ]
 
       const routes: string[] = []

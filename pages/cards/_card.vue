@@ -55,9 +55,9 @@
     <patients-by-clusters
       v-else-if="this.$route.params.card == 'patients-by-clusters'"
     />
-    <patients-and-sickbeds
+    <!-- <patients-and-sickbeds
       v-else-if="this.$route.params.card == 'patients-and-sickbeds'"
-    />
+    /> -->
   </div>
 </template>
 
@@ -89,7 +89,7 @@ import TokyoStMapCard from '@/components/cards/TokyoStMapCard.vue'
 import TokyoCityMapCard from '@/components/cards/TokyoCityMapCard.vue' */
 import PatientsByAge from '@/components/cards/PatientsByAge.vue'
 import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
-import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
+// import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
 import { convertISO8601FormatToDatetime } from '@/utils/formatDate'
 
 export default {
@@ -110,8 +110,8 @@ export default {
     TokyoStMapCard,
     TokyoCityMapCard */
     PatientsByAge,
-    PatientsByClusters,
-    PatientsAndSickbeds
+    PatientsByClusters
+    // PatientsAndSickbeds
   },
   data() {
     let title, updatedAt
@@ -172,10 +172,10 @@ export default {
         title = this.$t('クラスター別陽性患者数')
         updatedAt = clustersSummary.last_update
         break
-      case 'patients-and-sickbeds':
-        title = this.$t('入院患者数と残り病床数')
-        updatedAt = sickbedsSummary.last_update
-        break
+      // case 'patients-and-sickbeds':
+      //   title = this.$t('入院患者数と残り病床数')
+      //   updatedAt = sickbedsSummary.last_update
+      //   break
     }
 
     const updatedTimeStr = convertISO8601FormatToDatetime(updatedAt)
