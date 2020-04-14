@@ -88,6 +88,16 @@ export default {
           return 0
         }
 
+        // 数字をソートする場合はここで判定する
+        if (
+          typeof a[index[0]] === 'number' &&
+          typeof b[index[0]] === 'number'
+        ) {
+          return isDesc[0]
+            ? (a[index[0]] - b[index[0]]) * -1
+            : a[index[0]] - b[index[0]]
+        }
+
         // 「10歳未満」同士を比較する場合、そうでない場合に場合分け
         let comparison = 0
         if (

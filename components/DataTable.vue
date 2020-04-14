@@ -144,6 +144,16 @@ export default Vue.extend({
       type: Function,
       default(items: Object[], index: string[], isDesc: boolean[]) {
         items.sort((a: any, b: any) => {
+          // 数字をソートする場合はここで判定する
+          if (
+            typeof a[index[0]] === 'number' &&
+            typeof b[index[0]] === 'number'
+          ) {
+            return isDesc[0]
+              ? (a[index[0]] - b[index[0]]) * -1
+              : a[index[0]] - b[index[0]]
+          }
+
           let comparison = 0
           if (String(a[index[0]]) < String(b[index[0]])) {
             comparison = -1
