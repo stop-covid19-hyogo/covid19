@@ -26,14 +26,11 @@ jobs:
           cd auto-i18n
           python hyogo-i18n.py
           cd ..
-      - name: Commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Update locales-hyogo/ja.json"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: development
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update locales-hyogo/ja.json
+          title: Update transration files
+          labels: auto_merge
+          branch-suffix: 'short-commit-hash'
