@@ -1,0 +1,39 @@
+name: Auto-i18n Builder
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  i18n-builder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout development branch
+        uses: actions/checkout@v2
+        with:
+          ref: development
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install BeautifulSoup4
+      - name: Run script
+        run: |
+          cd auto-i18n
+          python hyogo-i18n.py
+          cd ..
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ogp
+          git commit -m "Update locales-hyogo/ja.json"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: development
