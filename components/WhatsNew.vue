@@ -13,8 +13,9 @@
         </v-icon>
         <external-link
           url="https://web.pref.hyogo.lg.jp/kk03/200129.html"
-          :label="$t('兵庫県緊急事態措置について')"
-        />
+        >
+          {{ $t('兵庫県緊急事態措置について') }}
+        </external-link>
       </span>-->
     </div>
     <ul class="WhatsNew-list">

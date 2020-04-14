@@ -42,6 +42,7 @@
     <horizontal-bar
       v-else-if="horizontal === true"
       :ref="'barChart'"
+      :style="{ display: canvas ? 'block' : 'none' }"
       :chart-id="chartId"
       :chart-data="displayData"
       :options="displayOption"
@@ -51,34 +52,45 @@
     <bar
       v-else
       :ref="'barChart'"
+      :style="{ display: canvas ? 'block' : 'none' }"
       :chart-id="chartId"
       :chart-data="displayData"
       :options="displayOption"
       :height="240"
       :width="chartWidth"
     />
-    <v-data-table
-      :style="{ top: '-9999px', position: canvas ? 'fixed' : 'static' }"
-      :headers="tableHeaders"
-      :items="tableData"
-      :items-per-page="-1"
-      :hide-default-footer="true"
-      :height="240"
-      :fixed-header="true"
-      :disable-sort="true"
-      :mobile-breakpoint="0"
-      class="cardTable"
-      item-key="name"
-    >
-      <template v-slot:body="{ items }">
-        <tbody>
-          <tr v-for="item in items" :key="item.text">
-            <th class="text-start">{{ item.text }}</th>
-            <td class="text-start">{{ item['0'] }}</td>
-          </tr>
-        </tbody>
-      </template>
-    </v-data-table>
+    <template v-slot:dataTable>
+      <v-data-table
+        :headers="tableHeaders"
+        :items="tableData"
+        :items-per-page="-1"
+        :hide-default-footer="true"
+        :height="240"
+        :fixed-header="true"
+        :disable-sort="true"
+        :mobile-breakpoint="0"
+        class="cardTable"
+        item-key="name"
+      >
+        <template v-if="showButton" v-slot:body="{ items }">
+          <tbody>
+            <tr v-for="item in items" :key="item.text">
+              <th>{{ item.text }}</th>
+              <td class="text-end">{{ item.transition }}</td>
+              <td class="text-end">{{ item.cumulative }}</td>
+            </tr>
+          </tbody>
+        </template>
+        <template v-else v-slot:body="{ items }">
+          <tbody>
+            <tr v-for="item in items" :key="item.text">
+              <th>{{ item.text }}</th>
+              <td class="text-end">{{ item.transition }}</td>
+            </tr>
+          </tbody>
+        </template>
+      </v-data-table>
+    </template>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
         :l-text="displayInfo.lText"
@@ -97,6 +109,7 @@ import Vue from 'vue'
 import { TranslateResult } from 'vue-i18n'
 import { ThisTypedComponentOptionsWithRecordProps } from 'vue/types/options'
 import { Chart } from 'chart.js'
+import dayjs from 'dayjs'
 import { GraphDataType } from '@/utils/formatGraph'
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
@@ -134,7 +147,8 @@ type Computed = {
   }[]
   tableData: {
     text: string
-    '0': number
+    transition: string
+    cumulative: string
   }[]
 }
 type Props = {
@@ -514,18 +528,44 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       return Math.max(...values)
     },
     tableHeaders() {
+      if (!this.showButton) {
+        return [
+          { text: this.$t('年代'), value: 'text' },
+          {
+            text: this.$t('人数'),
+            value: 'transition',
+            align: 'end'
+          }
+        ]
+      }
       return [
         { text: this.$t('日付'), value: 'text' },
-        { text: this.title, value: '0' }
+        {
+          text: `${this.title} (${this.$t('日別')})`,
+          value: 'transition',
+          align: 'end'
+        },
+        {
+          text: `${this.title} (${this.$t('累計')})`,
+          value: 'cumulative',
+          align: 'end'
+        }
       ]
     },
     tableData() {
-      return this.displayData.datasets![0].data!.map((_, i) => {
-        return {
-          text: this.displayData.labels![i] as string,
-          '0': this.displayData.datasets![0].data![i] as number
-        }
-      })
+      const data = this.chartData
+        .map((d, _) => {
+          return {
+            text: d.label,
+            transition: d.transition.toLocaleString(),
+            cumulative: d.cumulative.toLocaleString()
+          }
+        })
+        .sort((a, b) => dayjs(a.text).unix() - dayjs(b.text).unix())
+      if (this.showButton) {
+        data.reverse()
+      }
+      return data
     }
   },
   methods: {

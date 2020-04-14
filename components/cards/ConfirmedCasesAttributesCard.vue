@@ -1,15 +1,17 @@
 <template>
   <v-col cols="12" md="6" class="DataCard">
-    <data-table
-      :title="$t('陽性患者の属性')"
-      :title-id="'attributes-of-confirmed-cases'"
-      :chart-data="patientsTable"
-      :chart-option="{}"
-      :date="patients.last_update"
-      :info="sumInfoOfPatients"
-      :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
-      :custom-sort="customSort"
-    />
+    <client-only :placeholder="$t('読み込み中')">
+      <data-table
+        :title="$t('陽性患者の属性')"
+        :title-id="'attributes-of-confirmed-cases'"
+        :chart-data="patientsTable"
+        :chart-option="{}"
+        :date="patients.last_update"
+        :info="sumInfoOfPatients"
+        :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
+        :custom-sort="customSort"
+      />
+    </client-only>
   </v-col>
 </template>
 

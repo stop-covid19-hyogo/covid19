@@ -9,13 +9,12 @@
         path="当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、{volunteer}が開設したまとめサイトです。"
       >
         <template v-slot:volunteer>
-          <a
-            href="https://github.com/stop-covid19-hyogo/covid19/blob/development/CONTRIBUTORS.md"
-            target="_blank"
-            rel="noopener noreferrer"
+          <external-link
+            url="https://github.com/stop-covid19-hyogo/covid19/blob/development/CONTRIBUTORS.md"
+            :icon-size="16"
           >
             {{ $t('有志の仲間') }}
-          </a>
+          </external-link>
         </template>
       </i18n>
       <i18n
@@ -23,13 +22,12 @@
         path="複製・改変が許されたオープンソースライセンスで公開されている、{tokyo}の仕組みを利用しています。"
       >
         <template v-slot:tokyo>
-          <a
-            href="https://stopcovid19.metro.tokyo.lg.jp/"
-            target="_blank"
-            rel="noopener noreferrer "
+          <external-link
+            url="https://stopcovid19.metro.tokyo.lg.jp/"
+            :icon-size="16"
           >
             {{ $t('東京都公式コロナウイルス対策サイト') }}
-          </a>
+          </external-link>
         </template>
       </i18n>
       <p>
@@ -47,13 +45,12 @@
         path="本サイトで公表しているデータは、{catalogWebsite}より誰でも自由にダウンロードが可能です。（データは順次追加予定です）"
       >
         <template v-slot:catalogWebsite>
-          <a
-            href="http://open-data.pref.hyogo.lg.jp/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <external-link
+            url="http://open-data.pref.hyogo.lg.jp/"
+            :icon-size="16"
           >
             {{ $t('兵庫県オープンデータカタログサイト') }}
-          </a>
+          </external-link>
         </template>
       </i18n>
       <p>
@@ -194,37 +191,34 @@
       </p>
       <ul>
         <li>
-          <a
-            :href="
+          <external-link
+            :url="
               $t(
                 'https://marketingplatform.google.com/about/analytics/terms/jp/'
               )
             "
-            target="_blank"
-            rel="noopener noreferrer"
+            :icon-size="16"
           >
             {{ $t('Google Analytics利用規約') }}
-          </a>
+          </external-link>
         </li>
         <li>
-          <a
-            :href="$t('https://policies.google.com/privacy?hl=ja')"
-            target="_blank"
-            rel="noopener noreferrer"
+          <external-link
+            :url="$t('https://policies.google.com/privacy?hl=ja')"
+            :icon-size="16"
           >
             {{ $t('Googleのプライバシーポリシー') }}
-          </a>
+          </external-link>
         </li>
         <li>
-          <a
-            :href="
+          <external-link
+            :url="
               $t('https://support.google.com/analytics/answer/6004245?hl=ja')
             "
-            target="_blank"
-            rel="noopener noreferrer"
+            :icon-size="16"
           >
             {{ $t('Google Analyticsに関する詳細情報') }}
-          </a>
+          </external-link>
         </li>
       </ul>
       <i18n
@@ -232,13 +226,12 @@
         path="Google Analyticsによる情報送信を回避する場合は、Google がサポートする{addon}をご利用ください。"
       >
         <template v-slot:addon>
-          <a
-            :href="$t('https://tools.google.com/dlpage/gaoptout?hl=ja')"
-            target="_blank"
-            rel="noopener noreferrer"
+          <external-link
+            :url="$t('https://tools.google.com/dlpage/gaoptout?hl=ja')"
+            :icon-size="16"
           >
             {{ $t('測定を無効にするブラウザ アドオン') }}
-          </a>
+          </external-link>
         </template>
       </i18n>
     </static-card>
@@ -252,13 +245,12 @@
         }}
         <i18n path="詳しくは、{githubRepo}をご確認ください。">
           <template v-slot:githubRepo>
-            <a
-              href="https://github.com/stop-covid19-hyogo/covid19"
-              target="_blank"
-              rel="noopener noreferrer"
+            <external-link
+              url="https://github.com/stop-covid19-hyogo/covid19"
+              :icon-size="16"
             >
               {{ $t('GitHub リポジトリ') }}
-            </a>
+            </external-link>
           </template>
         </i18n>
       </p>
@@ -277,11 +269,13 @@ import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import PageHeader from '@/components/PageHeader.vue'
 import StaticCard from '@/components/StaticCard.vue'
+import ExternalLink from '@/components/ExternalLink.vue'
 
 export default Vue.extend({
   components: {
     PageHeader,
-    StaticCard
+    StaticCard,
+    ExternalLink
   },
   head(): MetaInfo {
     return {
