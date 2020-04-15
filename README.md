@@ -14,7 +14,7 @@
 
 Slack でディスカッションを行っております。
 
-サイト制作にご協力頂ける方であれば誰でも参加可能です。[ここ](https://join.slack.com/t/stop-covid19-hyogo/shared_invite/zt-cq8r7q3a-Pr4UyYDeKjyr8z4N6HbwLg)からご参加下さい。
+サイト制作にご協力頂ける方であれば誰でも参加可能です。[ここ](https://join.slack.com/t/stop-covid19-hyogo/shared_invite/zt-dlg7je1f-mKaKwRqadIj6l7dm7wSdKg)からご参加下さい。
 
 コミュニケーションにあたっては、Code for Japan の [行動規範](https://github.com/codeforjapan/codeofconduct) もご確認ください。
 
