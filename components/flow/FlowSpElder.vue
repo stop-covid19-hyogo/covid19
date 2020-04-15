@@ -1,45 +1,50 @@
 <template>
   <div :class="$style.container">
-    <div :class="[$style.heading, $style.multi]">
+    <h4 :class="[$style.heading, $style.multi]">
       <span :class="[$style.item, $style.fzMedium]">
         <span :class="$style.icon">
-          <DirectionsWalkIcon aria-hidden="true" />
+          <directions-walk-icon aria-hidden="true" />
         </span>
         {{ $t('ご高齢な方') }}
       </span>
       <span :class="[$style.item, $style.fzMedium]">
         <span :class="$style.icon">
-          <AccessibleIcon aria-hidden="true" />
+          <accessible-icon aria-hidden="true" />
         </span>
         {{ $t('基礎疾患のある方') }}
       </span>
       <span :class="[$style.item, $style.fzMedium]">
         <span :class="$style.icon">
-          <PregnantWomanIcon aria-hidden="true" />
+          <pregnant-woman-icon aria-hidden="true" />
         </span>
         {{ $t('妊娠中の方') }}
       </span>
-    </div>
+    </h4>
     <ul :class="[$style.rectContainer, $style.double]">
       <li :class="$style.symptom">
         <span>
           <i18n path="{cold}のような症状">
-            <span :class="$style.ConditionsItemLarger" place="cold">
-              {{ $t('風邪') }}
-            </span>
+            <template v-slot:cold>
+              <span :class="$style.ConditionsItemLarger">
+                {{ $t('風邪') }}
+              </span>
+            </template>
           </i18n>
         </span>
       </li>
       <li :class="$style.symptom">
         <i18n tag="span" path="発熱{temperature}" :class="$style.fzSmall">
-          <i18n
-            tag="span"
-            path="{tempNum}以上"
-            place="temperature"
-            :class="[$style.break, $style.fzRegular]"
-          >
-            <span :class="$style.temp" place="tempNum">{{ $t('37.5℃') }}</span>
-          </i18n>
+          <template v-slot:temperature>
+            <i18n
+              tag="span"
+              path="{tempNum}以上"
+              :class="[$style.break, $style.fzRegular]"
+            >
+              <template v-slot:tempNum>
+                <span :class="$style.temp">{{ $t('37.5℃') }}</span>
+              </template>
+            </i18n>
+          </template>
         </i18n>
       </li>
       <li :class="$style.symptom">
@@ -52,14 +57,17 @@
 
     <p :class="$style.duration">
       <i18n path="{duration}続いている">
-        <i18n
-          :class="[$style.underline, $style.fzLarge]"
-          tag="span"
-          place="duration"
-          path="{day}日程度"
-        >
-          <strong :class="$style.fzNumeric" place="day">2</strong>
-        </i18n>
+        <template v-slot:duration>
+          <i18n
+            :class="[$style.underline, $style.fzLarge]"
+            tag="span"
+            path="{day}日程度"
+          >
+            <template v-slot:day>
+              <strong :class="$style.fzNumeric">2</strong>
+            </template>
+          </i18n>
+        </template>
       </i18n>
     </p>
 
@@ -72,7 +80,7 @@
       :class="[$style.button, $style.clickable]"
     >
       <span :class="$style.text">{{ $t('新型コロナ受診相談窓口へ') }}</span>
-      <ArrowForwardIcon :class="$style.icon" />
+      <arrow-forward-icon :class="$style.icon" />
     </a>
   </div>
 </template>

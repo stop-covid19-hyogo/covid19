@@ -7,10 +7,22 @@
       :chart-data="patientsGraph"
       :date="patientsSummary.last_update"
       :unit="$t('人')"
-      :url="
-        'http://open-data.pref.hyogo.lg.jp/?page_id=141'
-      "
-    />
+      :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
+    >
+      <template v-slot:description>
+        <!--<ul>
+          <li>
+            {{ $t('（注）医療機関が保険適用で行った検査も含む') }}
+          </li>
+          <li>
+            {{
+              $t('（注）チャーター機帰国者、クルーズ船乗客等は含まれていない')
+            }}
+          </li>
+        </ul>-->
+        <span />
+      </template>
+    </time-bar-chart>
   </v-col>
 </template>
 

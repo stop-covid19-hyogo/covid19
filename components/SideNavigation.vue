@@ -35,16 +35,18 @@
       </v-icon>
 
       <nav class="SideNavigation-Menu">
-        <MenuList :items="items" @click="$emit('closeNavi', $event)" />
-        <div
-          v-if="this.$i18n.locales.length > 1"
-          class="SideNavigation-Language"
-        >
-          <label class="SideNavigation-LanguageLabel" for="LanguageSelector">
-            {{ $t('多言語対応選択メニュー') }}
-          </label>
-          <LanguageSelector />
+        <div class="SideNavigation-Language">
+          <div
+            v-if="this.$i18n.locales.length > 1"
+            class="SideNavigation-Language"
+          >
+            <label class="SideNavigation-LanguageLabel" for="LanguageSelector">
+              {{ $t('多言語対応選択メニュー') }}
+            </label>
+            <language-selector />
+          </div>
         </div>
+        <menu-list :items="items" @click="$emit('closeNavi', $event)" />
       </nav>
 
       <footer class="SideNavigation-Footer">
@@ -174,7 +176,7 @@ export default Vue.extend({
           link: 'https://web.pref.hyogo.lg.jp/kk03/200129.html'
         },
         {
-          title: this.$t('知事からのメッセージ'),
+          title: this.$t('兵庫県知事からのメッセージ'),
           link:
             'https://web.pref.hyogo.lg.jp/government/g_comment20200408.html',
           divider: true
@@ -358,10 +360,6 @@ export default Vue.extend({
   @include lessThan($small) {
     padding-top: 50px;
   }
-}
-
-.SideNavigation-Language {
-  padding-top: 20px;
 }
 
 .SideNavigation-LanguageLabel {

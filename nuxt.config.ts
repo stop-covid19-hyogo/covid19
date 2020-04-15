@@ -53,11 +53,7 @@ const config: Configuration = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' },
-      {
-        rel: 'stylesheet',
-        href: 'https://use.fontawesome.com/releases/v5.6.1/css/all.css'
-      }
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' }
     ]
   },
   /*
@@ -129,6 +125,18 @@ const config: Configuration = {
     exclude: [''], // Sitemapから除外する項目
     routes: ['/about'] // Sitemapに追加する項目
   },
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID // .env.production などに設定してください。
+  },
+  optionalCookies: [
+    {
+      name: 'i18n_redirected',
+      label: 'i18n Redirection Cookie',
+      description:
+        'For automatically switching UI languages in accordance with locale preferences in the web browser configuration.',
+      cookies: ['i18n_redirected']
+    }
+  ],
   build: {
     plugins: [
       new webpack.ProvidePlugin({
@@ -170,7 +178,7 @@ const config: Configuration = {
   generate: {
     fallback: true,
     routes() {
-      const locales = ['ja' /* , 'en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic' */]
+      const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic']
       const pages = [
         '/cards/details-of-confirmed-cases',
         // '/cards/details-of-tested-cases',
@@ -181,12 +189,7 @@ const config: Configuration = {
         '/cards/number-of-reports-to-covid19-telephone-advisory-center',
         '/cards/number-of-reports-to-covid19-consultation-desk',
         '/cards/predicted-number-of-toei-subway-passengers',
-        '/cards/agency',
-        '/cards/shinjuku-visitors',
-        '/cards/chiyoda-visitors',
-        '/cards/shinjuku-st-heatmap',
-        '/cards/tokyo-st-heatmap',
-        '/cards/tokyo-city-heatmap' */
+        '/cards/agency' */
         '/cards/patients-by-age',
         '/cards/patients-by-clusters'
         // '/cards/patients-and-sickbeds'

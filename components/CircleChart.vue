@@ -53,7 +53,7 @@ import { ThisTypedComponentOptionsWithRecordProps } from 'vue/types/options'
 import { GraphDataType } from '@/utils/formatVariableGraph'
 import DataView from '@/components/DataView.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
-import { doubleGray as colors } from '@/utils/colors'
+import { getGraphSeriesStyle } from '@/utils/colors'
 import OpenDataLink from '@/components/OpenDataLink.vue'
 
 interface HTMLElementEvent<T extends HTMLElement> extends Event {
@@ -177,6 +177,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       }
     },
     displayData() {
+      const graphSeries = getGraphSeriesStyle(this.chartData.length)
       return {
         labels: this.chartData.map(d => {
           return d.label
@@ -190,7 +191,10 @@ const options: ThisTypedComponentOptionsWithRecordProps<
               return d.transition
             }),
             backgroundColor: this.chartData.map((_, index) => {
-              return colors[index]
+              return graphSeries[index].fillColor
+            }),
+            borderColor: this.chartData.map((_, index) => {
+              return graphSeries[index].strokeColor
             }),
             borderWidth: 0
           }
