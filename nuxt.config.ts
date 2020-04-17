@@ -125,6 +125,9 @@ const config: Configuration = {
     exclude: [''], // Sitemapから除外する項目
     routes: ['/about'] // Sitemapに追加する項目
   },
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID // .env.production などに設定してください。
+  },
   optionalCookies: [
     {
       name: 'i18n_redirected',
