@@ -147,7 +147,7 @@
 
     <div v-if="showOverlay" class="overlay">
       <div class="overlay-text">
-        {{ $t('埋め込みコードをコピーしました') }}
+        {{ $t('埋め込み用コードをコピーしました') }}
       </div>
       <v-footer class="DataView-Footer">
         <time :datetime="fixedTime">{{
@@ -493,7 +493,8 @@ export default Vue.extend({
 
       .DataView-Share-Opener {
         cursor: pointer;
-        margin-right: 6px;
+        margin: -14px;
+        padding: 14px;
 
         > svg {
           width: auto !important;
