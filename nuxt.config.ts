@@ -88,10 +88,7 @@ const config: Configuration = {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
     '@nuxt/typescript-build',
-    [
-      '@nuxtjs/google-analytics',
-      { id: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'dummy' }
-    ]
+    '@nuxtjs/google-analytics'
   ],
   /*
    ** Nuxt.js modules
