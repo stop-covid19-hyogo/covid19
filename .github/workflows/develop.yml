@@ -28,9 +28,13 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - run: yarn run test
-      - run: yarn run generate:dev --fail-on-page-error
+      - name: generate
+        run: |
+          echo "GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}" >> .env.development
+          cat .env.development
+          yarn run generate:dev --fail-on-page-error
         env:
-          GOOGLE_ANALYTICS_TRACKING_ID: UA-160592267-3
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID_DEVELOP }}
 
       - run: "echo \"User-agent: *\nDisallow: /\" > ./dist/robots.txt"
 
