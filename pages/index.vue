@@ -1,18 +1,16 @@
 <template>
   <div class="MainPage">
     <div class="Header mb-3">
-      <page-header :icon="headerItem.icon">
-        {{ headerItem.title }}
-      </page-header>
+      <page-header :icon="headerItem.icon">{{ headerItem.title }}</page-header>
       <div class="UpdatedAt">
-        <span>{{ $t('最終更新') }} </span>
+        <span>{{ $t('最終更新') }}</span>
         <time :datetime="updatedAt">{{ updatedTimeStr }}</time>
       </div>
       <div
         v-show="!['ja', 'ja-basic'].includes($i18n.locale)"
         class="Annotation"
       >
-        <span>{{ $t('注釈') }} </span>
+        <span>{{ $t('注釈') }}</span>
       </div>
     </div>
     <whats-new class="mb-4" :items="newsItems" />
@@ -22,7 +20,7 @@
       :text="$t('自分や家族の症状に不安や心配があればまずは電話相談をどうぞ')"
       :btn-text="$t('相談の手順を見る')"
     /> -->
-    <v-row class="DataBlock">
+    <card-row class="DataBlock">
       <!-- 検査陽性者の状況 -->
       <confirmed-cases-details-card />
       <!-- 検査実施状況 -->
@@ -51,7 +49,7 @@
       <!--<patients-and-sickbeds />-->
       <!-- 都庁来庁者数の推移 -->
       <!--<agency-card />-->
-    </v-row>
+    </card-row>
     <v-divider />
   </div>
 </template>
@@ -62,6 +60,7 @@ import { MetaInfo } from 'vue-meta'
 import PageHeader from '@/components/PageHeader.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
 // import StaticInfo from '@/components/StaticInfo.vue'
+import CardRow from '@/components/cards/CardRow.vue'
 import lastUpdate from '@/data/last_update.json'
 import News from '@/data/news.json'
 import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
@@ -85,6 +84,7 @@ export default Vue.extend({
     PageHeader,
     WhatsNew,
     // StaticInfo,
+    CardRow,
     ConfirmedCasesDetailsCard,
     ConfirmedCasesNumberCard,
     ConfirmedCasesAttributesCard,
