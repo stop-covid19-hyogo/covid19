@@ -108,6 +108,10 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
     tokyo_json = json.load(tokyo_file)
     hyogo_json = json.load(hyogo_file)
 
+    # 念のためassert
+    assert isinstance(tokyo_json, dict)
+    assert isinstance(hyogo_json, dict)
+
     # タグのチェック
     for tag in all_tags:
         # "."で区切られている特殊なもの("件.tested"や"件.reports"のような翻訳が複数あるもの)を判別する
@@ -131,10 +135,22 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
             hyogo_json[tag] = tag
             if not warn_count:
                 result.write(",".join(["RUN", datetime.datetime.today().strftime("%Y/%m/%d %H:%M")]) + '\n')
-            result.write(",".join(["TAG", tag]) + '\n')
+            result.write(",".join(["TAG_ADD", tag]) + '\n')
             warn_count += 1
 
     made_json = hyogo_json
+
+    hyogo_keys = list(made_json.keys())
+    # 以前はなかったが、現在は東京都版に追加されている翻訳は取り除くのと
+    # 以前はあったが、現在は兵庫県版で使用されていない翻訳を取り除く
+    for hyogo_tag in hyogo_keys:
+        if hyogo_tag in tokyo_json.keys() or hyogo_tag not in all_tags:
+            made_json.pop(hyogo_tag)
+            if not warn_count:
+                result.write(",".join(["RUN", datetime.datetime.today().strftime("%Y/%m/%d %H:%M")]) + '\n')
+            result.write(",".join(["TAG_REMOVE", tag]) + '\n')
+            warn_count += 1
+
 
 with open(HYOGO_JA_JSON_PATH, mode="w", encoding=ENCODING) as hyogo_file:
     json.dump(made_json, hyogo_file, ensure_ascii=False, indent=2)
