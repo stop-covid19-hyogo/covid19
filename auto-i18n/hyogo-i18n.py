@@ -148,7 +148,7 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
             made_json.pop(hyogo_tag)
             if not warn_count:
                 result.write(",".join(["RUN", datetime.datetime.today().strftime("%Y/%m/%d %H:%M")]) + '\n')
-            result.write(",".join(["TAG_REMOVE", tag]) + '\n')
+            result.write(",".join(["TAG_REMOVE", hyogo_tag]) + '\n')
             warn_count += 1
 
 
