@@ -13,24 +13,48 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: development
+
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install BeautifulSoup4
+
       - name: Run script
         run: |
           cd auto-i18n
           python hyogo-i18n.py
           cd ..
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v2
+
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update locales-hyogo/ja.json"
+
+      - name: Temporarily disable "include administrators" branch protection
+        uses: benjefferies/branch-protection-bot@master
+        if: always()
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update locales-hyogo/ja.json
-          title: Update transration files
-          labels: auto_merge
-          branch-suffix: 'short-commit-hash'
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          branch: development
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: development
+
+      - name: Enable "include administrators" branch protection
+        uses: benjefferies/branch-protection-bot@master
+        if: always()  # Force to always run this step to ensure "include administrators" is always turned back on
+        with:
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          owner: stop-covid19-hyogo
+          repo: covid19
+          branch: production
