@@ -57,4 +57,4 @@ jobs:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           owner: stop-covid19-hyogo
           repo: covid19
-          branch: production
+          branch: development
