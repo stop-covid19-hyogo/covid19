@@ -322,6 +322,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     displayOption() {
       const unit = this.unit
       const scaledTicksYAxisMax = this.scaledTicksYAxisMax
+      const maxRotation = this.showButton ? 0 : 45
       const options: Chart.ChartOptions = {
         tooltips: {
           displayColors: false,
@@ -354,7 +355,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontSize: 9,
                 maxTicksLimit: 20,
                 fontColor: '#808080',
-                maxRotation: 0,
+                maxRotation,
                 callback: (label: string) => {
                   return this.showButton ? label.split('/')[1] : label
                 }
