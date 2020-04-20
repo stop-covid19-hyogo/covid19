@@ -9,6 +9,11 @@
     <confirmed-cases-number-card
       v-else-if="this.$route.params.card == 'number-of-confirmed-cases'"
     />
+    <!--<confirmed-cases-by-municipalities-card
+      v-else-if="
+        this.$route.params.card == 'number-of-confirmed-cases-by-municipalities'
+      "
+    />-->
     <confirmed-cases-attributes-card
       v-else-if="this.$route.params.card == 'attributes-of-confirmed-cases'"
     />
@@ -47,20 +52,20 @@
 </template>
 
 <script>
-// import Data from '@/data/data.json'
-// import MetroData from '@/data/metro.json'
-// import agencyData from '@/data/agency.json'
-// import ShinjukuData from '@/data/13104_daily_visitors.json'
-// import ChiyodaData from '@/data/13101_daily_visitors.json'
+/* import Data from '@/data/data.json'
+import MetroData from '@/data/metro.json'
+import agencyData from '@/data/agency.json'
+import patientData from '@/data/patient.json' */
 import patients from '@/data/patients.json'
 import inspectionsSummary from '@/data/inspections_summary.json'
 import age from '@/data/age.json'
 import clustersSummary from '@/data/clusters_summary.json'
-import sickbedsSummary from '@/data/sickbeds_summary.json'
+// import sickbedsSummary from '@/data/sickbeds_summary.json'
 import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
 // import TestedCasesDetailsCard from '@/components/cards/TestedCasesDetailsCard.vue'
 import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
 import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
+// import ConfirmedCasesByMunicipalitiesCard from '@/components/cards/ConfirmedCasesByMunicipalitiesCard.vue'
 import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
 /* import InspectionPersonsNumberCard from '@/components/cards/InspectionPersonsNumberCard.vue'
 import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
@@ -78,6 +83,7 @@ export default {
     // TestedCasesDetailsCard,
     ConfirmedCasesNumberCard,
     ConfirmedCasesAttributesCard,
+    // ConfirmedCasesByMunicipalitiesCard,
     TestedNumberCard,
     /* InspectionPersonsNumberCard,
     TelephoneAdvisoryReportsNumberCard,
@@ -103,6 +109,10 @@ export default {
         title = this.$t('陽性患者数')
         updatedAt = patients.last_update
         break
+      /* case 'number-of-confirmed-cases-by-municipalities':
+        title = this.$t('陽性患者数（区市町村別）')
+        updatedAt = patientData.date
+        break */
       case 'attributes-of-confirmed-cases':
         title = this.$t('陽性患者の属性')
         updatedAt = patients.last_update

@@ -109,6 +109,7 @@ const config: Configuration = {
    */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
     defaultAssets: {
       icons: false
     }
@@ -180,6 +181,7 @@ const config: Configuration = {
         '/cards/details-of-confirmed-cases',
         // '/cards/details-of-tested-cases',
         '/cards/number-of-confirmed-cases',
+        '/cards/number-of-confirmed-cases-by-municipalities',
         '/cards/attributes-of-confirmed-cases',
         '/cards/number-of-tested',
         /* '/cards/number-of-inspection-persons',
