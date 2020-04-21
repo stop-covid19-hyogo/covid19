@@ -21,11 +21,6 @@ const config: Configuration = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
-        hid: 'google-site-verification',
-        property: 'google-site-verification',
-        content: 'S0797FiAX2EtL9JuCXjInoxlvIb2EPj661urgwvnyfY'
-      },
-      {
         hid: 'og:url',
         property: 'og:url',
         content: 'https://stop-covid19-hyogo.org/'
