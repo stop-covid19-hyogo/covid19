@@ -20,31 +20,38 @@
     </div>
     <ul class="WhatsNew-list">
       <li v-for="(item, i) in items" :key="i" class="WhatsNew-list-item">
-        <div class="WhatsNew-list-item-anchor">
-          <!-- <a
+        <a
+          v-if="item.url"
           class="WhatsNew-list-item-anchor"
           :href="item.url"
           target="_blank"
           rel="noopener noreferrer"
-        > -->
+        >
           <time
             class="WhatsNew-list-item-anchor WhatsNew-list-item-anchor-time px-2"
             :datetime="formattedDate(item.date)"
           >
             {{ formattedDateForDisplay(item.date) }}
           </time>
-          <span>
-            <!-- <span class="WhatsNew-list-item-anchor-link"> -->
+          <span class="WhatsNew-list-item-anchor-link">
             {{ item.text }}
-            <!-- <v-icon
+            <v-icon
               v-if="!isInternalLink(item.url)"
               class="WhatsNew-item-ExternalLinkIcon"
               size="12"
             >
               mdi-open-in-new
-            </v-icon> -->
+            </v-icon>
           </span>
-          <!-- </a> -->
+        </a>
+        <div v-else class="WhatsNew-list-item-anchor">
+          <time
+            class="WhatsNew-list-item-anchor WhatsNew-list-item-anchor-time px-2"
+            :datetime="formattedDate(item.date)"
+          >
+            {{ formattedDateForDisplay(item.date) }}
+          </time>
+          <span>{{ item.text }}</span>
         </div>
       </li>
     </ul>
@@ -70,9 +77,9 @@ export default Vue.extend({
     }
   },
   methods: {
-    // isInternalLink(path: string): boolean {
-    //  return !/^https?:\/\//.test(path)
-    // },
+    isInternalLink(path: string): boolean {
+      return !/^https?:\/\//.test(path)
+    },
     formattedDate(dateString: string) {
       return convertDateToISO8601Format(dateString)
     },
