@@ -20,8 +20,8 @@ CHECK_DIR = ["pages", "components", "layouts", "data"]
 JSON_FILES = ["patients.json", "age.json", "sickbeds_summary.json", "clusters_summary.json"]
 
 # タグの正規表現パターン
-tag_pattern_t = re.compile("\$t\('[^']*?'")
-tag_pattern_tc = re.compile("\$tc\('[^']*?'")
+tag_pattern_t = re.compile("\$t\([ ]*?['|`][^']*?['|`]")
+tag_pattern_tc = re.compile("\$tc\([ ]*?['|`][^']*?['|`]")
 
 # 文字エンコーディング
 ENCODING = "UTF-8"
