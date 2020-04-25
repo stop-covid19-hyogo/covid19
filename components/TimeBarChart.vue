@@ -323,6 +323,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       const unit = this.unit
       const scaledTicksYAxisMax = this.scaledTicksYAxisMax
       const maxRotation = this.showButton ? 0 : 45
+      const responsive = !this.showButton
       const options: Chart.ChartOptions = {
         tooltips: {
           displayColors: false,
@@ -338,7 +339,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
             }
           }
         },
-        responsive: false,
+        responsive,
         maintainAspectRatio: false,
         legend: {
           display: false
