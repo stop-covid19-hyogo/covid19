@@ -1,9 +1,8 @@
 name: OGP Builder
 
 on:
-  release:
-    types:
-      - published
+  repository_dispatch:
+    types: [ogp_builder]
 
 jobs:
   build:
@@ -14,10 +13,6 @@ jobs:
       with:
         ref: development
     - run: pip3 install selenium
-    - name : Wait for deploy
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '10m'
     - run: python3 ./ui-test/ogp_screenshot.py
       env:
         TZ: Asia/Tokyo
