@@ -201,6 +201,10 @@ export default Vue.extend({
   background-color: inherit !important;
 }
 
+.v-application--wrap {
+  width: 100%;
+}
+
 .embed {
   .container {
     padding: 0 !important;
