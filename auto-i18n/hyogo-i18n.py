@@ -20,8 +20,8 @@ CHECK_DIR = ["pages", "components", "layouts", "data"]
 JSON_FILES = ["patients.json", "age.json", "sickbeds_summary.json", "clusters_summary.json"]
 
 # タグの正規表現パターン
-tag_pattern = re.compile("\$t\('[^']*?'")
-tag_pattern_2 = re.compile("\$tc\('[^']*?'")
+tag_pattern_t = re.compile("\$t\([ ]*?['|`][^']*?['|`]")
+tag_pattern_tc = re.compile("\$tc\([ ]*?['|`][^']*?['|`]")
 
 # 文字エンコーディング
 ENCODING = "UTF-8"
@@ -64,18 +64,32 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
             for path in vue_files:
                 with open(path, encoding=ENCODING) as file:
                     # ファイルの内容を文字列として取得
-                    content = ''.join([l.strip() for l in file])
+                    # ここで改行を空白として扱うのは、vue内のi18nタグが正しく認識できない場合があるため
+                    content = ' '.join([l.strip() for l in file])
                     # 全タグを正規表現で取得
-                    t_tags = [tag[4:(len(tag) - 1)] for tag in tag_pattern.findall(content) if tag[4:(len(tag) - 1)] != '']
+                    t_tags = [tag[4:(len(tag) - 1)] for tag in tag_pattern_t.findall(content) if
+                              tag[4:(len(tag) - 1)] != '']
                     tc_tags = [
-                        tag[5:(len(tag) - 1)] for tag in tag_pattern_2.findall(content) if tag[5:(len(tag) - 1)] != ''
+                        tag[5:(len(tag) - 1)] for tag in tag_pattern_tc.findall(content) if tag[5:(len(tag) - 1)] != ''
                     ]
+                    # 「'」で始まっているタグがあるので修正
+                    fixed_tags = []
+                    for tag in t_tags:
+                        start = 0
+                        if tag[0] == "'":
+                            start = 1
+                        fixed_tags.append(tag[start:])
+                    for tag in tc_tags:
+                        start = 0
+                        if tag[0] == "'":
+                            start = 1
+                        fixed_tags.append(tag[start:])
                     # i18nタグ内のpathを取得
                     soup = BeautifulSoup(content, "html.parser")
                     i18n_tags = [tag.get("path") for tag in soup.find_all("i18n")]
 
                     # タグを統合し、重複分を取り除く
-                    all_tags += list(set(t_tags + tc_tags + i18n_tags))
+                    all_tags = list(set(all_tags + fixed_tags + i18n_tags))
         else:
             # すべてのJsonファイルを検索
             json_files = glob.glob(cdir + os.sep + "**" + os.sep + "*.json", recursive=True)
@@ -100,9 +114,9 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
                             # 年代別の場合、「90代以上」の翻訳が2020/04/13現在、東京都版に組み込まれていないのでそれを取得
                             # 病床数の場合は、2020/04/13現在表示していないが、今後再表示する場合に向けて取得
                             # クラスター別の場合は、クラスター名を翻訳するため取得
-                            tags = json_content["data"].keys()
+                            tags = list(json_content["data"].keys())
                         # 重複分を取り除く
-                        all_tags += list(set(tags))
+                        all_tags = list(set(all_tags + tags))
 
     # 東京都版と兵庫県版のjsonをそれぞれ読み込む
     tokyo_json = json.load(tokyo_file)

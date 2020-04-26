@@ -35,7 +35,7 @@
       :date="clusters.last_update"
       :unit="'人'"
       :info="sumInfoOfClusters"
-      :desc="$t('（注）同一の対象者が複数含まれる場合あり')"
+      :desc="$t('（注）重複者とは、複数のクラスターに該当する人を指す')"
       :url="
         'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'
       "
