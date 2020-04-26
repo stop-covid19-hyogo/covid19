@@ -201,6 +201,10 @@ export default Vue.extend({
           divider: true
         },
         {
+          title: this.$t('翻訳者募集について'),
+          link: this.localePath('/translation')
+        },
+        {
           title: this.$t('当サイトについて'),
           link: this.localePath('/about')
         }
