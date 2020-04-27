@@ -1,8 +1,8 @@
-# 兵庫県非公式 新型コロナウイルスまとめサイト
+# 兵庫県 新型コロナウイルスまとめサイト
 
 ![](https://github.com/stop-covid19-hyogo/covid19/workflows/production%20deploy/badge.svg)
 
-[![兵庫県非公式 新型コロナウイルスまとめサイト](https://user-images.githubusercontent.com/43156990/77025400-53e94080-69d4-11ea-9978-18c715f4925d.png)](https://stop-covid19-hyogo.org/)
+[![兵庫県 新型コロナウイルスまとめサイト](https://user-images.githubusercontent.com/2575204/80415970-4c3f8480-890e-11ea-8e6f-5d6f5d8d63b4.png)](https://stop-covid19-hyogo.org/)
 
 <!--
 ### 日本語 | [English](./docs/en/README.md) | [Español](./docs/es/README.md) | [한국어](./docs/ko/README.md) | [繁體中文](./docs/zh_TW/README.md) | [简体中文](./docs/zh_CN/README.md) | [Tiếng Việt](./docs/vi/README.md) | [ภาษาไทย](./docs/th/README.md) | [Français](./docs/fr/README.md)

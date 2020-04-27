@@ -286,7 +286,7 @@ export default Vue.extend({
         'https://twitter.com/intent/tweet?text=' +
         this.title +
         ' / ' +
-        this.$t('兵庫県非公式') +
+        this.$t('兵庫県') +
         this.$t('新型コロナウイルス感染症') +
         this.$t('まとめサイト') +
         '&url=' +

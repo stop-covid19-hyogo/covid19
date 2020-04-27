@@ -121,7 +121,7 @@ export default Vue.extend({
   },
   head(): MetaInfo {
     return {
-      title: this.$t('兵庫県非公式 新型コロナウイルスまとめサイト') as string,
+      title: this.$t('兵庫県 新型コロナウイルスまとめサイト') as string,
       titleTemplate: ''
     }
   }
