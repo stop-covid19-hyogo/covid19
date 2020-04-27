@@ -7,7 +7,7 @@ on:
   #   paths:
   #     - '.github/workflows/update_data.yml'
   schedule:
-    - cron:  '15 12 * * *'
+    - cron:  '20 11 * * *'
 
 jobs:
   build:
