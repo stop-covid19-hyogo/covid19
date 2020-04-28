@@ -15,7 +15,7 @@ const config: Configuration = {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#'
     },
-    titleTemplate: '%s | 兵庫県非公式 新型コロナウイルスまとめサイト',
+    titleTemplate: '%s | 兵庫県 新型コロナウイルスまとめサイト',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -160,7 +160,7 @@ const config: Configuration = {
     // hardSource: process.env.NODE_ENV === 'development'
   },
   manifest: {
-    name: '兵庫県非公式 新型コロナウイルスまとめサイト',
+    name: '兵庫県 新型コロナウイルスまとめサイト',
     theme_color: '#01a0c7',
     background_color: '#ffffff',
     display: 'standalone',

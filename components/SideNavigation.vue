@@ -14,7 +14,7 @@
             class="SideNavigation-HeaderLogo"
             src="/logo.svg"
             width="110"
-            :alt="$t('兵庫県非公式')"
+            :alt="$t('兵庫県')"
           />
           <div class="SideNavigation-HeaderText">
             {{ $t('menu/新型コロナウイルス') }}<br />{{
