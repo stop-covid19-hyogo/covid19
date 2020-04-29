@@ -49,7 +49,7 @@
             url="http://open-data.pref.hyogo.lg.jp/"
             :icon-size="16"
           >
-            {{ $t('兵庫県オープンデータカタログサイト') }}
+            {{ $t('ひょうごオープンデータカタログ') }}
           </external-link>
         </template>
       </i18n>
