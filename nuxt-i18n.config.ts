@@ -21,14 +21,14 @@ const options: NuxtVueI18n.Options.AllOptionsInterface = {
       iso: 'ja-JP',
       file: 'ja.js',
       description: 'Japanese'
-    },
+    } /* ,
     {
       code: 'en',
       name: 'English',
       iso: 'en-US',
       file: 'en.js',
       description: 'English'
-    } /* ,
+    },
     {
       code: 'zh-cn',
       name: '简体中文',
