@@ -145,7 +145,7 @@
           )
         }}
       </p>
-      <img :src="$t('transifex.selectlang')" alt="selectlang"" />
+      <img :src="$t('transifex.selectlang')" alt="selectlang" />
       <p>
         {{
           $t(
