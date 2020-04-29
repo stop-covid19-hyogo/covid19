@@ -8,12 +8,10 @@
         {{ $t('最新のお知らせ') }}
       </h3>
       <!--<span class="WhatsNew-link-to-emergency-page">
-        <v-icon size="20" class="WhatsNew-link-to-emergency-page-icon">
-          mdi-bullhorn
-        </v-icon>
-        <external-link
-          url="https://web.pref.hyogo.lg.jp/kk03/200129.html"
-        >
+        <external-link url="https://web.pref.hyogo.lg.jp/kk03/200129.html">
+          <v-icon size="20" class="WhatsNew-link-to-emergency-page-icon">
+            mdi-bullhorn
+          </v-icon>
           {{ $t('兵庫県緊急事態措置について') }}
         </external-link>
       </span>-->
@@ -121,7 +119,7 @@ export default Vue.extend({
       border-radius: 4px;
       font-size: 1rem;
       padding: 4px 8px;
-
+      display: inline-flex;
       &:hover {
         background-color: $white;
         border-radius: 4px;
@@ -130,6 +128,8 @@ export default Vue.extend({
       .ExternalLink {
         color: $gray-2 !important;
         text-decoration: none;
+        margin: -10px;
+        padding: 10px;
       }
 
       > span {

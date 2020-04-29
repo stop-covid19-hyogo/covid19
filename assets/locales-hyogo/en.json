@@ -1,6 +1,5 @@
 {
   "※ アットマークを半角に変換してください。": "* Please convert '@'sign into half-width characters.",
-  "兵庫県オープンデータカタログサイト": "the Hyogo Prefecture Government Open Data Catalog site",
   "お問い合わせ先": "Contact us",
   "有志の仲間": "volunteers",
   "東京都公式コロナウイルス対策サイト": "the Tokyo Metropolitan Government COVID-19 Task Force website",
@@ -19,7 +18,6 @@
   "PDF": "PDF",
   "（注）病床数は兵庫県が公開する{data}を参照": "(Note) Refer to {data} published by Hyogo Prefecture for the number of beds",
   "{fixedTime} 時点": "{fixedTime} point in time",
-  "{fixedTime} 更新": "{fixedTime} update",
   "兵庫県公式Twitter": "Hyogo Prefecture Official Twitter",
   "記者発表資料": "Press release materials",
   "menu/新型コロナウイルス": "Hyogo COVID-19 Summary website",
@@ -71,14 +69,12 @@
   "兵庫県知事からのメッセージ": "Message from Governor Ido on COVID-19 ",
   "人数": "Number of people",
   "クラスター/感染源": "Cluster/Source of infection",
-  "（毎週金曜日に、前週木曜日から当該週水曜日までの件数を反映）": "(the number of cases from the previous Thursday to the said Wednesday is reflected on every Friday)",
   "高砂市": "Takasago City",
   "大阪府": "Osaka Prefecture",
   "神戸赤十字病院": "Japanese Red Cross Kobe Hospital",
   "非公表": "undisclosed",
   "90歳以上": "90 years old or older",
   "播磨町": "Harima Town",
-  "※ ヤフーに蓄積された位置情報データなどを元に算出した参考値": "* Reference value calculated based on location information data etc. accumulated in Yahoo!",
   "神戸市環境局": "Kobe City Environment Bureau",
   "神戸西警察署": "Kobe Nishi Police Station",
   "西宮市外": "Outside Nishinomiya City",
@@ -119,5 +115,6 @@
   "翻訳できる言語を選択したら、{dashboard}にアクセスし、右上の方にある「翻訳」ボタンをクリックしましょう。": "Once you have selected the languages you can translate, access to {dashboard} and click the \"Translate\" button in the upper right corner.",
   "翻訳が出来たら、「翻訳を保存」ボタンを押すと、翻訳が登録されます。翻訳登録後は、レビュアーによるレビューが行われ、その後サイトに反映されることになります。": "Once you have translated, click the \"Save translation\" button to register the translation. After the translation is registered, it will be reviewed by the reviewers and then reflected on the site.",
   "サイトでの設定は終わりましたが、アカウントを完全に有効化できていませんので、入力したメールアドレス宛に送られたメールからアカウントを有効化してください。": "The setting on the site is finished, but the account has not been fully activated. Please activate the account from the email sent to the email address you entered.",
-  "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。": "Enter your user name, email address, and password.\nSign up after agreeing to the terms of service and privacy policy."
+  "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。": "Enter your user name, email address, and password.\nSign up after agreeing to the terms of service and privacy policy.",
+  "ひょうごオープンデータカタログ": "the Hyogo Open Data Catalog"
 }
