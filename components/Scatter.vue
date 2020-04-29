@@ -297,7 +297,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontColor: '#808080',
                 max: data.clusters.length,
                 callback: (i: number) => {
-                  return data.clusters[i]
+                  return translatedClusters[i] as string
                 }
               }
             }
@@ -323,6 +323,9 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     displayOptionHeader() {
       const data = this.chartData
+      const translatedClusters = this.chartData.clusters.map(cluster => {
+        return this.$t(cluster)
+      })
       const options: Chart.ChartOptions = {
         responsive: false,
         maintainAspectRatio: false,
@@ -392,7 +395,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontColor: '#808080', // #808080
                 max: data.clusters.length,
                 callback: (i: number) => {
-                  return data.clusters[i]
+                  return translatedClusters[i] as string
                 }
               }
             }
