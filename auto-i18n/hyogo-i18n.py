@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 CHECK_DIR = ["pages", "components", "layouts", "data"]
 
 # チェックするjsonファイルのリスト
-JSON_FILES = ["patients.json", "age.json", "sickbeds_summary.json", "clusters_summary.json"]
+JSON_FILES = ["patients.json", "news.json", "age.json", "sickbeds_summary.json", "clusters_summary.json"]
 
 # タグの正規表現パターン
 tag_pattern_t = re.compile("\$t\([ ]*?['|`][^']*?['|`]")
@@ -110,7 +110,11 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
                             for patients in json_content["data"]:
                                 # 居住地を取得
                                 tags.append(patients["居住地"])
-                        elif file_name in JSON_FILES[1:]:  # 年代別患者数のデータと病床数のデータ、更にクラスター別患者数のデータ
+                        elif file_name == JSON_FILES[1]:  # ニュースデータ
+                            for news in json_content["newsItems"]:
+                                # ニュースの本文を取得
+                                tags.append(news["text"])
+                        elif file_name in JSON_FILES[2:]:  # 年代別患者数のデータと病床数のデータ、更にクラスター別患者数のデータ
                             # 年代別の場合、「90代以上」の翻訳が2020/04/13現在、東京都版に組み込まれていないのでそれを取得
                             # 病床数の場合は、2020/04/13現在表示していないが、今後再表示する場合に向けて取得
                             # クラスター別の場合は、クラスター名を翻訳するため取得
@@ -126,6 +130,9 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
     assert isinstance(tokyo_json, dict)
     assert isinstance(hyogo_json, dict)
 
+    # 翻訳が複数あるもの("."で区切られている特殊なもの)を保管するリスト
+    has_many_tags = []
+
     # タグのチェック
     for tag in all_tags:
         # "."で区切られている特殊なもの("件.tested"や"件.reports"のような翻訳が複数あるもの)を判別する
@@ -137,7 +144,17 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
                     continue
             elif tag_splitted[0] in hyogo_json:
                 if tag_splitted[1] in hyogo_json[tag_splitted[0]]:
+                    has_many_tags.append(tag_splitted + [True])
                     continue
+            # タグが存在しない上に、"."で区切られているものに関して、一旦リストに保管する
+            if len(tag_splitted) == 2:
+                found = False
+                for many_tag in has_many_tags:
+                    if tag_splitted[0] == many_tag[0] and tag_splitted[1] != many_tag[1]:
+                        found = True
+                        many_tag[2] = found
+                    has_many_tags.append(tag_splitted + [found])
+                continue
             # N代の人は除外する(既に"{age}代"として存在するため)
             if tag[-1:] == "代":
                 try:
@@ -151,6 +168,20 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
                 result.write(",".join(["RUN", datetime.datetime.today().strftime("%Y/%m/%d %H:%M")]) + '\n')
             result.write(",".join(["TAG_ADD", tag]) + '\n')
             warn_count += 1
+
+    # "."でわけられていたものに関して、複数あれば(many_tag[2]がtrueであれば)
+    # 辞書型として展開して代入し、そうでなければ普通のキーとして代入する
+    for many_tag in has_many_tags:
+        if many_tag[2]:
+            if hyogo_json.get(many_tag[0]):
+                hyogo_json[many_tag[0]][many_tag[1]] = many_tag[0]
+            else:
+                hyogo_json[many_tag[0]] = {
+                    many_tag[1]: many_tag[0]
+                }
+        else:
+            full_tag = ".".join(many_tag[:2])
+            hyogo_json[full_tag] = full_tag
 
     made_json = hyogo_json
 

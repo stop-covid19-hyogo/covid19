@@ -7,7 +7,7 @@ on:
 
 jobs:
   i18n-builder:
-    if: github.event.commits[0].message != 'Update locales-hyogo/ja.json'
+    if: false == contains(github.event.commits[0].message, 'Update locales-hyogo/ja.json')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout development branch

@@ -116,7 +116,7 @@ const config: Configuration = {
     gzip: true,
     generate: true,
     exclude: [''], // Sitemapから除外する項目
-    routes: ['/about'] // Sitemapに追加する項目
+    routes: ['/about', '/translation'] // Sitemapに追加する項目
   },
   googleAnalytics: {
     id: process.env.GOOGLE_ANALYTICS_ID // .env.production などに設定してください。

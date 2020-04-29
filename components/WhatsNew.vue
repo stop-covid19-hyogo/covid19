@@ -32,7 +32,7 @@
             {{ formattedDateForDisplay(item.date) }}
           </time>
           <span class="WhatsNew-list-item-anchor-link">
-            {{ item.text }}
+            {{ $t(item.text) }}
             <v-icon
               v-if="!isInternalLink(item.url)"
               class="WhatsNew-item-ExternalLinkIcon"
@@ -49,7 +49,7 @@
           >
             {{ formattedDateForDisplay(item.date) }}
           </time>
-          <span>{{ item.text }}</span>
+          <span>{{ $t(item.text) }}</span>
         </div>
       </li>
     </ul>
