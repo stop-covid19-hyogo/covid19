@@ -6,10 +6,9 @@
     <static-card>
       <h3>{{ $t('翻訳に協力していただける方を募集しています') }}</h3>
       <p>
-        {{ $t('当サイトは、現在日本語のみの対応となっています。') }}<br />
         {{
           $t(
-            'しかし、今後たくさんの方にこのサイトを見て、自身の行動を考えてもらうために、多言語化対応に向けて動いています。'
+            '当サイトでは、今後たくさんの方にこのサイトを見て、自身の行動を考えてもらうために、多言語化対応に向けて動いています。'
           )
         }}<br />
         {{
@@ -62,7 +61,7 @@
             )
           }}
         </li>
-        <img src="/translation/signup.png" alt="sign up" />
+        <img :src="$t('transifex.signup')" alt="signup" />
         <li>
           {{
             $t(
@@ -80,7 +79,7 @@
             )
           }}
         </li>
-        <img src="/translation/board.png" alt="board" />
+        <img :src="$t('transifex.board')" alt="board" />
         <li>
           {{
             $t(
@@ -88,7 +87,7 @@
             )
           }}
         </li>
-        <img src="/translation/participate.png" alt="participate" />
+        <img :src="$t('transifex.participate')" alt="participate" />
         <li>
           {{
             $t(
@@ -96,7 +95,7 @@
             )
           }}
         </li>
-        <img src="/translation/language.png" alt="language" />
+        <img :src="$t('transifex.language')" alt="language" />
         <li>
           {{
             $t(
@@ -124,7 +123,7 @@
           </external-link>
         </template>
       </i18n>
-      <img src="/translation/openpage.png" alt="openpage" />
+      <img :src="$t('transifex.openpage')" alt="openpage" />
       <i18n
         tag="p"
         path="翻訳できる言語を選択したら、{dashboard}にアクセスし、右上の方にある「翻訳」ボタンをクリックしましょう。"
@@ -138,7 +137,7 @@
           </external-link>
         </template>
       </i18n>
-      <img src="/translation/dashboard.png" alt="dashboard" />
+      <img :src="$t('transifex.dashboard')" alt="dashboard" />
       <p>
         {{
           $t(
@@ -146,7 +145,7 @@
           )
         }}
       </p>
-      <img src="/translation/selectlang.png" alt="selectlang" />
+      <img :src="$t('transifex.selectlang')" alt="selectlang"" />
       <p>
         {{
           $t(
@@ -154,7 +153,7 @@
           )
         }}
       </p>
-      <img src="/translation/selectphrase.png" alt="selectphrase" />
+      <img :src="$t('transifex.selectphrase')" alt="selectphrase" />
       <p>
         {{
           $t(
@@ -162,7 +161,7 @@
           )
         }}
       </p>
-      <img src="/translation/waitreview.png" alt="waitreview" />
+      <img :src="$t('transifex.waitreview')" alt="waitreview" />
     </static-card>
     <static-card>
       <h3>{{ $t('レビュアーになりたい方へ') }}</h3>
