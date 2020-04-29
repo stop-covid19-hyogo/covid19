@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 CHECK_DIR = ["pages", "components", "layouts", "data"]
 
 # チェックするjsonファイルのリスト
-JSON_FILES = ["patients.json", "age.json", "sickbeds_summary.json", "clusters_summary.json"]
+JSON_FILES = ["patients.json", "news.json", "age.json", "sickbeds_summary.json", "clusters_summary.json"]
 
 # タグの正規表現パターン
 tag_pattern_t = re.compile("\$t\([ ]*?['|`][^']*?['|`]")
@@ -110,7 +110,11 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
                             for patients in json_content["data"]:
                                 # 居住地を取得
                                 tags.append(patients["居住地"])
-                        elif file_name in JSON_FILES[1:]:  # 年代別患者数のデータと病床数のデータ、更にクラスター別患者数のデータ
+                        elif file_name == JSON_FILES[1]:  # ニュースデータ
+                            for news in json_content["newsItems"]:
+                                # ニュースの本文を取得
+                                tags.append(news["text"])
+                        elif file_name in JSON_FILES[2:]:  # 年代別患者数のデータと病床数のデータ、更にクラスター別患者数のデータ
                             # 年代別の場合、「90代以上」の翻訳が2020/04/13現在、東京都版に組み込まれていないのでそれを取得
                             # 病床数の場合は、2020/04/13現在表示していないが、今後再表示する場合に向けて取得
                             # クラスター別の場合は、クラスター名を翻訳するため取得
