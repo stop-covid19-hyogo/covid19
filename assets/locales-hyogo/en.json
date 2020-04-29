@@ -1,6 +1,5 @@
 {
   "※ アットマークを半角に変換してください。": "* Please convert '@'sign into half-width characters.",
-  "兵庫県オープンデータカタログサイト": "the Hyogo Prefecture Government Open Data Catalog site",
   "お問い合わせ先": "Contact us",
   "有志の仲間": "volunteers",
   "東京都公式コロナウイルス対策サイト": "the Tokyo Metropolitan Government COVID-19 Task Force website",
@@ -119,5 +118,6 @@
   "翻訳できる言語を選択したら、{dashboard}にアクセスし、右上の方にある「翻訳」ボタンをクリックしましょう。": "Once you have selected the languages you can translate, access to {dashboard} and click the \"Translate\" button in the upper right corner.",
   "翻訳が出来たら、「翻訳を保存」ボタンを押すと、翻訳が登録されます。翻訳登録後は、レビュアーによるレビューが行われ、その後サイトに反映されることになります。": "Once you have translated, click the \"Save translation\" button to register the translation. After the translation is registered, it will be reviewed by the reviewers and then reflected on the site.",
   "サイトでの設定は終わりましたが、アカウントを完全に有効化できていませんので、入力したメールアドレス宛に送られたメールからアカウントを有効化してください。": "The setting on the site is finished, but the account has not been fully activated. Please activate the account from the email sent to the email address you entered.",
-  "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。": "Enter your user name, email address, and password.\nSign up after agreeing to the terms of service and privacy policy."
+  "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。": "Enter your user name, email address, and password.\nSign up after agreeing to the terms of service and privacy policy.",
+  "ひょうごオープンデータカタログ": "the Hyogo Open Data Catalog"
 }
