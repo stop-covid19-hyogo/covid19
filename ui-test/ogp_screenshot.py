@@ -33,23 +33,21 @@ options.add_argument("--hide-scrollbars")
 
 driver = webdriver.Chrome(options=options)
 
-#for lang in ("ja", "en", "zh-cn", "zh-tw", "ko", "ja-basic"):
-lang = "ja"
-
-if not os.path.exists("ogp/{}".format(lang)):
-    os.mkdir("ogp/{}".format(lang))
-for path, size in PATHS.items():
-    driver.set_window_size(*size)
-    driver.get(
-        "https://stop-covid19-hyogo.org:443{}?ogp=true".format(
-            path if lang == "ja" else "/{}{}".format(lang, path)
+for lang in ("ja", "en"):
+    if not os.path.exists("ogp/{}".format(lang)):
+        os.mkdir("ogp/{}".format(lang))
+    for path, size in PATHS.items():
+        driver.set_window_size(*size)
+        driver.get(
+            "https://stop-covid19-hyogo.org:443{}?ogp=true".format(
+                path if lang == "ja" else "/{}{}".format(lang, path)
+            )
         )
-    )
-    path = path.replace("/cards/", "").replace("/", "_")
-    if ('heatmap' in path):
-        time.sleep(20)
-    driver.save_screenshot(
-        "ogp/{}.png".format(
-            path if lang == "ja" else "{}/{}".format(lang, path)
+        path = path.replace("/cards/", "").replace("/", "_")
+        if ('heatmap' in path):
+            time.sleep(20)
+        driver.save_screenshot(
+            "ogp/{}.png".format(
+                path if lang == "ja" else "{}/{}".format(lang, path)
+            )
         )
-    )
