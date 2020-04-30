@@ -115,6 +115,17 @@
   "サイトでの設定は終わりましたが、アカウントを完全に有効化できていませんので、入力したメールアドレス宛に送られたメールからアカウントを有効化してください。": "The setting on the site is finished, but the account has not been fully activated. Please activate the account from the email sent to the email address you entered.",
   "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。": "Enter your user name, email address, and password.\nSign up after agreeing to the terms of service and privacy policy.",
   "ひょうごオープンデータカタログ": "the Hyogo Open Data Catalog",
+  "transifex": {
+    "signup": "/translation/en/signup.png",
+    "board": "/translation/en/board.png",
+    "participate": "/translation/en/participate.png",
+    "language": "/translation/en/language.png",
+    "openpage": "/translation/en/openpage.png",
+    "dashboard": "/translation/en/dashboard.png",
+    "selectlang": "/translation/en/selectlang.png",
+    "selectphrase": "/translation/en/selectphrase.png",
+    "waitreview": "/translation/en/waitreview.png"
+  },
   "病床の大幅追加に伴い、正確な病床数の把握が現時点では困難になったため、「入院患者数と残り病床数」のグラフの公開を一旦中止します。": "We stop publish \"Number of hospitalized patients and remaining sickbeds\" graph, because we became unable know the exact number of sickbeds.",
   "グラフのデータをテーブルで確認できる機能を追加しました。": "We became possible to see graph data by table.",
   "当サイトの翻訳者を募集します。": "We are looking for volunteers to translate this website.",
