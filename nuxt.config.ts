@@ -161,6 +161,7 @@ const config: Configuration = {
   },
   manifest: {
     name: '兵庫県 新型コロナウイルスまとめサイト',
+    short_name: 'COVID-19 Hyogo',
     theme_color: '#01a0c7',
     background_color: '#ffffff',
     display: 'standalone',
