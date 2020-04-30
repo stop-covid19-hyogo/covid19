@@ -4,7 +4,7 @@
   "有志の仲間": "volunteers",
   "東京都公式コロナウイルス対策サイト": "the Tokyo Metropolitan Government COVID-19 Task Force website",
   "以下のメールアドレスまでご連絡ください。": "Please contact the following email address.",
-  "当サイトに掲載されている情報の正確性については万全を期していますが、私たちは利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。": "Although every effort has been made to ensure the accuracy of the information posted on this site, We will not be responsible for any actions taken by users using the information on this site.",
+  "当サイトに掲載されている情報の正確性については万全を期していますが、私たちは利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。": "Although every effort has been made to ensure the accuracy of the information posted on this site, we will not be responsible for any actions taken by users using the information on this site.",
   "兵庫県による公式情報と客観的な数値をわかりやすく伝えることで、兵庫県にお住まいの方や、兵庫県内に拠点を持つ企業の方、兵庫県を訪れる方が、現状を把握して適切な対策を取れるようにすることを目的としています。": "By conveying official information of the Hyogo Prefecture Government and objective data in an easy-to-understand way, this site aims to allow Hyogo residents, companies with offices in Hyogo, and visitors to Hyogo to grasp the current situation and take measures and precautions accordingly. ",
   "兵庫県内の最新感染動向": "Latest updates on COVID-19 in Hyogo",
   "兵庫県 新型コロナウイルスまとめサイト": "Hyogo COVID-19 Summary website",
@@ -91,7 +91,6 @@
   "レビュアーになりたい節を伝えていただければ、運営メンバーで検討いたします。": "If you want to be a reviewer, let us know about it.\nour management member will consider it.",
   "翻訳者募集について": "About Recruitment of translators",
   "当サイトでは、Transifexというサービスを用いて翻訳の管理をしております。": "We are managing translation by using transifex.",
-  "しかし、今後たくさんの方にこのサイトを見て、自身の行動を考えてもらうために、多言語化対応に向けて動いています。": "We are working on going multilingual so that people can look at this site and think about their own actions in the future.",
   "今の状態ではまだ当サイトの翻訳プロジェクトには参加できていないので、{projectPage}にアクセスし、「チームに参加」ボタンをクリックして参加しましょう。": "As of now, you have not been able to participate in the translation project on this site, so access {projectPage} and click the \"Join Team \" button.",
   "これを機に、当サイトへ少しでも貢献していただければ幸いです。": "We hope that you will take to this opportunity contribute to this website even a little.",
   "実際に翻訳する": "Translate it actually",
@@ -101,7 +100,6 @@
   "翻訳協力者の募集について": "About Recruitment of translators",
   "翻訳にご協力いただけるという方は、まず以下の手順に従って{transifex}にご登録ください。": "If you can help us for translation, register for {transifex} according to the following procedure.",
   "コミュニティ(slack)": "community (slack)",
-  "当サイトは、現在日本語のみの対応となっています。": "This site is currently available only in Japanese.",
   "翻訳言語の選択を求められるので、選択して下さい。いよいよ翻訳に移ります。": "You will be asked to select a translation language, so select it.  Finally, you will move on to translation.",
   "翻訳に協力していただける方を募集しています": "We are looking for people who can help with translation.",
   "それと同時に、このサイトの翻訳を手伝っていただける方を募集します。": "At the same time, we are looking for people to help us translate this site.",
@@ -116,5 +114,10 @@
   "翻訳が出来たら、「翻訳を保存」ボタンを押すと、翻訳が登録されます。翻訳登録後は、レビュアーによるレビューが行われ、その後サイトに反映されることになります。": "Once you have translated, click the \"Save translation\" button to register the translation. After the translation is registered, it will be reviewed by the reviewers and then reflected on the site.",
   "サイトでの設定は終わりましたが、アカウントを完全に有効化できていませんので、入力したメールアドレス宛に送られたメールからアカウントを有効化してください。": "The setting on the site is finished, but the account has not been fully activated. Please activate the account from the email sent to the email address you entered.",
   "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。": "Enter your user name, email address, and password.\nSign up after agreeing to the terms of service and privacy policy.",
-  "ひょうごオープンデータカタログ": "the Hyogo Open Data Catalog"
+  "ひょうごオープンデータカタログ": "the Hyogo Open Data Catalog",
+  "病床の大幅追加に伴い、正確な病床数の把握が現時点では困難になったため、「入院患者数と残り病床数」のグラフの公開を一旦中止します。": "We stop publish \"Number of hospitalized patients and remaining sickbeds\" graph, because we became unable know the exact number of sickbeds.",
+  "グラフのデータをテーブルで確認できる機能を追加しました。": "We became possible to see graph data by table.",
+  "当サイトの翻訳者を募集します。": "We are looking for volunteers to translate this website.",
+  "当サイトでは、今後たくさんの方にこのサイトを見て、自身の行動を考えてもらうために、多言語化対応に向けて動いています。": "We are working on going multilingual so that people can look at this site and think about their own actions in the future.",
+  "グラフの過去データをスクロールして確認できる機能を追加しました。": "We became possible to see graph old data by scroll."
 }
