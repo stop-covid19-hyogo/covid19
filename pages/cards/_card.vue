@@ -190,10 +190,7 @@ export default {
           content:
             this.title +
             ' | ' +
-            this.$t('兵庫県') +
-            ' ' +
-            this.$t('新型コロナウイルス') +
-            this.$t('まとめサイト')
+            this.$t('兵庫県 新型コロナウイルスまとめサイト')
         },
         {
           hid: 'description',
