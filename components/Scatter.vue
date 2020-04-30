@@ -1,7 +1,12 @@
 <template>
   <data-view :title="title" :title-id="titleId" :date="date">
     <template v-slot:description>
-      {{ desc }}
+      {{ desc }}<br />
+      {{
+        $t(
+          '（注）施設名などが長いため、一部表記をアルファベットで置き換えて短縮している'
+        )
+      }}
     </template>
     <h4 :id="`${titleId}-graph`" class="visually-hidden">
       {{ $t(`{title}のグラフ`, { title }) }}
@@ -88,7 +93,9 @@ type Data = {
   canvas: boolean
   chartWidth: number | null
 }
-type Methods = {}
+type Methods = {
+  numberToColumnNameList: (num: number) => string[]
+}
 type Computed = {
   displayData: {
     labels: string[]
@@ -217,14 +224,19 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       const translatedClusters = this.chartData.clusters.map(cluster => {
         return this.$t(cluster)
       })
+      const clustersAlphabet = this.numberToColumnNameList(
+        this.chartData.clusters.length
+      )
       const options: Chart.ChartOptions = {
         tooltips: {
           displayColors: false,
           callbacks: {
             label(tooltipItem: any) {
               return `${
-                translatedClusters[data.datasets[tooltipItem.index].y]
-              }: ${data.datasets[tooltipItem.index].label} ${unit}`
+                clustersAlphabet[data.datasets[tooltipItem.index].y]
+              }) ${translatedClusters[data.datasets[tooltipItem.index].y]}: ${
+                data.datasets[tooltipItem.index].label
+              } ${unit}`
             },
             title(tooltipItem: any) {
               return data.datasets[tooltipItem[0].index].x
@@ -297,7 +309,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontColor: '#808080',
                 max: data.clusters.length,
                 callback: (i: number) => {
-                  return translatedClusters[i] as string
+                  return clustersAlphabet[i]
                 }
               }
             }
@@ -323,9 +335,9 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     displayOptionHeader() {
       const data = this.chartData
-      const translatedClusters = this.chartData.clusters.map(cluster => {
-        return this.$t(cluster)
-      })
+      const clustersAlphabet = this.numberToColumnNameList(
+        this.chartData.clusters.length
+      )
       const options: Chart.ChartOptions = {
         responsive: false,
         maintainAspectRatio: false,
@@ -395,7 +407,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontColor: '#808080', // #808080
                 max: data.clusters.length,
                 callback: (i: number) => {
-                  return translatedClusters[i] as string
+                  return clustersAlphabet[i]
                 }
               }
             }
@@ -417,11 +429,14 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     tableData() {
       const clusters = this.chartData.clusters
+      const clustersAlphabet = this.numberToColumnNameList(
+        this.chartData.clusters.length
+      )
       const data: { [x: string]: any }[] = []
-      clusters.forEach(dl => {
+      clusters.forEach((dl, i) => {
         if (dl !== '') {
           data.push({
-            クラスター: this.$t(dl),
+            クラスター: `${clustersAlphabet[i]}) ${this.$t(dl)}`,
             人数: 0
           })
         }
@@ -433,6 +448,25 @@ const options: ThisTypedComponentOptionsWithRecordProps<
         data[i]['人数'] = d['人数'].toLocaleString()
       })
       return data.reverse()
+    }
+  },
+  methods: {
+    numberToColumnNameList(num: number): string[] {
+      const resultList = []
+      for (let i = 0; i < num; i++) {
+        let j = num - i
+        let temp
+        let letter = ''
+        if (i) {
+          while (j > 0) {
+            temp = (j - 1) % 26
+            letter = String.fromCharCode(temp + 65) + letter
+            j = (j - temp - 1) / 26
+          }
+        }
+        resultList.push(letter)
+      }
+      return resultList
     }
   },
   mounted() {
