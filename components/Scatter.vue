@@ -1,12 +1,18 @@
 <template>
   <data-view :title="title" :title-id="titleId" :date="date">
     <template v-slot:description>
-      {{ desc }}<br />
-      {{
-        $t(
-          '（注）施設名などが長いため、一部表記をアルファベットで置き換えて短縮している'
-        )
-      }}
+      <ul :class="$style.GraphDesc">
+        <li>
+          {{ $t('（注）重複者とは、複数のクラスターに該当する人を指す') }}
+        </li>
+        <li>
+          {{
+            $t(
+              '（注）クラスター名が長いため、一部表記をアルファベットで置き換えている。詳細はテーブルを参照'
+            )
+          }}
+        </li>
+      </ul>
     </template>
     <h4 :id="`${titleId}-graph`" class="visually-hidden">
       {{ $t(`{title}のグラフ`, { title }) }}
@@ -125,7 +131,6 @@ type Props = {
   date: string
   unit: string
   info: object
-  desc: string
   url: string
   scrollPlugin: Chart.PluginServiceRegistrationOptions[]
   yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[]
@@ -176,11 +181,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     info: {
       type: Object,
       default: () => {}
-    },
-    desc: {
-      type: String,
-      required: false,
-      default: ''
     },
     url: {
       type: String,
@@ -495,10 +495,38 @@ const options: ThisTypedComponentOptionsWithRecordProps<
 export default Vue.extend(options)
 </script>
 
-<style lang="scss" scoped>
-.Graph-Desc {
-  margin: 10px 0;
-  font-size: 12px;
-  color: $gray-3;
+<style module lang="scss">
+.Graph {
+  &Desc {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 0 !important;
+    padding-left: 0 !important;
+    font-size: 12px;
+    color: $gray-3;
+    list-style: none;
+  }
+  &Legend {
+    text-align: center;
+    list-style: none;
+    padding: 0 !important;
+    li {
+      display: inline-block;
+      margin: 0 3px;
+      div {
+        height: 12px;
+        margin: 2px 4px;
+        width: 40px;
+        display: inline-block;
+        vertical-align: middle;
+        border-width: 1px;
+        border-style: solid;
+      }
+      button {
+        color: $gray-3;
+        font-size: 12px;
+      }
+    }
+  }
 }
 </style>
