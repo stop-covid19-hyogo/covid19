@@ -26,7 +26,7 @@
             url="https://stopcovid19.metro.tokyo.lg.jp/"
             :icon-size="16"
           >
-            {{ $t('東京都公式コロナウイルス対策サイト') }}
+            {{ $t('東京都公式新型コロナウイルス感染症対策サイト') }}
           </external-link>
         </template>
       </i18n>
