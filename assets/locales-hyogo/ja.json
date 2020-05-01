@@ -114,6 +114,17 @@
   "サイトでの設定は終わりましたが、アカウントを完全に有効化できていませんので、入力したメールアドレス宛に送られたメールからアカウントを有効化してください。": "サイトでの設定は終わりましたが、アカウントを完全に有効化できていませんので、入力したメールアドレス宛に送られたメールからアカウントを有効化してください。",
   "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。": "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。",
   "ひょうごオープンデータカタログ": "ひょうごオープンデータカタログ",
+  "transifex": {
+    "signup": "/translation/signup.png",
+    "board": "/translation/board.png",
+    "participate": "/translation/participate.png",
+    "language": "/translation/language.png",
+    "openpage": "/translation/openpage.png",
+    "dashboard": "/translation/dashboard.png",
+    "selectlang": "/translation/selectlang.png",
+    "selectphrase": "/translation/selectphrase.png",
+    "waitreview": "/translation/waitreview.png"
+  },
   "病床の大幅追加に伴い、正確な病床数の把握が現時点では困難になったため、「入院患者数と残り病床数」のグラフの公開を一旦中止します。": "病床の大幅追加に伴い、正確な病床数の把握が現時点では困難になったため、「入院患者数と残り病床数」のグラフの公開を一旦中止します。",
   "グラフのデータをテーブルで確認できる機能を追加しました。": "グラフのデータをテーブルで確認できる機能を追加しました。",
   "当サイトの翻訳者を募集します。": "当サイトの翻訳者を募集します。",
