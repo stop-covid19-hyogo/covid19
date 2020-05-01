@@ -8,7 +8,6 @@
       :date="clusters.last_update"
       :unit="$t('人')"
       :info="sumInfoOfClusters"
-      :desc="$t('（注）重複者とは、複数のクラスターに該当する人を指す')"
       :url="
         'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'
       "

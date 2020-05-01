@@ -2,7 +2,6 @@
   "※ アットマークを半角に変換してください。": "* Please convert '@'sign into half-width characters.",
   "お問い合わせ先": "Contact us",
   "有志の仲間": "volunteers",
-  "東京都公式コロナウイルス対策サイト": "the Tokyo Metropolitan Government COVID-19 Task Force website",
   "以下のメールアドレスまでご連絡ください。": "Please contact the following email address.",
   "当サイトに掲載されている情報の正確性については万全を期していますが、私たちは利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。": "Although every effort has been made to ensure the accuracy of the information posted on this site, we will not be responsible for any actions taken by users using the information on this site.",
   "兵庫県による公式情報と客観的な数値をわかりやすく伝えることで、兵庫県にお住まいの方や、兵庫県内に拠点を持つ企業の方、兵庫県を訪れる方が、現状を把握して適切な対策を取れるようにすることを目的としています。": "By conveying official information of the Hyogo Prefecture Government and objective data in an easy-to-understand way, this site aims to allow Hyogo residents, companies with offices in Hyogo, and visitors to Hyogo to grasp the current situation and take measures and precautions accordingly. ",
@@ -13,7 +12,7 @@
   "年代別陽性患者数": "Number of confirmed cases by age",
   "入院患者数と残り病床数": "Number of hospitalized patients and remaining sickbeds",
   "兵庫県の新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。": "This is a summary site established by a group of volunteers to provide the latest information on the new coronavirus infectious disease (COVID-19) in Hyogo Prefecture.",
-  "兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。": "This site is to inform us of official information and the objective number of coronavirus  in Hyogo prefecture plainly.  By doing so, residents, companies, and visitors in Hyogo should be able to understand the current status and take appropriate measures.",
+  "兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。": "By conveying official information of the Hyogo Prefecture Government and objective data in an easy-to-understand way, this site aims to allow Hyogo residents, companies with offices in Hyogo, and visitors to Hyogo to grasp the current situation and take measures and precautions accordingly. ",
   "新型コロナウイルス": "COVID-19",
   "PDF": "PDF",
   "（注）病床数は兵庫県が公開する{data}を参照": "(Note) Refer to {data} published by Hyogo Prefecture for the number of beds",
@@ -130,5 +129,8 @@
   "グラフのデータをテーブルで確認できる機能を追加しました。": "We became possible to see graph data by table.",
   "当サイトの翻訳者を募集します。": "We are looking for volunteers to translate this website.",
   "当サイトでは、今後たくさんの方にこのサイトを見て、自身の行動を考えてもらうために、多言語化対応に向けて動いています。": "We are working on going multilingual so that people can look at this site and think about their own actions in the future.",
-  "グラフの過去データをスクロールして確認できる機能を追加しました。": "We became possible to see graph old data by scroll."
+  "グラフの過去データをスクロールして確認できる機能を追加しました。": "We became possible to see graph old data by scroll.",
+  "東京都公式新型コロナウイルス感染症対策サイト": "the Tokyo Metropolitan Government COVID-19 Task Force website",
+  "（注）クラスター名が長いため、一部表記をアルファベットで置き換えている。詳細はテーブルを参照": "(Note) Cluster name is replacing by alphabet, because it is long. Please see table for details.",
+  "また、利用者が当サイトを利用したことにより発生した利用者の損害及び利用者が第三者に与えた損害に対して、責任を負うものではありません。 ": "We will not be responsible for any damage that may occur to a user or damage that the user may cause to a third party, as a result of using this website."
 }
