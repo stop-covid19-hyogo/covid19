@@ -1,7 +1,18 @@
 <template>
   <data-view :title="title" :title-id="titleId" :date="date">
     <template v-slot:description>
-      {{ desc }}
+      <ul :class="$style.GraphDesc">
+        <li>
+          {{ $t('（注）重複者とは、複数のクラスターに該当する人を指す') }}
+        </li>
+        <li>
+          {{
+            $t(
+              '（注）クラスター名が長いため、一部表記をアルファベットで置き換えている。詳細はテーブルを参照'
+            )
+          }}
+        </li>
+      </ul>
     </template>
     <h4 :id="`${titleId}-graph`" class="visually-hidden">
       {{ $t(`{title}のグラフ`, { title }) }}
@@ -88,7 +99,9 @@ type Data = {
   canvas: boolean
   chartWidth: number | null
 }
-type Methods = {}
+type Methods = {
+  numberToColumnNameList: (num: number) => string[]
+}
 type Computed = {
   displayData: {
     labels: string[]
@@ -118,7 +131,6 @@ type Props = {
   date: string
   unit: string
   info: object
-  desc: string
   url: string
   scrollPlugin: Chart.PluginServiceRegistrationOptions[]
   yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[]
@@ -170,11 +182,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       type: Object,
       default: () => {}
     },
-    desc: {
-      type: String,
-      required: false,
-      default: ''
-    },
     url: {
       type: String,
       required: false,
@@ -217,14 +224,19 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       const translatedClusters = this.chartData.clusters.map(cluster => {
         return this.$t(cluster)
       })
+      const clustersAlphabet = this.numberToColumnNameList(
+        this.chartData.clusters.length
+      )
       const options: Chart.ChartOptions = {
         tooltips: {
           displayColors: false,
           callbacks: {
             label(tooltipItem: any) {
               return `${
-                translatedClusters[data.datasets[tooltipItem.index].y]
-              }: ${data.datasets[tooltipItem.index].label} ${unit}`
+                clustersAlphabet[data.datasets[tooltipItem.index].y]
+              }) ${translatedClusters[data.datasets[tooltipItem.index].y]}: ${
+                data.datasets[tooltipItem.index].label
+              } ${unit}`
             },
             title(tooltipItem: any) {
               return data.datasets[tooltipItem[0].index].x
@@ -297,7 +309,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontColor: '#808080',
                 max: data.clusters.length,
                 callback: (i: number) => {
-                  return translatedClusters[i] as string
+                  return clustersAlphabet[i]
                 }
               }
             }
@@ -323,9 +335,9 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     displayOptionHeader() {
       const data = this.chartData
-      const translatedClusters = this.chartData.clusters.map(cluster => {
-        return this.$t(cluster)
-      })
+      const clustersAlphabet = this.numberToColumnNameList(
+        this.chartData.clusters.length
+      )
       const options: Chart.ChartOptions = {
         responsive: false,
         maintainAspectRatio: false,
@@ -395,7 +407,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontColor: '#808080', // #808080
                 max: data.clusters.length,
                 callback: (i: number) => {
-                  return translatedClusters[i] as string
+                  return clustersAlphabet[i]
                 }
               }
             }
@@ -417,11 +429,14 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     tableData() {
       const clusters = this.chartData.clusters
+      const clustersAlphabet = this.numberToColumnNameList(
+        this.chartData.clusters.length
+      )
       const data: { [x: string]: any }[] = []
-      clusters.forEach(dl => {
+      clusters.forEach((dl, i) => {
         if (dl !== '') {
           data.push({
-            クラスター: this.$t(dl),
+            クラスター: `${clustersAlphabet[i]}) ${this.$t(dl)}`,
             人数: 0
           })
         }
@@ -433,6 +448,25 @@ const options: ThisTypedComponentOptionsWithRecordProps<
         data[i]['人数'] = d['人数'].toLocaleString()
       })
       return data.reverse()
+    }
+  },
+  methods: {
+    numberToColumnNameList(num: number): string[] {
+      const resultList = []
+      for (let i = 0; i < num; i++) {
+        let j = num - i
+        let temp
+        let letter = ''
+        if (i) {
+          while (j > 0) {
+            temp = (j - 1) % 26
+            letter = String.fromCharCode(temp + 65) + letter
+            j = (j - temp - 1) / 26
+          }
+        }
+        resultList.push(letter)
+      }
+      return resultList
     }
   },
   mounted() {
@@ -461,10 +495,38 @@ const options: ThisTypedComponentOptionsWithRecordProps<
 export default Vue.extend(options)
 </script>
 
-<style lang="scss" scoped>
-.Graph-Desc {
-  margin: 10px 0;
-  font-size: 12px;
-  color: $gray-3;
+<style module lang="scss">
+.Graph {
+  &Desc {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 0 !important;
+    padding-left: 0 !important;
+    font-size: 12px;
+    color: $gray-3;
+    list-style: none;
+  }
+  &Legend {
+    text-align: center;
+    list-style: none;
+    padding: 0 !important;
+    li {
+      display: inline-block;
+      margin: 0 3px;
+      div {
+        height: 12px;
+        margin: 2px 4px;
+        width: 40px;
+        display: inline-block;
+        vertical-align: middle;
+        border-width: 1px;
+        border-style: solid;
+      }
+      button {
+        color: $gray-3;
+        font-size: 12px;
+      }
+    }
+  }
 }
 </style>

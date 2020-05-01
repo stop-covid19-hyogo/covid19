@@ -111,6 +111,8 @@ export default Vue.extend({
           href: 'https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css'
         }
       ],
+      titleTemplate:
+        '%s | ' + this.$tc('兵庫県 新型コロナウイルスまとめサイト'),
       meta: [
         {
           hid: 'author',
@@ -133,12 +135,7 @@ export default Vue.extend({
         {
           hid: 'og:site_name',
           property: 'og:site_name',
-          content:
-            this.$t('兵庫県') +
-            ' ' +
-            this.$t('新型コロナウイルス') +
-            ' ' +
-            this.$t('まとめサイト')
+          content: this.$tc('兵庫県 新型コロナウイルスまとめサイト')
         },
         {
           hid: 'og:url',
@@ -149,12 +146,7 @@ export default Vue.extend({
         {
           hid: 'og:title',
           property: 'og:title',
-          content:
-            this.$t('兵庫県') +
-            ' ' +
-            this.$t('新型コロナウイルス') +
-            ' ' +
-            this.$t('まとめサイト')
+          content: this.$tc('兵庫県 新型コロナウイルスまとめサイト')
         },
         {
           hid: 'og:description',
@@ -177,12 +169,7 @@ export default Vue.extend({
         {
           hid: 'apple-mobile-web-app-title',
           name: 'apple-mobile-web-app-title',
-          content:
-            this.$t('兵庫県') +
-            ' ' +
-            this.$t('新型コロナウイルス') +
-            ' ' +
-            this.$t('まとめサイト')
+          content: this.$tc('兵庫県 新型コロナウイルスまとめサイト')
         },
         {
           hid: 'twitter:image',
