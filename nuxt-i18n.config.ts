@@ -28,21 +28,21 @@ const options: NuxtVueI18n.Options.AllOptionsInterface = {
       iso: 'en-US',
       file: 'en.js',
       description: 'English'
-    } /* ,
+    } /*
     {
       code: 'zh-cn',
       name: '简体中文',
       iso: 'zh-CN',
       file: 'zh_CN.js',
       description: 'Simplified Chinese'
-    },
+    }, */,
     {
       code: 'zh-tw',
       name: '繁體中文',
       iso: 'zh-TW',
       file: 'zh_TW.js',
       description: 'Traditional Chinese'
-    },
+    } /* ,
     {
       code: 'ko',
       name: '한국어',
