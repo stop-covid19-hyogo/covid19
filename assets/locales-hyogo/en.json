@@ -126,7 +126,7 @@
     "waitreview": "/translation/en/waitreview.png"
   },
   "病床の大幅追加に伴い、正確な病床数の把握が現時点では困難になったため、「入院患者数と残り病床数」のグラフの公開を一旦中止します。": "We stopped publishing the \"Number of hospitalized patients and remaining sickbeds\" graph, because it is difficult to determine the exact number of sickbeds as they have increased dramatically.",
-  "グラフのデータをテーブルで確認できる機能を追加しました。": "We became possible to see graph data by table.",
+  "グラフのデータをテーブルで確認できる機能を追加しました。": "It is now possible to view graph data in table format.",
   "当サイトの翻訳者を募集します。": "We are looking for volunteers to translate this website.",
   "当サイトでは、今後たくさんの方にこのサイトを見て、自身の行動を考えてもらうために、多言語化対応に向けて動いています。": "We are working on going multilingual so that people can look at this site and think about their own actions in the future.",
   "グラフの過去データをスクロールして確認できる機能を追加しました。": "We became possible to see graph old data by scroll.",
