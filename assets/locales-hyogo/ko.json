@@ -115,12 +115,12 @@
   "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。": "이용자명, 이멜주소, 비밀번호를 입력해 사비스약관과 개인정보 수집 및 이용에 대한 안내의 동의하고 회원등록을 합니다.",
   "ひょうごオープンデータカタログ": "효고 오픈 데이터 카탈로그",
   "transifex": {
-    "signup": "/translation/signup.png",
-    "board": "/translation/board.png",
-    "participate": "/translation/participate.png",
-    "language": "/translation/language.png",
-    "openpage": "/translation/openpage.png",
-    "dashboard": "/translation/dashboard.png",
+    "signup": "/translation/en/signup.png",
+    "board": "/translation/en/board.png",
+    "participate": "/translation/en/participate.png",
+    "language": "/translation/en/language.png",
+    "openpage": "/translation/en/openpage.png",
+    "dashboard": "/translation/en/dashboard.png",
     "selectlang": "/translation/selectlang.png",
     "selectphrase": "/translation/selectphrase.png",
     "waitreview": "/translation/waitreview.png"
