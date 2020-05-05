@@ -92,7 +92,7 @@
   "当サイトでは、Transifexというサービスを用いて翻訳の管理をしております。": "We are now managing translation using transifex.",
   "今の状態ではまだ当サイトの翻訳プロジェクトには参加できていないので、{projectPage}にアクセスし、「チームに参加」ボタンをクリックして参加しましょう。": "As of now, you have not been able to participate in the translation project on this site, so access {projectPage} and click the \"Join team\" button.",
   "これを機に、当サイトへ少しでも貢献していただければ幸いです。": "We hope that you will take to this opportunity contribute to this website even a little.",
-  "実際に翻訳する": "Translate it actually",
+  "実際に翻訳する": "Translation",
   "翻訳の参加方法": "How to participate in translation",
   "Transifexに登録出来たら、実際に翻訳をしてみましょう。": "When you have registered for Transifex, try translating some sentences.",
   "これらの設定は非公開となっていますので、設定を変えることがなければ公開されることはありません。": "These data are not disclosed by default. They are disclosed only when you change the settings.",
