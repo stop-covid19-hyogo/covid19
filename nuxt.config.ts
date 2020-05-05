@@ -174,7 +174,8 @@ const config: Configuration = {
       const locales = [
         'ja',
         'en',
-        /* 'zh-cn', */ 'zh-tw' /* , 'ko', 'ja-basic' */
+        /* 'zh-cn', */ 'zh-tw',
+        'ko' /* , 'ja-basic' */
       ]
       const pages = [
         '/cards/details-of-confirmed-cases',

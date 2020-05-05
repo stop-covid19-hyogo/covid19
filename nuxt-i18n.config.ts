@@ -42,14 +42,14 @@ const options: NuxtVueI18n.Options.AllOptionsInterface = {
       iso: 'zh-TW',
       file: 'zh_TW.js',
       description: 'Traditional Chinese'
-    } /* ,
+    },
     {
       code: 'ko',
       name: '한국어',
       iso: 'ko-KR',
       file: 'ko.js',
       description: 'Korean'
-    },
+    } /* ,
     // #1126, #872 (comment)
     // ポルトガル語は訳が揃っていないため非表示
     // {
