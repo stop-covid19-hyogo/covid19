@@ -78,7 +78,7 @@
   "神戸西警察署": "Kobe Nishi Police Station",
   "西宮市外": "Outlying Nishinomiya City Area",
   "猪名川町": "Inagawa Town",
-  "陽性確認件数": "Number of positive confirmed",
+  "陽性確認件数": "Number confirmed positive",
   "陰性確認件数": "Number of negative confirmed",
   "（注）重複者とは、複数のクラスターに該当する人を指す": "(Note) Duplicates are people who applicable many clusters",
   "複製・改変が許されたオープンソースライセンスで公開されている、{tokyo}の仕組みを利用しています。": "It uses an open source licence that permits copying and redistribution, and is based on {tokyo}.",
