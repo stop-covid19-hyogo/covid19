@@ -115,7 +115,7 @@
   "ユーザー名、メールアドレス、パスワードを入力し、サービス規約とプライバシーポリシーに同意のうえでサインアップしましょう。": "請輸入使用者名稱、電子郵件地址、密碼，並同意服務條款與隱私權保護政策來進行登錄。",
   "ひょうごオープンデータカタログ": "兵庫資訊公開目錄",
   "transifex": {
-    "signup": "/translation/zh-twsignup.png",
+    "signup": "/translation/zh-tw/signup.png",
     "board": "/translation/zh-tw/board.png",
     "participate": "/translation/zh-tw/participate.png",
     "language": "/translation/zh-tw/language.png",
