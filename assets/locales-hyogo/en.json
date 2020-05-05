@@ -80,7 +80,7 @@
   "猪名川町": "Inagawa Town",
   "陽性確認件数": "Number confirmed positive",
   "陰性確認件数": "Number confirmed negative",
-  "（注）重複者とは、複数のクラスターに該当する人を指す": "(Note) Duplicates are people who applicable many clusters",
+  "（注）重複者とは、複数のクラスターに該当する人を指す": "(Note) Duplicates are people who may be active and counted in more than one cluster",
   "複製・改変が許されたオープンソースライセンスで公開されている、{tokyo}の仕組みを利用しています。": "It uses an open source licence that permits copying and redistribution, and is based on {tokyo}.",
   "当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、{volunteer}が開設したまとめサイトです。": "This website was opened by {volunteer} to provide the latest information on the novel coronavirus disease (COVID-19).",
   "※ 翻訳への参加はパソコンを前提としています。スマートフォンなどでも可能ですが、ページのレイアウトが違う可能性がありますのでご了承ください。": "We recommend that you use a computer to participate in the translation. You can participate translation by smartphone or other too, but possibility different page layouts.",
