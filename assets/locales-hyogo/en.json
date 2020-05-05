@@ -15,7 +15,7 @@
   "兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。": "By conveying official information of the Hyogo Prefecture Government and objective data in an easy-to-understand way, this site aims to allow Hyogo residents, companies with offices in Hyogo, and visitors to Hyogo to grasp the current situation and take measures and precautions accordingly. ",
   "新型コロナウイルス": "COVID-19",
   "PDF": "PDF",
-  "（注）病床数は兵庫県が公開する{data}を参照": "(Note) Refer to {data} published by Hyogo Prefecture for the number of beds",
+  "（注）病床数は兵庫県が公開する{data}を参照": "(Note) Refer to {data} published by Hyogo Prefecture for the total number of beds",
   "{fixedTime} 時点": "{fixedTime} point in time",
   "兵庫県公式Twitter": "Hyogo Prefecture Official Twitter",
   "記者発表資料": "Press release materials",
