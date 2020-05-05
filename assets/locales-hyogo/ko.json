@@ -121,9 +121,9 @@
     "language": "/translation/en/language.png",
     "openpage": "/translation/en/openpage.png",
     "dashboard": "/translation/en/dashboard.png",
-    "selectlang": "/translation/selectlang.png",
-    "selectphrase": "/translation/selectphrase.png",
-    "waitreview": "/translation/waitreview.png"
+    "selectlang": "/translation/en/selectlang.png",
+    "selectphrase": "/translation/en/selectphrase.png",
+    "waitreview": "/translation/en/waitreview.png"
   },
   "病床の大幅追加に伴い、正確な病床数の把握が現時点では困難になったため、「入院患者数と残り病床数」のグラフの公開を一旦中止します。": "병상의 대폭추가에 따라 정확한 병상수의 파악이 현시접에서는 어렵게 되어 \"입원환자수와 남은 병상 수\"의 그래프를 일시 공개 중지 합니다.",
   "グラフのデータをテーブルで確認できる機能を追加しました。": "그래프 데이터를 확인 할 수 있는 기능을 추가 했습니다.",
