@@ -120,10 +120,10 @@
     "participate": "/translation/zh-tw/participate.png",
     "language": "/translation/zh-tw/language.png",
     "openpage": "/translation/zh-tw/openpage.png",
-    "dashboard": "/translation/dashboard.png",
-    "selectlang": "/translation/selectlang.png",
-    "selectphrase": "/translation/selectphrase.png",
-    "waitreview": "/translation/waitreview.png"
+    "dashboard": "/translation/zh-tw/dashboard.png",
+    "selectlang": "/translation/zh-tw/selectlang.png",
+    "selectphrase": "/translation/zh-tw/selectphrase.png",
+    "waitreview": "/translation/zh-tw/waitreview.png"
   },
   "病床の大幅追加に伴い、正確な病床数の把握が現時点では困難になったため、「入院患者数と残り病床数」のグラフの公開を一旦中止します。": "因為病床數大幅增加，現階段難以把握正確的病床數字，所以暫時停止公開「住院病患數與殘存病床數」圖表。",
   "グラフのデータをテーブルで確認できる機能を追加しました。": "追加了可以確認各圖表的原始資料的功能。",
