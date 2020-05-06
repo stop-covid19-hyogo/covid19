@@ -28,14 +28,14 @@ const options: NuxtVueI18n.Options.AllOptionsInterface = {
       iso: 'en-US',
       file: 'en.js',
       description: 'English'
-    } /*
+    },
     {
       code: 'zh-cn',
       name: '简体中文',
       iso: 'zh-CN',
       file: 'zh_CN.js',
       description: 'Simplified Chinese'
-    }, */,
+    },
     {
       code: 'zh-tw',
       name: '繁體中文',
@@ -49,7 +49,7 @@ const options: NuxtVueI18n.Options.AllOptionsInterface = {
       iso: 'ko-KR',
       file: 'ko.js',
       description: 'Korean'
-    } /* ,
+    },
     // #1126, #872 (comment)
     // ポルトガル語は訳が揃っていないため非表示
     // {
@@ -65,7 +65,7 @@ const options: NuxtVueI18n.Options.AllOptionsInterface = {
       iso: 'ja-JP',
       file: 'ja-Hira.js',
       description: 'Easy Japanese'
-    } */
+    }
   ]
 }
 
