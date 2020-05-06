@@ -26,24 +26,77 @@
             }}
           </li>
         </ul>
-        <ol :class="$style.GraphDesc">
-          <li>{{ $t('※1: 疑い例・接触者調査') }}</li>
-          <li>{{ $t('※2: チャーター便・クルーズ船') }}</li>
-        </ol>
       </template>-->
     </time-stacked-bar-chart>
   </v-col>
 </template>
 
 <script>
+/* import dayjs from 'dayjs'
+import duration from 'dayjs/plugin/duration' */
 import inspectionsSummary from '@/data/inspections_summary.json'
 import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
+// dayjs.extend(duration)
 
 export default {
   components: {
     TimeStackedBarChart
   },
   data() {
+    // 検査実施日別状況
+    /* const today = new Date()
+    // 直前の木曜日
+    const lastThursday =
+      dayjs().day() <= 4
+        ? dayjs()
+            .startOf('day')
+            .subtract(1, 'week')
+            .day(4)
+        : dayjs()
+            .startOf('day')
+            .day(4)
+    const lastAvailableDate = dayjs(
+      today.getFullYear() +
+        '/' +
+        Data.inspections_summary.labels[
+          Data.inspections_summary.labels.length - 1
+        ]
+    ) // 最新の検査実施日
+    let fromLastThursdayDates = 0
+    if (lastThursday.isBefore(lastAvailableDate)) {
+      fromLastThursdayDates =
+        dayjs.duration(lastAvailableDate.diff(lastThursday)).asDays() + 1 // 直前の木曜日からの日数
+    }
+    const l = Data.inspections_summary.data['都内'].length
+    const beforeLastThursday = []
+    const afterLastThursday = []
+    for (let i = 0; i < l; i++) {
+      // 直前の木曜日前後で振り分け
+      const sum =
+        Data.inspections_summary.data['都内'][i] +
+        (Data.inspections_summary.data['その他'][i]
+          ? Data.inspections_summary.data['その他'][i]
+          : 0)
+      if (l - i > fromLastThursdayDates) {
+        beforeLastThursday.push(sum)
+        afterLastThursday.push(0)
+      } else {
+        beforeLastThursday.push(0)
+        afterLastThursday.push(sum)
+      }
+    }
+    const inspectionsGraph = [beforeLastThursday, afterLastThursday]
+    const inspectionsItems = [
+      this.$t(
+        '健康安全研究センター及び医療機関が保険適用で行った検査件数の合計'
+      ),
+      this.$t(
+        '健康安全研究センターの検査件数のみの速報値（保険適用分を含まない未確定値）'
+      )
+    ]
+    const inspectionsLabels = Data.inspections_summary.labels
+    const inspectionsDataLabels = [this.$t('確定値'), this.$t('未確定値')] */
+
     // 検査実施日別状況
     const allInspectionsArray = []
     for (let i = 0; i < inspectionsSummary.data['検査検体数'].length; i++) {
