@@ -55,13 +55,12 @@
       </i18n>
       <p>
         {{ $t('このサイトの内容物は') }}
-        <a
-          :href="$t('https://creativecommons.org/licenses/by/4.0/deed.ja')"
-          target="_blank"
-          rel="noopener noreferrer"
+        <external-link
+          :url="$t('https://creativecommons.org/licenses/by/4.0/deed.ja')"
+          :icon-size="16"
         >
           {{ $t('クリエイティブ・コモンズ 表示 4.0 ライセンス') }}
-        </a>
+        </external-link>
         {{ $t('の下に提供されています。') }}
       </p>
     </static-card>
