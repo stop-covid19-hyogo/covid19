@@ -18,8 +18,23 @@
     </div>
     <ul class="WhatsNew-list">
       <li v-for="(item, i) in items" :key="i" class="WhatsNew-list-item">
+        <nuxt-link
+          v-if="item.url && isInternalLink(item.url)"
+          class="WhatsNew-list-item-anchor"
+          :to="localePath(item.url)"
+        >
+          <time
+            class="WhatsNew-list-item-anchor WhatsNew-list-item-anchor-time px-2"
+            :datetime="formattedDate(item.date)"
+          >
+            {{ formattedDateForDisplay(item.date) }}
+          </time>
+          <span class="WhatsNew-list-item-anchor-link">
+            {{ $t(item.text) }}
+          </span>
+        </nuxt-link>
         <a
-          v-if="item.url"
+          v-else-if="item.url"
           class="WhatsNew-list-item-anchor"
           :href="item.url"
           target="_blank"
