@@ -122,7 +122,67 @@ export default Vue.extend({
   head(): MetaInfo {
     return {
       title: this.$t('兵庫県 新型コロナウイルスまとめサイト') as string,
-      titleTemplate: ''
+      titleTemplate: '',
+      __dangerouslyDisableSanitizers: ['script'],
+      script: [
+        {
+          innerHTML: `{
+            "@context": "https://schema.org",
+            "@type": "SpecialAnnouncement",
+            "name": "兵庫県内の新型コロナウイルス感染動向",
+            "text": "兵庫県内における新型コロナウイルスの陽性患者数や属性、PCR検査数などをお知らせしています。",
+            "url": "https://stop-covid19-hyogo.org/",
+            "datePosted": "2020-05-05T00:00",
+            "spatialCoverage": [
+              {
+                "@context":"https://schema.org/",
+                "@type": "AdministrativeArea",
+                "name": "兵庫県"
+              }
+            ],
+            "category": "https://www.wikidata.org/wiki/Q81068910",
+            "diseaseSpreadStatistics" : [
+              {
+                "@type": "Dataset",
+                "name": "兵庫県 新型コロナウイルス陽性者の状況（推移）",
+                "description": "兵庫県が公式に発表した、検査実施人数（累計）、陽性者数（累計）、入院中、中等症以下、重症、死亡（累計）、退院（累計）の推移データ。",
+                "sameAs": "http://open-data.pref.hyogo.lg.jp/?page_id=141",
+                "license": "https://creativecommons.org/licenses/by/4.0/deed.ja",
+                "distribution": {
+                  "@type": "DataDownload",
+                  "contentUrl": "https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx",
+                  "encodingFormat": "xlsx"
+                }
+              },
+              {
+                "@type": "Dataset",
+                "name": "兵庫県 新型コロナウィルス感染症の県内検査状況",
+                "description": "兵庫県が公式に発表した、新型コロナウイルスのPCR検査件数と、その検査における陽性確認件数のデータ。",
+                "sameAs": "http://open-data.pref.hyogo.lg.jp/?page_id=141",
+                "license": "https://creativecommons.org/licenses/by/4.0/deed.ja",
+                "distribution": {
+                  "@type": "DataDownload",
+                  "contentUrl": "https://web.pref.hyogo.lg.jp/kk03/documents/pcr.xlsx",
+                  "encodingFormat": "xlsx"
+                }
+              },
+              {
+                "@type": "Dataset",
+                "name": "兵庫県 新型コロナウィルスに感染した患者の状況",
+                "description": "兵庫県が公式に発表した、新型コロナウイルス感染者の属性（年代、性別、居住地、職業、発症日など）データ。",
+                "sameAs": "http://open-data.pref.hyogo.lg.jp/?page_id=141",
+                "license": "https://creativecommons.org/licenses/by/4.0/deed.ja",
+                "distribution": {
+                  "@type": "DataDownload",
+                  "contentUrl": "https://web.pref.hyogo.lg.jp/kk03/corona_kanjyajyokyo.html",
+                  "encodingFormat": "text/html"
+                }
+              }
+            ]
+          }`,
+          type: 'application/ld+json'
+        }
+      ]
     }
   }
 })
