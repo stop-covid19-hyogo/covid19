@@ -21,7 +21,7 @@ const options: NuxtVueI18n.Options.AllOptionsInterface = {
       iso: 'ja-JP',
       file: 'ja.js',
       description: 'Japanese'
-    } /* ,
+    },
     {
       code: 'en',
       name: 'English',
@@ -65,7 +65,7 @@ const options: NuxtVueI18n.Options.AllOptionsInterface = {
       iso: 'ja-JP',
       file: 'ja-Hira.js',
       description: 'Easy Japanese'
-    } */
+    }
   ]
 }
 
