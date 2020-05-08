@@ -22,8 +22,6 @@
           v-if="item.url && isInternalLink(item.url)"
           class="WhatsNew-list-item-anchor"
           :to="localePath(item.url)"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           <time
             class="WhatsNew-list-item-anchor WhatsNew-list-item-anchor-time px-2"
