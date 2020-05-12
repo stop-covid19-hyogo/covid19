@@ -177,16 +177,18 @@ const options: ThisTypedComponentOptionsWithRecordProps<
 > = {
   created() {
     this.canvas = process.browser
-    if (this.defaultDataKind === 'cumulative') {
-      this.dataKind =
-        this.$route.query.embed && this.$route.query.dataKind === 'transition'
-          ? 'transition'
-          : 'cumulative'
-    } else {
-      this.dataKind =
-        this.$route.query.embed && this.$route.query.dataKind === 'cumulative'
-          ? 'cumulative'
-          : 'transition'
+    if (this.showButton) {
+      if (this.defaultDataKind === 'cumulative') {
+        this.dataKind =
+          this.$route.query.embed && this.$route.query.dataKind === 'transition'
+            ? 'transition'
+            : 'cumulative'
+      } else {
+        this.dataKind =
+          this.$route.query.embed && this.$route.query.dataKind === 'cumulative'
+            ? 'cumulative'
+            : 'transition'
+      }
     }
   },
   components: { DataView, DataSelector, DataViewBasicInfoPanel, OpenDataLink },
