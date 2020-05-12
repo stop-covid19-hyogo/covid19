@@ -13,6 +13,7 @@
           '（注）治療中患者数とは、陽性患者数から退院者数と死亡者数を除いた人数を指す'
         )
       "
+      :default-data-kind="'cumulative'"
     />
   </v-col>
 </template>

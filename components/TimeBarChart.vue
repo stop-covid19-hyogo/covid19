@@ -163,6 +163,7 @@ type Props = {
   showButton: boolean
   horizontal: boolean
   useScroll: boolean
+  defaultDataKind: String
   scrollPlugin: Chart.PluginServiceRegistrationOptions[]
   yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[]
 }
@@ -176,10 +177,17 @@ const options: ThisTypedComponentOptionsWithRecordProps<
 > = {
   created() {
     this.canvas = process.browser
-    this.dataKind =
-      this.$route.query.embed && this.$route.query.dataKind === 'cumulative'
-        ? 'cumulative'
-        : 'transition'
+    if (this.defaultDataKind === 'cumulative') {
+      this.dataKind =
+        this.$route.query.embed && this.$route.query.dataKind === 'transition'
+          ? 'transition'
+          : 'cumulative'
+    } else {
+      this.dataKind =
+        this.$route.query.embed && this.$route.query.dataKind === 'cumulative'
+          ? 'cumulative'
+          : 'transition'
+    }
   },
   components: { DataView, DataSelector, DataViewBasicInfoPanel, OpenDataLink },
   props: {
@@ -230,6 +238,11 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       type: Boolean,
       required: false,
       default: true
+    },
+    defaultDataKind: {
+      type: String,
+      required: false,
+      default: 'transition'
     },
     scrollPlugin: {
       type: Array,
