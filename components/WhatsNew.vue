@@ -17,7 +17,7 @@
       </span>-->
     </div>
     <ul class="WhatsNew-list">
-      <li v-for="(item, i) in items" :key="i" class="WhatsNew-list-item">
+      <li v-for="(item, i) in listItems" :key="i" class="WhatsNew-list-item">
         <nuxt-link
           v-if="item.url && isInternalLink(item.url)"
           class="WhatsNew-list-item-anchor"
@@ -67,6 +67,15 @@
           <span>{{ $t(item.text) }}</span>
         </div>
       </li>
+      <div
+        v-if="items.length - showItems > 0"
+        class="WhatsNew-Button"
+        @click="isMore"
+      >
+        <span>
+          {{ $t('もっと見る') }}
+        </span>
+      </div>
     </ul>
   </div>
 </template>
@@ -87,6 +96,17 @@ export default Vue.extend({
     items: {
       type: Array,
       required: true
+    },
+    showItems: {
+      type: Number,
+      required: false,
+      default: 3
+    }
+  },
+  computed: {
+    listItems() {
+      const list = this.items
+      return list.slice(0, this.showItems)
     }
   },
   methods: {
@@ -98,6 +118,10 @@ export default Vue.extend({
     },
     formattedDateForDisplay(dateString: string) {
       return convertDateByCountryPreferTimeFormat(dateString, this.$i18n.locale)
+    },
+    isMore() {
+      // TypeScriptのread-only propertyエラーを回避
+      Object.assign(this, { showItems: this.showItems + 3 })
     }
   }
 })
@@ -109,6 +133,19 @@ export default Vue.extend({
 
   padding: 10px;
   margin-bottom: 20px;
+
+  .WhatsNew-Button {
+    margin: 15px;
+    flex: 1 0 auto;
+    text-align: left;
+    > span {
+      @include button-text('sm');
+    }
+
+    @include lessThan($small) {
+      margin-top: 4px;
+    }
+  }
 
   .WhatsNew-heading {
     display: flex;
