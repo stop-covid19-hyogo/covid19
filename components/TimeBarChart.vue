@@ -163,6 +163,7 @@ type Props = {
   showButton: boolean
   horizontal: boolean
   useScroll: boolean
+  defaultDataKind: String
   scrollPlugin: Chart.PluginServiceRegistrationOptions[]
   yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[]
 }
@@ -176,10 +177,19 @@ const options: ThisTypedComponentOptionsWithRecordProps<
 > = {
   created() {
     this.canvas = process.browser
-    this.dataKind =
-      this.$route.query.embed && this.$route.query.dataKind === 'cumulative'
-        ? 'cumulative'
-        : 'transition'
+    if (this.showButton) {
+      if (this.defaultDataKind === 'cumulative') {
+        this.dataKind =
+          this.$route.query.embed && this.$route.query.dataKind === 'transition'
+            ? 'transition'
+            : 'cumulative'
+      } else {
+        this.dataKind =
+          this.$route.query.embed && this.$route.query.dataKind === 'cumulative'
+            ? 'cumulative'
+            : 'transition'
+      }
+    }
   },
   components: { DataView, DataSelector, DataViewBasicInfoPanel, OpenDataLink },
   props: {
@@ -230,6 +240,11 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       type: Boolean,
       required: false,
       default: true
+    },
+    defaultDataKind: {
+      type: String,
+      required: false,
+      default: 'transition'
     },
     scrollPlugin: {
       type: Array,
@@ -414,10 +429,13 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     displayDataHeader() {
       if (this.dataKind === 'transition') {
         return {
-          labels: ['2020/1/1'],
+          labels: ['2020/1/1', '2020/1/2'],
           datasets: [
             {
-              data: [Math.max(...this.chartData.map(d => d.transition))],
+              data: [
+                Math.max(...this.chartData.map(d => d.transition)),
+                Math.min(...this.chartData.map(d => d.transition))
+              ],
               backgroundColor: 'transparent',
               borderWidth: 0
             }
@@ -425,10 +443,13 @@ const options: ThisTypedComponentOptionsWithRecordProps<
         }
       }
       return {
-        labels: ['2020/1/1'],
+        labels: ['2020/1/1', '2020/1/2'],
         datasets: [
           {
-            data: [Math.max(...this.chartData.map(d => d.cumulative))],
+            data: [
+              Math.max(...this.chartData.map(d => d.cumulative)),
+              Math.min(...this.chartData.map(d => d.cumulative))
+            ],
             backgroundColor: 'transparent',
             borderWidth: 0
           }
@@ -436,7 +457,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       }
     },
     displayOptionHeader() {
-      const scaledTicksYAxisMax = this.scaledTicksYAxisMax
       const options: Chart.ChartOptions = {
         responsive: false,
         maintainAspectRatio: false,
@@ -513,8 +533,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
               ticks: {
                 suggestedMin: 0,
                 maxTicksLimit: 8,
-                fontColor: '#808080', // #808080
-                suggestedMax: scaledTicksYAxisMax
+                fontColor: '#808080' // #808080
               }
             }
           ]

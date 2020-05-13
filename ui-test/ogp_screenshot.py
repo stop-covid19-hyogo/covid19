@@ -23,8 +23,9 @@ PATHS = {
     #"/cards/shinjuku-st-heatmap": (959, 600),
     #"/cards/tokyo-st-heatmap": (959, 600)
     "/cards/patients-by-age": (959, 500),
-    "/cards/patients-by-clusters": (959, 500)
+    "/cards/patients-by-clusters": (959, 500),
     #"/cards/patients-and-sickbeds": (959, 500)
+    "/cards/changes-in-number-of-hospitalized-patients": (959, 500)
 }
 
 options = webdriver.ChromeOptions()

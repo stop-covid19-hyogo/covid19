@@ -185,8 +185,9 @@ const config: Configuration = {
         '/cards/predicted-number-of-toei-subway-passengers',
         '/cards/agency' */
         '/cards/patients-by-age',
-        '/cards/patients-by-clusters'
+        '/cards/patients-by-clusters',
         // '/cards/patients-and-sickbeds'
+        '/cards/change-in-number-of-hospitalized-patients'
       ]
 
       const routes: string[] = []

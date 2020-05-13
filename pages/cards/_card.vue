@@ -48,6 +48,11 @@
     <!-- <patients-and-sickbeds
       v-else-if="this.$route.params.card == 'patients-and-sickbeds'"
     /> -->
+    <changes-patients-number-card
+      v-else-if="
+        this.$route.params.card == 'changes-in-number-of-hospitalized-patients'
+      "
+    />
   </div>
 </template>
 
@@ -61,6 +66,7 @@ import inspectionsSummary from '@/data/inspections_summary.json'
 import age from '@/data/age.json'
 import clustersSummary from '@/data/clusters_summary.json'
 // import sickbedsSummary from '@/data/sickbeds_summary.json'
+import currentPatients from '@/data/current_patients.json'
 import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
 // import TestedCasesDetailsCard from '@/components/cards/TestedCasesDetailsCard.vue'
 import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
@@ -75,6 +81,7 @@ import AgencyCard from '@/components/cards/AgencyCard.vue' */
 import PatientsByAge from '@/components/cards/PatientsByAge.vue'
 import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
 // import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
+import ChangesPatientsNumberCard from '@/components/cards/ChangesPatientsNumberCard'
 import { convertISO8601FormatToDatetime } from '@/utils/formatDate'
 
 export default {
@@ -91,8 +98,9 @@ export default {
     MetroCard,
     AgencyCard */
     PatientsByAge,
-    PatientsByClusters
+    PatientsByClusters,
     // PatientsAndSickbeds
+    ChangesPatientsNumberCard
   },
   data() {
     let title, updatedAt
@@ -153,6 +161,10 @@ export default {
         title = this.$t('入院患者数と残り病床数')
         updatedAt = sickbedsSummary.last_update
         break */
+      case 'changes-in-number-of-hospitalized-patients':
+        title = this.$t('治療中患者数の変化状況')
+        updatedAt = currentPatients.last_update
+        break
     }
 
     const updatedTimeStr = convertISO8601FormatToDatetime(updatedAt)
