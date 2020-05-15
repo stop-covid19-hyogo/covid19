@@ -23,14 +23,14 @@
     <card-row class="DataBlock">
       <!-- 検査陽性者の状況 -->
       <confirmed-cases-details-card />
+      <!-- 治療中患者数の変化状況 -->
+      <changes-patients-number-card />
       <!-- 検査実施状況 -->
       <!--<tested-cases-details-card />-->
       <!-- 陽性患者数 -->
       <confirmed-cases-number-card />
       <!-- 陽性患者数（検査結果判明日別） -->
-      <positive-number-by-diagnosed-date-card />
-      <!-- 陽性患者の属性 -->
-      <confirmed-cases-attributes-card />
+      <!--<positive-number-by-diagnosed-date-card />-->
       <!-- 区市町村別患者数 -->
       <!--<confirmed-cases-by-municipalities-card />-->
       <!-- 陽性率グラフ-->
@@ -48,6 +48,8 @@
       <!--<consultation-desk-reports-number-card />-->
       <!-- 都営地下鉄の利用者数の推移 -->
       <!--<metro-card />-->
+      <!-- 陽性患者の属性 -->
+      <confirmed-cases-attributes-card />
       <!-- 年代別陽性患者数 -->
       <patients-by-age />
       <!-- クラスター別陽性患者数 -->
@@ -56,8 +58,6 @@
       <!--<patients-and-sickbeds />-->
       <!-- 都庁来庁者数の推移 -->
       <!--<agency-card />-->
-      <!-- 治療中患者数の変化状況 -->
-      <changes-patients-number-card />
     </card-row>
   </div>
 </template>
