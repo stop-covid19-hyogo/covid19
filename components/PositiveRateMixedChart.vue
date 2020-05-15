@@ -3,18 +3,6 @@
     <template v-slot:description>
       <slot name="description" />
     </template>
-    <template v-slot:button>
-      <ul :class="$style.GraphDesc">
-        <li>
-          {{ $t('（注）同一の対象者について複数の検体を検査する場合あり') }}
-        </li>
-      </ul>
-      <data-selector
-        v-model="dataKind"
-        :target-id="chartId"
-        :style="{ display: canvas ? 'inline-block' : 'none' }"
-      />
-    </template>
     <ul
       :class="$style.GraphLegend"
       :style="{ display: canvas ? 'block' : 'none' }"
@@ -22,6 +10,14 @@
       <li v-for="(item, i) in items" :key="i" @click="onClickLegend(i)">
         <button>
           <div
+            v-if="i >= 2"
+            :style="{
+              backgroundColor: '#CC7004',
+              borderColor: '#CC7004'
+            }"
+          />
+          <div
+            v-else
             :style="{
               backgroundColor: colors[i].fillColor,
               borderColor: colors[i].strokeColor
@@ -39,7 +35,7 @@
     <h4 :id="`${titleId}-graph`" class="visually-hidden">
       {{ $t(`{title}のグラフ`, { title }) }}
     </h4>
-    <div class="LegendStickyChart">
+    <div :ref="'EveChart'" class="LegendStickyChart">
       <div class="scrollable" :style="{ display: canvas ? 'block' : 'none' }">
         <div :style="{ width: `${chartWidth}px` }">
           <bar
@@ -54,17 +50,19 @@
           />
         </div>
       </div>
-      <bar
-        class="sticky-legend"
-        :style="{ display: canvas ? 'block' : 'none' }"
-        :chart-id="`${chartId}-header`"
-        :chart-data="displayDataHeader"
-        :options="displayOptionHeader"
-        :plugins="yAxesBgPlugin"
-        :display-legends="displayLegends"
-        :height="240"
-        :width="chartWidth"
-      />
+      <div>
+        <bar
+          class="sticky-legend"
+          :style="{ display: canvas ? 'block' : 'none' }"
+          :chart-id="`${chartId}-header-right`"
+          :chart-data="displayDataHeader"
+          :options="displayOptionHeader"
+          :plugins="yAxesBgRightPlugin"
+          :display-legends="displayLegends"
+          :height="240"
+          :width="width"
+        />
+      </div>
     </div>
     <template v-slot:dataTable>
       <v-data-table
@@ -97,11 +95,8 @@
       <data-view-basic-info-panel
         :l-text="displayInfo.lText"
         :s-text="displayInfo.sText"
-        :unit="displayInfo.unit"
+        unit="%"
       />
-    </template>
-    <template v-slot:footer>
-      <open-data-link v-show="url" :url="url" />
     </template>
   </data-view>
 </template>
@@ -115,19 +110,23 @@ import dayjs from 'dayjs'
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
-import OpenDataLink from '@/components/OpenDataLink.vue'
-import { DisplayData, yAxesBgPlugin, scrollPlugin } from '@/plugins/vue-chart'
+import {
+  DisplayData,
+  yAxesBgPlugin,
+  yAxesBgRightPlugin,
+  scrollPlugin
+} from '@/plugins/vue-chart'
 import { getGraphSeriesStyle, SurfaceStyle } from '@/utils/colors'
 
 interface HTMLElementEvent<T extends HTMLElement> extends MouseEvent {
   currentTarget: T
 }
 type Data = {
-  dataKind: 'transition' | 'cumulative'
   canvas: boolean
   displayLegends: boolean[]
   colors: SurfaceStyle[]
   chartWidth: number | null
+  width: number
 }
 type Methods = {
   sum: (array: number[]) => number
@@ -149,6 +148,7 @@ type Computed = {
   displayDataHeader: DisplayData
   displayOptionHeader: Chart.ChartOptions
   scaledTicksYAxisMax: number
+  scaledTicksYAxisMaxRight: number
   tableHeaders: {
     text: TranslateResult
     value: string
@@ -169,9 +169,9 @@ type Props = {
   dataLabels: string[] | TranslateResult[]
   tableLabels: string[] | TranslateResult[]
   unit: string
-  url: string
   scrollPlugin: Chart.PluginServiceRegistrationOptions[]
   yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[]
+  yAxesBgRightPlugin: Chart.PluginServiceRegistrationOptions[]
 }
 
 const options: ThisTypedComponentOptionsWithRecordProps<
@@ -183,12 +183,8 @@ const options: ThisTypedComponentOptionsWithRecordProps<
 > = {
   created() {
     this.canvas = process.browser
-    this.dataKind =
-      this.$route.query.embed && this.$route.query.dataKind === 'cumulative'
-        ? 'cumulative'
-        : 'transition'
   },
-  components: { DataView, DataSelector, DataViewBasicInfoPanel, OpenDataLink },
+  components: { DataView, DataSelector, DataViewBasicInfoPanel },
   props: {
     title: {
       type: String,
@@ -201,7 +197,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     chartId: {
       type: String,
-      default: 'time-stacked-bar-chart'
+      default: 'PositiveRateMixedChart'
     },
     chartData: {
       type: Array,
@@ -233,11 +229,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       type: String,
       default: ''
     },
-    url: {
-      type: String,
-      required: false,
-      default: ''
-    },
     scrollPlugin: {
       type: Array,
       default: () => scrollPlugin
@@ -245,94 +236,102 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     yAxesBgPlugin: {
       type: Array,
       default: () => yAxesBgPlugin
+    },
+    yAxesBgRightPlugin: {
+      type: Array,
+      default: () => yAxesBgRightPlugin
     }
   },
   data: () => ({
-    dataKind: 'transition',
-    displayLegends: [true, true],
+    displayLegends: [true, true, true],
     colors: getGraphSeriesStyle(2),
     chartWidth: null,
-    canvas: true
+    canvas: true,
+    width: 300
   }),
   computed: {
     displayInfo() {
-      if (this.dataKind === 'transition') {
-        return {
-          lText: this.sum(this.pickLastNumber(this.chartData)).toLocaleString(),
-          sText: `${this.$t('{date}の合計', {
-            date: this.labels[this.labels.length - 1]
-          })}`,
-          unit: this.unit
-        }
-      }
       return {
-        lText: this.sum(this.cumulativeSum(this.chartData)).toLocaleString(),
-        sText: `${this.$t('{date}の全体累計', {
-          date: this.labels[this.labels.length - 1]
+        lText: this.pickLastNumber(this.chartData)[2].toLocaleString(),
+        sText: `${this.$t('{date}の陽性率', {
+          date: dayjs(this.labels[this.labels.length - 1]).format('M/D')
         })}`,
         unit: this.unit
       }
     },
     displayData() {
-      const graphSeries = getGraphSeriesStyle(this.chartData.length)
-      if (this.dataKind === 'transition') {
-        return {
-          labels: this.labels,
-          datasets: this.chartData.map((item, index) => {
-            return {
-              label: this.items[index],
-              data: item,
-              backgroundColor: graphSeries[index].fillColor,
-              borderColor: graphSeries[index].strokeColor,
-              borderWidth: 1
-            }
-          })
-        }
-      }
+      const graphSeries = getGraphSeriesStyle(2)
       return {
         labels: this.labels,
-        datasets: this.chartData.map((item, index) => {
-          return {
-            label: this.items[index],
-            data: this.cumulative(item),
-            backgroundColor: graphSeries[index].fillColor,
-            borderColor: graphSeries[index].strokeColor,
-            borderWidth: 1
+        datasets: [
+          {
+            type: 'bar',
+            yAxisID: 'y-axis-1',
+            label: this.items[0],
+            data: this.chartData[0],
+            backgroundColor: graphSeries[0].fillColor,
+            borderColor: graphSeries[0].strokeColor,
+            borderWidth: 1,
+            order: 1
+          },
+          {
+            type: 'bar',
+            yAxisID: 'y-axis-1',
+            label: this.items[1],
+            data: this.chartData[1],
+            backgroundColor: graphSeries[1].fillColor,
+            borderColor: graphSeries[1].strokeColor,
+            borderWidth: 1,
+            order: 2
+          },
+          {
+            type: 'line',
+            yAxisID: 'y-axis-2',
+            label: this.items[2],
+            data: this.chartData[2],
+            pointBackgroundColor: 'rgba(0,0,0,0)',
+            pointBorderColor: 'rgba(0,0,0,0)',
+            borderColor: '#CC7004',
+            borderWidth: 3,
+            fill: false,
+            order: 0,
+            lineTension: 0
           }
-        })
+        ]
       }
     },
     tableHeaders() {
       return [
         { text: this.$t('日付'), value: 'text' },
-        ...(this.tableLabels as string[])
-          .reduce((arr, text) => {
-            arr.push(
-              ...[this.$t('日別'), this.$t('累計')].map(
-                label => `${text} (${label})`
-              )
-            )
-            return arr
-          }, [] as string[])
-          .map((text, i) => {
-            return { text, value: String(i), align: 'end' }
-          })
+        ...(this.tableLabels as string[]).map((text, i) => {
+          return { text, value: String(i), align: 'end' }
+        })
       ]
     },
     tableData() {
       return this.labels
         .map((label, i) => {
           return Object.assign(
-            { text: label },
+            { text: dayjs(label).format('M/D') },
             ...this.tableHeaders.map((_, j) => {
-              const index = j < 2 ? 0 : 1
-              const transition = this.chartData[index]
-              const cumulative = this.cumulative(transition)
-              return {
-                [j]:
-                  j % 2 === 0
-                    ? transition[i].toLocaleString()
-                    : cumulative[i].toLocaleString()
+              if (j <= 1) {
+                const data = this.chartData[j]
+                return {
+                  [j]: data[i].toLocaleString()
+                }
+              }
+              if (j === 2) {
+                const positive = this.chartData[0]
+                const negative = this.chartData[1]
+                return {
+                  [j]: (positive[i] + negative[i]).toLocaleString()
+                }
+              }
+              if (j === 3) {
+                const data = this.chartData[2]
+                return {
+                  [j]: data[i].toLocaleString()
+                }
               }
             })
           )
@@ -342,41 +341,30 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     displayOption() {
       const unit = this.unit
-      const sumArray = this.eachArraySum(this.chartData)
       const data = this.chartData
-      const cumulativeData = this.chartData.map(item => {
-        return this.cumulative(item)
-      })
-      const cumulativeSumArray = this.eachArraySum(cumulativeData)
       const options: Chart.ChartOptions = {
         tooltips: {
           displayColors: false,
           callbacks: {
             label: tooltipItem => {
-              let casesTotal, cases, label
-              if (this.dataKind === 'transition') {
-                casesTotal = sumArray[tooltipItem.index!].toLocaleString()
-                cases = data[tooltipItem.datasetIndex!][
-                  tooltipItem.index!
-                ].toLocaleString()
-              } else {
-                casesTotal = cumulativeSumArray[
-                  tooltipItem.index!
-                ].toLocaleString()
-                cases = cumulativeData[tooltipItem.datasetIndex!][
-                  tooltipItem.index!
-                ].toLocaleString()
-              }
-              label = `${
+              const cases = data[tooltipItem.datasetIndex!][
+                tooltipItem.index!
+              ].toLocaleString()
+              let label = `${
                 this.dataLabels[tooltipItem.datasetIndex!]
               } : ${cases} ${unit}`
-              if (this.dataKind === 'cumulative') {
-                label += ` (${this.$t('合計')}: ${casesTotal} ${unit})`
+              if (this.dataLabels[tooltipItem.datasetIndex!] === '陽性率') {
+                label = `${
+                  this.dataLabels[tooltipItem.datasetIndex!]
+                } : ${cases} %`
               }
               return label
             },
             title(tooltipItem, data) {
-              return String(data.labels![tooltipItem[0].index!])
+              const date = dayjs(
+                data.labels![tooltipItem[0].index!].toString()
+              ).format('M/D')
+              return String(date)
             }
           }
         },
@@ -399,7 +387,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontColor: '#808080',
                 maxRotation: 0,
                 callback: (label: string) => {
-                  return label.split('/')[1]
+                  return dayjs(label).format('D')
                 }
               }
               // #2384: If you set "type" to "time", make sure that the bars at both ends are not hidden.
@@ -423,7 +411,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
               type: 'time',
               time: {
                 unit: 'month',
-                parser: 'M/D',
                 displayFormats: {
                   month: 'MMM'
                 }
@@ -432,16 +419,37 @@ const options: ThisTypedComponentOptionsWithRecordProps<
           ],
           yAxes: [
             {
+              id: 'y-axis-1',
+              position: 'left',
               stacked: true,
               gridLines: {
                 display: true,
-                color: '#E5E5E5'
+                drawOnChartArea: true,
+                color: '#E5E5E5' // #E5E5E5
               },
               ticks: {
                 suggestedMin: 0,
-                suggestedMax: this.scaledTicksYAxisMax,
                 maxTicksLimit: 8,
-                fontColor: '#808080'
+                fontColor: '#808080', // #808080
+                suggestedMax: this.scaledTicksYAxisMax
+              }
+            },
+            {
+              id: 'y-axis-2',
+              position: 'right',
+              gridLines: {
+                display: true,
+                drawOnChartArea: false,
+                color: '#E5E5E5' // #E5E5E5
+              },
+              ticks: {
+                suggestedMin: 0,
+                maxTicksLimit: 8,
+                fontColor: '#808080', // #808080
+                suggestedMax: this.scaledTicksYAxisMaxRight,
+                callback(value) {
+                  return value + '%'
+                }
               }
             }
           ]
@@ -464,17 +472,29 @@ const options: ThisTypedComponentOptionsWithRecordProps<
           n = Number(i)
         }
       }
+      const test = ['2020/1/1']
+      this.labels.map((label, _) => {
+        test.push(label)
+      })
       return {
-        labels: ['2020/1/1'],
+        labels: test,
         datasets: [
           {
             data: [this.displayData.datasets[0].data[n]],
             backgroundColor: 'transparent',
+            yAxisID: 'y-axis-1',
             borderWidth: 0
           },
           {
             data: [this.displayData.datasets[1].data[n]],
             backgroundColor: 'transparent',
+            yAxisID: 'y-axis-1',
+            borderWidth: 0
+          },
+          {
+            data: [this.displayData.datasets[2].data[n]],
+            backgroundColor: 'transparent',
+            yAxisID: 'y-axis-2',
             borderWidth: 0
           }
         ]
@@ -503,7 +523,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 maxRotation: 0,
                 minRotation: 0,
                 callback: (label: string) => {
-                  return label.split('/')[1]
+                  return dayjs(label).format('D')
                 }
               }
             },
@@ -520,25 +540,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontSize: 11,
                 fontColor: 'transparent', // #808080
                 padding: 13, // 3 + 10(tickMarkLength)
-                fontStyle: 'bold',
-                callback: (label: string) => {
-                  const monthStringArry = [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                  ]
-                  const month = monthStringArry.indexOf(label.split(' ')[0]) + 1
-                  return month + '月'
-                }
+                fontStyle: 'bold'
               },
               type: 'time',
               time: {
@@ -548,6 +550,9 @@ const options: ThisTypedComponentOptionsWithRecordProps<
           ],
           yAxes: [
             {
+              id: 'y-axis-1',
+              type: 'linear',
+              position: 'left',
               stacked: true,
               gridLines: {
                 display: true,
@@ -560,6 +565,26 @@ const options: ThisTypedComponentOptionsWithRecordProps<
                 fontColor: '#808080', // #808080
                 suggestedMax: this.scaledTicksYAxisMax
               }
+            },
+            {
+              id: 'y-axis-2',
+              type: 'linear',
+              position: 'right',
+              stacked: true,
+              gridLines: {
+                display: true,
+                drawOnChartArea: false,
+                color: '#E5E5E5' // #E5E5E5
+              },
+              ticks: {
+                suggestedMin: 0,
+                maxTicksLimit: 8,
+                fontColor: '#808080', // #808080
+                suggestedMax: this.scaledTicksYAxisMaxRight,
+                callback(value) {
+                  return value + '%'
+                }
+              }
             }
           ]
         },
@@ -571,6 +596,13 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       let max = 0
       for (const i in this.chartData[0]) {
         max = Math.max(max, this.chartData[0][i] + this.chartData[1][i])
+      }
+      return max
+    },
+    scaledTicksYAxisMaxRight() {
+      let max = 0
+      for (const i in this.chartData[2]) {
+        max = Math.max(max, this.chartData[2][i])
       }
       return max
     }
@@ -632,6 +664,9 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       canvas.setAttribute('role', 'img')
       canvas.setAttribute('aria-labelledby', labelledbyId)
     }
+    const chartelem = this.$refs.EveChart as Element
+    const { width } = getComputedStyle(chartelem)
+    this.width = Number(width.replace('px', '')) + 0.5
   }
 }
 

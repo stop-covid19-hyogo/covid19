@@ -35,7 +35,7 @@ ENCODING = "UTF-8"
 
 # 出力ファイル設定
 OUTPUT_DIR = 'auto-i18n'
-CHECK_RESULT = 'result.csv'
+CHECK_RESULT = 'result_hyogo.csv'
 
 # 東京都版の翻訳ファイルパス
 TOKYO_JA_JSON_PATH = os.path.join(os.pardir, "assets/locales/ja.json")

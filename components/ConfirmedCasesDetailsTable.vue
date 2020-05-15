@@ -51,6 +51,28 @@
             </li>
           </ul>
         </li>
+        <!--<li :class="[$style.box, $style.deceased]">
+          <div :class="$style.pillar">
+            <div :class="$style.content">
+              <span>{{ $t('宿泊療養') }}</span>
+              <span>
+                <strong>{{ 宿泊療養.toLocaleString() }}</strong>
+                <span :class="$style.unit">{{ $t('人') }}</span>
+              </span>
+            </div>
+          </div>
+        </li>
+        <li :class="[$style.box, $style.deceased]">
+          <div :class="$style.pillar">
+            <div :class="$style.content">
+              <span>{{ $t('自宅療養') }}</span>
+              <span>
+                <strong>{{ 自宅療養.toLocaleString() }}</strong>
+                <span :class="$style.unit">{{ $t('人') }}</span>
+              </span>
+            </div>
+          </div>
+        </li>-->
         <li :class="[$style.box, $style.deceased]">
           <div :class="$style.pillar">
             <div :class="$style.content">
@@ -65,10 +87,7 @@
         <li :class="[$style.box, $style.recovered]">
           <div :class="$style.pillar">
             <div :class="$style.content">
-              <span
-                >{{ $t('退院')
-                }}<!--<br />{{ $t('（療養期間経過を含む）') }}--></span
-              >
+              <span>{{ $t('退院') }}</span>
               <span>
                 <strong>{{ 退院.toLocaleString() }}</strong>
                 <span :class="$style.unit">{{ $t('人') }}</span>
@@ -107,6 +126,14 @@ export default Vue.extend({
       type: Number,
       required: true
     },
+    /* 宿泊療養: {
+      type: Number,
+      required: true
+    },
+    自宅療養: {
+      type: Number,
+      required: true
+    }, */
     死亡: {
       type: Number,
       required: true
@@ -166,6 +193,7 @@ $default-boxdiff: 35px;
 
 .box {
   display: flex;
+  overflow: auto;
 
   &.parent {
     border-top: $default-bdw solid $blue-1;
@@ -248,7 +276,7 @@ $default-boxdiff: 35px;
     display: block;
     width: 100%;
 
-    @include font-size(16);
+    @include font-size(14);
 
     &:last-child {
       margin-top: 0.1em;
@@ -260,11 +288,11 @@ $default-boxdiff: 35px;
   }
 
   span strong {
-    @include font-size(18);
+    @include font-size(16);
   }
 
   span.unit {
-    @include font-size(16);
+    @include font-size(14);
   }
 }
 

@@ -2,14 +2,14 @@
   <div class="WhatsNew">
     <div class="WhatsNew-heading">
       <h3 class="WhatsNew-title">
-        <v-icon size="24" class="WhatsNew-title-icon">
+        <v-icon size="2.4rem" class="WhatsNew-title-icon">
           mdi-information
         </v-icon>
         {{ $t('最新のお知らせ') }}
       </h3>
       <!--<span class="WhatsNew-link-to-emergency-page">
         <external-link url="https://web.pref.hyogo.lg.jp/kk03/200129.html">
-          <v-icon size="20" class="WhatsNew-link-to-emergency-page-icon">
+          <v-icon size="2rem" class="WhatsNew-link-to-emergency-page-icon">
             mdi-bullhorn
           </v-icon>
           {{ $t('兵庫県緊急事態措置について') }}
@@ -51,7 +51,7 @@
             <v-icon
               v-if="!isInternalLink(item.url)"
               class="WhatsNew-item-ExternalLinkIcon"
-              size="12"
+              size="1.2rem"
             >
               mdi-open-in-new
             </v-icon>
@@ -169,9 +169,9 @@ export default Vue.extend({
       border: 2px solid $emergency;
       color: $gray-2;
       border-radius: 4px;
-      font-size: 1rem;
       padding: 4px 8px;
       display: inline-flex;
+      @include font-size(16);
       &:hover {
         background-color: $white;
         border-radius: 4px;
@@ -202,7 +202,7 @@ export default Vue.extend({
       &-anchor {
         text-decoration: none;
         margin: 5px;
-        font-size: 14px;
+        @include font-size(14);
 
         @include lessThan($medium) {
           display: flex;

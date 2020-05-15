@@ -27,8 +27,15 @@
       <!--<tested-cases-details-card />-->
       <!-- 陽性患者数 -->
       <confirmed-cases-number-card />
+      <!-- 陽性患者数（検査結果判明日別） -->
+      <positive-number-by-diagnosed-date-card />
       <!-- 陽性患者の属性 -->
       <confirmed-cases-attributes-card />
+      <!-- 区市町村別患者数 -->
+      <!--<confirmed-cases-by-municipalities-card />-->
+      <!-- 陽性率グラフ-->
+      <!--<positive-rate-card />
+      <v-col class="DesktopSpacer" />-->
       <!-- 検査実施人数 -->
       <!--<inspection-persons-number-card />-->
       <!-- 検査実施件数 -->
@@ -52,7 +59,6 @@
       <!-- 治療中患者数の変化状況 -->
       <changes-patients-number-card />
     </card-row>
-    <v-divider />
   </div>
 </template>
 
@@ -74,8 +80,10 @@ import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttri
 import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
 /* import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
 import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
+import PositiveRateCard from '~/components/cards/PositiveRateCard.vue'
 import MetroCard from '@/components/cards/MetroCard.vue'
-import AgencyCard from '@/components/cards/AgencyCard.vue' */
+import AgencyCard from '@/components/cards/AgencyCard.vue'
+import PositiveNumberByDiagnosedDateCard from '@/components/cards/PositiveNumberByDiagnosedDateCard.vue' */
 import PatientsByAge from '@/components/cards/PatientsByAge.vue'
 import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
 // import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
@@ -84,6 +92,7 @@ import { convertISO8601FormatToDatetime } from '@/utils/formatDate'
 
 export default Vue.extend({
   components: {
+    // PositiveRateCard,
     PageHeader,
     WhatsNew,
     // StaticInfo,
@@ -98,7 +107,8 @@ export default Vue.extend({
     /* TelephoneAdvisoryReportsNumberCard,
     ConsultationDeskReportsNumberCard,
     MetroCard,
-    AgencyCard, */
+    AgencyCard,
+    PositiveNumberByDiagnosedDateCard */
     PatientsByAge,
     PatientsByClusters,
     // PatientsAndSickbeds
@@ -230,6 +240,13 @@ export default Vue.extend({
 
       @include lessThan($small) {
         padding: 4px 8px;
+      }
+    }
+
+    .DesktopSpacer {
+      padding: 0;
+      @media screen and (min-width: 960px) {
+        padding: 10px;
       }
     }
   }
