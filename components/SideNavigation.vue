@@ -181,6 +181,10 @@ export default Vue.extend({
           title: this.$t('企業の皆様・はたらく皆様へ'),
           link: this.localePath('/worker'),
           divider: true
+        },
+        {
+          title: this.$t('東京都 新型コロナウイルス感染症 支援情報ナビ'),
+          link: 'https://covid19.supportnavi.metro.tokyo.lg.jp/'
         }, */
         {
           title: this.$t('新型コロナウイルスの対応について'),
@@ -303,8 +307,8 @@ export default Vue.extend({
 
 .SideNavigation-HeaderTitle {
   width: 100%;
-  font-size: 13px;
   color: #707070;
+  @include font-size(13);
   @include largerThan($small) {
     margin: 0;
     margin-top: 10px;
@@ -392,7 +396,7 @@ export default Vue.extend({
 .SideNavigation-LanguageLabel {
   display: block;
   margin-bottom: 5px;
-  font-size: 0.85rem;
+  @include font-size(14);
 }
 
 .SideNavigation-Footer {
@@ -436,9 +440,9 @@ export default Vue.extend({
   display: block;
   margin-top: 15px;
   color: $gray-1;
-  font-size: 10px;
   line-height: 1.3;
   font-weight: bold;
+  @include font-size(10);
 }
 
 .SideNavigation-LicenseLink {

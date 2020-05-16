@@ -19,7 +19,6 @@ export default (data: DataObject[]) => {
   const clusters = Object.keys(data[0]).filter(s => s !== '日付')
   clusters.push('')
   clusters.reverse()
-  clusters.splice(clusters.indexOf('その他'), 1, 'その他.graph')
   const graphData: GraphDataType = {
     datasets: [],
     clusters,
@@ -38,9 +37,6 @@ export default (data: DataObject[]) => {
     graphData.labels.push(dateLable)
     clusters.forEach((dl, j) => {
       if (dl !== '') {
-        if (dl === 'その他.graph') {
-          dl = 'その他'
-        }
         const patients = d[dl]
         if (patients !== 0) {
           graphData.datasets.push(<ChildGraphDataType>{

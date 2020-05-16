@@ -11,10 +11,18 @@
       :unit="$t('件.tested')"
       :data-labels="inspectionsDataLabels"
       :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
+      :table-labels="inspectionsTableLabels"
     >
       <!-- 件.tested = 検査数 -->
-      <!--<template v-if="$i18n.locale !== 'ja-basic'" v-slot:additionalNotes>
+      <!--<template v-slot:description>
         <ul :class="$style.GraphDesc">
+          <li>
+            {{
+              $t(
+                '（注）検査結果の判明日を基準とする。ただし、一部検体採取日に基づくものを含む'
+              )
+            }}
+          </li>
           <li>
             {{ $t('（注）同一の対象者について複数の検体を検査する場合あり') }}
           </li>
@@ -25,8 +33,8 @@
               )
             }}
           </li>
-        </ul>
-      </template>-->
+        </ul> </template
+      >-->
     </time-stacked-bar-chart>
   </v-col>
 </template>
@@ -44,60 +52,6 @@ export default {
   },
   data() {
     // 検査実施日別状況
-    /* const today = new Date()
-    // 直前の木曜日
-    const lastThursday =
-      dayjs().day() <= 4
-        ? dayjs()
-            .startOf('day')
-            .subtract(1, 'week')
-            .day(4)
-        : dayjs()
-            .startOf('day')
-            .day(4)
-    const lastAvailableDate = dayjs(
-      today.getFullYear() +
-        '/' +
-        Data.inspections_summary.labels[
-          Data.inspections_summary.labels.length - 1
-        ]
-    ) // 最新の検査実施日
-    let fromLastThursdayDates = 0
-    if (lastThursday.isBefore(lastAvailableDate)) {
-      fromLastThursdayDates =
-        dayjs.duration(lastAvailableDate.diff(lastThursday)).asDays() + 1 // 直前の木曜日からの日数
-    }
-    const l = Data.inspections_summary.data['都内'].length
-    const beforeLastThursday = []
-    const afterLastThursday = []
-    for (let i = 0; i < l; i++) {
-      // 直前の木曜日前後で振り分け
-      const sum =
-        Data.inspections_summary.data['都内'][i] +
-        (Data.inspections_summary.data['その他'][i]
-          ? Data.inspections_summary.data['その他'][i]
-          : 0)
-      if (l - i > fromLastThursdayDates) {
-        beforeLastThursday.push(sum)
-        afterLastThursday.push(0)
-      } else {
-        beforeLastThursday.push(0)
-        afterLastThursday.push(sum)
-      }
-    }
-    const inspectionsGraph = [beforeLastThursday, afterLastThursday]
-    const inspectionsItems = [
-      this.$t(
-        '健康安全研究センター及び医療機関が保険適用で行った検査件数の合計'
-      ),
-      this.$t(
-        '健康安全研究センターの検査件数のみの速報値（保険適用分を含まない未確定値）'
-      )
-    ]
-    const inspectionsLabels = Data.inspections_summary.labels
-    const inspectionsDataLabels = [this.$t('確定値'), this.$t('未確定値')] */
-
-    // 検査実施日別状況
     const allInspectionsArray = []
     for (let i = 0; i < inspectionsSummary.data['検査検体数'].length; i++) {
       allInspectionsArray.push(
@@ -105,6 +59,7 @@ export default {
           inspectionsSummary.data['陽性確認'][i]
       )
     }
+
     const inspectionsGraph = [
       inspectionsSummary.data['陽性確認'],
       allInspectionsArray
@@ -116,13 +71,18 @@ export default {
       this.$t('陽性確認件数'),
       this.$t('陰性確認件数')
     ]
+    const inspectionsTableLabels = [
+      this.$t('陽性確認件数'),
+      this.$t('陰性確認件数')
+    ]
 
     const data = {
       inspectionsSummary,
       inspectionsGraph,
       inspectionsItems,
       inspectionsLabels,
-      inspectionsDataLabels
+      inspectionsDataLabels,
+      inspectionsTableLabels
     }
     return data
   }
@@ -135,9 +95,9 @@ export default {
     margin: 0;
     margin-top: 1rem;
     padding-left: 0 !important;
-    font-size: 12px;
     color: $gray-3;
     list-style: none;
+    @include font-size(12);
   }
 }
 </style>
