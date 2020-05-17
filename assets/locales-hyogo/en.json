@@ -141,5 +141,6 @@
   "「治療中患者数の変化状況」グラフを追加しました。": "Added \"Changes in number of hospitalized patients\" graph.",
   "もっと見る": "Show more",
   "退院": "Discharged",
-  "入院中": "Hospitalized"
+  "入院中": "Hospitalized",
+  "（注）「入院中」には、宿泊療養の方を含む": "Note: Being hospitalized includes staying at designated accommodations for medical care."
 }
