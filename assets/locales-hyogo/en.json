@@ -136,7 +136,7 @@
   "免責事項 ": "Disclaimers",
   "大阪市": "Osaka City",
   "多言語に対応しました。英語、簡体中国語、繁体中国語、韓国語、やさしい日本語がご利用いただけます。": "Added language support for English, Simplified Chinese, Traditional Chinese, Korean and Plain Japanese.",
-  "（注）治療中患者数とは、陽性患者数から退院者数と死亡者数を除いた人数を指す": "Note: The number of patients under treatments corresponds to the number of positive patients excluding ones discharged and died.",
+  "（注）治療中患者数とは、陽性患者数から退院者数と死亡者数を除いた人数を指す": "(Note) The number of patients under treatments corresponds to the number of positive patients excluding ones discharged and died.",
   "治療中患者数の変化状況": "Changes in number of hospitalized patients",
   "「治療中患者数の変化状況」グラフを追加しました。": "Added \"Changes in number of hospitalized patients\" graph.",
   "もっと見る": "Show more",
