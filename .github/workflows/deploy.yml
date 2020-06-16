@@ -51,3 +51,12 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           event-type: ogp_builder
+
+      - name: Send Notification
+        uses: pullreminders/slack-action@v1
+        with:
+          args: '{\"channel\":\"${SLACK_CHANNEL_ID}\", \"text\":\"`${VERSION}`をリリースしました！\"}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL }}
+          VERSION: ${{ github.event.tag_name }}
