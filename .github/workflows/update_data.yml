@@ -50,3 +50,13 @@ jobs:
         title: ${{ format('Update json data {0}', github.event.head_commit.timestamp) }}
         labels: auto_merge
         branch-suffix: 'short-commit-hash'
+
+    - name : Wait for Pull Request Marge
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '30s'
+
+    - name: Create GitHub release
+      uses: rymndhng/release-on-push-action@master
+      with:
+        bump_version_scheme: patch
