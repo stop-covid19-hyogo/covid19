@@ -57,8 +57,7 @@ jobs:
       - name: Send Notification
         uses: pullreminders/slack-action@v1
         with:
-          args: '{\"channel\":\"${SLACK_CHANNEL_ID}\", \"text\":\"`${VERSION}`をリリースしました！\"}'
+          args: '{\"channel\":\"${SLACK_CHANNEL_ID}\", \"text\":\"本日のデータをリリースしました！\nhttps://stop-covid19-hyogo.org\"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL }}
-          VERSION: ${{ github.event.tag }}
