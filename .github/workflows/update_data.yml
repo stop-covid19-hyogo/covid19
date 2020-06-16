@@ -62,3 +62,9 @@ jobs:
         bump_version_scheme: patch
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
+
+    - name: Trigger of Production Deploy
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        event-type: production_deploy
