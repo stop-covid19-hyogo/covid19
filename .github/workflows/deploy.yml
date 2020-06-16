@@ -55,7 +55,7 @@ jobs:
           event-type: ogp_builder
 
       - name: Send Notification
-        uses: pullreminders/slack-action@v1
+        uses: pullreminders/slack-action@master
         with:
           args: '{\"channel\":\"${SLACK_CHANNEL_ID}\", \"text\":\"本日のデータをリリースしました！\nhttps://stop-covid19-hyogo.org\"}'
         env:
