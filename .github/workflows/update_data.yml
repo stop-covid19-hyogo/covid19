@@ -60,3 +60,5 @@ jobs:
       uses: rymndhng/release-on-push-action@master
       with:
         bump_version_scheme: patch
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
