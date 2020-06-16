@@ -1,9 +1,9 @@
 name: production deploy
 
 on:
-  release:
-    types:
-      - published
+  create:
+    tags:
+      - v*
 
 jobs:
   deploy:
@@ -59,4 +59,4 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL }}
-          VERSION: ${{ github.event.tag_name }}
+          VERSION: ${{ github.event.tag }}
