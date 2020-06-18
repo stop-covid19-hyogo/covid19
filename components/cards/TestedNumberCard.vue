@@ -52,28 +52,23 @@ export default {
   },
   data() {
     // 検査実施日別状況
-    const allInspectionsArray = []
-    for (let i = 0; i < inspectionsSummary.data['検査検体数'].length; i++) {
-      allInspectionsArray.push(
-        inspectionsSummary.data['検査検体数'][i] -
-          inspectionsSummary.data['陽性確認'][i]
-      )
-    }
-
     const inspectionsGraph = [
-      inspectionsSummary.data['陽性確認'],
-      allInspectionsArray
+      inspectionsSummary.data['地方衛生研究所等'],
+      inspectionsSummary.data['民間検査機関等']
     ]
 
-    const inspectionsItems = [this.$t('陽性確認件数'), this.$t('陰性確認件数')]
+    const inspectionsItems = [
+      this.$t('地方衛生研究所等'),
+      this.$t('民間検査機関等')
+    ]
     const inspectionsLabels = inspectionsSummary.labels
     const inspectionsDataLabels = [
-      this.$t('陽性確認件数'),
-      this.$t('陰性確認件数')
+      this.$t('地方衛生研究所等'),
+      this.$t('民間検査機関等')
     ]
     const inspectionsTableLabels = [
-      this.$t('陽性確認件数'),
-      this.$t('陰性確認件数')
+      this.$t('地方衛生研究所等'),
+      this.$t('民間検査機関等')
     ]
 
     const data = {
