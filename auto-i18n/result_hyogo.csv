@@ -189,3 +189,8 @@ TAG_ADD,退院
 TAG_ADD,入院中
 RUN,2020/05/17 18:43
 TAG_ADD,（注）「入院中」には、宿泊療養の方を含む
+RUN,2020/06/18 20:57
+TAG_ADD,地方衛生研究所等
+TAG_ADD,民間検査機関等
+TAG_REMOVE,陽性確認件数
+TAG_REMOVE,陰性確認件数
