@@ -56,6 +56,11 @@ jobs:
       with:
         time: '30s'
 
+    - name: Re checkout development
+      uses: actions/checkout@v2
+      with:
+        ref: 'development'
+
     - name: Create GitHub release
       uses: rymndhng/release-on-push-action@master
       with:
