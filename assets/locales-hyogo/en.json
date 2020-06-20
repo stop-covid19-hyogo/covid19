@@ -78,8 +78,6 @@
   "神戸西警察署": "Kobe Nishi Police Station",
   "西宮市外": "Outlying Nishinomiya City Area",
   "猪名川町": "Inagawa Town",
-  "陽性確認件数": "Number confirmed positive",
-  "陰性確認件数": "Number confirmed negative",
   "（注）重複者とは、複数のクラスターに該当する人を指す": "(Note) Duplicates are people who may be active and counted in more than one cluster",
   "複製・改変が許されたオープンソースライセンスで公開されている、{tokyo}の仕組みを利用しています。": "It uses an open source licence that permits copying and redistribution, and is based on {tokyo}.",
   "当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、{volunteer}が開設したまとめサイトです。": "This website was opened by {volunteer} to provide the latest information on the novel coronavirus disease (COVID-19).",
@@ -142,5 +140,7 @@
   "もっと見る": "Show more",
   "退院": "Discharged",
   "入院中": "Hospitalized",
-  "（注）「入院中」には、宿泊療養の方を含む": "(Note) Being hospitalized includes staying at designated accommodations for medical care."
+  "（注）「入院中」には、宿泊療養の方を含む": "(Note) Being hospitalized includes staying at designated accommodations for medical care.",
+  "地方衛生研究所等": "Prefectural and municipal public health institutes",
+  "民間検査機関等": "Private testing institutes"
 }
