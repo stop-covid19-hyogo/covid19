@@ -4,11 +4,6 @@
       <slot name="description" />
     </template>
     <template v-slot:button>
-      <ul :class="$style.GraphDesc">
-        <li>
-          {{ $t('（注）同一の対象者について複数の検体を検査する場合あり') }}
-        </li>
-      </ul>
       <data-selector
         v-model="dataKind"
         :target-id="chartId"
