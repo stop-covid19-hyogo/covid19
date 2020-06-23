@@ -14,9 +14,9 @@
       :table-labels="inspectionsTableLabels"
     >
       <!-- 件.tested = 検査数 -->
-      <!--<template v-slot:description>
+      <template v-slot:description>
         <ul :class="$style.GraphDesc">
-          <li>
+          <!--<li>
             {{
               $t(
                 '（注）検査結果の判明日を基準とする。ただし、一部検体採取日に基づくものを含む'
@@ -32,9 +32,19 @@
                 '（注）速報値として公開するものであり、後日確定データとして修正される場合あり'
               )
             }}
+          </li>-->
+          <li>
+            {{ $t('（注）同一の対象者について複数の検体を検査する場合あり') }}
           </li>
-        </ul> </template
-      >-->
+          <li>
+            {{
+              $t(
+                '（注）民間検査機関等の検査件数には抗原検査の検査件数も含まれる'
+              )
+            }}
+          </li>
+        </ul>
+      </template>
     </time-stacked-bar-chart>
   </v-col>
 </template>
