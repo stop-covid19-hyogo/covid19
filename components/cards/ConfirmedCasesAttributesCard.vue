@@ -1,17 +1,15 @@
 <template>
   <v-col cols="12" md="6" class="DataCard">
-    <client-only :placeholder="$t('読み込み中')">
-      <data-table
-        :title="$t('陽性患者の属性')"
-        :title-id="'attributes-of-confirmed-cases'"
-        :chart-data="patientsTable"
-        :chart-option="{}"
-        :date="patients.last_update"
-        :info="sumInfoOfPatients"
-        :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
-        :custom-sort="customSort"
-      />
-    </client-only>
+    <data-table
+      :title="$t('陽性患者の属性')"
+      :title-id="'attributes-of-confirmed-cases'"
+      :chart-data="patientsTable"
+      :chart-option="{}"
+      :date="patients.last_update"
+      :info="sumInfoOfPatients"
+      :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
+      :custom-sort="customSort"
+    />
   </v-col>
 </template>
 
@@ -31,12 +29,14 @@ export default {
     const patientsGraph = formatGraph(patientsSummary.data)
     // 感染者数
     const patientsTable = formatTable(patients.data)
+    // 日付
+    const date = patientsGraph[patientsGraph.length - 1].label
 
     const sumInfoOfPatients = {
-      lText: patientsTable.datasets.length.toLocaleString(),
-      sText: this.$t('{date}の累計', {
-        date: patientsGraph[patientsGraph.length - 1].label
-      }),
+      lText: patientsGraph[
+        patientsGraph.length - 1
+      ].cumulative.toLocaleString(),
+      sText: this.$t('{date}の累計', { date }),
       unit: this.$t('人')
     }
 
@@ -63,12 +63,11 @@ export default {
       }
     }
 
-    const data = {
+    return {
       patients,
       patientsTable,
       sumInfoOfPatients
     }
-    return data
   },
   methods: {
     getTranslatedWording(value) {

@@ -11,7 +11,22 @@
       :url="
         'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'
       "
-    />
+    >
+      <template v-slot:description>
+        <ul class="ListStyleNone">
+          <li>
+            {{ $t('（注）重複者とは、複数のクラスターに該当する人を指す') }}
+          </li>
+          <li>
+            {{
+              $t(
+                '（注）クラスター名が長いため、一部表記をアルファベットで置き換えている。詳細はテーブルを参照'
+              )
+            }}
+          </li>
+        </ul>
+      </template>
+    </scatter>
   </v-col>
 </template>
 

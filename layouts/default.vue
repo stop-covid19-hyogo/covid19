@@ -1,6 +1,6 @@
 ﻿<template>
   <v-app class="app">
-    <v-overlay v-if="loading" color="#F8F9FA" opacity="1" z-index="9999">
+    <v-overlay :value="loading" color="#F8F9FA" opacity="1" z-index="9999">
       <div class="loader">
         <img src="/logo.svg" alt="兵庫県" />
         <scale-loader color="#01A0C7" />
@@ -21,7 +21,7 @@
         </v-container>
       </main>
     </div>
-    <div v-else class="embed">
+    <div v-if="!loading && !hasNavigation" class="embed">
       <v-container>
         <nuxt />
       </v-container>
@@ -40,13 +40,11 @@ import SideNavigation from '@/components/SideNavigation.vue'
 import NoScript from '@/components/NoScript.vue'
 import DevelopmentModeMark from '@/components/DevelopmentModeMark.vue'
 import { convertDateToSimpleFormat } from '@/utils/formatDate'
-
 type LocalData = {
   hasNavigation: boolean
   isOpenNavigation: boolean
   loading: boolean
 }
-
 export default Vue.extend({
   components: {
     DevelopmentModeMark,
@@ -64,7 +62,6 @@ export default Vue.extend({
       hasNavigation = false
       loading = false
     }
-
     return {
       hasNavigation,
       loading,
@@ -122,17 +119,13 @@ export default Vue.extend({
         {
           hid: 'description',
           name: 'description',
-          content:
-            this.$t('{date} 更新', {
-              date: convertDateToSimpleFormat(lastUpdate.last_update)
-            }) +
-            ': ' +
-            this.$tc(
-              '兵庫県の新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。'
-            ) +
-            this.$tc(
-              '兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。'
-            )
+          content: `${this.$t('{date} 更新', {
+            date: convertDateToSimpleFormat(lastUpdate.last_update)
+          })}: ${this.$tc(
+            '兵庫県の新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。'
+          )} ${this.$tc(
+            '兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。'
+          )}`
         },
         {
           hid: 'og:site_name',
@@ -153,17 +146,13 @@ export default Vue.extend({
         {
           hid: 'og:description',
           property: 'og:description',
-          content:
-            this.$t('{date} 更新', {
-              date: convertDateToSimpleFormat(lastUpdate.last_update)
-            }) +
-            ': ' +
-            this.$tc(
-              '兵庫県の新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。'
-            ) +
-            this.$tc(
-              '兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。'
-            )
+          content: `${this.$t('{date} 更新', {
+            date: convertDateToSimpleFormat(lastUpdate.last_update)
+          })}: ${this.$tc(
+            '兵庫県の新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。'
+          )} ${this.$tc(
+            '兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。'
+          )}`
         },
         {
           hid: 'og:image',
@@ -191,40 +180,32 @@ export default Vue.extend({
   margin: 0 auto;
   background-color: inherit !important;
 }
-
 .v-application--wrap {
   width: 100%;
 }
-
 .embed {
   .container {
     padding: 0 !important;
   }
-
   .DataCard {
     padding: 0 !important;
   }
 }
-
 .appContainer {
   position: relative;
-
   @include largerThan($small) {
     display: grid;
     grid-template-columns: 240px 1fr;
     grid-template-rows: auto;
   }
-
   @include largerThan($huge) {
     grid-template-columns: 325px 1fr;
     grid-template-rows: auto;
   }
 }
-
 .naviContainer {
   background-color: $white;
 }
-
 @include lessThan($small) {
   .naviContainer {
     position: sticky;
@@ -233,7 +214,6 @@ export default Vue.extend({
     z-index: z-index-of(sp-navigation);
   }
 }
-
 @include largerThan($small) {
   .naviContainer {
     grid-column: 1/2;
@@ -248,33 +228,27 @@ export default Vue.extend({
     overscroll-behavior: contain;
   }
 }
-
 @include largerThan($huge) {
   .naviContainer {
     width: 325px;
   }
 }
-
 .open {
   height: 100vh;
-
   @include largerThan($small) {
     overflow-x: hidden;
     overflow-y: auto;
   }
 }
-
 .mainContainer {
   grid-column: 2/3;
   overflow: hidden;
-
   @include lessThan($small) {
     .container {
       padding-top: 16px;
     }
   }
 }
-
 .loader {
   height: 200px;
   width: 150px;
@@ -282,7 +256,6 @@ export default Vue.extend({
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
-
   img {
     display: block;
     margin: 0 auto 20px;
