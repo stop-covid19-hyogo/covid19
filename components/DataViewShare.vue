@@ -189,8 +189,8 @@ export default Vue.extend({
     twitter() {
       const url = `https://twitter.com/intent/tweet?text=${
         this.title
-      } / ${this.$t('東京都')}${this.$t('新型コロナウイルス感染症')}${this.$t(
-        '対策サイト'
+      } / ${this.$t(
+        '兵庫県 新型コロナウイルスまとめサイト'
       )}&url=${this.permalink(
         true
       )}&hashtags=StopCovid19JP,StopCovid19Hyogo,兵庫コロナ情報`
