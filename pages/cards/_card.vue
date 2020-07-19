@@ -119,7 +119,7 @@ export default {
         updatedAt = sickbedsSummary.last_update
         break */
       case 'changes-in-number-of-hospitalized-patients':
-        cardComponent = 'change-patients-number-card'
+        cardComponent = 'changes-patients-number-card'
         break
     }
 
