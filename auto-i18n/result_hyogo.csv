@@ -203,3 +203,7 @@ TAG_ADD,丹波健康福祉事務所管内
 RUN,2020/07/19 20:24
 TAG_ADD,赤穂市
 TAG_ADD,西脇市
+RUN,2020/07/21 13:02
+TAG_REMOVE,{fixedTime} 時点
+TAG_REMOVE,入院患者数
+TAG_REMOVE,人数
