@@ -60,7 +60,9 @@
           <div>
             <a class="Permalink" :href="permalink">
               <time :datetime="formattedDate">
-                {{ $t('{date} 更新', { date: formattedDateForDisplay }) }}
+                {{
+                  $t('{fixedTime} 時点', { fixedTime: formattedDateForDisplay })
+                }}
               </time>
             </a>
           </div>
