@@ -42,16 +42,16 @@
         }}
       </template>
     </v-data-table>
-    <!--<div class="note">
-      <ul>
+    <template v-slot:additionalDescription>
+      <!--<ul class="ListStyleNone">
         <li>
           {{ $t('※退院は、保健所から報告があり、確認ができているものを反映') }}
         </li>
         <li>
           {{ $t('※死亡退院を含む') }}
         </li>
-      </ul>
-    </div>-->
+      </ul>-->
+    </template>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
         :l-text="info.lText"
@@ -69,11 +69,11 @@
 .cardTable {
   &.v-data-table {
     th {
-      padding: 8px 10px;
-      height: auto;
-      border-bottom: 1px solid $gray-4;
-      color: $gray-2;
-      @include font-size(12);
+      padding: 8px 10px !important;
+      height: auto !important;
+      border-bottom: 1px solid $gray-4 !important;
+      color: $gray-2 !important;
+      @include font-size(12, true);
 
       &.text-center {
         text-align: center;
@@ -87,9 +87,9 @@
           font-weight: normal;
         }
         td {
-          padding: 8px 10px;
-          height: auto;
-          @include font-size(12);
+          padding: 8px 10px !important;
+          height: auto !important;
+          @include font-size(12, true);
 
           &.text-center {
             text-align: center;
@@ -123,17 +123,6 @@
   }
   .v-data-footer__select .v-select__selections .v-select__selection--comma {
     font-size: 1.2rem;
-  }
-}
-.note {
-  margin: 8px 0 0;
-  color: $gray-3;
-  @include font-size(12);
-
-  ul,
-  ol {
-    list-style-type: none;
-    padding: 0;
   }
 }
 .v-menu__content {
@@ -221,8 +210,9 @@ export default Vue.extend({
     const vTables = this.$refs.displayedTable as Vue
     const vTableElement = vTables.$el
     const tables = vTableElement.querySelectorAll('table')
-
-    tables.forEach((table: HTMLElement) => {
+    // NodeListをIE11でforEachするためのワークアラウンド
+    const nodes = Array.prototype.slice.call(tables, 0)
+    nodes.forEach((table: HTMLElement) => {
       table.setAttribute('tabindex', '0')
     })
   }

@@ -6,7 +6,7 @@
       :date="mainSummary.last_update"
     >
       <template v-slot:description>
-        <ul>
+        <ul class="ListStyleNone">
           <li>
             {{
               $t('（注）チャーター機帰国者、クルーズ船乗客等は含まれていない')
@@ -18,9 +18,6 @@
                 '（注）「重症」は、集中治療室（ICU）等での管理又は人工呼吸器管理が必要な患者数を計上'
               )
             }}
-          </li>
-          <li>
-            {{ $t('（注）「退院等」には、療養期間経過を含む。') }}
           </li>
           <li>
             {{
@@ -64,11 +61,10 @@ export default {
     // 検査陽性者の状況
     const confirmedCases = formatConfirmedCases(mainSummary)
 
-    const data = {
+    return {
       mainSummary,
       confirmedCases
     }
-    return data
   }
 }
 </script>

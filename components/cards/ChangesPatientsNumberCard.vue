@@ -8,13 +8,20 @@
       :date="currentPatients.last_update"
       :unit="$t('人')"
       :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
-      :desc="
-        $t(
-          '（注）治療中患者数とは、陽性患者数から退院者数と死亡者数を除いた人数を指す'
-        )
-      "
       :default-data-kind="'cumulative'"
-    />
+    >
+      <template v-slot:description>
+        <ul class="ListStyleNone">
+          <li>
+            {{
+              $t(
+                '（注）治療中患者数とは、陽性患者数から退院者数と死亡者数を除いた人数を指す'
+              )
+            }}
+          </li>
+        </ul>
+      </template>
+    </time-bar-chart>
   </v-col>
 </template>
 

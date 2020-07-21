@@ -11,7 +11,7 @@
       :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
     >
       <template v-slot:description>
-        <!--<ul>
+        <!--<ul class="ListStyleNone">
           <li>
             {{ $t('（注）保健所から発生届が提出された日を基準とする') }}
           </li>
@@ -43,11 +43,10 @@ export default {
     // 感染者数グラフ
     const patientsGraph = formatGraph(patientsSummary.data)
 
-    const data = {
+    return {
       patientsSummary,
       patientsGraph
     }
-    return data
   }
 }
 </script>

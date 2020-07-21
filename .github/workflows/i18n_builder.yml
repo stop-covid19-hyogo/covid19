@@ -7,7 +7,7 @@ on:
 
 jobs:
   i18n-builder:
-    if: false == contains(github.event.commits[0].message, 'Update locales-hyogo/ja.json')
+    if: false == contains(github.event.commits[0].message, 'Update assets/locales-hyogo/ja.json')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout development branch
@@ -31,7 +31,7 @@ jobs:
         uses: peter-evans/create-pull-request@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update locales-hyogo/ja.json
-          title: Update transration files
+          commit-message: Update assets/locales-hyogo/ja.json
+          title: Update translation files
           labels: auto_merge
           branch-suffix: 'short-commit-hash'

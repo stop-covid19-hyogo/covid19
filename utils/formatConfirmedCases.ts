@@ -57,12 +57,16 @@ type ChildDataType = {
 function getSelectedItem(data: DataType, key: string) {
   let result: number | undefined
   const recursiveSearch = (data: ChildDataType) => {
-    if (result) return
+    if (result) {
+      return
+    }
     if (data.attr === key) {
       result = data.value
     } else if (data.children) {
       data.children.forEach((child: ChildDataType) => {
-        if (result) return
+        if (result) {
+          return
+        }
         recursiveSearch(child)
       })
     }
@@ -78,7 +82,7 @@ function getSelectedItem(data: DataType, key: string) {
  * @param data - Raw data
  */
 export default (data: DataType) => {
-  const formattedData: ConfirmedCasesType = {
+  return {
     検査実施人数: getSelectedItem(data, '検査実施人数'),
     陽性者数: getSelectedItem(data, '陽性患者数'),
     入院中: getSelectedItem(data, '入院中'),
@@ -86,6 +90,5 @@ export default (data: DataType) => {
     重症: getSelectedItem(data, '重症'),
     死亡: getSelectedItem(data, '死亡'),
     退院: getSelectedItem(data, '退院')
-  }
-  return formattedData
+  } as ConfirmedCasesType
 }

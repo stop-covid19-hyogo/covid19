@@ -2,7 +2,6 @@ import Vue, { PropType } from 'vue'
 import { ChartData, ChartOptions } from 'chart.js'
 import {
   Doughnut,
-  Pie,
   Bar,
   HorizontalBar,
   Line,
@@ -11,6 +10,7 @@ import {
 } from 'vue-chartjs'
 import { Plugin } from '@nuxt/types'
 import { useDayjsAdapter } from './chartjs-adapter-dayjs'
+import { EventBus, TOGGLE_EVENT } from '@/utils/tab-event-bus.ts'
 
 type ChartVCData = { chartData: ChartData }
 type ChartVCMethod = {
@@ -23,6 +23,9 @@ const VueChartPlugin: Plugin = ({ app }) => {
   useDayjsAdapter(app.i18n)
   createCustomChart()
 }
+
+const rgba0 = 'rgba(255,255,255,0)'
+const rgba1 = 'rgba(255,255,255,1)'
 
 const createCustomChart = () => {
   const { reactiveProp } = mixins
@@ -41,153 +44,70 @@ const createCustomChart = () => {
     chart.update()
   }
 
-  Vue.component<ChartVCData, ChartVCMethod, ChartVCComputed, ChartVCProps>(
-    'doughnut-chart',
-    {
-      extends: Doughnut,
-      mixins: [reactiveProp],
-      props: {
-        displayLegends: {
-          type: Array,
-          default: () => null
-        },
-        options: {
-          type: Object as PropType<ChartOptions>,
-          default: () => {}
-        }
+  const generalChart = Vue.component<
+    ChartVCData,
+    ChartVCMethod,
+    ChartVCComputed,
+    ChartVCProps
+  >('general-chart', {
+    mixins: [reactiveProp],
+    props: {
+      displayLegends: {
+        type: Array,
+        default: () => null
       },
-      watch: {
-        displayLegends: watchDisplayLegends
-      },
-      mounted(): void {
-        this.renderChart(this.chartData, this.options)
+      options: {
+        type: Object as PropType<ChartOptions>,
+        default: () => {}
       }
+    },
+    watch: {
+      displayLegends: watchDisplayLegends,
+      width() {
+        setTimeout(() => this.$data._chart.resize())
+      }
+    },
+    mounted() {
+      setTimeout(() => this.renderChart(this.chartData, this.options))
+
+      // タブ変更時にグラフの`height`を再計算する
+      EventBus.$on(TOGGLE_EVENT, () => {
+        setTimeout(() => this.renderChart(this.chartData, this.options))
+      })
     }
-  )
+  })
 
   Vue.component<ChartVCData, ChartVCMethod, ChartVCComputed, ChartVCProps>(
-    'pie-chart',
+    'line-chart',
     {
-      extends: Pie,
-      mixins: [reactiveProp],
-      props: {
-        displayLegends: {
-          type: Array,
-          default: () => null
-        },
-        options: {
-          type: Object as PropType<ChartOptions>,
-          default: () => {}
-        }
-      },
-      watch: {
-        displayLegends: watchDisplayLegends
-      },
-      mounted(): void {
-        this.renderChart(this.chartData, this.options)
-      }
+      mixins: [reactiveProp, Line, generalChart]
     }
   )
 
   Vue.component<ChartVCData, ChartVCMethod, ChartVCComputed, ChartVCProps>(
     'bar',
     {
-      extends: Bar,
-      mixins: [reactiveProp],
-      props: {
-        displayLegends: {
-          type: Array,
-          default: () => []
-        },
-        options: {
-          type: Object,
-          default: () => {}
-        }
-      },
-      watch: {
-        displayLegends: watchDisplayLegends
-      },
-      mounted(): void {
-        setTimeout(() => {
-          this.renderChart(this.chartData, this.options)
-        })
-      }
+      mixins: [reactiveProp, Bar, generalChart]
     }
   )
 
   Vue.component<ChartVCData, ChartVCMethod, ChartVCComputed, ChartVCProps>(
     'horizontal-bar',
     {
-      extends: HorizontalBar,
-      mixins: [reactiveProp],
-      props: {
-        displayLegends: {
-          type: Array,
-          default: () => []
-        },
-        options: {
-          type: Object,
-          default: () => {}
-        }
-      },
-      watch: {
-        displayLegends: watchDisplayLegends
-      },
-      mounted(): void {
-        setTimeout(() => {
-          this.renderChart(this.chartData, this.options)
-        })
-      }
+      mixins: [reactiveProp, HorizontalBar, generalChart]
     }
   )
-
   Vue.component<ChartVCData, ChartVCMethod, ChartVCComputed, ChartVCProps>(
-    'line-chart',
+    'doughnut-chart',
     {
-      extends: Line,
-      mixins: [reactiveProp],
-      props: {
-        displayLegends: {
-          type: Array,
-          default: () => []
-        },
-        options: {
-          type: Object,
-          default: () => {}
-        }
-      },
-      watch: {
-        displayLegends: watchDisplayLegends
-      },
-      mounted(): void {
-        this.renderChart(this.chartData, this.options)
-      }
+      mixins: [reactiveProp, Doughnut, generalChart]
     }
   )
 
   Vue.component<ChartVCData, ChartVCMethod, ChartVCComputed, ChartVCProps>(
     'scatter',
     {
-      extends: Scatter,
-      mixins: [reactiveProp],
-      props: {
-        displayLegends: {
-          type: Array,
-          default: () => []
-        },
-        options: {
-          type: Object,
-          default: () => {}
-        }
-      },
-      watch: {
-        displayLegends: watchDisplayLegends
-      },
-      mounted(): void {
-        setTimeout(() => {
-          this.renderChart(this.chartData, this.options)
-        })
-      }
+      mixins: [reactiveProp, Scatter, generalChart]
     }
   )
 }
@@ -197,7 +117,7 @@ export default VueChartPlugin
 export const yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[] = [
   {
     beforeDraw(chartInstance) {
-      const ctx = chartInstance.ctx!
+      const ctx = chartInstance.ctx as CanvasRenderingContext2D
 
       // プロットエリアマスク用
       ctx.fillStyle = '#fff'
@@ -215,14 +135,14 @@ export const yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[] = [
         chartInstance.chartArea.left,
         0
       )
-      gradient.addColorStop(0, 'rgba(255,255,255,1)')
-      gradient.addColorStop(1, 'rgba(255,255,255,0)')
+      gradient.addColorStop(0, rgba1)
+      gradient.addColorStop(1, rgba0)
       ctx.fillStyle = gradient
       ctx.fillRect(
         0,
         chartInstance.chartArea.bottom + 1,
         chartInstance.chartArea.left,
-        chartInstance.height! - chartInstance.chartArea.bottom - 1
+        (chartInstance.height as number) - chartInstance.chartArea.bottom - 1
       )
     }
   }
@@ -231,14 +151,14 @@ export const yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[] = [
 export const yAxesBgRightPlugin: Chart.PluginServiceRegistrationOptions[] = [
   {
     beforeDraw(chartInstance) {
-      const ctx = chartInstance.ctx!
+      const ctx = chartInstance.ctx as CanvasRenderingContext2D
 
       // プロットエリアマスク用
       ctx.fillStyle = '#fff'
       ctx.fillRect(
         chartInstance.chartArea.right,
         0,
-        chartInstance.width!,
+        chartInstance.width as number,
         chartInstance.chartArea.bottom + 1
       )
       ctx.fillRect(
@@ -251,7 +171,7 @@ export const yAxesBgRightPlugin: Chart.PluginServiceRegistrationOptions[] = [
       const gradientr = ctx.createLinearGradient(
         chartInstance.chartArea.right,
         0,
-        chartInstance.width!,
+        chartInstance.width as number,
         0
       )
       const gradient = ctx.createLinearGradient(
@@ -260,37 +180,24 @@ export const yAxesBgRightPlugin: Chart.PluginServiceRegistrationOptions[] = [
         chartInstance.chartArea.left,
         0
       )
-      gradient.addColorStop(0, 'rgba(255,255,255,1)')
-      gradient.addColorStop(1, 'rgba(255,255,255,0)')
-      gradientr.addColorStop(1, 'rgba(255,255,255,0)')
-      gradientr.addColorStop(0, 'rgba(255,255,255,1)')
+      gradient.addColorStop(0, rgba1)
+      gradient.addColorStop(1, rgba0)
+      gradientr.addColorStop(1, rgba0)
+      gradientr.addColorStop(0, rgba1)
       ctx.fillStyle = gradientr
       ctx.fillRect(
         chartInstance.chartArea.right,
         chartInstance.chartArea.bottom + 1,
-        chartInstance.width!,
-        chartInstance.height! - chartInstance.chartArea.bottom - 1
+        chartInstance.width as number,
+        (chartInstance.height as number) - chartInstance.chartArea.bottom - 1
       )
       ctx.fillStyle = gradient
       ctx.fillRect(
         0,
         chartInstance.chartArea.bottom + 1,
         chartInstance.chartArea.left,
-        chartInstance.height! - chartInstance.chartArea.bottom - 1
+        (chartInstance.height as number) - chartInstance.chartArea.bottom - 1
       )
-    }
-  }
-]
-export const scrollPlugin: Chart.PluginServiceRegistrationOptions[] = [
-  {
-    beforeInit(chartInstance) {
-      const fn = () => {
-        try {
-          chartInstance.canvas!.parentElement!.parentElement!.parentElement!.scrollLeft! = chartInstance.width!
-        } catch (e) {}
-      }
-      window.addEventListener('resize', fn)
-      fn()
     }
   }
 ]
@@ -298,6 +205,11 @@ export const scrollPlugin: Chart.PluginServiceRegistrationOptions[] = [
 export interface DataSets<T = number> extends ChartData {
   data: T[]
 }
+
+export interface DataSetsPoint<T = { x: string; y: number }> extends ChartData {
+  data: T[]
+}
+
 export interface DisplayData<T = number, U = string> {
   labels?: U[]
   datasets: DataSets<T>[]

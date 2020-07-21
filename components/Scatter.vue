@@ -1,69 +1,35 @@
 <template>
   <data-view :title="title" :title-id="titleId" :date="date">
     <template v-slot:description>
-      <ul :class="$style.GraphDesc">
-        <li>
-          {{ $t('（注）重複者とは、複数のクラスターに該当する人を指す') }}
-        </li>
-        <li>
-          {{
-            $t(
-              '（注）クラスター名が長いため、一部表記をアルファベットで置き換えている。詳細はテーブルを参照'
-            )
-          }}
-        </li>
-      </ul>
+      <slot name="description" />
     </template>
     <h4 :id="`${titleId}-graph`" class="visually-hidden">
       {{ $t(`{title}のグラフ`, { title }) }}
     </h4>
-    <div class="LegendStickyChart">
-      <div class="scrollable" :style="{ display: canvas ? 'block' : 'none' }">
-        <div :style="{ width: `${chartWidth}px` }">
-          <scatter
-            :ref="'scatterChart'"
-            :chart-id="chartId"
-            :chart-data="displayData"
-            :options="displayOption"
-            :plugins="scrollPlugin"
-            :height="240"
-            :width="chartWidth"
-          />
-        </div>
-      </div>
-      <scatter
-        class="sticky-legend"
-        :style="{ display: canvas ? 'block' : 'none' }"
-        :chart-id="`${chartId}-header`"
-        :chart-data="displayDataHeader"
-        :options="displayOptionHeader"
-        :plugins="yAxesBgPlugin"
-        :height="240"
-        :width="chartWidth"
-      />
-    </div>
+    <scrollable-chart v-show="canvas" :display-data="displayData">
+      <template v-slot:chart="{ chartWidth }">
+        <scatter
+          :ref="'scatterChart'"
+          :chart-id="chartId"
+          :chart-data="displayData"
+          :options="displayOption"
+          :height="240"
+          :width="chartWidth"
+        />
+      </template>
+      <template v-slot:sticky-chart>
+        <scatter
+          class="sticky-legend"
+          :chart-id="`${chartId}-header`"
+          :chart-data="displayDataHeader"
+          :options="displayOptionHeader"
+          :plugins="yAxesBgPlugin"
+          :height="240"
+        />
+      </template>
+    </scrollable-chart>
     <template v-slot:dataTable>
-      <v-data-table
-        :headers="tableHeaders"
-        :items="tableData"
-        :items-per-page="-1"
-        :hide-default-footer="true"
-        :height="240"
-        :fixed-header="true"
-        :disable-sort="true"
-        :mobile-breakpoint="0"
-        class="cardTable"
-        item-key="name"
-      >
-        <template v-slot:body="{ items }">
-          <tbody>
-            <tr v-for="item in items" :key="item.text">
-              <th>{{ item['クラスター'] }}</th>
-              <td class="text-end">{{ item['人数'] }}</td>
-            </tr>
-          </tbody>
-        </template>
-      </v-data-table>
+      <data-view-table :headers="tableHeaders" :items="tableData" />
     </template>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
@@ -80,7 +46,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { TranslateResult } from 'vue-i18n'
 import { ThisTypedComponentOptionsWithRecordProps } from 'vue/types/options'
 import { Chart } from 'chart.js'
 import {
@@ -89,15 +54,20 @@ import {
 } from '@/utils/formatClustersScatter'
 import DataView from '@/components/DataView.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+import DataViewTable, {
+  TableHeader,
+  TableItem
+} from '@/components/DataViewTable.vue'
+import ScrollableChart from '@/components/ScrollableChart.vue'
 import OpenDataLink from '@/components/OpenDataLink.vue'
-import { DisplayData, yAxesBgPlugin, scrollPlugin } from '@/plugins/vue-chart'
+import { DisplayData, yAxesBgPlugin } from '@/plugins/vue-chart'
 
 import { getGraphSeriesStyle } from '@/utils/colors'
+import { getComplementedDate } from '@/utils/formatDate'
 
 type Data = {
   dataKind: 'transition'
   canvas: boolean
-  chartWidth: number | null
 }
 type Methods = {
   numberToColumnNameList: (num: number) => string[]
@@ -115,13 +85,8 @@ type Computed = {
   displayOption: Chart.ChartOptions
   displayDataHeader: DisplayData
   displayOptionHeader: Chart.ChartOptions
-  tableHeaders: {
-    text: TranslateResult
-    value: string
-  }[]
-  tableData: {
-    [key: string]: string
-  }[]
+  tableHeaders: TableHeader[]
+  tableData: TableItem[]
 }
 type Props = {
   title: string
@@ -132,7 +97,6 @@ type Props = {
   unit: string
   info: object
   url: string
-  scrollPlugin: Chart.PluginServiceRegistrationOptions[]
   yAxesBgPlugin: Chart.PluginServiceRegistrationOptions[]
 }
 
@@ -146,7 +110,13 @@ const options: ThisTypedComponentOptionsWithRecordProps<
   created() {
     this.canvas = process.browser
   },
-  components: { DataView, DataViewBasicInfoPanel, OpenDataLink },
+  components: {
+    DataView,
+    DataViewBasicInfoPanel,
+    DataViewTable,
+    ScrollableChart,
+    OpenDataLink
+  },
   props: {
     title: {
       type: String,
@@ -187,10 +157,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       required: false,
       default: ''
     },
-    scrollPlugin: {
-      type: Array,
-      default: () => scrollPlugin
-    },
     yAxesBgPlugin: {
       type: Array,
       default: () => yAxesBgPlugin
@@ -198,7 +164,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
   },
   data: () => ({
     dataKind: 'transition',
-    chartWidth: null,
     canvas: true
   }),
   computed: {
@@ -219,6 +184,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       }
     },
     displayOption() {
+      const self = this
       const unit = this.unit
       const data = this.chartData
       const translatedClusters = this.chartData.clusters.map(cluster => {
@@ -239,11 +205,14 @@ const options: ThisTypedComponentOptionsWithRecordProps<
               } ${unit}`
             },
             title(tooltipItem: any) {
-              return data.datasets[tooltipItem[0].index].x
+              const label = data.datasets[tooltipItem[0].index].x
+              return self.$d(
+                new Date(getComplementedDate(label)),
+                'dateWithoutYear'
+              )
             }
           }
         },
-        responsive: false,
         maintainAspectRatio: false,
         legend: {
           display: false
@@ -339,7 +308,6 @@ const options: ThisTypedComponentOptionsWithRecordProps<
         this.chartData.clusters.length
       )
       const options: Chart.ChartOptions = {
-        responsive: false,
         maintainAspectRatio: false,
         legend: {
           display: false
@@ -419,10 +387,10 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     tableHeaders() {
       return [
-        { text: this.$t('クラスター/感染源'), value: 'クラスター' },
+        { text: this.$t('クラスター/感染源'), value: 'text' },
         {
           text: this.$t('人数'),
-          value: '人数',
+          value: '0',
           align: 'end'
         }
       ]
@@ -432,20 +400,17 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       const clustersAlphabet = this.numberToColumnNameList(
         this.chartData.clusters.length
       )
-      const data: { [x: string]: any }[] = []
+      const data: TableItem[] = []
       clusters.forEach((dl, i) => {
         if (dl !== '') {
           data.push({
-            クラスター: `${clustersAlphabet[i]}) ${this.$t(dl)}`,
-            人数: 0
+            text: `${clustersAlphabet[i]}) ${this.$t(dl)}`,
+            0: 0
           })
         }
       })
       this.chartData.datasets.forEach(d => {
-        data[clusters.indexOf(clusters[d.y - 1])]['人数'] += d.label
-      })
-      data.forEach((d, i) => {
-        data[i]['人数'] = d['人数'].toLocaleString()
+        data[clusters.indexOf(clusters[d.y - 1])][0] += d.label
       })
       return data.reverse()
     }
@@ -470,19 +435,9 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     }
   },
   mounted() {
-    if (this.$el) {
-      this.chartWidth =
-        ((this.$el!.clientWidth - 22 * 2 - 38) / 30) *
-          this.displayData.labels!.length +
-        38
-      this.chartWidth = Math.max(
-        this.$el!.clientWidth - 22 * 2,
-        this.chartWidth
-      )
-    }
     const scatterChart = this.$refs.scatterChart as Vue
-    const barElement = scatterChart.$el
-    const canvas = barElement.querySelector('canvas')
+    const scatterElement = scatterChart.$el
+    const canvas = scatterElement.querySelector('canvas')
     const labelledbyId = `${this.titleId}-graph`
 
     if (canvas) {
@@ -495,38 +450,10 @@ const options: ThisTypedComponentOptionsWithRecordProps<
 export default Vue.extend(options)
 </script>
 
-<style module lang="scss">
-.Graph {
-  &Desc {
-    width: 100%;
-    margin: 0;
-    margin-bottom: 0 !important;
-    padding-left: 0 !important;
-    font-size: 12px;
-    color: $gray-3;
-    list-style: none;
-  }
-  &Legend {
-    text-align: center;
-    list-style: none;
-    padding: 0 !important;
-    li {
-      display: inline-block;
-      margin: 0 3px;
-      div {
-        height: 12px;
-        margin: 2px 4px;
-        width: 40px;
-        display: inline-block;
-        vertical-align: middle;
-        border-width: 1px;
-        border-style: solid;
-      }
-      button {
-        color: $gray-3;
-        font-size: 12px;
-      }
-    }
-  }
+<style lang="scss" scoped>
+.Graph-Desc {
+  margin: 10px 0;
+  font-size: 12px;
+  color: $gray-3;
 }
 </style>
