@@ -16,7 +16,6 @@
   "新型コロナウイルス": "COVID-19",
   "PDF": "PDF",
   "（注）病床数は兵庫県が公開する{data}を参照": "(Note) Refer to {data} published by Hyogo Prefecture for the total number of beds",
-  "{fixedTime} 時点": "{fixedTime} Last update",
   "兵庫県公式Twitter": "Hyogo Prefecture Official Twitter",
   "記者発表資料": "Press release materials",
   "menu/新型コロナウイルス": "Hyogo COVID-19 Summary website",
@@ -63,10 +62,8 @@
   "西宮市": "Nishinomiya City",
   "伊丹市": "Itami City",
   "神戸市外": "Outlying Kobe City Area",
-  "入院患者数": "Number of hospitalized patients",
   "残り病床数": "Number of remaining sickbeds",
   "兵庫県知事からのメッセージ": "Message from Governor Ido on COVID-19 ",
-  "人数": "Number of people",
   "クラスター/感染源": "Cluster/Source of infection",
   "高砂市": "Takasago City",
   "大阪府": "Osaka Prefecture",
@@ -143,5 +140,10 @@
   "（注）「入院中」には、宿泊療養の方を含む": "(Note) Being hospitalized includes staying at designated accommodations for medical care.",
   "地方衛生研究所等": "Prefectural and municipal public health institutes",
   "民間検査機関等": "Private testing institutes",
-  "（注）民間検査機関等の検査件数には抗原検査の検査件数も含まれる": "(Note) The number of tests at private testing institutes includes the number of antigen tests."
+  "（注）民間検査機関等の検査件数には抗原検査の検査件数も含まれる": "(Note) The number of tests at private testing institutes includes the number of antigen tests.",
+  "三木市": "Miki City",
+  "丹波健康福祉事務所管内": "Tamba Area Health and Welfare Office",
+  "赤穂市": "Ako City",
+  "西脇市": "Nisiwaki City",
+  "{fixedTime} 時点": "{fixedTime} Last update"
 }
