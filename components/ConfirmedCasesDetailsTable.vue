@@ -40,7 +40,7 @@
             </li>
           </ul>
         </li>
-        <!--<li :class="[$style.box]">
+        <li :class="[$style.box]">
           <div :class="$style.content">
             <span>{{ $t('宿泊療養') }}</span>
             <span>
@@ -49,7 +49,7 @@
             </span>
           </div>
         </li>
-        <li :class="[$style.box]">
+        <!--<li :class="[$style.box]">
           <div :class="$style.content">
             <span>{{ $t('自宅療養') }}</span>
             <span>
@@ -116,11 +116,11 @@ export default Vue.extend({
       type: Number,
       required: true
     },
-    /* 宿泊療養: {
+    宿泊療養: {
       type: Number,
       required: true
     },
-    自宅療養: {
+    /* 自宅療養: {
       type: Number,
       required: true
     },
