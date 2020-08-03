@@ -93,7 +93,7 @@ export default (data: DataType) => {
     入院中: getSelectedItem(data, '入院中'),
     軽症中等症: getSelectedItem(data, '軽症・中等症'),
     重症: getSelectedItem(data, '重症'),
-    宿泊療養: getSelectedItem(data, '宿泊療養')
+    宿泊療養: getSelectedItem(data, '宿泊療養'),
     死亡: getSelectedItem(data, '死亡'),
     退院: getSelectedItem(data, '退院')
   } as ConfirmedCasesType
