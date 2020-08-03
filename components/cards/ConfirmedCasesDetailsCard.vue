@@ -26,9 +26,6 @@
               )
             }}
           </li>-->
-          <li>
-            {{ $t('（注）「入院中」には、宿泊療養の方を含む') }}
-          </li>
         </ul>
       </template>
       <confirmed-cases-details-table
