@@ -1,28 +1,28 @@
 {
     "attr": "検査実施人数",
-    "value": 30276,
+    "value": 30984,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 1484,
+            "value": 1533,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 247,
+                    "value": 241,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 239
+                            "value": 231
                         },
                         {
                             "attr": "重症",
-                            "value": 8
+                            "value": 10
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 62
+                    "value": 66
                 },
                 {
                     "attr": "死亡",
@@ -30,10 +30,10 @@
                 },
                 {
                     "attr": "退院",
-                    "value": 1128
+                    "value": 1179
                 }
             ]
         }
     ],
-    "last_update": "2020-08-07T00:00:00+09:00"
+    "last_update": "2020-08-08T00:00:00+09:00"
 }
