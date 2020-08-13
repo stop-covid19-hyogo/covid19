@@ -1,0 +1,87 @@
+[
+    {
+        "message": "5/4の陽性件数に間違いがある可能性があります。累計が合いません(差分:1)",
+        "file": "inspections, summary",
+        "fixed": false
+    },
+    {
+        "message": "5/5の陽性件数に間違いがある可能性があります。累計が合いません(差分:1)",
+        "file": "inspections, summary",
+        "fixed": false
+    },
+    {
+        "message": "5/6の陽性件数に間違いがある可能性があります。累計が合いません(差分:1)",
+        "file": "inspections, summary",
+        "fixed": false
+    },
+    {
+        "message": "5/7の陽性件数に間違いがある可能性があります。累計が合いません(差分:1)",
+        "file": "inspections, summary",
+        "fixed": false
+    },
+    {
+        "message": "7/13の陽性件数に間違いがある可能性があります。累計が合いません(差分:1)",
+        "file": "inspections, summary",
+        "fixed": false
+    },
+    {
+        "message": "7/14の陽性件数に間違いがある可能性があります。累計が合いません(差分:-8)",
+        "file": "inspections, summary",
+        "fixed": false
+    },
+    {
+        "message": "7/15の陽性件数に間違いがある可能性があります。累計が合いません(差分:1)",
+        "file": "inspections, summary",
+        "fixed": false
+    },
+    {
+        "message": "7/16の陽性件数に間違いがある可能性があります。累計が合いません(差分:1)",
+        "file": "inspections, summary",
+        "fixed": false
+    },
+    {
+        "message": "751番の患者データに間違いがある可能性があります。発症日が不適切です(神戸市)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "931番の患者データに間違いがある可能性があります。発症日が不適切です(なし)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1019番の患者データに間違いがある可能性があります。発症日が不適切です(なし)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1055番の患者データに間違いがある可能性があります。居住地が定型に当てはまっていません(加古川健康事務所管内)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1208番の患者データに間違いがある可能性があります。居住地が定型に当てはまっていません(加古川健康事務所管内)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1209番の患者データに間違いがある可能性があります。居住地が定型に当てはまっていません(加古川健康事務所管内)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1251番の患者データに間違いがある可能性があります。居住地が定型に当てはまっていません(加古川健康事務所管内)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1503番の患者番号に間違いがある可能性があります。上の行の番号との差が1ではありません(上の行の番号:1502)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1502番の患者番号に間違いがある可能性があります。上の行の番号との差が1ではありません(上の行の番号:1505)",
+        "file": "patients",
+        "fixed": false
+    }
+]
