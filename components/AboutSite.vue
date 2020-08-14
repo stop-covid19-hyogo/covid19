@@ -1,7 +1,7 @@
 <template>
   <div class="AboutSite">
     <div class="AboutSite-heading">
-      <h3 class="AboutSite-title">当サイトについて</h3>
+      <h3 class="AboutSite-title">{{ $t('当サイトについて') }}</h3>
     </div>
     <div class="AboutSite-body">
       <i18n
