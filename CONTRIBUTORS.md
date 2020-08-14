@@ -17,6 +17,7 @@
 | [Kentaro Ohkouchi (Rotary E-Club of Hyogo)](https://github.com/nanasess)| Programing |
 | [Shingo Kosaka (Kobe City Hall)](https://github.com/SKosaka)| Coding |
 | [rioil](https://github.com/rioil)| Coding |
+| [kai0310](https://github.com/kai0310)| Coding |
 | -add your name here!- | -what did you do?- |
 
 ご協力に感謝です！！！
