@@ -4,11 +4,14 @@
       <h3 class="AboutSite-title">当サイトについて</h3>
     </div>
     <div class="AboutSite-body">
-      <p>
-        当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。
-      </p>
+      <i18n
+        tag="p"
+        path="当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、{volunteer}が開設したまとめサイトです。"
+      >
+        <template v-slot:volunteer />
+      </i18n>
       <div class="AboutSite-Button">
-        <nuxt-link class="link" to="/about">詳細</nuxt-link>
+        <nuxt-link class="link" to="/about">{{ $t('もっと見る') }}</nuxt-link>
       </div>
     </div>
   </div>
