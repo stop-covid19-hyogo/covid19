@@ -8,7 +8,7 @@
         tag="p"
         path="当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、{volunteer}が開設したまとめサイトです。"
       >
-        <template v-slot:volunteer />
+        <template v-slot:volunteer>{{ $t('有志の仲間') }}</template>
       </i18n>
       <div class="AboutSite-Button">
         <nuxt-link class="link" to="/about">{{ $t('もっと見る') }}</nuxt-link>
