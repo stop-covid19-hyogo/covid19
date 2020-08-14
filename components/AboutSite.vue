@@ -11,7 +11,9 @@
         <template v-slot:volunteer>{{ $t('有志の仲間') }}</template>
       </i18n>
       <div class="AboutSite-Button">
-        <nuxt-link class="link" to="/about">{{ $t('もっと見る') }}</nuxt-link>
+        <nuxt-link class="link" to="/about">{{
+          $t('詳しくはこちら')
+        }}</nuxt-link>
       </div>
     </div>
   </div>
