@@ -77,12 +77,12 @@
     {
         "message": "1503番の患者番号に間違いがある可能性があります。上の行の番号との差が1ではありません(上の行の番号:1502)",
         "file": "patients",
-        "fixed": false
+        "fixed": true
     },
     {
         "message": "1502番の患者番号に間違いがある可能性があります。上の行の番号との差が1ではありません(上の行の番号:1505)",
         "file": "patients",
-        "fixed": false
+        "fixed": true
     },
     {
         "message": "1695番の患者データに間違いがある可能性があります。発症日が不適切です(軽症)",
@@ -91,6 +91,166 @@
     },
     {
         "message": "1698番の患者データに間違いがある可能性があります。発症日が不適切です(軽症)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "44番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "78番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "107番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "416番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "458番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "554番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "579番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "584番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "607番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "638番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "681番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "699番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "776番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1250番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1318番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1646番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1647番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1649番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1650番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1651番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1657番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1658番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1694番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1695番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1696番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1697番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1698番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1700番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1736番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1739番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1791番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
+        "file": "patients",
+        "fixed": false
+    },
+    {
+        "message": "1802番の患者データに間違いがある可能性があります。年代が不適切です(90歳以上)",
         "file": "patients",
         "fixed": false
     }
