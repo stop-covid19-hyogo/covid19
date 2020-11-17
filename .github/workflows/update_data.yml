@@ -45,7 +45,7 @@ jobs:
         git commit -m "update json data `date '+%Y-%m-%dT%H:%M:%SZ'`"
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v2
+      uses: peter-evans/create-pull-request@v3
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         title: ${{ format('Update json data {0}', github.event.head_commit.timestamp) }}
