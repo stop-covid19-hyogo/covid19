@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/en/cards/patients-by-age", {data:[{}],fetch:[],mutations:void 0});
