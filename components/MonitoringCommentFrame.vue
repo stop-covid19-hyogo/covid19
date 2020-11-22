@@ -4,7 +4,7 @@
       class="MonitoringCommentFrame"
       :style="{ borderColor: `${colors[level]}` }"
     >
-      <p>{{ $t(comment) }}</p>
+      <p>{{ $t(status) }}</p>
     </div>
     <div
       class="MonitoringCommentFrameAfter"
@@ -26,7 +26,7 @@ export default Vue.extend({
       required: true,
       default: 0
     },
-    comment: {
+    status: {
       type: String,
       required: true,
       default: ''
@@ -34,7 +34,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      colors: ['#96cd5f', '#fffc4e', '#fdbe40', '#fa1629']
+      colors: ['#5dbaf0', '#96cd5f', '#fdbe40', '#fa1629', '#bababa']
     }
   }
 })
