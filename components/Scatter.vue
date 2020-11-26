@@ -297,7 +297,8 @@ const options: ThisTypedComponentOptionsWithRecordProps<
           {
             data: [this.chartData.clusters.length],
             backgroundColor: 'transparent',
-            borderWidth: 0
+            borderWidth: 0,
+            borderColor: 'transparent'
           }
         ]
       }
