@@ -57,7 +57,7 @@
               <span :class="$style.unit">{{ $t('人') }}</span>
             </span>
           </div>
-        </li>
+        </li>-->
         <li :class="[$style.box]">
           <div :class="$style.content">
             <span>{{ $t('入院・療養等調整中') }}</span>
@@ -66,7 +66,7 @@
               <span :class="$style.unit">{{ $t('人') }}</span>
             </span>
           </div>
-        </li>-->
+        </li>
         <li :class="[$style.box]">
           <div :class="$style.content">
             <span>{{ $t('死亡') }}</span>
@@ -123,11 +123,11 @@ export default Vue.extend({
     /* 自宅療養: {
       type: Number,
       required: true
-    },
+    }, */
     調査中: {
       type: Number,
       required: true
-    }, */
+    },
     死亡: {
       type: Number,
       required: true
@@ -150,7 +150,7 @@ $default-boxdiff: 35px;
   width: 100%;
   box-sizing: border-box;
   color: $blue-1;
-  line-height: 1.35;
+  line-height: 1.7;
 
   * {
     box-sizing: border-box;
