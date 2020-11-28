@@ -150,7 +150,7 @@ $default-boxdiff: 35px;
   width: 100%;
   box-sizing: border-box;
   color: $blue-1;
-  line-height: 1.35;
+  line-height: 1.7;
 
   * {
     box-sizing: border-box;
