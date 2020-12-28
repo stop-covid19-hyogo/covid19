@@ -69,6 +69,15 @@
         </li>
         <li :class="[$style.box]">
           <div :class="$style.content">
+            <span>{{ $t('その他医療機関福祉施設等') }}</span>
+            <span>
+              <strong>{{ その他.toLocaleString() }}</strong>
+              <span :class="$style.unit">{{ $t('人') }}</span>
+            </span>
+          </div>
+        </li>
+        <li :class="[$style.box]">
+          <div :class="$style.content">
             <span>{{ $t('死亡') }}</span>
             <span>
               <strong>{{ 死亡.toLocaleString() }}</strong>
@@ -117,6 +126,10 @@ export default Vue.extend({
       required: true
     },
     宿泊療養: {
+      type: Number,
+      required: true
+    },
+    その他: {
       type: Number,
       required: true
     },
