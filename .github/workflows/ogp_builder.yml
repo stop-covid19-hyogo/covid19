@@ -10,17 +10,40 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-    - name: Checkout development
-      uses: actions/checkout@v2
-    - run: pip3 install selenium
-    - run: python3 ./ui-test/ogp_screenshot.py
-      env:
-        TZ: Asia/Tokyo
-    - name: Upload screenshot
-      uses: actions/upload-artifact@v1
-      with:
-        name: ogp
-        path: ogp
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.extract_branch.outputs.branch }}
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - run: yarn install --frozen-lockfile
+      - run: yarn run test
+      - run: yarn run generate:deploy
+      - run: pip3 install selenium
+      - run: (python3 -m http.server --directory ./dist 8000 &)  ; python3 ./ui-test/ogp_screenshot.py
+        env:
+          TZ: Asia/Tokyo
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v1
+        with:
+          name: ogp
+          path: ogp
+
   upload-stg:
     if: github.ref == 'refs/heads/staging'
     needs: build
