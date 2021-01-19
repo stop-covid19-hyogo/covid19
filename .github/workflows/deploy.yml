@@ -1,11 +1,9 @@
 name: production deploy
 
 on:
-  release:
-    types:
-      - published
-  repository_dispatch:
-    types: [production_deploy]
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:
