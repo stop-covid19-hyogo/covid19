@@ -50,11 +50,10 @@ jobs:
           publish_dir: ./dist
           publish_branch: prod-pages
 
-      - name: Trigger of OGP Builder
-        uses: peter-evans/repository-dispatch@v1
+      - name: Create GitHub release
+        uses: rymndhng/release-on-push-action@master
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          event-type: ogp_builder
+          bump_version_scheme: patch
 
       - name: Send Notification
         uses: pullreminders/slack-action@master
