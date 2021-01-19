@@ -1,8 +1,10 @@
 name: OGP Builder
 
 on:
-  repository_dispatch:
-    types: [ogp_builder]
+  push:
+    branches:
+      - master
+      - staging
 
 jobs:
   build:
@@ -10,8 +12,6 @@ jobs:
     steps:
     - name: Checkout development
       uses: actions/checkout@v2
-      with:
-        ref: development
     - run: pip3 install selenium
     - run: python3 ./ui-test/ogp_screenshot.py
       env:
@@ -21,14 +21,15 @@ jobs:
       with:
         name: ogp
         path: ogp
-  upload:
+  upload-stg:
+    if: github.ref == 'refs/heads/staging'
     needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout prod-pages
       uses: actions/checkout@v2
       with:
-        ref: prod-pages
+        ref: stg-pages
     - name: Download screenshot
       uses: actions/download-artifact@v1
       with:
@@ -44,4 +45,30 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: prod-pages
+        branch: stg-pages
+
+  upload-prod:
+    if: github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout prod-pages
+        uses: actions/checkout@v2
+        with:
+          ref: prod-pages
+      - name: Download screenshot
+        uses: actions/download-artifact@v1
+        with:
+          name: ogp
+          path: ogp
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ogp
+          git commit -m "Update OGP images"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: prof-pages
