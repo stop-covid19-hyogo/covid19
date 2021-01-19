@@ -44,7 +44,7 @@ for lang in ("ja", "en", "zh-cn", "zh-tw", "ko", "ja-basic"):
     for path, size in PATHS.items():
         driver.set_window_size(*size)
         driver.get(
-            "https://stop-covid19-hyogo.org:443{}?ogp=true".format(
+            "http://localhost:8000{}?ogp=true".format(
                 path if lang == "ja" else "/{}{}".format(lang, path)
             )
         )
