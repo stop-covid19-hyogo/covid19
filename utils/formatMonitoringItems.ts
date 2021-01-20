@@ -15,6 +15,8 @@ type DataKey =
   | '(7)重症患者数'
   | '(7)重症患者確保病床数'
 
+type DataCommentKey = '総括コメント-感染状況' | '総括コメント-医療提供体制'
+
 type RawData = {
   '(1)新規陽性者数': number
   '(2)#7119（東京消防庁救急相談センター）における発熱等相談件数 ': number
@@ -27,6 +29,19 @@ type RawData = {
   '(6)入院患者確保病床数': string
   '(7)重症患者数': number
   '(7)重症患者確保病床数': string
+}
+
+interface Comment {
+  level: number
+  display: {
+    '@ja': string
+    '@en': string
+  }
+}
+
+type RawDataComment = {
+  '総括コメント-感染状況': Comment
+  '総括コメント-医療提供体制': Comment
 }
 
 // -----------------------------------------
@@ -49,11 +64,11 @@ export type Unit = {
  *
  * @param data - Raw data
  */
-export default (rawDataObj: RawData): MonitoringItems => {
+export const formatMonitoringItems = (rawDataObj: RawData): MonitoringItems => {
   const unitPerson: Unit = { text: '人', translatable: true }
   const unitReports: Unit = {
     text: '件.reports',
-    translatable: true
+    translatable: true,
   }
   const unitPercentage: Unit = { text: '%', translatable: false }
 
@@ -63,7 +78,7 @@ export default (rawDataObj: RawData): MonitoringItems => {
   return {
     '(1)新規陽性者数': {
       value: toNumberIn10thPlace(rawDataObj['(1)新規陽性者数']),
-      unit: unitPerson
+      unit: unitPerson,
     },
     '(2)#7119（東京消防庁救急相談センター）における発熱等相談件数 ': {
       value: toNumberIn10thPlace(
@@ -71,49 +86,85 @@ export default (rawDataObj: RawData): MonitoringItems => {
           '(2)#7119（東京消防庁救急相談センター）における発熱等相談件数 '
         ]
       ),
-      unit: unitReports
+      unit: unitReports,
     },
     '(3)新規陽性者における接触歴等不明者（人数）': {
       value: toNumberIn10thPlace(
         rawDataObj['(3)新規陽性者における接触歴等不明者（人数）']
       ),
-      unit: unitPerson
+      unit: unitPerson,
     },
     '(3)新規陽性者における接触歴等不明者（増加比）': {
       value: toNumberIn10thPlace(
         rawDataObj['(3)新規陽性者における接触歴等不明者（増加比）']
       ),
-      unit: unitPercentage
+      unit: unitPercentage,
     },
     '(4)PCR・抗原検査（検査人数）': {
       value: toNumberIn10thPlace(rawDataObj['(4)PCR・抗原検査（検査人数）']),
-      unit: unitPerson
+      unit: unitPerson,
     },
     '(4)PCR・抗原検査（陽性率）': {
       value: toNumberIn10thPlace(rawDataObj['(4)PCR・抗原検査（陽性率）']),
-      unit: unitPercentage
+      unit: unitPercentage,
     },
     '(5)救急医療の東京ルールの適用件数': {
       value: toNumberIn10thPlace(
         rawDataObj['(5)救急医療の東京ルールの適用件数']
       ),
-      unit: unitReports
+      unit: unitReports,
     },
     '(6)入院患者数': {
       value: toInteger(rawDataObj['(6)入院患者数']),
-      unit: unitPerson
+      unit: unitPerson,
     },
     '(6)入院患者確保病床数': {
       value: rawDataObj['(6)入院患者確保病床数'],
-      unit: null
+      unit: null,
     },
     '(7)重症患者数': {
       value: toInteger(rawDataObj['(7)重症患者数']),
-      unit: unitPerson
+      unit: unitPerson,
     },
     '(7)重症患者確保病床数': {
       value: rawDataObj['(7)重症患者確保病床数'],
-      unit: null
-    }
+      unit: null,
+    },
+  }
+}
+
+export type MonitoringCommentItems = Record<DataCommentKey, MonitoringComment>
+
+export type MonitoringComment = {
+  level: number
+  display: {
+    '@ja': string
+    '@en': string
+  }
+}
+
+/**
+ * monitoring_items_json から総括コメントのみ抜き出し
+ *
+ * @param data - Raw data
+ */
+export const formatMonitoringComment = (
+  rawDataObj: RawDataComment
+): MonitoringCommentItems => {
+  return {
+    '総括コメント-感染状況': {
+      level: rawDataObj['総括コメント-感染状況'].level,
+      display: {
+        '@ja': rawDataObj['総括コメント-感染状況'].display['@ja'],
+        '@en': rawDataObj['総括コメント-感染状況'].display['@en'],
+      },
+    },
+    '総括コメント-医療提供体制': {
+      level: rawDataObj['総括コメント-医療提供体制'].level,
+      display: {
+        '@ja': rawDataObj['総括コメント-医療提供体制'].display['@ja'],
+        '@en': rawDataObj['総括コメント-医療提供体制'].display['@en'],
+      },
+    },
   }
 }

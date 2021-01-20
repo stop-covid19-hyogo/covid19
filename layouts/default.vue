@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <v-app class="app">
     <v-overlay :value="loading" color="#F8F9FA" opacity="1" z-index="9999">
       <div class="loader">
@@ -11,8 +11,8 @@
         <side-navigation
           :is-navi-open="isOpenNavigation"
           :class="{ open: isOpenNavigation }"
-          @openNavi="openNavigation"
-          @closeNavi="hideNavigation"
+          @open-navigation="openNavigation"
+          @close-navigation="closeNavigation"
         />
       </div>
       <main class="mainContainer" :class="{ open: isOpenNavigation }">
@@ -33,13 +33,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { MetaInfo } from 'vue-meta'
+import { LinkPropertyHref, MetaInfo } from 'vue-meta'
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
-import lastUpdate from '@/data/last_update.json'
-import SideNavigation from '@/components/SideNavigation.vue'
-import NoScript from '@/components/NoScript.vue'
+
 import DevelopmentModeMark from '@/components/DevelopmentModeMark.vue'
+import NoScript from '@/components/NoScript.vue'
+import SideNavigation from '@/components/SideNavigation.vue'
+// import Data from '@/data/data.json'
+import lastUpdate from '@/data/last_update.json'
 import { convertDateToSimpleFormat } from '@/utils/formatDate'
+import { getLinksLanguageAlternative } from '@/utils/i18nUtils'
+
 type LocalData = {
   hasNavigation: boolean
   isOpenNavigation: boolean
@@ -50,7 +54,7 @@ export default Vue.extend({
     DevelopmentModeMark,
     ScaleLoader,
     SideNavigation,
-    NoScript
+    NoScript,
   },
   data(): LocalData {
     let hasNavigation = true
@@ -65,26 +69,26 @@ export default Vue.extend({
     return {
       hasNavigation,
       loading,
-      isOpenNavigation: false
+      isOpenNavigation: false,
     }
   },
   mounted() {
     this.loading = false
-    this.getMatchMedia().addListener(this.hideNavigation)
+    this.getMatchMedia().addListener(this.closeNavigation)
   },
   beforeDestroy() {
-    this.getMatchMedia().removeListener(this.hideNavigation)
+    this.getMatchMedia().removeListener(this.closeNavigation)
   },
   methods: {
     openNavigation(): void {
       this.isOpenNavigation = true
     },
-    hideNavigation(): void {
+    closeNavigation(): void {
       this.isOpenNavigation = false
     },
     getMatchMedia(): MediaQueryList {
       return window.matchMedia('(min-width: 601px)')
-    }
+    },
   },
   head(): MetaInfo {
     const { htmlAttrs, meta } = this.$nuxtI18nSeo()
@@ -94,19 +98,30 @@ export default Vue.extend({
         : {
             hid: 'og:locale',
             name: 'og:locale',
-            content: this.$i18n.locale
+            content: this.$i18n.locale,
           }
+
+    let linksAlternate: LinkPropertyHref[] = []
+    const basename = this.getRouteBaseName()
+    // 404 エラーなどのときは this.getRouteBaseName() が null になるため除外
+    if (basename) {
+      linksAlternate = getLinksLanguageAlternative(
+        basename,
+        this.$i18n.locales,
+        this.$i18n.defaultLocale
+      )
+    }
+
+    // const { lastUpdate } = Data
+
     return {
       htmlAttrs,
       link: [
         {
           rel: 'canonical',
-          href: `https://stop-covid19-hyogo.org${this.$route.path}`
+          href: `https://stop-covid19-hyogo.org${this.$route.path}`,
         },
-        {
-          rel: 'stylesheet',
-          href: 'https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css'
-        }
+        ...linksAlternate,
       ],
       titleTemplate:
         '%s | ' + this.$tc('兵庫県 新型コロナウイルスまとめサイト'),
@@ -114,64 +129,64 @@ export default Vue.extend({
         {
           hid: 'author',
           name: 'author',
-          content: this.$tc('兵庫県')
+          content: this.$tc('兵庫県'),
         },
         {
           hid: 'description',
           name: 'description',
           content: `${this.$t('{date} 更新', {
-            date: convertDateToSimpleFormat(lastUpdate.last_update)
+            date: convertDateToSimpleFormat(lastUpdate.last_update),
           })}: ${this.$tc(
             '兵庫県の新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。'
           )} ${this.$tc(
             '兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。'
-          )}`
+          )}`,
         },
         {
           hid: 'og:site_name',
           property: 'og:site_name',
-          content: this.$tc('兵庫県 新型コロナウイルスまとめサイト')
+          content: this.$tc('兵庫県 新型コロナウイルスまとめサイト'),
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://stop-covid19-hyogo.org${this.$route.path}`
+          content: `https://stop-covid19-hyogo.org${this.$route.path}`,
         },
         ogLocale,
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.$tc('兵庫県 新型コロナウイルスまとめサイト')
+          content: this.$tc('兵庫県 新型コロナウイルスまとめサイト'),
         },
         {
           hid: 'og:description',
           property: 'og:description',
           content: `${this.$t('{date} 更新', {
-            date: convertDateToSimpleFormat(lastUpdate.last_update)
+            date: convertDateToSimpleFormat(lastUpdate.last_update),
           })}: ${this.$tc(
             '兵庫県の新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、有志の仲間が開設したまとめサイトです。'
           )} ${this.$tc(
             '兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。'
-          )}`
+          )}`,
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.$tc('ogp.og:image')
+          content: this.$tc('ogp.og:image'),
         },
         {
           hid: 'apple-mobile-web-app-title',
           name: 'apple-mobile-web-app-title',
-          content: this.$tc('兵庫県 新型コロナウイルスまとめサイト')
+          content: this.$tc('兵庫県 新型コロナウイルスまとめサイト'),
         },
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: this.$tc('ogp.og:image')
-        }
-      ]
+          content: this.$tc('ogp.og:image'),
+        },
+      ],
     }
-  }
+  },
 })
 </script>
 <style lang="scss">

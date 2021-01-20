@@ -1,65 +1,63 @@
 <template>
-  <div>
-    <card-row class="DataBlock">
-      <!-- 検査陽性者の状況 -->
-      <confirmed-cases-details-card />
-      <!-- 治療中患者数の変化状況 -->
-      <changes-patients-number-card />
-      <!-- 陽性患者数 -->
-      <confirmed-cases-number-card />
-      <!-- 検査実施件数 -->
-      <tested-number-card />
-      <!-- 陽性患者の属性 -->
-      <confirmed-cases-attributes-card />
-      <!-- 年代別陽性患者数 -->
-      <patients-by-age />
-      <!-- クラスター別陽性患者数 -->
-      <patients-by-clusters />
-      <!-- 入院患者数と残り病床数 -->
-      <!--<patients-and-sickbeds />-->
-    </card-row>
-  </div>
+  <cards-lazy-row :rows="rows" />
 </template>
 
 <script lang="ts">
+/* eslint-disable simple-import-sort/sort -- ブラウザでの表示順に合わせて各 card の component を import する */
 import Vue from 'vue'
-import CardRow from '@/components/cards/CardRow.vue'
-import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
-import ChangesPatientsNumberCard from '@/components/cards/ChangesPatientsNumberCard.vue'
-import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
-import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
-import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
-import PatientsByAge from '@/components/cards/PatientsByAge.vue'
-import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
-// import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
+
+// 検査陽性者の状況
+const ConfirmedCasesDetailsCard = () =>
+  import('@/components/cards/ConfirmedCasesDetailsCard.vue')
+// 治療中患者数の変化状況
+const ChangesPatientsNumberCard = () =>
+  import('@/components/cards/ChangesPatientsNumberCard.vue')
+// 陽性患者数
+const ConfirmedCasesNumberCard = () =>
+  import('@/components/cards/ConfirmedCasesNumberCard.vue')
+// 検査実施件数
+const TestedNumberCard = () => import('@/components/cards/TestedNumberCard.vue')
+// 陽性患者の属性
+const ConfirmedCasesAttributesCard = () =>
+  import('@/components/cards/ConfirmedCasesAttributesCard.vue')
+// 年齢別陽性患者数
+const PatientsByAge = () => import('@/components/cards/PatientsByAge.vue')
+// クラスター別陽性患者数
+const PatientsByClusters = () =>
+  import('@/components/cards/PatientsByClusters.vue')
+// 入院患者数と残り病床数
+// const PatientsAndSickbeds = () =>
+//   import('@/components/cards/PatientsAndSickbeds.vue')
+/* eslint-enable simple-import-sort/sort */
 
 export default Vue.extend({
-  components: {
-    CardRow,
-    ConfirmedCasesDetailsCard,
-    ChangesPatientsNumberCard,
-    ConfirmedCasesNumberCard,
-    TestedNumberCard,
-    ConfirmedCasesAttributesCard,
-    PatientsByAge,
-    PatientsByClusters
-    // PatientsAndSickbeds
-  }
+  data() {
+    return {
+      rows: [
+        [ConfirmedCasesDetailsCard, ChangesPatientsNumberCard],
+        [ConfirmedCasesNumberCard, TestedNumberCard],
+        [ConfirmedCasesAttributesCard, PatientsByAge],
+        [
+          PatientsByClusters,
+          /* PatientsAndSickbeds, */
+        ],
+      ],
+    }
+  },
 })
 </script>
 
 <style lang="scss" scoped>
-.DataBlock {
-  margin: 20px -8px;
+.AttentionNote {
+  margin: 10px 0;
+  padding: 12px;
+  background-color: $emergency;
+  border-radius: 4px;
+  color: $gray-2;
+  @include font-size(12);
 
-  .DataCard {
-    @include largerThan($medium) {
-      padding: 10px;
-    }
-
-    @include lessThan($small) {
-      padding: 4px 8px;
-    }
+  p {
+    margin: 0;
   }
 }
 </style>
