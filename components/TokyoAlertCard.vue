@@ -19,18 +19,19 @@
 
 <script lang="ts">
 import Vue from 'vue'
+
 import ActiveTokyoAlert from '@/components/ActiveTokyoAlert.vue'
 import tokyoAlert from '@/data/tokyo_alert.json'
 
 export default Vue.extend({
   components: {
-    ActiveTokyoAlert
+    ActiveTokyoAlert,
   },
   data() {
     return {
-      tokyoAlert
+      tokyoAlert,
     }
-  }
+  },
 })
 </script>
 

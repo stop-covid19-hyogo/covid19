@@ -58,13 +58,13 @@
         <div>
           <slot name="footer" />
           <div>
-            <a class="Permalink" :href="permalink">
+            <app-link class="Permalink" :to="permalink">
               <time :datetime="formattedDate">
                 {{
                   $t('{fixedTime} 時点', { fixedTime: formattedDateForDisplay })
                 }}
               </time>
-            </a>
+            </app-link>
           </div>
         </div>
 
@@ -82,44 +82,48 @@
 <script lang="ts">
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
-import { convertISO8601FormatToDatetime } from '@/utils/formatDate'
+
+import AppLink from '@/components/AppLink.vue'
 import DataViewExpantionPanel from '@/components/DataViewExpantionPanel.vue'
 import DataViewShare from '@/components/DataViewShare.vue'
+import { convertISO8601FormatToDatetime } from '@/utils/formatDate'
 
 export default Vue.extend({
-  components: { DataViewExpantionPanel, DataViewShare },
+  components: { DataViewExpantionPanel, DataViewShare, AppLink },
   props: {
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     titleId: {
       type: String,
-      default: ''
+      default: '',
     },
     date: {
       type: String,
-      default: ''
+      default: '',
     },
     headTitle: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   computed: {
     formattedDate(): string {
       return convertISO8601FormatToDatetime(this.date)
     },
     formattedDateForDisplay(): string {
-      return this.$d(
-        new Date(convertISO8601FormatToDatetime(this.date)),
-        'dateTime'
-      )
+      return this.date !== ''
+        ? this.$d(
+            new Date(convertISO8601FormatToDatetime(this.date)),
+            'dateTime'
+          )
+        : ''
     },
     permalink(): string {
       const permalink = `/cards/${this.titleId}`
       return this.localePath(permalink)
-    }
+    },
   },
   head(): MetaInfo {
     // カードの個別ページの場合は、タイトルと更新時刻を`page/cards/_card`に渡す
@@ -131,17 +135,21 @@ export default Vue.extend({
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.headTitle ? this.headTitle : this.title
+          content: this.headTitle ? this.headTitle : this.title,
         },
-        { hid: 'description', name: 'description', content: this.date },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.formattedDateForDisplay,
+        },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.date
-        }
-      ]
+          content: this.formattedDateForDisplay,
+        },
+      ],
     }
-  }
+  },
 })
 </script>
 
@@ -194,7 +202,7 @@ export default Vue.extend({
       margin-bottom: 0;
 
       &.with-infoPanel {
-        flex: 0 1 auto;
+        flex: 1 1 50%;
         margin-right: 24px;
       }
     }
@@ -205,8 +213,7 @@ export default Vue.extend({
   }
 
   &-InfoPanel {
-    flex: 1 0 auto;
-    max-width: 50%;
+    flex: 1 1 50%;
   }
 
   &-DataSetPanel {

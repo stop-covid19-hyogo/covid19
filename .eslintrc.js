@@ -1,10 +1,10 @@
 module.exports = {
-  plugins: ['eslint-plugin-tsdoc'],
+  plugins: ['eslint-plugin-tsdoc', 'simple-import-sort'],
   extends: [
     '@nuxtjs/eslint-config-typescript',
     'prettier/vue',
     'prettier',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   rules: {
     'vue/max-attributes-per-line': 'off',
@@ -12,17 +12,18 @@ module.exports = {
       'error',
       {
         html: {
-          void: 'always'
-        }
-      }
+          void: 'always',
+        },
+      },
     ],
     'prettier/prettier': [
       'error',
       {
         semi: false,
-        singleQuote: true
-      }
+        singleQuote: true,
+      },
     ],
-    'tsdoc/syntax': 'error'
-  }
+    'tsdoc/syntax': 'error',
+    'simple-import-sort/sort': 'error',
+  },
 }

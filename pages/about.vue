@@ -9,12 +9,12 @@
         path="当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、{volunteer}が開設したまとめサイトです。"
       >
         <template v-slot:volunteer>
-          <external-link
-            url="https://github.com/stop-covid19-hyogo/covid19/blob/development/CONTRIBUTORS.md"
+          <app-link
+            to="https://github.com/stop-covid19-hyogo/covid19/blob/development/CONTRIBUTORS.md"
             :icon-size="16"
           >
             {{ $t('有志の仲間') }}
-          </external-link>
+          </app-link>
         </template>
       </i18n>
       <i18n
@@ -22,12 +22,9 @@
         path="複製・改変が許されたオープンソースライセンスで公開されている、{tokyo}の仕組みを利用しています。"
       >
         <template v-slot:tokyo>
-          <external-link
-            url="https://stopcovid19.metro.tokyo.lg.jp/"
-            :icon-size="16"
-          >
+          <app-link to="https://stopcovid19.metro.tokyo.lg.jp/" :icon-size="16">
             {{ $t('東京都公式新型コロナウイルス感染症対策サイト') }}
-          </external-link>
+          </app-link>
         </template>
       </i18n>
       <p>
@@ -45,22 +42,19 @@
         path="本サイトで公表しているデータは、{catalogWebsite}より誰でも自由にダウンロードが可能です。（データは順次追加予定です）"
       >
         <template v-slot:catalogWebsite>
-          <external-link
-            url="http://open-data.pref.hyogo.lg.jp/"
-            :icon-size="16"
-          >
+          <app-link to="http://open-data.pref.hyogo.lg.jp/" :icon-size="16">
             {{ $t('ひょうごオープンデータカタログ') }}
-          </external-link>
+          </app-link>
         </template>
       </i18n>
       <p>
         {{ $t('このサイトの内容物は') }}
-        <external-link
-          :url="$t('https://creativecommons.org/licenses/by/4.0/deed.ja')"
+        <app-link
+          :to="$t('https://creativecommons.org/licenses/by/4.0/deed.ja')"
           :icon-size="16"
         >
           {{ $t('クリエイティブ・コモンズ 表示 4.0 ライセンス') }}
-        </external-link>
+        </app-link>
         {{ $t('の下に提供されています。') }}
       </p>
     </static-card>
@@ -192,8 +186,8 @@
       </p>
       <ul>
         <li>
-          <external-link
-            :url="
+          <app-link
+            :to="
               $t(
                 'https://marketingplatform.google.com/about/analytics/terms/jp/'
               )
@@ -201,25 +195,25 @@
             :icon-size="16"
           >
             {{ $t('Google Analytics利用規約') }}
-          </external-link>
+          </app-link>
         </li>
         <li>
-          <external-link
-            :url="$t('https://policies.google.com/privacy?hl=ja')"
+          <app-link
+            :to="$t('https://policies.google.com/privacy?hl=ja')"
             :icon-size="16"
           >
             {{ $t('Googleのプライバシーポリシー') }}
-          </external-link>
+          </app-link>
         </li>
         <li>
-          <external-link
-            :url="
+          <app-link
+            :to="
               $t('https://support.google.com/analytics/answer/6004245?hl=ja')
             "
             :icon-size="16"
           >
             {{ $t('Google Analyticsに関する詳細情報') }}
-          </external-link>
+          </app-link>
         </li>
       </ul>
       <i18n
@@ -227,12 +221,12 @@
         path="Google Analyticsによる情報送信を回避する場合は、Google がサポートする{addon}をご利用ください。"
       >
         <template v-slot:addon>
-          <external-link
-            :url="$t('https://tools.google.com/dlpage/gaoptout?hl=ja')"
+          <app-link
+            :to="$t('https://tools.google.com/dlpage/gaoptout?hl=ja')"
             :icon-size="16"
           >
             {{ $t('測定を無効にするブラウザ アドオン') }}
-          </external-link>
+          </app-link>
         </template>
       </i18n>
     </static-card>
@@ -246,15 +240,40 @@
         }}
         <i18n path="詳しくは、{githubRepo}をご確認ください。">
           <template v-slot:githubRepo>
-            <external-link
-              url="https://github.com/stop-covid19-hyogo/covid19"
+            <app-link
+              to="https://github.com/stop-covid19-hyogo/covid19"
               :icon-size="16"
             >
               {{ $t('GitHub リポジトリ') }}
-            </external-link>
+            </app-link>
           </template>
         </i18n>
       </p>
+    </static-card>
+    <static-card>
+      <h3>{{ $t('コンテンツについて') }}</h3>
+      <ul>
+        <li>
+          {{
+            $t(
+              'このサイトの内容物はクリエイティブ・コモンズ 表示 4.0 ライセンスの下に提供されています。'
+            )
+          }}
+        </li>
+        <li>
+          {{ $t('ただし商標等の他団体が権利を持つ以下のものは除きます。') }}
+          <ul>
+            <li>{{ $t('Gマーク（グッドデザイン賞受賞マーク）') }}</li>
+            <li>
+              {{
+                $t(
+                  '各SNS（LINE、Twitter、Facebook、GitHub、YouTube）ロゴマーク'
+                )
+              }}
+            </li>
+          </ul>
+        </li>
+      </ul>
     </static-card>
     <static-card>
       <h3>{{ $t('お問い合わせ先') }}</h3>
@@ -268,20 +287,21 @@
 <script lang="ts">
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
+
+import AppLink from '@/components/AppLink.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import StaticCard from '@/components/StaticCard.vue'
-import ExternalLink from '@/components/ExternalLink.vue'
 
 export default Vue.extend({
   components: {
     PageHeader,
     StaticCard,
-    ExternalLink
+    AppLink,
   },
   head(): MetaInfo {
     return {
-      title: this.$t('当サイトについて') as string
+      title: this.$t('当サイトについて') as string,
     }
-  }
+  },
 })
 </script>

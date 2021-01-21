@@ -34,9 +34,9 @@
       @click="stopClosingShareMenu"
     >
       <div class="Close-Button">
-        <v-icon :aria-label="$t('閉じる')" @click="closeShareMenu"
-          >mdi-close</v-icon
-        >
+        <v-icon :aria-label="$t('閉じる')" @click="closeShareMenu">
+          {{ mdiClose }}
+        </v-icon>
       </div>
 
       <h4>{{ $t('埋め込み用コード') }}</h4>
@@ -47,7 +47,7 @@
           class="EmbedCode-Copy"
           :aria-label="$t('クリップボードにコピー')"
           @click="copyEmbedCode"
-          >mdi-clipboard-outline</v-icon
+          >{{ mdiClipboardOutline }}</v-icon
         >
         {{ graphEmbedValue }}
       </div>
@@ -109,23 +109,26 @@
 </template>
 
 <script lang="ts">
+import { mdiClipboardOutline, mdiClose } from '@mdi/js'
 import Vue from 'vue'
 export default Vue.extend({
   props: {
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     titleId: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
       openGraphEmbed: false,
       displayShare: false,
-      showOverlay: false
+      showOverlay: false,
+      mdiClipboardOutline,
+      mdiClose,
     }
   },
   computed: {
@@ -135,7 +138,7 @@ export default Vue.extend({
         true
       )}" frameborder="0"></iframe>`
       return graphEmbedValue
-    }
+    },
   },
   watch: {
     displayShare(isShow: boolean) {
@@ -147,7 +150,7 @@ export default Vue.extend({
           this.toggleShareMenu
         )
       }
-    }
+    },
   },
   methods: {
     toggleShareMenu(e: Event) {
@@ -207,8 +210,8 @@ export default Vue.extend({
         true
       )}`
       window.open(url)
-    }
-  }
+    },
+  },
 })
 </script>
 
