@@ -139,11 +139,13 @@ const config: NuxtConfig = {
   /*
    ** @nuxtjs/gtm config
    */
+  /* 兵庫県版では使わないのでコメントアウト
   gtm: {
     id: process.env.GTM_CONTAINER_ID,
     pageTracking: true,
     enabled: true,
   },
+   */
   /*
    * nuxt-i18n による自動リダイレクトを停止したためコメントアウト
    * @todo 「Cookieがあるときのみ、その言語にリダイレクトする」を実装する場合は復活させる
