@@ -35,7 +35,7 @@
           >
             {{ formattedDateForDisplay(item.date) }}
           </time>
-          <span class="WhatsNew-list-item-anchor-link">
+          <span class="WhatsNew-list-item-anchor-text">
             {{ $t(item.text) }}
           </span>
         </div>
@@ -184,6 +184,14 @@ export default Vue.extend({
           flex: 0 1 auto;
 
           @include text-link();
+
+          @include lessThan($medium) {
+            padding-left: 8px;
+          }
+        }
+
+        &-text {
+          flex: 0 1 auto;
 
           @include lessThan($medium) {
             padding-left: 8px;
