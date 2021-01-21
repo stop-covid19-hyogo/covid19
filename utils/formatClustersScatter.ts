@@ -16,13 +16,13 @@ export type GraphDataType = {
 }
 
 export default (data: DataObject[]) => {
-  const clusters = Object.keys(data[0]).filter(s => s !== '日付')
+  const clusters = Object.keys(data[0]).filter((s) => s !== '日付')
   clusters.push('')
   clusters.reverse()
   const graphData: GraphDataType = {
     datasets: [],
     clusters,
-    labels: []
+    labels: [],
   }
 
   data.forEach((d, i) => {
@@ -42,7 +42,7 @@ export default (data: DataObject[]) => {
           graphData.datasets.push(<ChildGraphDataType>{
             x: dateLable,
             y: j,
-            label: patients
+            label: patients,
           })
         }
       }
