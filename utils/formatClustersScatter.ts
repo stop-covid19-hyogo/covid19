@@ -1,3 +1,5 @@
+import { convertDateToISO8601Format } from '@/utils/formatDate'
+
 interface DataObject {
   日付: string
   [key: string]: number | string
@@ -29,18 +31,17 @@ export default (data: DataObject[]) => {
     if (i === 0) {
       const prevDate = new Date(d['日付'])
       prevDate.setDate(prevDate.getDate() - 1)
-      const prevDateLable = `${prevDate.getMonth() + 1}/${prevDate.getDate()}`
-      graphData.labels.push(prevDateLable)
+      const prevDateLabel = convertDateToISO8601Format(prevDate.toISOString())
+      graphData.labels.push(prevDateLabel)
     }
-    const date = new Date(d['日付'])
-    const dateLable = `${date.getMonth() + 1}/${date.getDate()}`
-    graphData.labels.push(dateLable)
+    const dateLabel = convertDateToISO8601Format(d['日付'])
+    graphData.labels.push(dateLabel)
     clusters.forEach((dl, j) => {
       if (dl !== '') {
         const patients = d[dl]
         if (patients !== 0) {
           graphData.datasets.push(<ChildGraphDataType>{
-            x: dateLable,
+            x: dateLabel,
             y: j,
             label: patients,
           })

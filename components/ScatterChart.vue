@@ -68,7 +68,6 @@ import {
   ChildGraphDataType,
   GraphDataType,
 } from '@/utils/formatClustersScatter'
-import { getComplementedDate } from '@/utils/formatDate'
 
 type Data = {
   dataKind: 'transition'
@@ -211,10 +210,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
             },
             title(tooltipItem: any) {
               const label = data.datasets[tooltipItem[0].index].x
-              return self.$d(
-                new Date(getComplementedDate(label)),
-                'dateWithoutYear'
-              )
+              return self.$d(new Date(label), 'date')
             },
           },
         },
