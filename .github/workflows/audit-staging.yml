@@ -21,8 +21,8 @@ jobs:
         uses: treosh/lighthouse-ci-action@v3
         with:
           urls: |
-            https://stopcovid19.metro.tokyo.lg.jp/
-            https://stg-covid19-tokyo.netlify.app/
+            https://stop-covid19-hyogo.org/
+            https://stg.stop-covid19-hyogo.org/
           uploadArtifacts: true
 
       - name: Use Node.js
