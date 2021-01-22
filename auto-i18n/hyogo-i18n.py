@@ -120,8 +120,8 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
                         value = "value"
                         # ヘッダーを正規表現で取得し、textを抽出
                         headers = [eval(str_header + " }")[text] for str_header in header_pattern.findall(content)]
-                        # Noと備考は使っていないので、取り除く
-                        for unused in ["No", "備考"]:
+                        # Noは使っていないので、取り除く
+                        for unused in ["No"]:
                             headers.pop(headers.index(unused))
                         # タグを統合し、重複分を取り除く
                         all_tags = list(set(all_tags + headers))
