@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/ko/cards/changes-in-number-of-hospitalized-patients", {data:[{}],fetch:[],mutations:void 0});
