@@ -160,6 +160,8 @@ with open(os.path.join(os.pardir, OUTPUT_DIR, CHECK_RESULT), mode="a", encoding=
 
     # 「その他」は内部で「その他.graph」に変換しているので除外する
     all_tags.pop(all_tags.index("その他"))
+    # Noneが混じっているので、取り除く
+    all_tags.pop(all_tags.index(None))
 
     # 翻訳が複数あるもの("."で区切られている特殊なもの)を保管するリスト
     has_many_tags = []
