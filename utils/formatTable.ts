@@ -1,24 +1,34 @@
-import Vue from 'vue'
-import dayjs from 'dayjs'
+type Header = {
+  text: string
+  value: string
+  align?: string
+  type?: 'date' | 'age'
+}
 
-const headers = [
+const headers: Header[] = [
   { text: 'No', value: 'No' },
-  { text: '公表日', value: '公表日' },
+  { text: '公表日', value: '公表日', type: 'date' },
   { text: '居住地', value: '居住地' },
-  { text: '年代', value: '年代' },
-  { text: '性別', value: '性別' } //,
-  // { text: '備考', value: '備考' } //,
-  // { text: '退院※', value: '退院', align: 'center' }
+  { text: '年代', value: '年代', type: 'age' },
+  { text: '性別', value: '性別' },
+  /* { text: '職業', value: '職業', align: 'center' },
+  { text: '接触歴', value: '接触歴', align: 'center' },
+  { text: '発症日', value: '発症日', type: 'date' },
+  { text: '確定日', value: '確定日', type: 'date' },
+  { text: '退院', value: '退院', align: 'center' }, */
 ]
 
-type DataType = {
+export type DataType = {
   No: number
   リリース日: string
-  居住地: string | null
-  年代: string | null
+  居住地: string | undefined
+  年代: string | undefined
   性別: '男性' | '女性' | string
-  // 備考: string | null
-  // 退院: '◯' | null
+  /* 患者_職業: string | undefined
+  患者_接触歴の有無フラグ: number | undefined
+  発症_年月日: string | undefined
+  確定_年月日: string | undefined
+  退院済フラグ: number | undefined */
   [key: string]: any
 }
 
@@ -28,12 +38,15 @@ type TableDataType = {
   居住地: DataType['居住地']
   年代: DataType['年代']
   性別: DataType['性別'] | '不明'
-  // 備考: DataType['備考']
-  // 退院: DataType['退院']
+  /* 職業: DataType['患者_職業']
+  接触歴: string | undefined
+  発症日: DataType['発症_年月日']
+  確定日: DataType['確定_年月日']
+  退院: string | undefined */
 }
 
-type TableDateType = {
-  headers: typeof headers
+export type TableDateType = {
+  headers: Header[]
   datasets: TableDataType[]
 }
 
@@ -42,33 +55,21 @@ type TableDateType = {
  *
  * @param data - Raw data
  */
-export default (data: DataType[]) => {
-  const tableDate: TableDateType = {
+export function formatTable(data: DataType[]): TableDateType {
+  const datasets = data.map((d) => ({
+    No: d.No ?? '不明',
+    公表日: d['リリース日'] ?? '不明',
+    居住地: d['居住地'] ?? '調査中',
+    年代: d['年代'] ?? '不明',
+    性別: d['性別'] ?? '不明',
+    /* 職業: d['患者_職業'] ?? '-',
+    接触歴: d['患者_接触歴の有無フラグ'] ? '〇' : '',
+    発症日: d['発症_年月日'] ?? '',
+    確定日: d['確定_年月日'] ?? '',
+    退院: d['退院済フラグ'] ? '〇' : '', */
+  }))
+  return {
     headers,
-    datasets: []
+    datasets,
   }
-  data.forEach(d => {
-    const releaseDate = dayjs(d['リリース日']).isValid()
-      ? Vue.prototype.$nuxt.$options.i18n.d(
-          new Date(d['リリース日']),
-          'dateWithoutYear'
-        )
-      : '不明'
-
-    const TableRow: TableDataType = {
-      No: d.No ?? '不明',
-      公表日: releaseDate,
-      居住地: d['居住地'] ?? '調査中',
-      年代: d['年代'] ?? '不明',
-      性別: d['性別'] ?? '不明'
-      // 備考: d['備考'] ?? 'なし' //,
-      // 退院: d['退院']
-    }
-    tableDate.datasets.push(TableRow)
-  })
-  tableDate.datasets.sort(
-    (a, b) => dayjs(a.公表日).unix() - dayjs(b.公表日).unix()
-  )
-  tableDate.datasets.reverse()
-  return tableDate
 }

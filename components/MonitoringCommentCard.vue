@@ -26,46 +26,30 @@
       <p>
         {{
           $t('{date}付の警戒基準と対応の方向性は以下のとおりです。', {
-            date: commentDate()
+            date: commentDate(),
           })
         }}
       </p>
-      <v-icon color="#D9D9D9">mdi-chevron-right</v-icon>
-      <a
-        href="https://web.pref.hyogo.lg.jp/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <v-icon color="#D9D9D9">{{ mdiChevronRight }}</v-icon>
+      <app-link to="https://web.pref.hyogo.lg.jp/">
         {{ $t('兵庫県における警戒基準の判断基準と対応の方向性について') }}
-      </a>
+      </app-link>
     </div>
     <div class="MonitoringComment-comments">
       <v-row>
         <v-col cols="12" sm="12" md="6" lg="6">
-          <h4>警戒基準</h4>
+          <h4>{{ $t('警戒基準') }}</h4>
           <monitoring-comment-frame
             :level="colorLevel"
             :status="warningStatuses[warningAndPhase.data['警戒基準']]"
           />
-          <!--
-          <monitoring-comment-frame
-            :level="monitoringItems.data['総括コメント-感染状況'].level - 1"
-            :comment="monitoringItems.data['総括コメント-感染状況'].label"
-          />
-          -->
         </v-col>
         <v-col cols="12" sm="12" md="6" lg="6">
-          <h4>対応の方向性</h4>
+          <h4>{{ $t('対応の方向性') }}</h4>
           <monitoring-comment-frame
             :level="colorLevel"
             :status="phaseStatuses[phase]"
           />
-          <!--
-          <monitoring-comment-frame
-            :level="monitoringItems.data['総括コメント-医療提供体制'].level - 1"
-            :comment="monitoringItems.data['総括コメント-医療提供体制'].label"
-          />
-          -->
         </v-col>
       </v-row>
     </div>
@@ -73,14 +57,27 @@
 </template>
 
 <script lang="ts">
+import { mdiChevronRight } from '@mdi/js'
 import Vue from 'vue'
+
+import AppLink from '@/components/AppLink.vue'
 import MonitoringCommentFrame from '@/components/MonitoringCommentFrame.vue'
 import warningAndPhase from '@/data/warning_and_phase.json'
-// import monitoringItems from '@/data/monitoring_items.json'
+/* import monitoringItemsData from '@/data/monitoring_items.json'
+import {
+  formatMonitoringComment,
+  MonitoringComment,
+} from '@/utils/formatMonitoringItems'
+
+type CommentKey = {
+  [key: string]: MonitoringComment
+}
+ */
 
 export default Vue.extend({
   components: {
-    MonitoringCommentFrame
+    AppLink,
+    MonitoringCommentFrame,
   },
   data() {
     const warningStatuses = [
@@ -89,12 +86,12 @@ export default Vue.extend({
       this.$t('感染増加期'),
       this.$t('感染拡大期Ⅰ'),
       this.$t('感染拡大期Ⅱ'),
-      this.$t('感染拡大特別期')
+      this.$t('感染拡大特別期'),
     ]
     const phaseStatuses = [
       this.$t('予防'),
       this.$t('警戒'),
-      this.$t('制限強化')
+      this.$t('制限強化'),
     ]
 
     return {
@@ -102,8 +99,8 @@ export default Vue.extend({
       colorLevel: 0,
       warningStatuses,
       phaseStatuses,
-      phase: 0
-      // monitoringItems
+      phase: 0,
+      mdiChevronRight,
     }
   },
   mounted() {
@@ -139,8 +136,13 @@ export default Vue.extend({
   methods: {
     commentDate() {
       return this.$d(new Date(warningAndPhase.last_update), 'dateWithoutYear')
-    }
-  }
+    },
+    /* commentMonitoring(item: string) {
+      return ['ja', 'ja-basic'].includes(this.$root.$i18n.locale)
+        ? this.monitoringComment[item].display['@ja']
+        : this.monitoringComment[item].display['@en']
+    }, */
+  },
 })
 </script>
 

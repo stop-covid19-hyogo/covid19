@@ -1,18 +1,22 @@
 import { NuxtConfig } from '@nuxt/types'
+
 import i18n from './nuxt-i18n.config'
-const purgecss = require('@fullhuman/postcss-purgecss')
-const autoprefixer = require('autoprefixer')
 const environment = process.env.NODE_ENV || 'development'
 
 const config: NuxtConfig = {
-  mode: 'universal',
+  // Since nuxt@2.14.5, there have been significant changes.
+  // We dealt with typical two (2) out of them:
+  // 1) The "mode:" directive got deprecated (seen right below);
+  // 2) Autoprefixer has been included so that we can lessen upgrade burden.
+  // mode: 'universal',
   target: 'static',
+  components: true,
   /*
    ** Headers of the page
    */
   head: {
     htmlAttrs: {
-      prefix: 'og: http://ogp.me/ns#'
+      prefix: 'og: http://ogp.me/ns#',
     },
     meta: [
       { charset: 'utf-8' },
@@ -21,33 +25,40 @@ const config: NuxtConfig = {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://stop-covid19-hyogo.org/'
+        content: 'https://stop-covid19-hyogo.org/',
       },
       {
         hid: 'twitter:card',
         name: 'twitter:card',
-        content: 'summary_large_image'
+        content: 'summary_large_image',
       },
       {
         hid: 'twitter:site',
         name: 'twitter:site',
-        content: '@hyogokoho'
+        content: '@hyogokoho',
       },
       {
         hid: 'fb:app_id',
         property: 'fb:app_id',
-        content: '2879625188795443'
+        content: '2879625188795443',
       },
       {
         hid: 'note:card',
         property: 'note:card',
-        content: 'summary_large_image'
-      }
+        content: 'summary_large_image',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' }
-    ]
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' },
+    ],
+    script: [
+      {
+        src:
+          'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver',
+        defer: true,
+      },
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -56,23 +67,19 @@ const config: NuxtConfig = {
   /*
    ** Global CSS
    */
-  css: ['~assets/global.scss'],
+  css: ['@/assets/global.scss'],
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
     {
       src: '@/plugins/vue-chart.ts',
-      ssr: true
+      ssr: true,
     },
     {
       src: '@/plugins/axe',
-      ssr: true
+      ssr: true,
     },
-    {
-      src: '@/plugins/vuetify.ts',
-      ssr: true
-    }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -81,7 +88,9 @@ const config: NuxtConfig = {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
     '@nuxt/typescript-build',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/gtm',
+    'nuxt-purgecss',
   ],
   /*
    ** Nuxt.js modules
@@ -92,20 +101,28 @@ const config: NuxtConfig = {
     ['@nuxtjs/dotenv', { filename: `.env.${environment}` }],
     ['nuxt-i18n', i18n],
     'nuxt-svg-loader',
-    'nuxt-purgecss',
+    ['vue-scrollto/nuxt', { duration: 1000, offset: -72 }],
     '@nuxtjs/sitemap',
-    ['vue-scrollto/nuxt', { duration: 1000, offset: -72 }]
+    'nuxt-webfontloader',
   ],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['@/assets/variables.scss'],
+    optionsPath: './plugins/vuetify.options.ts',
     treeShake: true,
-    defaultAssets: {
-      icons: false
-    }
+    defaultAssets: false,
+  },
+  /*
+   * Webfontloader
+   * https://github.com/Developmint/nuxt-webfontloader
+   */
+  webfontloader: {
+    google: {
+      families: ['Roboto:100,300,400,500,700,900&display=swap'],
+    },
   },
   sitemap: {
     path: '/sitemap.xml',
@@ -114,12 +131,27 @@ const config: NuxtConfig = {
     gzip: true,
     generate: true,
     exclude: [''], // Sitemapから除外する項目
-    routes: ['/about', '/translation'] // Sitemapに追加する項目
+    routes: ['/about', '/translation'], // Sitemapに追加する項目
   },
   googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID // .env.production などに設定してください。
+    id: process.env.GOOGLE_ANALYTICS_ID, // .env.production などに設定してください。
   },
-  optionalCookies: [
+  /*
+   ** @nuxtjs/gtm config
+   */
+  /* 兵庫県版では使わないのでコメントアウト
+  gtm: {
+    id: process.env.GTM_CONTAINER_ID,
+    pageTracking: true,
+    enabled: true,
+  },
+   */
+  /*
+   * nuxt-i18n による自動リダイレクトを停止したためコメントアウト
+   * @todo 「Cookieがあるときのみ、その言語にリダイレクトする」を実装する場合は復活させる
+   * 実装しない場合は以下の記述を完全に削除する
+   */
+  /* optionalCookies: [
     {
       name: 'i18n_redirected',
       label: 'i18n Redirection Cookie',
@@ -127,30 +159,30 @@ const config: NuxtConfig = {
         'For automatically switching UI languages in accordance with locale preferences in the web browser configuration.',
       cookies: ['i18n_redirected']
     }
-  ],
+  ], */
   build: {
     postcss: {
-      plugins: [
-        autoprefixer({ grid: 'autoplace' }),
-        purgecss({
-          content: [
-            './pages/**/*.vue',
-            './layouts/**/*.vue',
-            './components/**/*.vue',
-            './node_modules/vuetify/dist/vuetify.js',
-            './node_modules/vue-spinner/src/ScaleLoader.vue'
-          ],
-          whitelist: ['html', 'body', 'nuxt-progress', 'DataCard'],
-          whitelistPatterns: [/(col|row)/]
-        })
-      ]
+      preset: {
+        autoprefixer: {
+          // Built-in since nuxt@2.14.5
+          grid: 'autoplace',
+        },
+      },
     },
     extend(config) {
       // default externals option is undefined
       config.externals = [{ moment: 'moment' }]
-    }
+    },
     // https://ja.nuxtjs.org/api/configuration-build/#hardsource
     // hardSource: process.env.NODE_ENV === 'development'
+  },
+  purgeCSS: {
+    paths: [
+      './node_modules/vuetify/dist/vuetify.js',
+      './node_modules/vue-spinner/src/ScaleLoader.vue',
+    ],
+    whitelist: ['DataCard', 'GraphLegend'],
+    whitelistPatterns: [/(col|row)/],
   },
   manifest: {
     name: '兵庫県 新型コロナウイルスまとめサイト',
@@ -160,12 +192,12 @@ const config: NuxtConfig = {
     display: 'standalone',
     Scope: '/',
     start_url: '/',
-    splash_pages: null
+    splash_pages: null,
   },
   generate: {
     fallback: true,
     routes() {
-      const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic']
+      const locales = ['en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic']
       const pages = [
         '/cards/details-of-confirmed-cases',
         '/cards/number-of-confirmed-cases',
@@ -185,35 +217,28 @@ const config: NuxtConfig = {
         '/cards/monitoring-status-overview',
         '/cards/number-of-reports-to-consultations-about-fever-in-7119',
         '/cards/number-of-tokyo-rules-applied',
-        '/cards/monitoring-items-overview' */
+        '/cards/monitoring-items-overview',
+        '/cards/positive-number-by-developed-date',
+        '/cards/number-of-reports-to-tokyo-fever-consultation-center', */
         '/cards/patients-by-age',
         '/cards/patients-by-clusters',
-        // '/cards/patients-and-sickbeds'
-        '/cards/change-in-number-of-hospitalized-patients'
+        // '/cards/patients-and-sickbeds',
+        '/cards/change-in-number-of-hospitalized-patients',
       ]
-
-      const routes: string[] = []
-      locales.forEach(locale => {
-        pages.forEach(page => {
-          if (locale === 'ja') {
-            routes.push(page)
-            return
-          }
-          const route = `/${locale}${page}`
-          routes.push(route)
-        })
-      })
-      return routes
-    }
+      const localizedPages = locales
+        .map((locale) => pages.map((page) => `/${locale}${page}`))
+        .reduce((a, b) => [...a, ...b], [])
+      return [...pages, ...localizedPages]
+    },
   },
   // /*
   // ** hot read configuration for docker
   // */
   watchers: {
     webpack: {
-      poll: true
-    }
-  }
+      poll: true,
+    },
+  },
 }
 
 export default config

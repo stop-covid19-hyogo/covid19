@@ -12,12 +12,12 @@ export default (data: DataObject) => {
   const graphData: GraphDataType[] = []
   const dataLabels = Object.keys(data)
   let total = 0
-  dataLabels.forEach(d => {
+  dataLabels.forEach((d) => {
     total += data[d]
     graphData.push({
       label: d,
       transition: data[d],
-      cumulative: total
+      cumulative: total,
     })
   })
   return graphData

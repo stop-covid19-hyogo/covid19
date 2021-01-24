@@ -39,7 +39,7 @@ jobs:
         run: |
           echo "GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}" >> .env.production
           cat .env.production
-          yarn run generate:deploy --fail-on-page-error
+          yarn run generate:deploy
         env:
           GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
 

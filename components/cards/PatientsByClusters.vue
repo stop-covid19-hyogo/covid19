@@ -1,45 +1,46 @@
 <template>
   <v-col cols="12" md="6" class="DataCard">
-    <scatter
-      :title="$t('クラスター別陽性患者数')"
-      :title-id="'patients-by-clusters'"
-      :chart-id="'time-bar-chart-patients-by-clusters'"
-      :chart-data="clustersScatter"
-      :date="clusters.last_update"
-      :unit="$t('人')"
-      :info="sumInfoOfClusters"
-      :url="
-        'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'
-      "
-    >
-      <template v-slot:description>
-        <ul class="ListStyleNone">
-          <li>
-            {{ $t('（注）重複者とは、複数のクラスターに該当する人を指す') }}
-          </li>
-          <li>
-            {{
-              $t(
-                '（注）クラスター名が長いため、一部表記をアルファベットで置き換えている。詳細はテーブルを参照'
-              )
-            }}
-          </li>
-        </ul>
-      </template>
-    </scatter>
+    <client-only>
+      <scatter-chart
+        :title="$t('クラスター別陽性患者数')"
+        :title-id="'patients-by-clusters'"
+        :chart-id="'time-bar-chart-patients-by-clusters'"
+        :chart-data="clustersScatter"
+        :date="clusters.last_update"
+        :unit="$t('人')"
+        :info="sumInfoOfClusters"
+        :url="'http://open-data.pref.hyogo.lg.jp/index.php?key=mu9jmny45-175#_175'"
+      >
+        <template v-slot:additionalDescription>
+          <span>{{ $t('（注）') }}</span>
+          <ul>
+            <li>
+              {{ $t('重複者とは、複数のクラスターに該当する人を指す') }}
+            </li>
+            <li>
+              {{
+                $t(
+                  'クラスター名が長いため、一部表記をアルファベットで置き換えている。詳細はテーブルを参照'
+                )
+              }}
+            </li>
+          </ul>
+        </template>
+      </scatter-chart>
+    </client-only>
   </v-col>
 </template>
 
 <script>
+import ScatterChart from '@/components/ScatterChart.vue'
 import clusters from '@/data/clusters.json'
 import patients from '@/data/patients.json'
-import Scatter from '@/components/Scatter'
-import formatTable from '@/utils/formatTable'
 import formatClustersScatter from '@/utils/formatClustersScatter'
+import { formatTable } from '@/utils/formatTable'
 
 export default {
   components: {
-    Scatter
+    ScatterChart,
   },
   data() {
     // 感染者数
@@ -49,7 +50,7 @@ export default {
     const clustersScatter = formatClustersScatter(clusters.data)
 
     let clusterTotal = 0
-    clustersScatter.datasets.forEach(d => {
+    clustersScatter.datasets.forEach((d) => {
       clusterTotal += d.label
     })
     const sumInfoOfClusters = {
@@ -59,15 +60,14 @@ export default {
         ': ' +
         (clusterTotal - patientsTable.datasets.length).toLocaleString() +
         this.$t('人'),
-      unit: this.$t('人')
+      unit: this.$t('人'),
     }
 
-    const data = {
+    return {
       clusters,
       clustersScatter,
-      sumInfoOfClusters
+      sumInfoOfClusters,
     }
-    return data
-  }
+  },
 }
 </script>
