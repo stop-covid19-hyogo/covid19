@@ -12,36 +12,36 @@
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 507
+                            "value": 510
                         },
                         {
                             "attr": "重症",
-                            "value": 58
+                            "value": 59
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 461
+                    "value": 471
                 },
                 {
                     "attr": "入院調整",
-                    "value": 789
+                    "value": 818
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 293
+                    "value": 306
                 },
                 {
                     "attr": "死亡",
-                    "value": 343
+                    "value": 351
                 },
                 {
                     "attr": "退院",
-                    "value": 12534
+                    "value": 12695
                 }
             ]
         }
     ],
-    "last_update": "2021-01-23T00:00:00+09:00"
+    "last_update": "2021-01-24T00:00:00+09:00"
 }
