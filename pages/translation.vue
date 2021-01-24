@@ -45,12 +45,9 @@
         path="翻訳にご協力いただけるという方は、まず以下の手順に従って{transifex}にご登録ください。"
       >
         <template v-slot:transifex>
-          <external-link
-            url="https://www.transifex.com/signup/"
-            :icon-size="16"
-          >
+          <app-link to="https://www.transifex.com/signup/" :icon-size="16">
             {{ $t('Transifex') }}
-          </external-link>
+          </app-link>
         </template>
       </i18n>
       <ol>
@@ -115,12 +112,12 @@
         path="今の状態ではまだ当サイトの翻訳プロジェクトには参加できていないので、{projectPage}にアクセスし、「チームに参加」ボタンをクリックして参加しましょう。"
       >
         <template v-slot:projectPage>
-          <external-link
-            url="https://www.transifex.com/stop-covid19-hyogo/covid19/"
+          <app-link
+            to="https://www.transifex.com/stop-covid19-hyogo/covid19/"
             :icon-size="16"
           >
             {{ $t('プロジェクトの公開ページ') }}
-          </external-link>
+          </app-link>
         </template>
       </i18n>
       <img :src="$t('transifex.openpage')" alt="openpage" />
@@ -129,12 +126,12 @@
         path="翻訳できる言語を選択したら、{dashboard}にアクセスし、右上の方にある「翻訳」ボタンをクリックしましょう。"
       >
         <template v-slot:dashboard>
-          <external-link
-            url="https://www.transifex.com/stop-covid19-hyogo/covid19/dashboard/"
+          <app-link
+            to="https://www.transifex.com/stop-covid19-hyogo/covid19/dashboard/"
             :icon-size="16"
           >
             {{ $t('ダッシュボード') }}
-          </external-link>
+          </app-link>
         </template>
       </i18n>
       <img :src="$t('transifex.dashboard')" alt="dashboard" />
@@ -170,12 +167,12 @@
         path="翻訳がするだけではなくてレビューもしたい、もっと貢献したい、という方はぜひ{community}へ参加してください！"
       >
         <template v-slot:community>
-          <external-link
-            url="https://stop-covid19-hyogo.slack.com/join/shared_invite/zt-dlg7je1f-mKaKwRqadIj6l7dm7wSdKg"
+          <app-link
+            to="https://stop-covid19-hyogo.slack.com/join/shared_invite/zt-dlg7je1f-mKaKwRqadIj6l7dm7wSdKg"
             :icon-size="16"
           >
             {{ $t('コミュニティ(slack)') }}
-          </external-link>
+          </app-link>
         </template>
       </i18n>
       <p>
@@ -192,19 +189,20 @@
 <script lang="ts">
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
-import StaticCard from '@/components/StaticCard.vue'
+
+import AppLink from '@/components/AppLink.vue'
 import PageHeader from '@/components/PageHeader.vue'
-import ExternalLink from '@/components/ExternalLink.vue'
+import StaticCard from '@/components/StaticCard.vue'
 export default Vue.extend({
   components: {
     PageHeader,
     StaticCard,
-    ExternalLink
+    AppLink,
   },
   head(): MetaInfo {
     return {
-      title: this.$t('翻訳協力者の募集について') as string
+      title: this.$tc('翻訳協力者の募集について'),
     }
-  }
+  },
 })
 </script>

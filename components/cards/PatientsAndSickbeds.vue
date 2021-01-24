@@ -7,31 +7,28 @@
       :date="sickbedsSummary.last_update"
       :unit="$t('床')"
       :info="$t('総病床数')"
-      :url="
-        'http://open-data.pref.hyogo.lg.jp/?page_id=141'
-      "
+      :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
     />
   </v-col>
 </template>
 
 <script>
-import sickbedsSummary from '@/data/sickbeds_summary.json'
 import CircleChart from '@/components/CircleChart.vue'
+import sickbedsSummary from '@/data/sickbeds_summary.json'
 import formatVariableGraph from '@/utils/formatVariableGraph'
 
 export default {
   components: {
-    CircleChart
+    CircleChart,
   },
   data() {
     // 年代別陽性患者数
     const sickbedsGraph = formatVariableGraph(sickbedsSummary.data)
 
-    const data = {
+    return {
       sickbedsSummary,
-      sickbedsGraph
+      sickbedsGraph,
     }
-    return data
-  }
+  },
 }
 </script>

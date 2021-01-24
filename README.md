@@ -1,6 +1,8 @@
 # 兵庫県 新型コロナウイルスまとめサイト
 
-![](https://github.com/stop-covid19-hyogo/covid19/workflows/production%20deploy/badge.svg)
+[![production deploy](https://github.com/stop-covid19-hyogo/covid19/workflows/production%20deploy/badge.svg?branch=master)](https://github.com/tokyo-metropolitan-gov/covid19/actions?query=workflow%3A%22production+deploy%22)
+[![OGP Builder](https://github.com/stop-covid19-hyogo/covid19/workflows/OGP%20Builder/badge.svg?branch=master)](https://github.com/tokyo-metropolitan-gov/covid19/actions?query=workflow%3A%22OGP+Builder%22)
+[![Auto-i18n Builder](https://github.com/stop-covid19-hyogo/covid19/workflows/Auto-i18n%20Builder/badge.svg?branch=development)](https://github.com/stop-covid19-hyogo/covid19/actions?query=workflow%3A%22Auto-i18n+Builder%22)
 
 [![兵庫県 新型コロナウイルスまとめサイト](https://user-images.githubusercontent.com/2575204/80415970-4c3f8480-890e-11ea-8e6f-5d6f5d8d63b4.png)](https://stop-covid19-hyogo.org/)
 

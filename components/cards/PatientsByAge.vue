@@ -1,27 +1,29 @@
 <template>
   <v-col cols="12" md="6" class="DataCard">
-    <time-bar-chart
-      :title="$t('年代別陽性患者数')"
-      :title-id="'patients-by-age'"
-      :chart-id="'time-bar-chart-patients-by-age'"
-      :chart-data="ageGraph"
-      :date="age.last_update"
-      :unit="$t('人')"
-      :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
-      :show-button="false"
-      :use-scroll="false"
-    />
+    <client-only>
+      <time-bar-chart
+        :title="$t('年代別陽性患者数')"
+        :title-id="'patients-by-age'"
+        :chart-id="'time-bar-chart-patients-by-age'"
+        :chart-data="ageGraph"
+        :date="age.last_update"
+        :unit="$t('人')"
+        :url="'http://open-data.pref.hyogo.lg.jp/?page_id=141'"
+        :show-button="false"
+        :use-scroll="false"
+      />
+    </client-only>
   </v-col>
 </template>
 
 <script>
-import age from '@/data/age.json'
 import TimeBarChart from '@/components/TimeBarChart.vue'
+import age from '@/data/age.json'
 import formatVariableGraph from '@/utils/formatVariableGraph'
 
 export default {
   components: {
-    TimeBarChart
+    TimeBarChart,
   },
   data() {
     // 年代別陽性患者数
@@ -31,17 +33,16 @@ export default {
       const label = d.label
       if (label.substr(-1, 1) === '代') {
         const age = label.substring(0, 2)
-        ageGraph[i].label = this.$t('{age}代', { age })
+        ageGraph[i].label = String(this.$t('{age}代', { age }))
       } else {
-        ageGraph[i].label = this.$t(label)
+        ageGraph[i].label = this.$tc(label)
       }
     })
 
-    const data = {
+    return {
       age,
-      ageGraph
+      ageGraph,
     }
-    return data
-  }
+  },
 }
 </script>

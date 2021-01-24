@@ -3,20 +3,20 @@
     <div class="WhatsNew-heading">
       <h3 class="WhatsNew-title">
         <v-icon size="2.4rem" class="WhatsNew-title-icon">
-          mdi-information
+          {{ mdiInformation }}
         </v-icon>
         {{ $t('最新のお知らせ') }}
       </h3>
       <div class="WhatsNew-linkGroup">
-        <link-to-information-about-emergency-measure v-if="isEmergency" />
+        <lazy-link-to-information-about-emergency-measure v-if="isEmergency" />
       </div>
     </div>
     <ul class="WhatsNew-list">
       <li v-for="(item, i) in listItems" :key="i" class="WhatsNew-list-item">
-        <nuxt-link
-          v-if="item.url && isInternalLink(item.url)"
+        <app-link
+          v-if="item.url"
+          :to="item.url"
           class="WhatsNew-list-item-anchor"
-          :to="localePath(item.url)"
         >
           <time
             class="WhatsNew-list-item-anchor WhatsNew-list-item-anchor-time px-2"
@@ -27,31 +27,7 @@
           <span class="WhatsNew-list-item-anchor-link">
             {{ $t(item.text) }}
           </span>
-        </nuxt-link>
-        <a
-          v-else-if="item.url"
-          class="WhatsNew-list-item-anchor"
-          :href="item.url"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <time
-            class="WhatsNew-list-item-anchor WhatsNew-list-item-anchor-time px-2"
-            :datetime="formattedDate(item.date)"
-          >
-            {{ formattedDateForDisplay(item.date) }}
-          </time>
-          <span class="WhatsNew-list-item-anchor-link">
-            {{ $t(item.text) }}
-            <v-icon
-              v-if="!isInternalLink(item.url)"
-              class="WhatsNew-item-ExternalLinkIcon"
-              size="1.2rem"
-            >
-              mdi-open-in-new
-            </v-icon>
-          </span>
-        </a>
+        </app-link>
         <div v-else class="WhatsNew-list-item-anchor">
           <time
             class="WhatsNew-list-item-anchor WhatsNew-list-item-anchor-time px-2"
@@ -59,58 +35,63 @@
           >
             {{ formattedDateForDisplay(item.date) }}
           </time>
-          <span>{{ $t(item.text) }}</span>
+          <span class="WhatsNew-list-item-anchor-text">
+            {{ $t(item.text) }}
+          </span>
         </div>
       </li>
-      <div
-        v-if="items.length - showItems > 0"
-        class="WhatsNew-Button"
-        @click="isMore"
-      >
-        <span>
-          {{ $t('もっと見る') }}
-        </span>
-      </div>
     </ul>
+    <div
+      v-if="items.length - showItems > 0"
+      class="WhatsNew-Button"
+      @click="isMore"
+    >
+      <span>
+        {{ $t('もっと見る') }}
+      </span>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import { mdiInformation } from '@mdi/js'
 import Vue from 'vue'
-import LinkToInformationAboutEmergencyMeasure from '@/components/LinkToInformationAboutEmergencyMeasure.vue'
 
+import AppLink from '@/components/AppLink.vue'
 import { convertDateToISO8601Format } from '@/utils/formatDate'
 
 export default Vue.extend({
   components: {
-    LinkToInformationAboutEmergencyMeasure
+    AppLink,
   },
   props: {
     items: {
       type: Array,
-      required: true
+      required: true,
     },
     showItems: {
       type: Number,
       required: false,
-      default: 3
+      default: 3,
     },
     isEmergency: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
+    },
+  },
+  data() {
+    return {
+      mdiInformation,
     }
   },
   computed: {
     listItems() {
       const list = this.items
       return list.slice(0, this.showItems)
-    }
+    },
   },
   methods: {
-    isInternalLink(path: string): boolean {
-      return !/^https?:\/\//.test(path)
-    },
     formattedDate(dateString: string) {
       return convertDateToISO8601Format(dateString)
     },
@@ -120,8 +101,8 @@ export default Vue.extend({
     isMore() {
       // TypeScriptのread-only propertyエラーを回避
       Object.assign(this, { showItems: this.showItems + 3 })
-    }
-  }
+    },
+  },
 })
 </script>
 
@@ -203,6 +184,14 @@ export default Vue.extend({
           flex: 0 1 auto;
 
           @include text-link();
+
+          @include lessThan($medium) {
+            padding-left: 8px;
+          }
+        }
+
+        &-text {
+          flex: 0 1 auto;
 
           @include lessThan($medium) {
             padding-left: 8px;
