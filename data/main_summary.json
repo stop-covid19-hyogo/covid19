@@ -1,14 +1,14 @@
 {
     "attr": "検査実施人数",
-    "value": 222394,
+    "value": 224033,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 17324,
+            "value": 17377,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 463,
+                    "value": 464,
                     "children": [
                         {
                             "attr": "軽症・中等症",
@@ -16,38 +16,38 @@
                         },
                         {
                             "attr": "重症",
-                            "value": 67
-                        }
-                    ]
-                },
-                {
-                    "attr": "宿泊療養",
-                    "value": 192
-                },
-                {
-                    "attr": "入院・宿泊療養調整等",
-                    "value": 243,
-                    "children": [
-                        {
-                            "attr": "入院調整",
                             "value": 68
                         }
                     ]
                 },
                 {
+                    "attr": "宿泊療養",
+                    "value": 181
+                },
+                {
+                    "attr": "入院・宿泊療養調整等",
+                    "value": 208,
+                    "children": [
+                        {
+                            "attr": "入院調整",
+                            "value": 32
+                        }
+                    ]
+                },
+                {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 112
+                    "value": 120
                 },
                 {
                     "attr": "死亡",
-                    "value": 463
+                    "value": 471
                 },
                 {
                     "attr": "退院",
-                    "value": 15851
+                    "value": 15933
                 }
             ]
         }
     ],
-    "last_update": "2021-02-11T00:00:00+09:00"
+    "last_update": "2021-02-12T00:00:00+09:00"
 }
