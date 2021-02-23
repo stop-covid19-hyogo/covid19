@@ -60,7 +60,6 @@
 import { mdiChevronRight } from '@mdi/js'
 import Vue from 'vue'
 
-import AppLink from '@/components/AppLink.vue'
 import MonitoringCommentFrame from '@/components/MonitoringCommentFrame.vue'
 import warningAndPhase from '@/data/warning_and_phase.json'
 /* import monitoringItemsData from '@/data/monitoring_items.json'
@@ -69,6 +68,8 @@ import {
   MonitoringComment,
 } from '@/utils/formatMonitoringItems'
 
+// import MonitoringCommentCardImageSwipe from './MonitoringCommentCardImageSwipe.vue'
+
 type CommentKey = {
   [key: string]: MonitoringComment
 }
@@ -76,8 +77,8 @@ type CommentKey = {
 
 export default Vue.extend({
   components: {
-    AppLink,
     MonitoringCommentFrame,
+    // MonitoringCommentCardImageSwipe,
   },
   data() {
     const warningStatuses = [
@@ -150,8 +151,8 @@ export default Vue.extend({
 .MonitoringComment {
   @include card-container();
 
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 5px 12px 10px 12px;
+  margin: 0 0 10px 0;
 
   .MonitoringComment-heading {
     display: flex;
@@ -162,32 +163,46 @@ export default Vue.extend({
     .MonitoringComment-title {
       display: flex;
       align-items: center;
-      padding: 12px;
+      padding: 8px 6px;
       color: $gray-2;
       @include card-h2();
     }
   }
 
   .MonitoringComment-description {
-    padding: 12px;
+    padding: 6px;
+    text-align: center;
 
     @include font-size(14);
     > a {
       text-decoration: none;
       @include text-link();
     }
+    .MonitoringComment-slide {
+      text-align: center;
+    }
   }
 
   .MonitoringComment-comments {
     h4 {
-      margin-bottom: 10px;
+      margin-bottom: 1px;
       color: $gray-3;
       font-weight: normal;
 
       @include font-size(14);
     }
 
-    margin: 0 10px;
+    margin: 0 10px 0 10px;
+    padding: 2px;
+
+    .MonitoringComment-row {
+      .MonitoringComment-col {
+        float: left;
+        clear: both;
+        padding: 3px;
+        min-width: 300px;
+      }
+    }
   }
 }
 </style>

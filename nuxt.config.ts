@@ -182,7 +182,7 @@ const config: NuxtConfig = {
       './node_modules/vue-spinner/src/ScaleLoader.vue',
     ],
     whitelist: ['DataCard', 'GraphLegend'],
-    whitelistPatterns: [/(col|row)/],
+    whitelistPatterns: [/(col|row|v-window)/],
   },
   manifest: {
     name: '兵庫県 新型コロナウイルスまとめサイト',

@@ -120,12 +120,17 @@
         <small class="SideNavigation-Copyright">
           &copy; 2020 Stop Covid19 Hyogo
         </small>
-        <!--<div class="SideNavigation-GMark">
-          <img
-            src="/.netlify/functions/g-mark"
-            width="200"
-            alt="GOOD DESIGN AWARD 2020年度受賞"
-          />
+        <!--<div class="SideNavigation-GMarkWrapper">
+          <app-link
+            to="https://www.g-mark.org/award/describe/51112"
+            :show-icon="false"
+          >
+            <img
+              src="/.netlify/functions/g-mark"
+              width="200"
+              alt="GOOD DESIGN AWARD 2020年度受賞"
+            />
+          </app-link>
         </div>-->
       </footer>
     </div>
@@ -241,6 +246,11 @@ export default Vue.extend({
             'https://www.fukushihoken.metro.tokyo.lg.jp/iryo/kansen/kannsenyobouhandbook.html',
         },
         {
+          title: this.$t('新型コロナウイルス感染症自宅療養者向けハンドブック'),
+          link:
+            'https://www.fukushihoken.metro.tokyo.lg.jp/iryo/kansen/zitakuryouyouhandbook.html',
+        },
+        {
           title: this.$t('都民利用施設・都主催イベントに関する情報'),
           link:
             'https://www.seisakukikaku.metro.tokyo.lg.jp/information/event00.html',
@@ -282,6 +292,11 @@ export default Vue.extend({
           divider: true,
         },
         /* {
+          title: this.$t('ご意見はこちら（外部サービスを使用しています）'),
+          link:
+            'https://docs.google.com/forms/d/e/1FAIpQLSdSROCPyr6Aj6WoAoYfqcT6StDOEUB38Grug1EJjUYzppcEZg/viewform?usp=sf_link',
+        },
+        {
           title: this.$t('お問い合わせ先一覧'),
           link: this.localePath('/contacts'),
         }, */
@@ -397,6 +412,7 @@ export default Vue.extend({
 .SideNavigation-HeaderTitle {
   width: 100%;
   color: #707070;
+  font-weight: 600;
   @include font-size(13);
   @include largerThan($small) {
     margin: 0;
@@ -425,7 +441,7 @@ export default Vue.extend({
 
   &:hover,
   &:focus {
-    font-weight: bold;
+    font-weight: 600;
   }
 
   &:focus {
@@ -530,7 +546,7 @@ export default Vue.extend({
   display: inline-block;
   color: $gray-1;
   line-height: 1.3;
-  font-weight: bold;
+  font-weight: 600;
   @include font-size(10);
 }
 
@@ -540,7 +556,7 @@ export default Vue.extend({
   }
 }
 
-.SideNavigation-GMark {
+.SideNavigation-GMarkWrapper {
   margin-top: 16px;
 }
 </style>
