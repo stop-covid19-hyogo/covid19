@@ -17,9 +17,9 @@
     </div>
     <about-site />
     <whats-new :items="newsItems" :is-emergency="false" />
-    <!--<infection-medicalcareprovision-status />-->
+    <!--<infection-medicalcareprovision-status />
     <monitoring-comment-card />
-    <!--<div class="row mb-4">
+    <div class="row mb-4">
       <staying-population />
       <consultation />
     </div>-->
@@ -33,7 +33,7 @@ import { MetaInfo } from 'vue-meta'
 
 import AboutSite from '@/components/AboutSite.vue'
 // import Consultation from '@/components/Consultation.vue'
-import MonitoringCommentCard from '@/components/MonitoringCommentCard.vue'
+// import MonitoringCommentCard from '@/components/MonitoringCommentCard.vue'
 import PageHeader from '@/components/PageHeader.vue'
 // import StayingPopulation from '@/components/StayingPopulation.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
@@ -48,7 +48,7 @@ export default Vue.extend({
     PageHeader,
     AboutSite,
     WhatsNew,
-    MonitoringCommentCard,
+    // MonitoringCommentCard,
     // Consultation,
     // StayingPopulation,
   },
