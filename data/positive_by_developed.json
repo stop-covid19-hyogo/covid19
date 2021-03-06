@@ -1,6 +1,6 @@
 {
-    "date": "2021\/1\/19 20:00",
-    "unknown_count": 32178,
+    "date": "2021\/2\/22 18:45",
+    "unknown_count": 40186,
     "data": [
         {
             "developed_date": "2020-01-14",
@@ -1220,11 +1220,11 @@
         },
         {
             "developed_date": "2020-11-13",
-            "count": 230
+            "count": 231
         },
         {
             "developed_date": "2020-11-14",
-            "count": 230
+            "count": 231
         },
         {
             "developed_date": "2020-11-15",
@@ -1248,23 +1248,23 @@
         },
         {
             "developed_date": "2020-11-20",
-            "count": 265
+            "count": 266
         },
         {
             "developed_date": "2020-11-21",
-            "count": 228
+            "count": 229
         },
         {
             "developed_date": "2020-11-22",
-            "count": 197
+            "count": 198
         },
         {
             "developed_date": "2020-11-23",
-            "count": 230
+            "count": 231
         },
         {
             "developed_date": "2020-11-24",
-            "count": 276
+            "count": 278
         },
         {
             "developed_date": "2020-11-25",
@@ -1280,7 +1280,7 @@
         },
         {
             "developed_date": "2020-11-28",
-            "count": 222
+            "count": 224
         },
         {
             "developed_date": "2020-11-29",
@@ -1288,11 +1288,11 @@
         },
         {
             "developed_date": "2020-11-30",
-            "count": 280
+            "count": 281
         },
         {
             "developed_date": "2020-12-01",
-            "count": 279
+            "count": 281
         },
         {
             "developed_date": "2020-12-02",
@@ -1300,11 +1300,11 @@
         },
         {
             "developed_date": "2020-12-03",
-            "count": 279
+            "count": 281
         },
         {
             "developed_date": "2020-12-04",
-            "count": 290
+            "count": 293
         },
         {
             "developed_date": "2020-12-05",
@@ -1312,23 +1312,23 @@
         },
         {
             "developed_date": "2020-12-06",
-            "count": 260
+            "count": 262
         },
         {
             "developed_date": "2020-12-07",
-            "count": 335
+            "count": 336
         },
         {
             "developed_date": "2020-12-08",
-            "count": 367
+            "count": 369
         },
         {
             "developed_date": "2020-12-09",
-            "count": 335
+            "count": 336
         },
         {
             "developed_date": "2020-12-10",
-            "count": 361
+            "count": 362
         },
         {
             "developed_date": "2020-12-11",
@@ -1336,23 +1336,23 @@
         },
         {
             "developed_date": "2020-12-12",
-            "count": 331
+            "count": 333
         },
         {
             "developed_date": "2020-12-13",
-            "count": 328
+            "count": 329
         },
         {
             "developed_date": "2020-12-14",
-            "count": 456
+            "count": 457
         },
         {
             "developed_date": "2020-12-15",
-            "count": 431
+            "count": 432
         },
         {
             "developed_date": "2020-12-16",
-            "count": 459
+            "count": 460
         },
         {
             "developed_date": "2020-12-17",
@@ -1360,135 +1360,267 @@
         },
         {
             "developed_date": "2020-12-18",
-            "count": 383
+            "count": 387
         },
         {
             "developed_date": "2020-12-19",
-            "count": 369
+            "count": 383
         },
         {
             "developed_date": "2020-12-20",
-            "count": 434
+            "count": 446
         },
         {
             "developed_date": "2020-12-21",
-            "count": 537
+            "count": 543
         },
         {
             "developed_date": "2020-12-22",
-            "count": 583
+            "count": 594
         },
         {
             "developed_date": "2020-12-23",
-            "count": 550
+            "count": 561
         },
         {
             "developed_date": "2020-12-24",
-            "count": 510
+            "count": 520
         },
         {
             "developed_date": "2020-12-25",
-            "count": 551
+            "count": 571
         },
         {
             "developed_date": "2020-12-26",
-            "count": 565
+            "count": 579
         },
         {
             "developed_date": "2020-12-27",
-            "count": 586
+            "count": 608
         },
         {
             "developed_date": "2020-12-28",
-            "count": 682
+            "count": 706
         },
         {
             "developed_date": "2020-12-29",
-            "count": 748
+            "count": 761
         },
         {
             "developed_date": "2020-12-30",
-            "count": 808
+            "count": 845
         },
         {
             "developed_date": "2020-12-31",
-            "count": 887
+            "count": 915
         },
         {
             "developed_date": "2021-01-01",
-            "count": 1105
+            "count": 1159
         },
         {
             "developed_date": "2021-01-02",
-            "count": 1222
+            "count": 1295
         },
         {
             "developed_date": "2021-01-03",
-            "count": 1231
+            "count": 1325
         },
         {
             "developed_date": "2021-01-04",
-            "count": 1437
+            "count": 1523
         },
         {
             "developed_date": "2021-01-05",
-            "count": 1307
+            "count": 1394
         },
         {
             "developed_date": "2021-01-06",
-            "count": 1280
+            "count": 1363
         },
         {
             "developed_date": "2021-01-07",
-            "count": 1091
+            "count": 1177
         },
         {
             "developed_date": "2021-01-08",
-            "count": 952
+            "count": 1039
         },
         {
             "developed_date": "2021-01-09",
-            "count": 867
+            "count": 962
         },
         {
             "developed_date": "2021-01-10",
-            "count": 782
+            "count": 899
         },
         {
             "developed_date": "2021-01-11",
-            "count": 755
+            "count": 900
         },
         {
             "developed_date": "2021-01-12",
-            "count": 842
+            "count": 1032
         },
         {
             "developed_date": "2021-01-13",
-            "count": 663
+            "count": 898
         },
         {
             "developed_date": "2021-01-14",
-            "count": 471
+            "count": 735
         },
         {
             "developed_date": "2021-01-15",
-            "count": 373
+            "count": 738
         },
         {
             "developed_date": "2021-01-16",
-            "count": 213
+            "count": 701
         },
         {
             "developed_date": "2021-01-17",
-            "count": 88
+            "count": 598
         },
         {
             "developed_date": "2021-01-18",
-            "count": 59
+            "count": 717
         },
         {
             "developed_date": "2021-01-19",
-            "count": 1
+            "count": 611
+        },
+        {
+            "developed_date": "2021-01-20",
+            "count": 550
+        },
+        {
+            "developed_date": "2021-01-21",
+            "count": 540
+        },
+        {
+            "developed_date": "2021-01-22",
+            "count": 540
+        },
+        {
+            "developed_date": "2021-01-23",
+            "count": 441
+        },
+        {
+            "developed_date": "2021-01-24",
+            "count": 426
+        },
+        {
+            "developed_date": "2021-01-25",
+            "count": 511
+        },
+        {
+            "developed_date": "2021-01-26",
+            "count": 422
+        },
+        {
+            "developed_date": "2021-01-27",
+            "count": 441
+        },
+        {
+            "developed_date": "2021-01-28",
+            "count": 363
+        },
+        {
+            "developed_date": "2021-01-29",
+            "count": 359
+        },
+        {
+            "developed_date": "2021-01-30",
+            "count": 306
+        },
+        {
+            "developed_date": "2021-01-31",
+            "count": 263
+        },
+        {
+            "developed_date": "2021-02-01",
+            "count": 351
+        },
+        {
+            "developed_date": "2021-02-02",
+            "count": 370
+        },
+        {
+            "developed_date": "2021-02-03",
+            "count": 307
+        },
+        {
+            "developed_date": "2021-02-04",
+            "count": 276
+        },
+        {
+            "developed_date": "2021-02-05",
+            "count": 273
+        },
+        {
+            "developed_date": "2021-02-06",
+            "count": 241
+        },
+        {
+            "developed_date": "2021-02-07",
+            "count": 209
+        },
+        {
+            "developed_date": "2021-02-08",
+            "count": 240
+        },
+        {
+            "developed_date": "2021-02-09",
+            "count": 217
+        },
+        {
+            "developed_date": "2021-02-10",
+            "count": 223
+        },
+        {
+            "developed_date": "2021-02-11",
+            "count": 202
+        },
+        {
+            "developed_date": "2021-02-12",
+            "count": 215
+        },
+        {
+            "developed_date": "2021-02-13",
+            "count": 201
+        },
+        {
+            "developed_date": "2021-02-14",
+            "count": 188
+        },
+        {
+            "developed_date": "2021-02-15",
+            "count": 191
+        },
+        {
+            "developed_date": "2021-02-16",
+            "count": 167
+        },
+        {
+            "developed_date": "2021-02-17",
+            "count": 140
+        },
+        {
+            "developed_date": "2021-02-18",
+            "count": 112
+        },
+        {
+            "developed_date": "2021-02-19",
+            "count": 74
+        },
+        {
+            "developed_date": "2021-02-20",
+            "count": 37
+        },
+        {
+            "developed_date": "2021-02-21",
+            "count": 10
         }
     ]
 }

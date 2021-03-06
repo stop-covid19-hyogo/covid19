@@ -66,7 +66,7 @@ import OpenDataLink from '@/components/OpenDataLink'
 import mainSummary from '@/data/main_summary.json'
 import formatConfirmedCases from '@/utils/formatConfirmedCases'
 
-export default {
+const options = {
   components: {
     DataView,
     ConfirmedCasesDetailsTable,
@@ -87,6 +87,8 @@ export default {
     }
   },
 }
+
+export default options
 </script>
 
 <style lang="scss" module>
