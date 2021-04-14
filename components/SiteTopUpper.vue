@@ -15,6 +15,7 @@
         <span>{{ $t('注釈') }}</span>
       </div>
     </div>
+    <page-update-issue />
     <about-site />
     <whats-new :items="newsItems" :is-emergency="false" />
     <!--<infection-medicalcareprovision-status />
@@ -35,6 +36,7 @@ import AboutSite from '@/components/AboutSite.vue'
 // import Consultation from '@/components/Consultation.vue'
 // import MonitoringCommentCard from '@/components/MonitoringCommentCard.vue'
 import PageHeader from '@/components/PageHeader.vue'
+import PageUpdateIssue from '@/components/PageUpdateIssue.vue'
 // import StayingPopulation from '@/components/StayingPopulation.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
 import lastUpdate from '@/data/last_update.json'
@@ -45,6 +47,7 @@ import { convertISO8601FormatToDatetime } from '@/utils/formatDate'
 
 export default Vue.extend({
   components: {
+    PageUpdateIssue,
     PageHeader,
     AboutSite,
     WhatsNew,
