@@ -2,7 +2,7 @@
   <component :is="cardComponent" />
 </template>
 
-<script>
+<script lang="ts">
 /* eslint-disable simple-import-sort/sort -- ブラウザでの表示順に合わせて各 card の component を import する */
 /*
 // ---- モニタリング項目
@@ -67,9 +67,13 @@ import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
 // import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
 /* eslint-enable simple-import-sort/sort */
 
+import { Vue, Component } from 'nuxt-property-decorator'
+import type { NuxtOptionsHead as MetaInfo } from '@nuxt/types/config/head'
+import type { NuxtConfig } from '@nuxt/types'
 import { getLinksLanguageAlternative } from '@/utils/i18nUtils'
+import { convertDateToSimpleFormat } from '@/utils/formatDate'
 
-export default {
+@Component({
   components: {
     /*
     // ---- モニタリング項目
@@ -105,6 +109,8 @@ export default {
     PatientsByClusters,
     // PatientsAndSickbeds,
   },
+})
+export default class CardContainer extends Vue implements NuxtConfig {
   data() {
     let title, updatedAt, cardComponent
     switch (this.$route.params.card) {
@@ -224,18 +230,20 @@ export default {
       /* case 'patients-and-sickbeds':
         cardComponent = 'patients-and-sickbeds' */
     }
-
+    /* eslint-enable simple-import-sort/sort */
     return {
       cardComponent,
       title,
       updatedAt,
     }
-  },
+  }
+
   head() {
     const url = 'https://stop-covid19-hyogo.org'
     const timestamp = new Date().getTime()
+    const defaultTitle = this.$tc('兵庫県 新型コロナウイルスまとめサイト')
     const ogpImage =
-      this.$i18n.locale === 'ja'
+      (this.$i18n.locale ?? 'ja') === 'ja'
         ? `${url}/ogp/${this.$route.params.card}.png?t=${timestamp}`
         : `${url}/ogp/${this.$i18n.locale}/${this.$route.params.card}.png?t=${timestamp}`
     const description = `${this.$t(
@@ -243,16 +251,19 @@ export default {
     )} ${this.$t(
       '兵庫県内の感染者数、検査実施件数、入院患者数などをわかりやすく伝えることで、現状を把握して適切な対策を取れるようにすることを目的としています。'
     )}`
-    const defaultTitle = this.$tc('兵庫県 新型コロナウイルスまとめサイト')
 
-    return {
-      titleTemplate: (title) => `${this.title || title} | ${defaultTitle}`,
+    const mInfo: MetaInfo = {
+      title: `${
+        (this.$data.title ?? '') !== ''
+          ? this.$data.title + ' | ' + defaultTitle
+          : defaultTitle
+      }`,
       link: [
-        ...getLinksLanguageAlternative(
+        ...(getLinksLanguageAlternative(
           `cards/${this.$route.params.card}`,
           this.$i18n.locales,
           this.$i18n.defaultLocale
-        ),
+        ) as []),
       ],
       meta: [
         {
@@ -263,42 +274,39 @@ export default {
         {
           hid: 'og:title',
           property: 'og:title',
-          template: (title) =>
-            title !== ''
-              ? `${this.title || title} | ${defaultTitle}`
-              : `${defaultTitle}`,
-          content: '',
+          content: `${
+            (this.$data.title ?? '') !== ''
+              ? this.$data.title + ' | ' + defaultTitle
+              : defaultTitle
+          }`,
         },
         {
           hid: 'description',
           name: 'description',
-          template: (updatedAt) =>
-            updatedAt !== ''
-              ? `${this.updatedAt || updatedAt} | ${description}`
-              : `${description}`,
-          content: '',
+          content: `${this.$t('{date} 更新', {
+            date: convertDateToSimpleFormat(this.$data.updatedAt),
+          })}: ${description}`,
         },
         {
           hid: 'og:description',
           property: 'og:description',
-          template: (updatedAt) =>
-            updatedAt !== ''
-              ? `${this.updatedAt || updatedAt} | ${description}`
-              : `${description}`,
-          content: '',
+          content: `${this.$t('{date} 更新', {
+            date: convertDateToSimpleFormat(this.$data.updatedAt),
+          })}: ${description}`,
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: ogpImage,
+          content: `${ogpImage}`,
         },
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: ogpImage,
+          content: `${ogpImage}`,
         },
       ],
     }
-  },
+    return mInfo
+  }
 }
 </script>
