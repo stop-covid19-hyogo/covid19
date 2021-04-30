@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/cards/patients-by-clusters", {data:[{}],fetch:[],mutations:void 0});
