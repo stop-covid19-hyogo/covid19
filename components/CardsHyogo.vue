@@ -23,8 +23,8 @@ const ConfirmedCasesAttributesCard = () =>
 // 年齢別陽性患者数
 const PatientsByAge = () => import('@/components/cards/PatientsByAge.vue')
 // クラスター別陽性患者数
-const PatientsByClusters = () =>
-  import('@/components/cards/PatientsByClusters.vue')
+// const PatientsByClusters = () =>
+//   import('@/components/cards/PatientsByClusters.vue')
 // 入院患者数と残り病床数
 // const PatientsAndSickbeds = () =>
 //   import('@/components/cards/PatientsAndSickbeds.vue')
@@ -37,10 +37,10 @@ export default Vue.extend({
         [ConfirmedCasesDetailsCard, ChangesPatientsNumberCard],
         [ConfirmedCasesNumberCard, TestedNumberCard],
         [ConfirmedCasesAttributesCard, PatientsByAge],
-        [
+        /* [
           PatientsByClusters,
-          /* PatientsAndSickbeds, */
-        ],
+          PatientsAndSickbeds,
+        ], */
       ],
     }
   },
