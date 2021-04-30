@@ -62,7 +62,7 @@ import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttri
 // 年代別陽性患者数
 import PatientsByAge from '@/components/cards/PatientsByAge.vue'
 // クラスター別陽性患者数
-import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
+// import PatientsByClusters from '@/components/cards/PatientsByClusters.vue'
 // 入院患者数と残り病床数
 // import PatientsAndSickbeds from '@/components/cards/PatientsAndSickbeds.vue'
 /* eslint-enable simple-import-sort/sort */
@@ -106,7 +106,7 @@ import { convertDateToSimpleFormat } from '@/utils/formatDate'
     TestedNumberCard,
     ConfirmedCasesAttributesCard,
     PatientsByAge,
-    PatientsByClusters,
+    // PatientsByClusters,
     // PatientsAndSickbeds,
   },
 })
@@ -223,11 +223,11 @@ export default class CardContainer extends Vue implements NuxtConfig {
       case 'patients-by-age':
         cardComponent = 'patients-by-age'
         break
-      // クラスター別陽性患者数
+      /* // クラスター別陽性患者数
       case 'patients-by-clusters':
         cardComponent = 'patients-by-clusters'
         break
-      /* case 'patients-and-sickbeds':
+      case 'patients-and-sickbeds':
         cardComponent = 'patients-and-sickbeds' */
     }
     /* eslint-enable simple-import-sort/sort */

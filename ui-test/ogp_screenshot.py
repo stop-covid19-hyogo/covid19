@@ -29,7 +29,7 @@ PATHS = {
     # "/cards/positive-number-by-developed-date": (959, 570),
     # "/cards/number-of-reports-to-tokyo-fever-consultation-center": (959, 570),
     "/cards/patients-by-age": (959, 500),
-    "/cards/patients-by-clusters": (959, 500),
+    # "/cards/patients-by-clusters": (959, 500),
     # "/cards/patients-and-sickbeds": (959, 500),
     "/cards/changes-in-number-of-hospitalized-patients": (959, 500),
 }
