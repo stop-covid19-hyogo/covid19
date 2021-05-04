@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 386441,
+    "value": 388349,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 32579,
+            "value": 32923,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 749,
+                    "value": 745,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 661
+                            "value": 660
                         },
                         {
                             "attr": "重症",
-                            "value": 88
+                            "value": 85
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 455
+                    "value": 449
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 1991,
+                    "value": 1958,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 1745
+                            "value": 1722
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 1551
+                    "value": 1504
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 304
+                    "value": 313
                 },
                 {
                     "attr": "死亡",
-                    "value": 702
+                    "value": 704
                 },
                 {
                     "attr": "退院",
-                    "value": 26827
+                    "value": 27250
                 }
             ]
         }
     ],
-    "last_update": "2021-05-03T00:00:00+09:00"
+    "last_update": "2021-05-04T00:00:00+09:00"
 }
