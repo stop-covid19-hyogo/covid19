@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 458138,
+    "value": 460466,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 39676,
+            "value": 39705,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 674,
+                    "value": 620,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 581
+                            "value": 532
                         },
                         {
                             "attr": "重症",
-                            "value": 93
+                            "value": 88
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 286
+                    "value": 260
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 338,
+                    "value": 222,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 210
+                            "value": 72
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 428
+                    "value": 358
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 122
+                    "value": 110
                 },
                 {
                     "attr": "死亡",
-                    "value": 1172
+                    "value": 1181
                 },
                 {
                     "attr": "退院",
-                    "value": 36656
+                    "value": 36954
                 }
             ]
         }
     ],
-    "last_update": "2021-05-31T00:00:00+09:00"
+    "last_update": "2021-06-01T00:00:00+09:00"
 }
