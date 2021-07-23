@@ -469,7 +469,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
       }
     },
     displayOptionHeader() {
-      const scaledTicksYAxisMax = this.scaledTicksYAxisMax
+      // const scaledTicksYAxisMax = this.scaledTicksYAxisMax
 
       const options: Chart.ChartOptions = {
         tooltips: { enabled: false },
@@ -530,8 +530,8 @@ const options: ThisTypedComponentOptionsWithRecordProps<
               ticks: {
                 maxTicksLimit: 8,
                 fontColor: '#808080',
-                suggestedMin: 0,
-                suggestedMax: scaledTicksYAxisMax,
+                // suggestedMin: 0,
+                // suggestedMax: scaledTicksYAxisMax,
               },
             },
           ],
