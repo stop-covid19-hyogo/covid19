@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 656190,
+    "value": 659890,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 66463,
+            "value": 67417,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 909,
+                    "value": 892,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 832
+                            "value": 816
                         },
                         {
                             "attr": "重症",
-                            "value": 77
+                            "value": 76
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 880
+                    "value": 874
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 1164,
+                    "value": 1333,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 870
+                            "value": 896
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 4363
+                    "value": 4374
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 22
+                    "value": 11
                 },
                 {
                     "attr": "死亡",
-                    "value": 1339
+                    "value": 1340
                 },
                 {
                     "attr": "退院",
-                    "value": 57786
+                    "value": 58593
                 }
             ]
         }
     ],
-    "last_update": "2021-09-02T00:00:00+09:00"
+    "last_update": "2021-09-03T00:00:00+09:00"
 }
