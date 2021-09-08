@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 672093,
+    "value": 675595,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 70092,
+            "value": 70712,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 915,
+                    "value": 876,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 832
+                            "value": 791
                         },
                         {
                             "attr": "重症",
-                            "value": 83
+                            "value": 85
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 876
+                    "value": 850
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 984,
+                    "value": 857,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 523
+                            "value": 427
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 3816
+                    "value": 3701
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 17
+                    "value": 15
                 },
                 {
                     "attr": "死亡",
-                    "value": 1347
+                    "value": 1349
                 },
                 {
                     "attr": "退院",
-                    "value": 62137
+                    "value": 63064
                 }
             ]
         }
     ],
-    "last_update": "2021-09-07T00:00:00+09:00"
+    "last_update": "2021-09-08T00:00:00+09:00"
 }
