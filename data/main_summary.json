@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 706884,
+    "value": 709687,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 75242,
+            "value": 75545,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 664,
+                    "value": 656,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 600
+                            "value": 596
                         },
                         {
                             "attr": "重症",
-                            "value": 64
+                            "value": 60
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 605
+                    "value": 574
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 284,
+                    "value": 155,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 178
+                            "value": 91
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 2080
+                    "value": 1899
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 3
+                    "value": 2
                 },
                 {
                     "attr": "死亡",
-                    "value": 1374
+                    "value": 1376
                 },
                 {
                     "attr": "退院",
-                    "value": 70232
+                    "value": 70883
                 }
             ]
         }
     ],
-    "last_update": "2021-09-18T00:00:00+09:00"
+    "last_update": "2021-09-19T00:00:00+09:00"
 }
