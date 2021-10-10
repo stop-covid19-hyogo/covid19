@@ -1,46 +1,46 @@
 {
     "attr": "検査実施人数",
-    "value": 748800,
+    "value": 750269,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 77880,
+            "value": 77925,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 178,
+                    "value": 176,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 156
+                            "value": 153
                         },
                         {
                             "attr": "重症",
-                            "value": 22
+                            "value": 23
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 144
+                    "value": 152
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 35,
+                    "value": 31,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 22
+                            "value": 19
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 293
+                    "value": 282
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 14
+                    "value": 13
                 },
                 {
                     "attr": "死亡",
@@ -48,10 +48,10 @@
                 },
                 {
                     "attr": "退院",
-                    "value": 75827
+                    "value": 75882
                 }
             ]
         }
     ],
-    "last_update": "2021-10-09T00:00:00+09:00"
+    "last_update": "2021-10-10T00:00:00+09:00"
 }
