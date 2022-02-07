@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 1074381,
+    "value": 1083696,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 159819,
+            "value": 165203,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 158889,
+                    "value": 163675,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 930
+                            "value": 1528
                         },
                         {
                             "attr": "重症",
-                            "value": 1023
+                            "value": 1031
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 989
+                    "value": 995
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 34,
+                    "value": 36,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 439
+                            "value": 475
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 9837
+                    "value": 10113
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 107
+                    "value": 111
                 },
                 {
                     "attr": "死亡",
-                    "value": 38664
+                    "value": 40330
                 },
                 {
                     "attr": "退院",
-                    "value": 226
+                    "value": 212
                 }
             ]
         }
     ],
-    "last_update": "2022-02-06T00:00:00+09:00"
+    "last_update": "2022-02-07T00:00:00+09:00"
 }
