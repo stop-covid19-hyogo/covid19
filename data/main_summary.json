@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 1083696,
+    "value": 1099749,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 165203,
+            "value": 174970,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 163675,
+                    "value": 173050,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 1528
+                            "value": 1920
                         },
                         {
                             "attr": "重症",
-                            "value": 1031
+                            "value": 1042
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 995
+                    "value": 993
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 36,
+                    "value": 49,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 475
+                            "value": 501
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 10113
+                    "value": 11912
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 111
+                    "value": 104
                 },
                 {
                     "attr": "死亡",
-                    "value": 40330
+                    "value": 42403
                 },
                 {
                     "attr": "退院",
-                    "value": 212
+                    "value": 224
                 }
             ]
         }
     ],
-    "last_update": "2022-02-07T00:00:00+09:00"
+    "last_update": "2022-02-09T00:00:00+09:00"
 }
