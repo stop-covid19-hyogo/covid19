@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 1134277,
+    "value": 1141457,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 196420,
+            "value": 201035,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 193255,
+                    "value": 197517,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 3165
+                            "value": 3518
                         },
                         {
                             "attr": "重症",
-                            "value": 1070
+                            "value": 1090
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 1018
+                    "value": 1041
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 52,
+                    "value": 49,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 515
+                            "value": 497
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 15388
+                    "value": 3882
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 120
+                    "value": 87
                 },
                 {
                     "attr": "死亡",
-                    "value": 41779
+                    "value": 52713
                 },
                 {
                     "attr": "退院",
-                    "value": 308
+                    "value": 266
                 }
             ]
         }
     ],
-    "last_update": "2022-02-13T00:00:00+09:00"
+    "last_update": "2022-02-14T00:00:00+09:00"
 }
