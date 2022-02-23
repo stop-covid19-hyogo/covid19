@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 1195205,
+    "value": 1201539,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 235982,
+            "value": 239990,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 230297,
+                    "value": 233970,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 5685
+                            "value": 6020
                         },
                         {
                             "attr": "重症",
-                            "value": 1087
+                            "value": 1062
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 1040
+                    "value": 1013
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 47,
+                    "value": 49,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 441
+                            "value": 399
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 4307
+                    "value": 3791
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 70
+                    "value": 49
                 },
                 {
                     "attr": "死亡",
-                    "value": 38599
+                    "value": 36522
                 },
                 {
                     "attr": "退院",
-                    "value": 388
+                    "value": 384
                 }
             ]
         }
     ],
-    "last_update": "2022-02-22T00:00:00+09:00"
+    "last_update": "2022-02-23T00:00:00+09:00"
 }
