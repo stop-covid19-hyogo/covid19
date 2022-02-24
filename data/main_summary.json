@@ -1,57 +1,57 @@
 {
     "attr": "検査実施人数",
-    "value": 1201539,
+    "value": 1208739,
     "children": [
         {
             "attr": "陽性患者数",
-            "value": 239990,
+            "value": 244735,
             "children": [
                 {
                     "attr": "入院中",
-                    "value": 233970,
+                    "value": 238442,
                     "children": [
                         {
                             "attr": "軽症・中等症",
-                            "value": 6020
+                            "value": 6293
                         },
                         {
                             "attr": "重症",
-                            "value": 1062
+                            "value": 1030
                         }
                     ]
                 },
                 {
                     "attr": "宿泊療養",
-                    "value": 1013
+                    "value": 984
                 },
                 {
                     "attr": "入院・宿泊療養調整等",
-                    "value": 49,
+                    "value": 46,
                     "children": [
                         {
                             "attr": "入院調整",
-                            "value": 399
+                            "value": 395
                         }
                     ]
                 },
                 {
                     "attr": "自宅療養",
-                    "value": 3791
+                    "value": 4176
                 },
                 {
                     "attr": "その他医療機関福祉施設等",
-                    "value": 49
+                    "value": 53
                 },
                 {
                     "attr": "死亡",
-                    "value": 36522
+                    "value": 37462
                 },
                 {
                     "attr": "退院",
-                    "value": 384
+                    "value": 444
                 }
             ]
         }
     ],
-    "last_update": "2022-02-23T00:00:00+09:00"
+    "last_update": "2022-02-24T00:00:00+09:00"
 }
