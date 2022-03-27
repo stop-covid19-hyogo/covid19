@@ -1,4 +1,4 @@
-# 兵庫県 新型コロナウイルスまとめサイト
+# [Deprecated] 兵庫県 新型コロナウイルスまとめサイト
 
 [![production deploy](https://github.com/stop-covid19-hyogo/covid19/workflows/production%20deploy/badge.svg?branch=master)](https://github.com/tokyo-metropolitan-gov/covid19/actions?query=workflow%3A%22production+deploy%22)
 [![OGP Builder](https://github.com/stop-covid19-hyogo/covid19/workflows/OGP%20Builder/badge.svg?branch=master)](https://github.com/tokyo-metropolitan-gov/covid19/actions?query=workflow%3A%22OGP+Builder%22)
@@ -9,6 +9,16 @@
 <!--
 ### 日本語 | [English](./docs/en/README.md) | [Español](./docs/es/README.md) | [한국어](./docs/ko/README.md) | [繁體中文](./docs/zh_TW/README.md) | [简体中文](./docs/zh_CN/README.md) | [Tiếng Việt](./docs/vi/README.md) | [ภาษาไทย](./docs/th/README.md) | [Français](./docs/fr/README.md)
 -->
+
+## サイト終了のお知らせ
+
+2022年3月28日をもちまして、本サイトは終了いたしました。
+
+2020年3月15日のサイト公開からまる2年、皆さま本当にご協力ありがとうございました。
+
+まだまだ余談の許さない状況が続きますが、皆さまが健やかに過ごせることを心よりお祈りいたします。
+
+なお、今後の新型コロナウイルスの状況につきましては、[兵庫県のホームページ](https://web.pref.hyogo.lg.jp/)をご覧ください。
 
 ## 貢献の仕方
 
